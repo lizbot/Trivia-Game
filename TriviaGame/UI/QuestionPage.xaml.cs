@@ -34,5 +34,30 @@ namespace TriviaUI
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
         }
+
+        private void AnswerAClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AnswerBClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AnswerCClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AnswerDClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void QuestionAnswered()
+        {
+
+        }
     }
 }

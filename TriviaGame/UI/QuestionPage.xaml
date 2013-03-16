@@ -17,27 +17,58 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="This is an incredibly difficult triva question" 
+        <TextBlock Text="This is an incredibly difficult trivia question" 
                    FontSize="50" 
                    TextWrapping="Wrap" 
                    Margin="20,60,20,20"/>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <Button Content="A. Answer" FontSize="40" Margin="20,20,20,20"/>
-                <TextBlock Text="This is an answer." VerticalAlignment="Center" FontSize="30"/>
+                <Button Content="A. Answer" 
+                        FontSize="40" 
+                        Margin="20,20,20,20"
+                        Click="AnswerAClick"
+                        />
+                
+                <TextBlock Text="This is an answer." 
+                           VerticalAlignment="Center" 
+                           FontSize="30"/>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
-                <Button Content="B. Answer" FontSize="40" Margin="20,20,20,20"/>
-                <TextBlock Text="This is an answer." VerticalAlignment="Center" FontSize="30"/>
+                <Button Content="B. Answer" 
+                        FontSize="40" 
+                        Margin="20,20,20,20"
+                        Click="AnswerBClick"
+                        />
+                
+                <TextBlock Text="This is an answer." 
+                           VerticalAlignment="Center" 
+                           FontSize="30"/>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
-                <Button Content="C. Answer" FontSize="40" Margin="20,20,20,20"/>
-                <TextBlock Text="This is an answer." VerticalAlignment="Center" FontSize="30"/>
+                <Button Content="C. Answer" 
+                        FontSize="40" 
+                        Margin="20,20,20,20"
+                        Click="AnswerCClick"
+                        />
+                
+                <TextBlock Text="This is an answer." 
+                           VerticalAlignment="Center" 
+                           FontSize="30"/>
             </StackPanel>
+            
             <StackPanel Orientation="Horizontal">
-                <Button Content="D. Answer" FontSize="40" Margin="20,20,20,20"/>
-                <TextBlock Text="This is an answer." VerticalAlignment="Center" FontSize="30"/>
+                <Button Content="D. Answer" 
+                        FontSize="40" 
+                        Margin="20,20,20,20"
+                        Click="AnswerDClick"
+                        />
+                
+                <TextBlock Text="This is an answer." 
+                           VerticalAlignment="Center" 
+                           FontSize="30"/>
             </StackPanel>
         </StackPanel>
     </Grid>
