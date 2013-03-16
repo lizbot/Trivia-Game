@@ -14,12 +14,12 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace TriviaUI
+namespace UI
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class CategoryPage : TriviaUI.Common.LayoutAwarePage
+    public sealed partial class CategoryPage : UI.Common.LayoutAwarePage
     {
         public CategoryPage()
         {

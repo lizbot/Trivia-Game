@@ -19,9 +19,9 @@ namespace UI
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class StatisticsPage : UI.Common.LayoutAwarePage
+    public sealed partial class ResultsPage : UI.Common.LayoutAwarePage
     {
-        public StatisticsPage()
+        public ResultsPage()
         {
             this.InitializeComponent();
         }
@@ -48,5 +48,11 @@ namespace UI
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
+
+        private void GoBack(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
