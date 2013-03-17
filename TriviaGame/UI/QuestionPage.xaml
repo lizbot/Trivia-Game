@@ -9,20 +9,44 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="This is an incredibly difficult trivia question" 
                    FontSize="50" 
                    TextWrapping="Wrap" 
-                   Margin="20,60,20,20"/>
+                   Margin="20,40,20,20"/>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+        <Popup x:Name="ResultsPopup" 
+               Grid.Row="1"
+               IsLightDismissEnabled="False"
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Height="200" Width="400">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition/>
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Border BorderBrush="Firebrick" BorderThickness="10" Background="Black">
+                <StackPanel>
+                    <TextBlock Text="This is a popup window that will be used to display the game's results"
+                       FontSize="40"
+                       TextWrapping="Wrap"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"/>
+                    <Button Content="Close" HorizontalAlignment="Center" FontSize="30" Click="ResultsPopupCloseClick"/>
+                </StackPanel>
+                
+            </Border>
+            
+        </Popup>
+
+        <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
                 <Button Content="A. Answer" 
                         FontSize="40" 
@@ -71,5 +95,10 @@
                            FontSize="30"/>
             </StackPanel>
         </StackPanel>
+        
+        
+        
     </Grid>
+    
+    
 </Page>

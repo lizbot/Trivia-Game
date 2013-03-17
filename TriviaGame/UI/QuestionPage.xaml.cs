@@ -66,7 +66,7 @@ namespace UI
             numQuestionsAnswered++;
 
             if (isGameOver())
-                Frame.Navigate(typeof(ResultsPage));
+                ShowResultsPopup();
         }
 
         private bool isGameOver()
@@ -75,6 +75,16 @@ namespace UI
                 return true;
             else
                 return false;
+        }
+
+        private void ShowResultsPopup()
+        {
+            if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
+        }
+
+        private void ResultsPopupCloseClick(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
         }
     }
 }
