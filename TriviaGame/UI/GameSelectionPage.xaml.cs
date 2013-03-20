@@ -14,12 +14,12 @@ using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace TriviaUI
+namespace UI
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class GameSelectionPage : TriviaUI.Common.LayoutAwarePage
+    public sealed partial class GameSelectionPage : UI.Common.LayoutAwarePage
     {
         public GameSelectionPage()
         {
@@ -37,6 +37,7 @@ namespace TriviaUI
         /// session.  This will be null the first time a page is visited.</param>
         protected override void LoadState(Object navigationParameter, Dictionary<String, Object> pageState)
         {
+
         }
 
         /// <summary>
@@ -47,6 +48,24 @@ namespace TriviaUI
         /// <param name="pageState">An empty dictionary to be populated with serializable state.</param>
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
+
         }
+        
+        private void QuickplayClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(QuestionPage));
+        }
+
+        private void NewGameClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CategoryPage));
+        }
+
+        private void ResumeGameClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(QuestionPage));
+        }
+
+        
     }
 }

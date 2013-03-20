@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 
-namespace TriviaUI
+namespace UI
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -42,6 +42,7 @@ namespace TriviaUI
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             Frame rootFrame = Window.Current.Content as Frame;
+            UIVariables vars = new UIVariables();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

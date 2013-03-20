@@ -16,8 +16,11 @@
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TriviaUI.App">
       <VisualElements DisplayName="TriviaUI" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="TriviaUI" ForegroundText="light" BackgroundColor="#464646">
-        <DefaultTile ShowName="allLogos" />
+        <DefaultTile ShowName="allLogos" ShortName="Trivia!" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="black" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+        </InitialRotationPreference>
       </VisualElements>
     </Application>
   </Applications>

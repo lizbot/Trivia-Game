@@ -1,11 +1,11 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
-    x:Class="TriviaUI.GameSelectionPage"
+    x:Class="UI.GameSelectionPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:TriviaUI"
-    xmlns:common="using:TriviaUI.Common"
+    xmlns:local="using:UI"
+    xmlns:common="using:UI.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
@@ -30,6 +30,42 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <Button Content="Quickplay"
+                    FontSize="80"
+                    Margin="30"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="QuickplayClick"
+                    ToolTipService.ToolTip="Start a game with questions from all categories"/>
+            
+            <Button Content="Select a Category"
+                    Grid.Row="1"
+                    FontSize="80"
+                    Margin="30"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="NewGameClick"
+                    ToolTipService.ToolTip="Go to the Category Selection Page"/>
+            
+            <Button Content="Resume Last Game"
+                    Grid.Row="2"
+                    FontSize="80"
+                    Margin="30"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Click="ResumeGameClick"
+                    ToolTipService.ToolTip="Resume the Last Played Game"/>
+            
+            
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

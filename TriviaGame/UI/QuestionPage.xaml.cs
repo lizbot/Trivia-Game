@@ -14,16 +14,21 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace TriviaUI
+namespace UI
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class QuestionPage : Page
     {
+        int numQuestionsAnswered;
+        int questionThreshold;
+
         public QuestionPage()
         {
             this.InitializeComponent();
+            numQuestionsAnswered = 0;
+            questionThreshold = 5;
         }
 
         /// <summary>
@@ -33,6 +38,53 @@ namespace TriviaUI
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
+        }
+
+        private void AnswerAClick(object sender, RoutedEventArgs e)
+        {
+            QuestionAnswered();
+        }
+
+        private void AnswerBClick(object sender, RoutedEventArgs e)
+        {
+            QuestionAnswered();
+        }
+
+        private void AnswerCClick(object sender, RoutedEventArgs e)
+        {
+            QuestionAnswered();
+        }
+
+        private void AnswerDClick(object sender, RoutedEventArgs e)
+        {
+            QuestionAnswered();
+        }
+
+        private void QuestionAnswered()
+        {
+            numQuestionsAnswered++;
+
+            if (isGameOver())
+                ShowResultsPopup();
+        }
+
+        private bool isGameOver()
+        {
+            if (numQuestionsAnswered == questionThreshold)
+                return true;
+            else
+                return false;
+        }
+
+        private void ShowResultsPopup()
+        {
+            if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
+        }
+
+        private void ResultsPopupCloseClick(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
         }
     }
 }

@@ -19,9 +19,9 @@ namespace UI
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class StatisticsPage : UI.Common.LayoutAwarePage
+    public sealed partial class CategoryPage : UI.Common.LayoutAwarePage
     {
-        public StatisticsPage()
+        public CategoryPage()
         {
             this.InitializeComponent();
         }
