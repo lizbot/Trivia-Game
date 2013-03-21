@@ -9,6 +9,9 @@ using Windows.UI.Xaml.Controls;
 
 namespace UI
 {
+    using Infrastructure;
+    using Microsoft.Practices.Unity;
+
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
@@ -24,9 +27,10 @@ namespace UI
             Suspending += OnSuspending;
 
             //TODO(Liz, Laura): Set up database in the composite root here and utilize it in the Infrastructure.
+            var unityContainer = new UnityContainer();
 
-            var dbPath = Path.Combine (Windows.Storage.ApplicationData.Current.LocalFolder.Path, "trivia.db");
-
+            PersistenceConfiguration.ApplicationDirectory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            PersistenceConfiguration.ConfigureDependencies(unityContainer);
         }
 
         /// <summary>
