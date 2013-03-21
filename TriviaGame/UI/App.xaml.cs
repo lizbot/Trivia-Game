@@ -26,11 +26,11 @@ namespace UI
             InitializeComponent();
             Suspending += OnSuspending;
 
-            //TODO(Liz, Laura): Set up database in the composite root here and utilize it in the Infrastructure.
-            var unityContainer = new UnityContainer();
+            //TODO(Liz): Figure out how to use unity to configure dependencies of the application and refactor to make this less coupled.
+            // var unityContainer = new UnityContainer();
 
             PersistenceConfiguration.ApplicationDirectory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
-            PersistenceConfiguration.ConfigureDependencies(unityContainer);
+            //PersistenceConfiguration.ConfigureDependencies(unityContainer);
         }
 
         /// <summary>
