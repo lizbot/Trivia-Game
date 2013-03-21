@@ -12,7 +12,7 @@ namespace Testing
         {
             var db = new DatabaseRepository();
 
-            db.DoMe();
+          //  db.DoMe();
         }
     }
 }
