@@ -7,7 +7,7 @@
     {
         public IEnumerable<Question> GetQuestions()
         {
-            
+            // how will i resolve the concrete type of QuestionRepository?
         }
     }
 }
