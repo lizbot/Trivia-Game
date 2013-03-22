@@ -4,7 +4,7 @@ using System.Reflection;
 namespace Infrastructure
 {
     using Domain.Persistence;
-    using Microsoft.Practices.Unity;
+//    using Microsoft.Practices.Unity;
 
     public static class PersistenceConfiguration
     {
@@ -18,9 +18,9 @@ namespace Infrastructure
             }
         }
 
-        public static void ConfigureDependencies(IUnityContainer unityContainer)
-        {
-            unityContainer.RegisterType<IQuestionRepository, QuestionRepository>();
-        }
+  //      public static void ConfigureDependencies(IUnityContainer unityContainer)
+  //      {
+  //          unityContainer.RegisterType<IQuestionRepository, QuestionRepository>();
+  //      }
     }
 }
