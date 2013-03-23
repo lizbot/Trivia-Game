@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain.Model;
+using Domain.Persistence;
 
 namespace Infrastructure.Persistence
 {
