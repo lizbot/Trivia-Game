@@ -39,66 +39,59 @@
                        TextWrapping="Wrap"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"/>
-                    <Button Content="Close" HorizontalAlignment="Center" FontSize="30" Click="ResultsPopupCloseClick"/>
+                    <Button Content="Close" 
+                            HorizontalAlignment="Center" 
+                            FontSize="30" 
+                            Click="ResultsPopupCloseClick" 
+                            ToolTipService.ToolTip="Return to the Game Selection Menu"/>
                 </StackPanel>
-                
             </Border>
-            
         </Popup>
 
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
-                <Button Content="A. Answer" 
+                <Button Name="AButton"
+                        Content="A. Answer" 
                         FontSize="40" 
                         Margin="20,20,20,20"
-                        Click="AnswerAClick"
-                        />
-                
+                        Click="AnswerAClick"/>
                 <TextBlock Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
-                <Button Content="B. Answer" 
+                <Button Name="BButton" 
+                        Content="B. Answer" 
                         FontSize="40" 
                         Margin="20,20,20,20"
-                        Click="AnswerBClick"
-                        />
-                
+                        Click="AnswerBClick"/>
                 <TextBlock Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
-                <Button Content="C. Answer" 
+                <Button Name="CButton" 
+                        Content="C. Answer" 
                         FontSize="40" 
                         Margin="20,20,20,20"
-                        Click="AnswerCClick"
-                        />
-                
+                        Click="AnswerCClick"/>
                 <TextBlock Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
-                <Button Content="D. Answer" 
+                <Button Name="DButton"
+                        Content="D. Answer" 
                         FontSize="40" 
                         Margin="20,20,20,20"
-                        Click="AnswerDClick"
-                        />
-                
+                        Click="AnswerDClick"/>
                 <TextBlock Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
         </StackPanel>
-        
-        
-        
     </Grid>
-    
-    
 </Page>
