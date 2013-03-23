@@ -1,6 +1,7 @@
 ﻿using System;
-using System.IO;
-using Application.Helpers;
+using Application.Domain;
+using Domain.Persistence;
+using Domain.Services.Configuration;
 using Infrastructure.Initialization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
@@ -11,7 +12,6 @@ using Windows.UI.Xaml.Controls;
 
 namespace UI
 {
-    using Infrastructure;
     using Microsoft.Practices.Unity;
 
     /// <summary>
@@ -30,17 +30,25 @@ namespace UI
             InitializeComponent();
             Suspending += OnSuspending;
 
-            //TODO(Liz): Figure out how to use unity to configure dependencies of the application and refactor to make this less coupled.
-            // use builder pattern?
-            var unityContainer = new UnityContainer();
-
             // Creates a path to store the database at and initializes the database.
             PersistenceConfiguration.ApplicationDirectory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
             DatabaseInitialization.Database();
 
-            PersistenceConfiguration.ConfigureDependencies(unityContainer);
-            ApplicationConfiguration.ConfigureDependencies(unityContainer);
+            // creates a new instance of the Unity Container that'll be used to resolve all dependencies.
+            var unityContainer = new UnityContainer();
 
+            // All layers configured dependencies, interface to concrete type.
+            PersistenceConfiguration.ConfigureDependencies(unityContainer);
+            DomainConfiguration.ConfigureDependencies(unityContainer);
+            
+            // Infrastructure layer
+            unityContainer.Resolve<IQuestionRepository>();
+            unityContainer.Resolve<IGameRepository>();
+
+            // Domain Layer
+            unityContainer.Resolve<IQuestionService>();
+
+            // UI Layer
         }
 
         /// <summary>
@@ -51,8 +59,8 @@ namespace UI
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            Frame rootFrame = Window.Current.Content as Frame;
-            UIVariables vars = new UIVariables();
+            var rootFrame = Window.Current.Content as Frame;
+            var vars = new UIVariables();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active

@@ -184,6 +184,10 @@
       <Project>{18976b5c-67b2-443a-ba3e-1b94bcabb7f7}</Project>
       <Name>Application</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\Domain.csproj">
+      <Project>{a8ea57cc-fb14-4907-a367-994c4b14f27d}</Project>
+      <Name>Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
       <Project>{222a4c76-6fca-4d26-8a95-368bfbeff078}</Project>
       <Name>Infrastructure</Name>

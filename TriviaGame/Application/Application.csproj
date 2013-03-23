@@ -108,7 +108,6 @@
     <Compile Include="DTOs\OptionsDto.cs" />
     <Compile Include="DTOs\QuestionDto.cs" />
     <Compile Include="DTOs\StatisticsDto.cs" />
-    <Compile Include="Helpers\ApplicationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

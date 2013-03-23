@@ -1,7 +1,7 @@
 ﻿using System.IO;
+using Domain.Persistence;
 using Infrastructure.Persistence;
 using Microsoft.Practices.Unity;
-using Domain.Persistence;
 
 namespace Infrastructure.Initialization
 {
@@ -23,9 +23,6 @@ namespace Infrastructure.Initialization
         {
             unityContainer.RegisterType<IQuestionRepository, QuestionRepository>();
             unityContainer.RegisterType<IGameRepository, GameRepository>();
-
-            unityContainer.Resolve<IQuestionRepository>();
-            unityContainer.Resolve<IGameRepository>();
 
             return unityContainer;
         }

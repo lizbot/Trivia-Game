@@ -31,7 +31,8 @@ namespace Infrastructure.Initialization
 
         public static void Keys(SQLiteConnection db)
         {
-            // Figure out how to set primary auto incrementing keys
+            
+            // Figure out how to set primary auto incrementing keys and columns
         }
 
         /// <summary>

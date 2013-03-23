@@ -5,7 +5,7 @@ namespace Domain.Model
 {
     public class Question
     {
-        // [SQLite.AutoIncrement, SQLite.PrimaryKey] TODO(LM): Figure out a way to attribute this to properties in the infrastructure.
+        //[SQLite.AutoIncrement, SQLite.PrimaryKey] //TODO(LM): Figure out a way to attribute this to properties in the infrastructure.
         public Int32 QuestionId { get; set; }
 
         public String QuestionName { get; set; }

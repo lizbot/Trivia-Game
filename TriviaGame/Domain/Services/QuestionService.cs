@@ -1,16 +1,20 @@
 ﻿using System;
-using Application.DTOs;
 using Application.Domain;
+using Application.DTOs;
+using AutoMapper;
+using Domain.Model;
 using Domain.Persistence;
 
 namespace Domain.Services
 {
     using System.Collections.Generic;
-    using Model;
 
     public class QuestionService : IQuestionService
     {
         private readonly IQuestionRepository _QuestionRepository;
+
+        // Change this when we implement default settings to program against.
+        private Int32 _DefaultNumber = 20;
 
         // this is a type of constructor injection for dependency injection.
         public QuestionService (IQuestionRepository questionRepository)
@@ -20,10 +24,16 @@ namespace Domain.Services
 
         public IEnumerable<QuestionDto> GetQuestions()
         {
-            //This is an example on how to program against the interface. :-)
-            // _QuestionRepository.GetQuestions(20);
+            // defines how the mapping will occur.  If there are properties that need custom mapping, you do so in the parameter.
+            Mapper.CreateMap<Question, QuestionDto>();
 
-            throw new NotImplementedException();
+            // this gets the IEnumerable<Question> of all the questions that you want from the database.
+            var questions = _QuestionRepository.GetQuestions(_DefaultNumber);
+
+            // then we have to map them to Dtos to pass to the UI layer and return them.
+            var questionDtos = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDto>>(questions);
+
+            return questionDtos;
         }
     }
 }
