@@ -6,6 +6,9 @@ namespace Infrastructure
 {
     public class DatabaseInitialization
     {
+        /// <summary>
+        /// Initializes the database tables and configuration.
+        /// </summary>
         public static void Database()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
@@ -16,8 +19,6 @@ namespace Infrastructure
                 db.CreateTable<Statistics>();
                 db.CreateTable<GameSaved>();
                 db.CreateTable<Category>();
-
-                // Currently on property will always be passed in as 1 and update all other rows with that gameId to 0.
             }
 
 

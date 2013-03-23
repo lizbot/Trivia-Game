@@ -9,6 +9,8 @@ namespace Infrastructure.Persistence
         public IEnumerable<GameSaved> GetGameInProgress()
         {
             throw new NotImplementedException();
+            // Currently on property will always be passed in as (for the prop on the gameSaved for iscorrect) 1
+            // and update all other rows with that gameId to 0.
         }
     }
 }
