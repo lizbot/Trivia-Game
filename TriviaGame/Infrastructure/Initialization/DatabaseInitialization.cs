@@ -2,10 +2,13 @@
 using Domain.Model;
 using SQLite;
 
-namespace Infrastructure
+namespace Infrastructure.Initialization
 {
     public class DatabaseInitialization
     {
+
+        public static Question Question { get; set; }
+
         /// <summary>
         /// Initializes the database tables and configuration.
         /// </summary>
@@ -24,6 +27,11 @@ namespace Infrastructure
 
             //Use for testing.
             //return DoesQuestionNameInTableExist("Hello?");
+        }
+
+        public static void Keys(SQLiteConnection db)
+        {
+            // Figure out how to set primary auto incrementing keys
         }
 
         /// <summary>

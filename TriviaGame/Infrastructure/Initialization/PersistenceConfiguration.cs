@@ -1,9 +1,10 @@
 ﻿using System.IO;
-using System.Reflection;
+using Infrastructure.Persistence;
+using Microsoft.Practices.Unity;
+using Domain.Persistence;
 
-namespace Infrastructure
+namespace Infrastructure.Initialization
 {
-    using Domain.Persistence;
 //    using Microsoft.Practices.Unity;
 
     public static class PersistenceConfiguration
@@ -18,9 +19,15 @@ namespace Infrastructure
             }
         }
 
-  //      public static void ConfigureDependencies(IUnityContainer unityContainer)
-  //      {
-  //          unityContainer.RegisterType<IQuestionRepository, QuestionRepository>();
-  //      }
+        public static IUnityContainer ConfigureDependencies(IUnityContainer unityContainer)
+        {
+            unityContainer.RegisterType<IQuestionRepository, QuestionRepository>();
+            unityContainer.RegisterType<IGameRepository, GameRepository>();
+
+            unityContainer.Resolve<IQuestionRepository>();
+            unityContainer.Resolve<IGameRepository>();
+
+            return unityContainer;
+        }
     }
 }

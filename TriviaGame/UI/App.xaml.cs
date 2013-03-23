@@ -1,5 +1,7 @@
 ﻿using System;
 using System.IO;
+using Application.Helpers;
+using Infrastructure.Initialization;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -29,13 +31,16 @@ namespace UI
             Suspending += OnSuspending;
 
             //TODO(Liz): Figure out how to use unity to configure dependencies of the application and refactor to make this less coupled.
-            // var unityContainer = new UnityContainer();
+            // use builder pattern?
+            var unityContainer = new UnityContainer();
 
             // Creates a path to store the database at and initializes the database.
             PersistenceConfiguration.ApplicationDirectory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
             DatabaseInitialization.Database();
 
-            //PersistenceConfiguration.ConfigureDependencies(unityContainer);
+            PersistenceConfiguration.ConfigureDependencies(unityContainer);
+            ApplicationConfiguration.ConfigureDependencies(unityContainer);
+
         }
 
         /// <summary>

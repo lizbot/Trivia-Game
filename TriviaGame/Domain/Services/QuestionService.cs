@@ -10,7 +10,13 @@ namespace Domain.Services
 
     public class QuestionService : IQuestionService
     {
-        private IQuestionRepository _QuestionRepository;
+        private readonly IQuestionRepository _QuestionRepository;
+
+        // this is a type of constructor injection for dependency injection.
+        public QuestionService (IQuestionRepository questionRepository)
+        {
+            _QuestionRepository = questionRepository;
+        }
 
         public IEnumerable<QuestionDto> GetQuestions()
         {

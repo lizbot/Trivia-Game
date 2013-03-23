@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Domain.Model;
 using Domain.Persistence;
+using Infrastructure.Initialization;
 
 namespace Infrastructure.Persistence
 {
