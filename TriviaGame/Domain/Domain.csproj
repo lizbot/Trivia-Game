@@ -106,6 +106,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\AutoIncrement.cs" />
+    <Compile Include="Extensions\PrimaryKey.cs" />
     <Compile Include="Model\Answer.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\GameSaved.cs" />

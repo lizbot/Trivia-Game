@@ -4,7 +4,7 @@ using SQLite;
 
 namespace Infrastructure.Initialization
 {
-    public class DatabaseInitialization
+    public class DatabaseInitialization  
     {
 
         public static Question Question { get; set; }
@@ -22,6 +22,12 @@ namespace Infrastructure.Initialization
                 db.CreateTable<Statistics>();
                 db.CreateTable<GameSaved>();
                 db.CreateTable<Category>();
+
+                // Tried creating custom attributes in the domain to have them use the primary key attribute of sqlite
+                // but couldn't figure out how that would work but we don't want those attributes in the domain
+                // because the domain shouldn't have to know how we're persisting the data so it shouldn't have a 
+                // sqlite attribute setting the primary key.
+                SetPrimaryKey(db);
             }
 
 
@@ -29,9 +35,8 @@ namespace Infrastructure.Initialization
             //return DoesQuestionNameInTableExist("Hello?");
         }
 
-        public static void Keys(SQLiteConnection db)
+        public static void SetPrimaryKey(SQLiteConnection db)
         {
-            
             // Figure out how to set primary auto incrementing keys and columns
         }
 
