@@ -41,6 +41,7 @@ using Sqlite3 = Sqlite.Sqlite3;
 using Sqlite3DatabaseHandle = Sqlite.Database;
 using Sqlite3Statement = Sqlite.Statement;
 #else
+using Domain.Extensions;
 using Sqlite3DatabaseHandle = System.IntPtr;
 using Sqlite3Statement = System.IntPtr;
 #endif
@@ -1672,7 +1673,7 @@ namespace SQLite
 
 		public static bool IsPK (MemberInfo p)
 		{
-			var attrs = p.GetCustomAttributes (typeof(PrimaryKeyAttribute), true);
+			var attrs = p.GetCustomAttributes (typeof(PrimaryKey), true);
 #if !NETFX_CORE
 			return attrs.Length > 0;
 #else
@@ -1697,7 +1698,7 @@ namespace SQLite
 
 		public static bool IsAutoInc (MemberInfo p)
 		{
-			var attrs = p.GetCustomAttributes (typeof(AutoIncrementAttribute), true);
+			var attrs = p.GetCustomAttributes (typeof(AutoIncrement), true);
 #if !NETFX_CORE
 			return attrs.Length > 0;
 #else

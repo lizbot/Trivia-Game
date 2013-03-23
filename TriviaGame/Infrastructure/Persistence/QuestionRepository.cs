@@ -30,8 +30,8 @@ namespace Infrastructure.Persistence
 
                 foreach (var question in questionsToGet)
                 {
-                    question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
-                    question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
+                 //   question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
+            //        question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
                 }
 
                 return questionsToGet;

@@ -1,6 +1,4 @@
 ﻿using System;
-using Application.Domain;
-using Domain.Persistence;
 using Domain.Services.Configuration;
 using Infrastructure.Initialization;
 using Windows.ApplicationModel;
@@ -34,21 +32,12 @@ namespace UI
             PersistenceConfiguration.ApplicationDirectory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
             DatabaseInitialization.Database();
 
-            // creates a new instance of the Unity Container that'll be used to resolve all dependencies.
+            // creates a new instance of the Unity Container that'll be used to register all dependencies at the root.
             var unityContainer = new UnityContainer();
 
             // All layers configured dependencies, interface to concrete type.
             PersistenceConfiguration.ConfigureDependencies(unityContainer);
             DomainConfiguration.ConfigureDependencies(unityContainer);
-            
-            // Infrastructure layer
-            unityContainer.Resolve<IQuestionRepository>();
-            unityContainer.Resolve<IGameRepository>();
-
-            // Domain Layer
-            unityContainer.Resolve<IQuestionService>();
-
-            // UI Layer
         }
 
         /// <summary>
