@@ -50,6 +50,7 @@ namespace UI
         private void AnswerBClick(object sender, RoutedEventArgs e)
         {
             QuestionAnswered();
+            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
         }
 
         private void AnswerCClick(object sender, RoutedEventArgs e)
@@ -81,10 +82,12 @@ namespace UI
         private void ShowResultsPopup()
         {
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
+            this.Frame.Opacity = 0.3;
         }
 
         private void ResultsPopupCloseClick(object sender, RoutedEventArgs e)
         {
+            this.Frame.Opacity = 1;
             Frame.GoBack();
         }
     }
