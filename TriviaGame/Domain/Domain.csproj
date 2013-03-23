@@ -102,7 +102,13 @@
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Answer.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\GameSaved.cs" />
+    <Compile Include="Model\Options.cs" />
     <Compile Include="Model\Question.cs" />
+    <Compile Include="Model\Statistics.cs" />
+    <Compile Include="Persistence\IGameRepository.cs" />
     <Compile Include="Persistence\IQuestionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\QuestionService.cs" />

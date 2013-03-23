@@ -101,9 +101,12 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="DatabaseInitialization.cs" />
     <Compile Include="PersistenceConfiguration.cs" />
+    <Compile Include="Persistence\GameRepository.cs" />
+    <Compile Include="Persistence\IGameRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QuestionRepository.cs" />
+    <Compile Include="Persistence\QuestionRepository.cs" />
     <Compile Include="SQLite.cs" />
     <Compile Include="SQLiteAsync.cs" />
   </ItemGroup>

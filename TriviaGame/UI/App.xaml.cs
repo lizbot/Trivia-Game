@@ -20,6 +20,8 @@ namespace UI
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
+        /// 
+        /// This is technically the 'Composite Root.'
         /// </summary>
         public App()
         {
@@ -29,7 +31,10 @@ namespace UI
             //TODO(Liz): Figure out how to use unity to configure dependencies of the application and refactor to make this less coupled.
             // var unityContainer = new UnityContainer();
 
+            // Creates a path to store the database at and initializes the database.
             PersistenceConfiguration.ApplicationDirectory = Windows.Storage.ApplicationData.Current.LocalFolder.Path;
+            DatabaseInitialization.Database();
+
             //PersistenceConfiguration.ConfigureDependencies(unityContainer);
         }
 
