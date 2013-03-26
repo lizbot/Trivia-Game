@@ -24,12 +24,16 @@ namespace UI
     {
         int numQuestionsAnswered;
         int questionThreshold;
+        Question[] questions;
+        Question currentQuestion;
+        int currentQuestionIndex;
 
         public QuestionPage()
         {
             this.InitializeComponent();
             numQuestionsAnswered = 0;
             questionThreshold = 5;
+            currentQuestionIndex = 0;
         }
 
         /// <summary>
@@ -40,6 +44,26 @@ namespace UI
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
+            questions = new Question[questionThreshold];
+            String[] blah = new String[4];
+            blah[0] = "ASDFASDF";
+            blah[1] = "ertERt";
+            blah[2] = "yui";
+            blah[3] = "sdfd";
+            for(int i = 0; i < questionThreshold; i++)
+            {
+                questions[i] = new Question(i+1 + "QUESTION", blah, (i % 4));
+            }
+            currentQuestionIndex = -1;
+
+        }
+
+        private void UpdateQuestion()
+        {
+            currentQuestionIndex++;
+            currentQuestion = questions[currentQuestionIndex];
+
+            QuestionText.Text = currentQuestion.QText;
         }
 
         private void AnswerAClick(object sender, RoutedEventArgs e)
@@ -69,6 +93,8 @@ namespace UI
 
             if (isGameOver())
                 ShowResultsPopup();
+            else
+                UpdateQuestion();
         }
 
         private bool isGameOver()

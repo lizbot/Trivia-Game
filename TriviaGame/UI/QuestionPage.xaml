@@ -16,7 +16,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="This is an incredibly difficult trivia question" 
+        <TextBlock Name="QuestionText"
+                   Text="This is an incredibly difficult trivia question" 
                    FontSize="50" 
                    TextWrapping="Wrap" 
                    Margin="20,40,20,20"/>
@@ -55,7 +56,8 @@
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerAClick"/>
-                <TextBlock Text="This is an answer." 
+                <TextBlock Name="AnswerAText"
+                           Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
@@ -66,7 +68,8 @@
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerBClick"/>
-                <TextBlock Text="This is an answer." 
+                <TextBlock Name="AnswerBText"
+                           Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
@@ -77,7 +80,8 @@
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerCClick"/>
-                <TextBlock Text="This is an answer." 
+                <TextBlock Name="AnswerCText"
+                           Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
@@ -88,7 +92,8 @@
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerDClick"/>
-                <TextBlock Text="This is an answer." 
+                <TextBlock Name="AnswerDText"
+                           Text="This is an answer." 
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
