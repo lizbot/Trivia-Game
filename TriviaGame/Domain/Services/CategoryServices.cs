@@ -28,17 +28,15 @@ namespace Domain.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Category> GetCategories() 
+        public IEnumerable<CategoryDto> GetCategories() 
         {
             Mapper.CreateMap<Category, CategoryDto>();
 
-            Category category = _CategoryRepository.GetCategories();
+            var category = _CategoryRepository.GetCategories();
 
-            var categoryDtos = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDto>>(category);
+            var categoryDtos = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDto>>(category);
 
-            return categoryDtos;
-            
-            throw new NotImplementedException();
+            return categoryDtos;           
         }
     }
 }
