@@ -19,8 +19,5 @@ namespace UI
             PossibleAnswers = answers;
             CorrectAnswerIndex = ind;
         }
-
-
-
     }
 }

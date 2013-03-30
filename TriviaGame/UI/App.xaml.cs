@@ -49,7 +49,6 @@ namespace UI
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
             var rootFrame = Window.Current.Content as Frame;
-            var vars = new UIVariables();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
