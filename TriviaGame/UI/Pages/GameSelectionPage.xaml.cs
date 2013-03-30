@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Application.Domain;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -22,8 +23,13 @@ namespace UI
     /// </summary>
     public sealed partial class GameSelectionPage : UI.Common.LayoutAwarePage
     {
-        public GameSelectionPage()
+
+        //private readonly IQuestionService _QuestionService;
+
+        public GameSelectionPage(/*IQuestionService questionService*/)
         {
+            //_QuestionService = questionService;
+
             this.InitializeComponent();
         }
 
@@ -54,7 +60,9 @@ namespace UI
         
         private void QuickplayClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(QuestionPage));
+            //var questions = _QuestionService.GetQuestions(null);
+
+            Frame.Navigate(typeof(QuestionPage)/*, questions*/);
         }
 
         private void NewGameClick(object sender, RoutedEventArgs e)

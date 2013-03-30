@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Application.Domain;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -21,9 +22,26 @@ namespace UI
     /// </summary>
     public sealed partial class CategoryPage : UI.Common.LayoutAwarePage
     {
-        public CategoryPage()
+
+        private readonly IQuestionService _QuestionService;
+        //private readonly ICategoryService _CategoryService;
+
+        public CategoryPage(IQuestionService questionService/*add dependency injection for category service*/)
         {
+            _QuestionService = questionService;
+
             this.InitializeComponent();
+        }
+
+        /// <summary>
+        /// Invoked when this page is about to be displayed in a Frame.
+        /// </summary>
+        /// <param name="e">Event data that describes how this page was reached.  The Parameter
+        /// property is typically used to configure the page.</param>
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //var categories = _CategoryService.getCategories();
+
         }
 
         /// <summary>
