@@ -1,13 +1,14 @@
 ﻿using System;
-using Domain.Model;
 using SQLite;
+using Infrastructure.Model;
+using System.Linq;
 
 namespace Infrastructure.Initialization
 {
     public class DatabaseInitialization  
     {
 
-        public static Question Question { get; set; }
+        public Questions Question { get; set; }
 
         /// <summary>
         /// Initializes the database tables and configuration.
@@ -16,17 +17,18 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                db.CreateTable<Question>();
+                db.CreateTable<Questions>();
                 db.CreateTable<Answer>();
-                db.CreateTable<Options>();
-                db.CreateTable<Statistics>();
+               //db.CreateTable<Options>();
+               // db.CreateTable<Statistics>();
                 db.CreateTable<GameSaved>();
                 db.CreateTable<Category>();
             }
 
 
             //Use for testing.
-            //return DoesQuestionNameInTableExist("Hello?");
+            DoesQuestionNameInTableExist("Hello?");
+            //getQuestions("How are you?");
         }
 
         /// <summary>
@@ -36,28 +38,43 @@ namespace Infrastructure.Initialization
         /// <returns>
         /// Whether or not the question exists.
         /// </returns>
-        public static Boolean DoesQuestionNameInTableExist(String questionName)
+        public static Questions DoesQuestionNameInTableExist(String questionName)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
                 db.BeginTransaction();
-     /*           db.Insert(new Question
+                db.Insert(new Questions
                     {
-                        CorrectAnswer =
-                            {
-                                AnswerId = 1,
-                                IsCorrect = true,
-                                Name = "Answer1",
-                                QuestionId = 1
-                            },
-                        QuestionId = 1,
-                        QuestionName = "Hello?"
-                    }); */
+                        CategoryId = 5,
+                        QuestionName = "Hello?",
+                        TimesCorrect = 2,
+                        TimesViewed = 3,
+                    });
 
-                db.Get<Question>(q => q.QuestionName == questionName );
+                db.Insert(new Questions
+                {
+                    CategoryId = 5,
+                    QuestionName = "how are you?",
+                    TimesCorrect = 2,
+                    TimesViewed = 3,
+                });
+               var returnQuestion1 = db.Get<Questions>(q => q.QuestionName == questionName );
+               var returnQuestion2 = db.Get<Questions>(q => q.QuestionName == "how are you?");
+               return returnQuestion2;
             }
-
-            return true;
+            
+            return new Questions();
         }
+
+       /* private static Questions getQuestions(String nameOfQuestion)
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+                var returnQuestionsfrom = db.Get<Questions>(q => q.QuestionName == nameOfQuestion);
+                return returnQuestionsfrom;
+            }
+        }*/ 
+        
     }
 }
