@@ -17,7 +17,6 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Name="QuestionText"
-                   Text="This is an incredibly difficult trivia question" 
                    FontSize="50" 
                    TextWrapping="Wrap" 
                    Margin="20,40,20,20"/>

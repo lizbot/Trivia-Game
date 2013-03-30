@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Application.Domain;
+using Application.DTOs;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,13 +26,18 @@ namespace UI
     {
         int numQuestionsAnswered;
         int questionThreshold;
-        Question[] questions;
-        Question currentQuestion;
+        QuestionDto currentQuestion;
         int currentQuestionIndex;
+        private readonly IQuestionService _QuestionService;
 
-        public QuestionPage()
+        IEnumerable<QuestionDto> questions;
+
+        public QuestionPage(/*IQuestionService questionService*/)
         {
             this.InitializeComponent();
+
+            //_QuestionService = questionService;
+
             numQuestionsAnswered = 0;
             questionThreshold = 5;
             currentQuestionIndex = 0;
@@ -44,7 +51,19 @@ namespace UI
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
-            questions = new Question[questionThreshold];
+
+            // Possibly change other pages to get questions in order to pass questions parameter to questions page
+
+
+            //questions = (IEnumerable<QuestionDto>)e.Parameter;
+            QuestionDto samplequestion = new QuestionDto();
+
+            samplequestion.QuestionName = "asdf";
+
+            //questions = (IEnumerable<QuestionDto>)samplequestion;
+            //currentQuestion = questions.ElementAt(currentQuestionIndex);
+            QuestionText.Text = samplequestion.QuestionName;
+
             String[] blah = new String[4];
             blah[0] = "ASDFASDF";
             blah[1] = "ertERt";
@@ -52,18 +71,18 @@ namespace UI
             blah[3] = "sdfd";
             for(int i = 0; i < questionThreshold; i++)
             {
-                questions[i] = new Question(i+1 + "QUESTION", blah, (i % 4));
+                
             }
-            currentQuestionIndex = -1;
+            //currentQuestionIndex = -1;
 
         }
 
         private void UpdateQuestion()
         {
             currentQuestionIndex++;
-            currentQuestion = questions[currentQuestionIndex];
+            //currentQuestion = questions[currentQuestionIndex];
 
-            QuestionText.Text = currentQuestion.QText;
+            //QuestionText.Text = currentQuestion.QText;
         }
 
         private void AnswerAClick(object sender, RoutedEventArgs e)
@@ -99,7 +118,7 @@ namespace UI
 
         private bool isGameOver()
         {
-            if (numQuestionsAnswered == questionThreshold)
+            if (numQuestionsAnswered > questionThreshold)
                 return true;
             else
                 return false;

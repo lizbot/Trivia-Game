@@ -57,6 +57,7 @@
                     ToolTipService.ToolTip="Go to the Category Selection Page"/>
             
             <Button Content="Resume Last Game"
+                    
                     Grid.Row="2"
                     FontSize="80"
                     Margin="30"
