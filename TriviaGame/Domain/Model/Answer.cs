@@ -5,7 +5,6 @@ namespace Domain.Model
 {
     public class Answer
     {
-        [PrimaryKey, AutoIncrement]
         public Int32 AnswerId { get; set; }
 
         public Int32 QuestionId { get; set; }
