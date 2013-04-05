@@ -105,8 +105,9 @@
     <Compile Include="Domain\IQuestionService.cs" />
     <Compile Include="DTOs\AnswerDto.cs" />
     <Compile Include="DTOs\CategoryDto.cs" />
+    <Compile Include="DTOs\CustomOptionsDto.cs" />
     <Compile Include="DTOs\GameSavedDto.cs" />
-    <Compile Include="DTOs\OptionsDto.cs" />
+    <Compile Include="DTOs\GeneralOptionsDto.cs" />
     <Compile Include="DTOs\QuestionDto.cs" />
     <Compile Include="DTOs\StatisticsDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
