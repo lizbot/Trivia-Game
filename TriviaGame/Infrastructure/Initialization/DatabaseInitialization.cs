@@ -58,6 +58,13 @@ namespace Infrastructure.Initialization
                     TimesCorrect = 2,
                     TimesViewed = 3,
                 });
+
+                // don't forget to fucking commit... liz is a tard.
+                db.Commit();
+
+                var questions = getQuestions("how are you?");
+                return questions;
+
                var returnQuestion1 = db.Get<Questions>(q => q.QuestionName == questionName );
                var returnQuestion2 = db.Get<Questions>(q => q.QuestionName == "how are you?");
                return returnQuestion2;
@@ -66,15 +73,14 @@ namespace Infrastructure.Initialization
             return new Questions();
         }
 
-       /* private static Questions getQuestions(String nameOfQuestion)
+        private static Questions getQuestions(String nameOfQuestion)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                db.BeginTransaction();
                 var returnQuestionsfrom = db.Get<Questions>(q => q.QuestionName == nameOfQuestion);
                 return returnQuestionsfrom;
             }
-        }*/ 
+        }
         
     }
 }

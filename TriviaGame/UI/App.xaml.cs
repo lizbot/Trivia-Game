@@ -1,6 +1,9 @@
 ﻿using System;
 using Domain.Services.Configuration;
 using Infrastructure.Initialization;
+using Microsoft.Practices.ServiceLocation;
+using Microsoft.Practices.Unity.ServiceLocatorAdapter;
+using UI.Pages;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -11,6 +14,7 @@ using Windows.UI.Xaml.Controls;
 namespace UI
 {
     using Microsoft.Practices.Unity;
+
 
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -33,11 +37,15 @@ namespace UI
             DatabaseInitialization.Database();
 
             // creates a new instance of the Unity Container that'll be used to register all dependencies at the root.
-            var unityContainer = new UnityContainer();
+            IUnityContainer unityContainer = new UnityContainer();
 
-            // All layers configured dependencies, interface to concrete type.
+            // All layers configured dependencies, interface to concrete type or to self.
             PersistenceConfiguration.ConfigureDependencies(unityContainer);
             DomainConfiguration.ConfigureDependencies(unityContainer);
+
+            // creates the service locator to resolve dependencies each individual pages depends on.
+            var provider = new UnityServiceLocator(unityContainer);
+            ServiceLocator.SetLocatorProvider(() => provider);
         }
 
         /// <summary>
