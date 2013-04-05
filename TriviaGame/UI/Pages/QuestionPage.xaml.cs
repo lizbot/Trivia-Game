@@ -24,13 +24,13 @@ namespace UI
     /// </summary>
     public sealed partial class QuestionPage : Page
     {
-        int numQuestionsAnswered;
-        int questionThreshold;
-        QuestionDto currentQuestion;
-        int currentQuestionIndex;
+        int _NumQuestionsAnswered;
+        readonly int questionThreshold;
+        QuestionDto _CurrentQuestion;
+        int _CurrentQuestionIndex;
         private readonly IQuestionService _QuestionService;
 
-        IEnumerable<QuestionDto> questions;
+        IEnumerable<QuestionDto> _Questions;
 
         public QuestionPage(/*IQuestionService questionService*/)
         {
@@ -38,9 +38,9 @@ namespace UI
 
             //_QuestionService = questionService;
 
-            numQuestionsAnswered = 0;
+            _NumQuestionsAnswered = 0;
             questionThreshold = 5;
-            currentQuestionIndex = 0;
+            _CurrentQuestionIndex = 0;
         }
 
         /// <summary>
@@ -56,7 +56,7 @@ namespace UI
 
 
             //questions = (IEnumerable<QuestionDto>)e.Parameter;
-            QuestionDto samplequestion = new QuestionDto();
+            var samplequestion = new QuestionDto();
 
             samplequestion.QuestionName = "asdf";
 
@@ -79,7 +79,7 @@ namespace UI
 
         private void UpdateQuestion()
         {
-            currentQuestionIndex++;
+            _CurrentQuestionIndex++;
             //currentQuestion = questions[currentQuestionIndex];
 
             //QuestionText.Text = currentQuestion.QText;
@@ -108,7 +108,7 @@ namespace UI
 
         private void QuestionAnswered()
         {
-            numQuestionsAnswered++;
+            _NumQuestionsAnswered++;
 
             if (isGameOver())
                 ShowResultsPopup();
@@ -118,7 +118,7 @@ namespace UI
 
         private bool isGameOver()
         {
-            if (numQuestionsAnswered > questionThreshold)
+            if (_NumQuestionsAnswered > questionThreshold)
                 return true;
             else
                 return false;
