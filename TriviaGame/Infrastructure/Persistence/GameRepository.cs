@@ -13,13 +13,6 @@ namespace Infrastructure.Persistence
             throw new NotImplementedException();
             // Currently on property will always be passed in as (for the prop on the gameSaved for iscorrect) 1
             // and update all other rows with that gameId to 0.
-
-          
-        }
-
-        public bool IsGameInProgress()
-        {
-            throw new NotImplementedException();
         }
 
         public Boolean IsGameInProgress()

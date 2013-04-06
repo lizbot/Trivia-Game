@@ -1,81 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Controls;
+using Application.Domain;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Application.Domain;
-<<<<<<< HEAD
-=======
-using Application.DTOs;
-using Domain.Model;
-using System.Threading;
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
 
-// The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
-
-namespace UI
+namespace UI.Pages
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class QuestionPage : Page
+    public sealed partial class QuestionPage
     {
-<<<<<<< HEAD
         Int32 _NumQuestionsAnswered;
-        Int32 _NumQuestionsRight;
-        private readonly Int32 _QuestionThreshold;
         Int32    _CurrentQuestionIndex;
-=======
+        private readonly Int32 _QuestionThreshold;
 
-        int _NumQuestionsAnswered;
-        int questionThreshold;
-        int _CurrentQuestionIndex;
-        int numCorrect;
-        int numIncorrect;
-        int currentCorrectStreak;
-        int bestCorrectStreak;
+        Int32 _NumCorrect;
+        Int32 _NumIncorrect;
+        Int32 _CurrentCorrectStreak;
+        Int32 _BestCorrectStreak;
 
-        bool previousAnswerWasCorrect;
+        Boolean _PreviousAnswerWasCorrect;
 
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
         private readonly IQuestionService _QuestionService;
-        Random random = new Random();
-        List<QuestionDto> questions;
 
-<<<<<<< HEAD
+        readonly Random _Random = new Random();
+        List<Question> _Questions;
+
         public QuestionPage()
-=======
-        IEnumerable<QuestionDto> _Questions;
-
-
-        public QuestionPage(/*IQuestionService questionService*/)
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
         {
             InitializeComponent();
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
 
-            //_QuestionService = questionService;
-
-<<<<<<< HEAD
-            //_NumQuestionsAnswered = 0;
-            _QuestionThreshold = 5;
-            //_CurrentQuestionIndex = 0;
-=======
             _NumQuestionsAnswered = 0;
-            questionThreshold = 5;
+            _QuestionThreshold = 5;
 
             _CurrentQuestionIndex = 0;
-            numCorrect = 0;
-            numIncorrect = 0;
-            currentCorrectStreak = 0;
-            bestCorrectStreak = 0;
-            previousAnswerWasCorrect = false;
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
+            _NumCorrect = 0;
+            _NumIncorrect = 0;
+            _CurrentCorrectStreak = 0;
+            _BestCorrectStreak = 0;
+            _PreviousAnswerWasCorrect = false;
         }
+
+        public int QuestionThreshold { get; set; }
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -85,62 +58,44 @@ namespace UI
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
-            var questions = _QuestionService.GetQuestions();
+            //var questions = _QuestionService.GetQuestions();
 
             // Possibly change other pages to get questions in order to pass questions parameter to questions page
-            
-            ////questions = (IEnumerable<QuestionDto>)e.Parameter;
-            //var samplequestion = new QuestionDto();
-
-<<<<<<< HEAD
-            //samplequestion.QuestionName = "asdf";
-
-            //questions = (IEnumerable<QuestionDto>)samplequestion;
-            //currentQuestion = questions.ElementAt(currentQuestionIndex);
-            // QuestionText.Text = samplequestion.QuestionName;
-
-            //String[] blah = new String[4];
-            //blah[0] = "ASDFASDF";
-            //blah[1] = "ertERt";
-            //blah[2] = "yui";
-            //blah[3] = "sdfd";
-            //for(int i = 0; i < _QuestionThreshold; i++)
-            //{
-
-            //}
-            //currentQuestionIndex = -1;
-
-=======
-
 
             //questions = (IEnumerable<QuestionDto>)e.Parameter;
-            var samplequestion = new QuestionDto();
 
-            questions = new List<QuestionDto>();
+            _Questions = new List<Question>();
 
 
             for (int i = 0; i < 5; i++)
             {
-                QuestionDto q = new QuestionDto();
+                var correct = new Answer
+                    {
+                        IsCorrect = true,
+                        Name = "This is the correct answer"
+                    };
 
-                q.QuestionName = "This is question " + (i + 1);
+                var q = new Question
+                    {
+                        QuestionName = "This is question " + (i + 1),
+                        CorrectAnswer = correct
+                    };
 
-                AnswerDto correct = new AnswerDto();
-                correct.IsCorrect = true;
-                correct.Name = "This is the correct answer";
-                q.CorrectAnswer = correct;
 
-                List<AnswerDto> WrongAnswers = new List<AnswerDto>();
+                var wrongAnswers = new List<Answer>();
 
-                for (int j = 0; j < 3; j++)
+                for (var j = 0; j < 3; j++)
                 {
-                    AnswerDto wrong = new AnswerDto();
-                    wrong.Name = "This is wrong answer " + (j + 1);
-                    wrong.IsCorrect = false;
-                    WrongAnswers.Add(wrong);
+                    var wrong = new Answer
+                        {
+                            Name = "This is wrong answer " + (j + 1), 
+                            IsCorrect = false
+                        };
+
+                    wrongAnswers.Add(wrong);
                 }
-                q.WrongAnswers = WrongAnswers;
-                questions.Add(q);
+                q.WrongAnswers = wrongAnswers;
+                _Questions.Add(q);
 
                 
             }
@@ -148,24 +103,20 @@ namespace UI
             BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
+            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void UpdateQuestion()
         {
-<<<<<<< HEAD
-            _CurrentQuestionIndex++;
-
             //currentQuestion = questions[currentQuestionIndex];
-=======
-            displayQuestion(questions.ElementAt(++_CurrentQuestionIndex));
+       
+            DisplayQuestion(_Questions.ElementAt(++_CurrentQuestionIndex));
         }
 
-        private void displayQuestion(QuestionDto question)
+        private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
-            _CurrentQuestionIndex = random.Next(0, 4);
+            _CurrentQuestionIndex = _Random.Next(0, 4);
 
             if (_CurrentQuestionIndex == 0)
             {
@@ -182,7 +133,6 @@ namespace UI
                 AnswerBText.Text = question.CorrectAnswer.Name;
                 AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
                 AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
 
                 _CurrentQuestionIndex = 1;
             }
@@ -218,91 +168,61 @@ namespace UI
 
         private void QuestionAnswered(int buttonIndex)
         {
-<<<<<<< HEAD
-            var questions = _QuestionService.GetQuestions();
+           // var questions = _QuestionService.GetQuestions();
 
-            AnswerAText.Text = "answerA"; //questionDtos.GetEnumerator().Current.CorrectAnswer.Name;
-            //QuestionAnswered(questionDtos.GetEnumerator().Current.CorrectAnswer.AnswerId);
-            QuestionAnswered();
-=======
             _NumQuestionsAnswered++;
-            isAnswerCorrect(buttonIndex);
-            updateCorrectQuestionStreak();
-            drawRightWrong();
+            IsAnswerCorrect(buttonIndex);
+            UpdateCorrectQuestionStreak();
+            DrawRightWrong();
 
-            if (isGameOver())
+            if (IsGameOver())
             {
-                resetColors();
+                ResetColors();
                 ShowResultsPopup();
-                disableButtons();
+                DisableButtons();
             }
             else
             {
-                resetColors();
+                ResetColors();
                 UpdateQuestion();
             }
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
         }
 
-        private void isAnswerCorrect(int buttonIndex)
+        private void IsAnswerCorrect(int buttonIndex)
         {
-<<<<<<< HEAD
-            var questions = _QuestionService.GetQuestions();
+            //var questions = _QuestionService.GetQuestions();
 
-            AnswerBText.Text = "answerB"; // questionDtos.GetEnumerator().Current.WrongAnswers.GetEnumerator().Current.Name;
-           // QuestionAnswered(questionDtos.GetEnumerator().Current.CorrectAnswer.AnswerId);
-            QuestionAnswered();
-
-            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-=======
             if (buttonIndex == _CurrentQuestionIndex)
             {
-                questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
-                previousAnswerWasCorrect = true;
-                numCorrect++;
+                _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
+                _PreviousAnswerWasCorrect = true;
+                _NumCorrect++;
             }
             else
             {
                 //questions.ElementAt(currentQuestionIndex).TimesIncorrect++;
-                previousAnswerWasCorrect = false;
-                numIncorrect++;
+                _PreviousAnswerWasCorrect = false;
+                _NumIncorrect++;
             }
-            questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
+            _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
         }
 
-        private void updateCorrectQuestionStreak()
+        private void UpdateCorrectQuestionStreak()
         {
-<<<<<<< HEAD
-            var questions = _QuestionService.GetQuestions();
+            //var questions = _QuestionService.GetQuestions();
 
-            AnswerCText.Text = "answerC"; // questionDtos.GetEnumerator().Current.WrongAnswers.GetEnumerator().Current.Name;
-            //QuestionAnswered(questionDtos.GetEnumerator().Current.CorrectAnswer.AnswerId);
-            QuestionAnswered();
-=======
-            if (previousAnswerWasCorrect)
+            if (_PreviousAnswerWasCorrect)
             {
-                currentCorrectStreak++;
-                if (currentCorrectStreak > bestCorrectStreak)
-                    bestCorrectStreak = currentCorrectStreak;
+                _CurrentCorrectStreak++;
+                if (_CurrentCorrectStreak > _BestCorrectStreak)
+                    _BestCorrectStreak = _CurrentCorrectStreak;
             }
             else
-                currentCorrectStreak = 0;
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
+                _CurrentCorrectStreak = 0;
         }
 
-        private void drawRightWrong()
+        private void DrawRightWrong()
         {
-<<<<<<< HEAD
-            var questions = _QuestionService.GetQuestions();
-
-            AnswerDText.Text = "answerD"; // questionDtos.GetEnumerator().Current.WrongAnswers.GetEnumerator().Current.Name;
-            //QuestionAnswered(questionDtos.GetEnumerator().Current.CorrectAnswer.AnswerId);
-            QuestionAnswered();
-        }
-
-        private void QuestionAnswered() //Int32 answerId)
-=======
             switch (_CurrentQuestionIndex)
             {
                 case 0: 
@@ -376,62 +296,41 @@ namespace UI
                     if (DButton.IsPointerOver)
                         DButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
                     break;
-                default:
-                    break;   
             }
             
         }
 
-        async private void waitForUser()
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
+        async private void WaitForUser()
         {
             await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
         }
 
-<<<<<<< HEAD
-            Boolean answerIsCorrect = true; //_QuestionService.GetQuestions().GetEnumerator().Current.CorrectAnswer.AnswerId == answerId; 
-
-            BButton.Background = answerIsCorrect 
-                ? new SolidColorBrush(Windows.UI.Colors.Green) 
-                : new SolidColorBrush(Windows.UI.Colors.Red);
-
-            _NumQuestionsRight++;
-
-            if (IsGameOver())
-                ShowResultsPopup();
-            else
-                UpdateQuestion();
-=======
-        private void resetColors()
+        private void ResetColors()
         {
             AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
         }
 
         private bool IsGameOver()
         {
-<<<<<<< HEAD
-            return _NumQuestionsAnswered > _QuestionThreshold;
-=======
-            if (_NumQuestionsAnswered == questionThreshold)
-                return true;
-            else
-                return false;
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
+            return _NumQuestionsAnswered == _QuestionThreshold;
         }
 
         private void ShowResultsPopup()
         {
-            AnswerTextBlock.Text = "You got " + numCorrect + " questions right and " + numIncorrect + " questions wrong!\n  And your best streak was " + bestCorrectStreak + "!";
+            AnswerTextBlock.Text =
+                String.Format("You got {0} questions right and {1} questions wrong!\n Your best streak was {2}",
+                              _NumCorrect, 
+                              _NumIncorrect, 
+                              _BestCorrectStreak);
 
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
             Frame.Opacity = 0.3;
         }
 
-        private void disableButtons()
+        private void DisableButtons()
         {
             AButton.IsEnabled = false;
             BButton.IsEnabled = false;

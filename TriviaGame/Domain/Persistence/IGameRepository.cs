@@ -8,10 +8,6 @@ namespace Domain.Persistence
     {
         IEnumerable<GameSaved> GetGameInProgress();
 
-<<<<<<< HEAD
         Boolean IsGameInProgress();
-=======
-        bool IsGameInProgress();
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
     }
 }

@@ -16,17 +16,10 @@ namespace Domain.Services
             _CategoryRepository = categoryRepository;
         }
 
-<<<<<<< HEAD
-
         public Category GetCategoryById(Int32 categoryId)
-=======
-        /*
-        public Category GetCategoryByID(Int32 CategoryID)
->>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
         {
             throw new NotImplementedException();
         }
-        */
 
         public IEnumerable<Category> GetCategories() 
         {
