@@ -1,34 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Infrastructure;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using Microsoft.Practices.ServiceLocation;
+using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Application.Domain;
+using Domain.Services;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace UI
+namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
     public sealed partial class GameSelectionPage : UI.Common.LayoutAwarePage
     {
+        private IQuestionService _QuestionService;
 
-        //private readonly IQuestionService _QuestionService;
+        //QuestionService questionService = new QuestionService(
 
-        public GameSelectionPage(/*IQuestionService questionService*/)
+
+
+        //UIServiceHelper helper = new UIServiceHelper();
+        
+
+        public GameSelectionPage()
         {
-            //_QuestionService = questionService;
+            // do this for all of your dependencies. (this is an anti-pattern... see Mark Seemann)
+            _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
+
 
             this.InitializeComponent();
         }
@@ -74,7 +75,5 @@ namespace UI
         {
             Frame.Navigate(typeof(QuestionPage));
         }
-
-        
     }
 }

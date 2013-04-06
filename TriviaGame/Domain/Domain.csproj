@@ -110,8 +110,9 @@
     <Compile Include="Extensions\PrimaryKey.cs" />
     <Compile Include="Model\Answer.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CustomOptions.cs" />
     <Compile Include="Model\GameSaved.cs" />
-    <Compile Include="Model\Options.cs" />
+    <Compile Include="Model\GeneralOptions.cs" />
     <Compile Include="Model\Question.cs" />
     <Compile Include="Model\Statistics.cs" />
     <Compile Include="Persistence\IAnswerRepository.cs" />
@@ -124,7 +125,9 @@
     <Compile Include="Services\CategoryServices.cs" />
     <Compile Include="Services\Configuration\DomainConfiguration.cs" />
     <Compile Include="Services\GameServices.cs" />
+    <Compile Include="Services\OptionsServices.cs" />
     <Compile Include="Services\QuestionService.cs" />
+    <Compile Include="Services\StatisticsService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AutoMapper">

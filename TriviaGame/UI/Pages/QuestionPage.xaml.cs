@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Application.Domain;
 using Application.DTOs;
+using Domain.Model;
+using System.Threading;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,13 +26,23 @@ namespace UI
     /// </summary>
     public sealed partial class QuestionPage : Page
     {
-        int numQuestionsAnswered;
-        int questionThreshold;
-        QuestionDto currentQuestion;
-        int currentQuestionIndex;
-        private readonly IQuestionService _QuestionService;
 
-        IEnumerable<QuestionDto> questions;
+        int _NumQuestionsAnswered;
+        int questionThreshold;
+        int _CurrentQuestionIndex;
+        int numCorrect;
+        int numIncorrect;
+        int currentCorrectStreak;
+        int bestCorrectStreak;
+
+        bool previousAnswerWasCorrect;
+
+        private readonly IQuestionService _QuestionService;
+        Random random = new Random();
+        List<QuestionDto> questions;
+
+        IEnumerable<QuestionDto> _Questions;
+
 
         public QuestionPage(/*IQuestionService questionService*/)
         {
@@ -38,9 +50,15 @@ namespace UI
 
             //_QuestionService = questionService;
 
-            numQuestionsAnswered = 0;
+            _NumQuestionsAnswered = 0;
             questionThreshold = 5;
-            currentQuestionIndex = 0;
+
+            _CurrentQuestionIndex = 0;
+            numCorrect = 0;
+            numIncorrect = 0;
+            currentCorrectStreak = 0;
+            bestCorrectStreak = 0;
+            previousAnswerWasCorrect = false;
         }
 
         /// <summary>
@@ -55,70 +73,249 @@ namespace UI
             // Possibly change other pages to get questions in order to pass questions parameter to questions page
 
 
+
             //questions = (IEnumerable<QuestionDto>)e.Parameter;
-            QuestionDto samplequestion = new QuestionDto();
+            var samplequestion = new QuestionDto();
 
-            samplequestion.QuestionName = "asdf";
+            questions = new List<QuestionDto>();
 
-            //questions = (IEnumerable<QuestionDto>)samplequestion;
-            //currentQuestion = questions.ElementAt(currentQuestionIndex);
-            QuestionText.Text = samplequestion.QuestionName;
 
-            String[] blah = new String[4];
-            blah[0] = "ASDFASDF";
-            blah[1] = "ertERt";
-            blah[2] = "yui";
-            blah[3] = "sdfd";
-            for(int i = 0; i < questionThreshold; i++)
+            for (int i = 0; i < 5; i++)
             {
+                QuestionDto q = new QuestionDto();
+
+                q.QuestionName = "This is question " + (i + 1);
+
+                AnswerDto correct = new AnswerDto();
+                correct.IsCorrect = true;
+                correct.Name = "This is the correct answer";
+                q.CorrectAnswer = correct;
+
+                List<AnswerDto> WrongAnswers = new List<AnswerDto>();
+
+                for (int j = 0; j < 3; j++)
+                {
+                    AnswerDto wrong = new AnswerDto();
+                    wrong.Name = "This is wrong answer " + (j + 1);
+                    wrong.IsCorrect = false;
+                    WrongAnswers.Add(wrong);
+                }
+                q.WrongAnswers = WrongAnswers;
+                questions.Add(q);
+
                 
             }
-            //currentQuestionIndex = -1;
-
+            AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void UpdateQuestion()
         {
-            currentQuestionIndex++;
-            //currentQuestion = questions[currentQuestionIndex];
-
-            //QuestionText.Text = currentQuestion.QText;
+            displayQuestion(questions.ElementAt(++_CurrentQuestionIndex));
         }
 
-        private void AnswerAClick(object sender, RoutedEventArgs e)
+        private void displayQuestion(QuestionDto question)
         {
-            QuestionAnswered();
+            QuestionText.Text = question.QuestionName;
+            _CurrentQuestionIndex = random.Next(0, 4);
+
+            if (_CurrentQuestionIndex == 0)
+            {
+                AnswerAText.Text = question.CorrectAnswer.Name;
+                AnswerBText.Text = question.WrongAnswers.ElementAt(0).Name;
+                AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
+                AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
+
+                _CurrentQuestionIndex = 0;
+            }
+            else if (_CurrentQuestionIndex == 1)
+            {
+                AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
+                AnswerBText.Text = question.CorrectAnswer.Name;
+                AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
+                AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
+
+                _CurrentQuestionIndex = 1;
+            }
+            else if (_CurrentQuestionIndex == 2)
+            {
+                AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
+                AnswerBText.Text = question.WrongAnswers.ElementAt(1).Name;
+                AnswerCText.Text = question.CorrectAnswer.Name;
+                AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
+
+                _CurrentQuestionIndex = 2;
+            }
+            else if (_CurrentQuestionIndex == 3)
+            {
+                AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
+                AnswerBText.Text = question.WrongAnswers.ElementAt(2).Name;
+                AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
+                AnswerDText.Text = question.CorrectAnswer.Name;
+
+                _CurrentQuestionIndex = 3;
+            }
+            else
+                QuestionText.Text = "I didn't work!";
         }
 
-        private void AnswerBClick(object sender, RoutedEventArgs e)
-        {
-            QuestionAnswered();
-            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-        }
+        private void AnswerAClick(object sender, RoutedEventArgs e) { QuestionAnswered(0); }
 
-        private void AnswerCClick(object sender, RoutedEventArgs e)
-        {
-            QuestionAnswered();
-        }
+        private void AnswerBClick(object sender, RoutedEventArgs e) { QuestionAnswered(1); }
 
-        private void AnswerDClick(object sender, RoutedEventArgs e)
-        {
-            QuestionAnswered();
-        }
+        private void AnswerCClick(object sender, RoutedEventArgs e) { QuestionAnswered(2); }
 
-        private void QuestionAnswered()
+        private void AnswerDClick(object sender, RoutedEventArgs e) { QuestionAnswered(3); }
+
+        private void QuestionAnswered(int buttonIndex)
         {
-            numQuestionsAnswered++;
+            _NumQuestionsAnswered++;
+            isAnswerCorrect(buttonIndex);
+            updateCorrectQuestionStreak();
+            drawRightWrong();
 
             if (isGameOver())
+            {
+                resetColors();
                 ShowResultsPopup();
+                disableButtons();
+            }
             else
+            {
+                resetColors();
                 UpdateQuestion();
+            }
+        }
+
+        private void isAnswerCorrect(int buttonIndex)
+        {
+            if (buttonIndex == _CurrentQuestionIndex)
+            {
+                questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
+                previousAnswerWasCorrect = true;
+                numCorrect++;
+            }
+            else
+            {
+                //questions.ElementAt(currentQuestionIndex).TimesIncorrect++;
+                previousAnswerWasCorrect = false;
+                numIncorrect++;
+            }
+            questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
+        }
+
+        private void updateCorrectQuestionStreak()
+        {
+            if (previousAnswerWasCorrect)
+            {
+                currentCorrectStreak++;
+                if (currentCorrectStreak > bestCorrectStreak)
+                    bestCorrectStreak = currentCorrectStreak;
+            }
+            else
+                currentCorrectStreak = 0;
+        }
+
+        private void drawRightWrong()
+        {
+            switch (_CurrentQuestionIndex)
+            {
+                case 0: 
+                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+                    if (AButton.IsPointerOver)
+                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+
+                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (BButton.IsPointerOver)
+                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (CButton.IsPointerOver)
+                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (DButton.IsPointerOver)
+                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    break;
+
+                case 1:
+                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (AButton.IsPointerOver)
+                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+                    if (BButton.IsPointerOver)
+                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+
+                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (CButton.IsPointerOver)
+                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (DButton.IsPointerOver)
+                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    break;
+
+                case 2:
+                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (AButton.IsPointerOver)
+                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (BButton.IsPointerOver)
+                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+                    if (CButton.IsPointerOver)
+                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+
+                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (DButton.IsPointerOver)
+                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    break;
+
+                case 3:
+                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (AButton.IsPointerOver)
+                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (BButton.IsPointerOver)
+                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    if (CButton.IsPointerOver)
+                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+
+                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+                    if (DButton.IsPointerOver)
+                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+                    break;
+                default:
+                    break;   
+            }
+            
+        }
+
+        async private void waitForUser()
+        {
+            await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
+        }
+
+        private void resetColors()
+        {
+            AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
         }
 
         private bool isGameOver()
         {
-            if (numQuestionsAnswered > questionThreshold)
+            if (_NumQuestionsAnswered == questionThreshold)
                 return true;
             else
                 return false;
@@ -126,8 +323,18 @@ namespace UI
 
         private void ShowResultsPopup()
         {
+            AnswerTextBlock.Text = "You got " + numCorrect + " questions right and " + numIncorrect + " questions wrong!\n  And your best streak was " + bestCorrectStreak + "!";
+
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
             this.Frame.Opacity = 0.3;
+        }
+
+        private void disableButtons()
+        {
+            AButton.IsEnabled = false;
+            BButton.IsEnabled = false;
+            CButton.IsEnabled = false;
+            DButton.IsEnabled = false;
         }
 
         private void ResultsPopupCloseClick(object sender, RoutedEventArgs e)
