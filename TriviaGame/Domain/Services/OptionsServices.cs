@@ -1,22 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using Application.Model;
+using Domain.Persistence;
 
 namespace Domain.Services
 {
-    class OptionsServices
+    public class OptionsServices
     {
-        //Get options whether general or Custom Options.
-        public IEnumerable<CustomOptions> GetCustomOptions()
+
+        private IOptionsRepository _OptionsRepository;
+
+        public OptionsServices(IOptionsRepository OptionsRepository)
         {
-            throw new NotImplementedException();
+            _OptionsRepository = OptionsRepository;
+        }
+
+        //Get options whether general or Custom Options.
+        public CustomOptions GetCustomOptions()
+        {
+            var CustomOption = _OptionsRepository.GetCustomOptions();
+            return CustomOption;
+            //throw new NotImplementedException();
         }
 
         //Gets the general Options
-        public IEnumerable<GeneralOptions> GetGeneralOptions()
+        public GeneralOptions GetGeneralOptions()
         {
-            throw new NotImplementedException();
+            var GeneralOption = _OptionsRepository.GetGeneralOptions();
+            return GeneralOption;
+            //throw new NotImplementedException();
         }
-
     }
 }
