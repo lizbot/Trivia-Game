@@ -58,17 +58,9 @@ namespace Infrastructure.Persistence
                 //IEnumerable<Answer> answers = null;
                 foreach (var question in questionsForDomain)
                 {
-                    question.CorrectAnswer = (from answer in db.Table<Answer>() select answer)
-                                              .Where(answer => 
-                                                  answer.QuestionId == question.QuestionId 
-                                                  && answer.IsCorrect)
-                                              .First();
+                    question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
 
-                    foreach (var answer in question.WrongAnswers)
-                    {
-                        question.WrongAnswers = (from a in db.Table<Answer>() select a)
-                            .Where(a => a.QuestionId == question.QuestionId && !a.IsCorrect);
-                    }
+                    question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
                 }
 
                 return questionsForDomain;
@@ -78,9 +70,7 @@ namespace Infrastructure.Persistence
         /// <summary>
         /// This gets the wrong answer from the question needed.
         /// </summary>
-        /// <param name="questionId">
-        /// 
-        /// </param>
+        /// <param name="questionId"> </param>
         /// <returns></returns>
         private IEnumerable<Answer> GetWrongAnswersFromQuestion(Int32 questionId)
         {

@@ -28,7 +28,8 @@ namespace Infrastructure.Initialization
 
             //Use for testing.
            // DoesQuestionNameInTableExist("Hello?");
-            //getQuestions("How are you?");
+            //var questions = GetQuestions("How are you?");
+            //var categoryId = questions.CategoryId;
         }
 
         /// <summary>
