@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.Model;
 
-namespace Domain.Persistence
+namespace Application.Domain
 {
-    public interface IAnswerRepository
+    public class IAnswerServices
     {
-        IEnumerable<Answer> GetAnswers();
+       
     }
 }

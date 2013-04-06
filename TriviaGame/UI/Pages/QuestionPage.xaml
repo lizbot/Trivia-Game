@@ -33,12 +33,13 @@
                 </TransitionCollection>
             </Popup.ChildTransitions>
             <Border BorderBrush="Firebrick" BorderThickness="10" Background="Black">
-                <StackPanel>
-                    <TextBlock Text="This is a popup window that will be used to display the game's results"
-                       FontSize="40"
-                       TextWrapping="Wrap"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"/>
+                <StackPanel Name="StackPanel">
+                    <TextBlock  Name="AnswerTextBlock"
+                                Text="LOL"
+                                FontSize="40"
+                                TextWrapping="Wrap"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
                     <Button Content="Close" 
                             HorizontalAlignment="Center" 
                             FontSize="30" 
@@ -51,48 +52,52 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
             <StackPanel Orientation="Horizontal">
                 <Button Name="AButton"
-                        Content="A. Answer" 
+                        Content="A"
+                        Width="150"
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerAClick"/>
-                <TextBlock Name="AnswerAText"
-                           Text="This is an answer." 
+                <TextBlock Name="AnswerAText" 
+                           Text="LOL"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
                 <Button Name="BButton" 
-                        Content="B. Answer" 
+                        Content="B"
+                        Width="150"
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerBClick"/>
                 <TextBlock Name="AnswerBText"
-                           Text="This is an answer." 
+                           Text="ROFL"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
                 <Button Name="CButton" 
-                        Content="C. Answer" 
+                        Content="C" 
+                        Width="150"
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerCClick"/>
                 <TextBlock Name="AnswerCText"
-                           Text="This is an answer." 
+                           Text="ASDF"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>
             
             <StackPanel Orientation="Horizontal">
                 <Button Name="DButton"
-                        Content="D. Answer" 
+                        Content="D" 
+                        Width="150"
                         FontSize="40" 
                         Margin="20,20,20,20"
                         Click="AnswerDClick"/>
                 <TextBlock Name="AnswerDText"
-                           Text="This is an answer." 
+                           Text="Microsoft is Awesome!"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
             </StackPanel>

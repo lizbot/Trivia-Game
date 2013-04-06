@@ -5,6 +5,7 @@ using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Application.Domain;
+using Domain.Services;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -17,10 +18,21 @@ namespace UI.Pages
     {
         private IQuestionService _QuestionService;
 
+<<<<<<< HEAD
+=======
+        //QuestionService questionService = new QuestionService(
+
+
+
+        //UIServiceHelper helper = new UIServiceHelper();
+        
+
+>>>>>>> 8dd02a7f7e2c711cfb22f7aa632725dc6252e5ac
         public GameSelectionPage()
         {
             // do this for all of your dependencies. (this is an anti-pattern... see Mark Seemann)
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
+
 
             this.InitializeComponent();
         }
@@ -66,7 +78,5 @@ namespace UI.Pages
         {
             Frame.Navigate(typeof(QuestionPage));
         }
-
-        
     }
 }
