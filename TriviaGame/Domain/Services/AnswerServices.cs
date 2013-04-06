@@ -10,9 +10,17 @@ using Domain.Model;
 using AutoMapper;
 
 
+
 namespace Domain.Services
 {
-    public class AnswerServices
+    public class AnswerServices : IAnswerServices
     {
+        private readonly IAnswerRepository _AnswerRepository;
+
+        public AnswerServices(IAnswerRepository answerRepository) 
+        {
+            _AnswerRepository = answerRepository;
+        }
+
     }
 }

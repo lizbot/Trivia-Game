@@ -22,11 +22,12 @@ namespace Domain.Services
             _CategoryRepository = categoryRepository;
         }
 
-
-        public Category getCategoryByID(Int32 CategoryID)
+        /*
+        public Category GetCategoryByID(Int32 CategoryID)
         {
             throw new NotImplementedException();
         }
+        */
 
         public IEnumerable<CategoryDto> GetCategories() 
         {

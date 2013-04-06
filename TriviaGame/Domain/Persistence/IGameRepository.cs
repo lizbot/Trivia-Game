@@ -6,5 +6,7 @@ namespace Domain.Persistence
     public interface IGameRepository
     {
         IEnumerable<GameSaved> GetGameInProgress();
+
+        bool IsGameInProgress();
     }
 }

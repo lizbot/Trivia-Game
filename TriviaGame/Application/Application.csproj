@@ -101,6 +101,7 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Domain\IAnswerServices.cs" />
     <Compile Include="Domain\ICategoryServices.cs" />
     <Compile Include="Domain\IQuestionService.cs" />
     <Compile Include="DTOs\AnswerDto.cs" />
