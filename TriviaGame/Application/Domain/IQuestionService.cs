@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using Application.DTOs;
-using System;
+using Application.Model;
 
 namespace Application.Domain
 {
     public interface IQuestionService
     {
-        IEnumerable<QuestionDto> GetQuestions();
+        IEnumerable<Question> GetQuestions();
     }
 }

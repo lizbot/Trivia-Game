@@ -1,23 +1,19 @@
 ﻿using System;
-using Application.Domain;
-using Application.DTOs;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Application.Model;
 
 namespace Domain.Services
 {
     class OptionsServices
     {
         //Get options whether general or Custom Options.
-        public IEnumerable<CustomOptionsDto> GetCustomOptions()
+        public IEnumerable<CustomOptions> GetCustomOptions()
         {
             throw new NotImplementedException();
         }
 
         //Gets the general Options
-        public IEnumerable<GeneralOptionsDto> GetGeneralOptions()
+        public IEnumerable<GeneralOptions> GetGeneralOptions()
         {
             throw new NotImplementedException();
         }

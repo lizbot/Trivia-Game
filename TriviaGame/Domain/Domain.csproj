@@ -108,13 +108,6 @@
   <ItemGroup>
     <Compile Include="Extensions\AutoIncrement.cs" />
     <Compile Include="Extensions\PrimaryKey.cs" />
-    <Compile Include="Model\Answer.cs" />
-    <Compile Include="Model\Category.cs" />
-    <Compile Include="Model\CustomOptions.cs" />
-    <Compile Include="Model\GameSaved.cs" />
-    <Compile Include="Model\GeneralOptions.cs" />
-    <Compile Include="Model\Question.cs" />
-    <Compile Include="Model\Statistics.cs" />
     <Compile Include="Persistence\IAnswerRepository.cs" />
     <Compile Include="Persistence\ICategoryRepository.cs" />
     <Compile Include="Persistence\IGameRepository.cs" />

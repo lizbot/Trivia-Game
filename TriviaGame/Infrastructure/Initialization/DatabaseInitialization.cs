@@ -27,7 +27,7 @@ namespace Infrastructure.Initialization
 
 
             //Use for testing.
-            DoesQuestionNameInTableExist("Hello?");
+           // DoesQuestionNameInTableExist("Hello?");
             //getQuestions("How are you?");
         }
 
@@ -62,18 +62,16 @@ namespace Infrastructure.Initialization
                 // don't forget to fucking commit... liz is a tard.
                 db.Commit();
 
-                var questions = getQuestions("how are you?");
+                var questions = GetQuestions("how are you?");
                 return questions;
 
                var returnQuestion1 = db.Get<Questions>(q => q.QuestionName == questionName );
                var returnQuestion2 = db.Get<Questions>(q => q.QuestionName == "how are you?");
                return returnQuestion2;
             }
-            
-            return new Questions();
         }
 
-        private static Questions getQuestions(String nameOfQuestion)
+        private static Questions GetQuestions(String nameOfQuestion)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {

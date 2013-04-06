@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Application.DTOs
+namespace Application.Model
 {
-    public class AnswerDto
+    public class Answer
     {
         public Int32 AnswerId { get; set; }
 
@@ -10,6 +10,6 @@ namespace Application.DTOs
 
         public String Name { get; set; }
 
-        public Boolean IsCorrect { get; set; } 
+        public Boolean IsCorrect { get; set; }
     }
 }

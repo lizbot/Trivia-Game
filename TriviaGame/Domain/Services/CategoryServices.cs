@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.DTOs;
 using Application.Domain;
+using Application.Model;
 using Domain.Persistence;
-using Domain.Model;
-using AutoMapper;
 
 namespace Domain.Services
 {
@@ -23,20 +17,16 @@ namespace Domain.Services
         }
 
 
-        public Category getCategoryByID(Int32 CategoryID)
+        public Category GetCategoryById(Int32 categoryId)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<CategoryDto> GetCategories() 
+        public IEnumerable<Category> GetCategories() 
         {
-            Mapper.CreateMap<Category, CategoryDto>();
-
             var category = _CategoryRepository.GetCategories();
 
-            var categoryDtos = Mapper.Map<IEnumerable<Category>, IEnumerable<CategoryDto>>(category);
-
-            return categoryDtos;           
+            return category;           
         }
     }
 }

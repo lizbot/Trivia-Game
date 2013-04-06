@@ -1,8 +1,7 @@
 ﻿using System;
 using Application.Domain;
-using Application.DTOs;
+using Application.Model;
 using AutoMapper;
-using Domain.Model;
 using Domain.Persistence;
 
 namespace Domain.Services
@@ -22,18 +21,12 @@ namespace Domain.Services
             _QuestionRepository = questionRepository;
         }
 
-        public IEnumerable<QuestionDto> GetQuestions()
+        public IEnumerable<Question> GetQuestions()
         {
-            // defines how the mapping will occur.  If there are properties that need custom mapping, you do so in the parameter.
-            Mapper.CreateMap<Question, QuestionDto>();
-
             // this gets the IEnumerable<Question> of all the questions that you want from the database.
             var questions = _QuestionRepository.GetQuestions(_DefaultNumber);
 
-            // then we have to map them to Dtos to pass to the UI layer and return them.
-            var questionDtos = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDto>>(questions);
-
-            return questionDtos;
+            return questions;
         }
 
         //Gets the questions as a parameter and gets them back to the repository

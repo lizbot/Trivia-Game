@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Model;
+using System.Linq;
+using Application.Model;
 using Domain.Persistence;
 using Infrastructure.Initialization;
+using Infrastructure.Model;
+using Answer = Application.Model.Answer;
 
 namespace Infrastructure.Persistence
 {
@@ -15,14 +18,16 @@ namespace Infrastructure.Persistence
         /// The amount of questions.
         /// </param>
         /// <returns>
-        /// An <see cref="IEnumerable{T}"/> of the questions.
+        /// An <see cref="IEnumerable{T}"/> of the questions mapped to the domain.
         /// </returns>
         public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions)
         {
             using (var db = new SQLite.SQLiteConnection(PersistenceConfiguration.Database))
             {
-                IEnumerable<Question> questionsToGet =
-                    (from question in db.Table<Question>()
+                IEnumerable<Question> domainQuestions = new List<Question>();
+
+                IEnumerable<Questions> questionsToGet =
+                    (from question in db.Table<Questions>()
                      select question
                      ).Take(amountOfQuestions)
                       .OrderByDescending(quest => quest.TimesViewed)
@@ -30,11 +35,43 @@ namespace Infrastructure.Persistence
 
                 foreach (var question in questionsToGet)
                 {
-                 //   question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
-            //        question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
+                    foreach (var domainQuestion in domainQuestions)
+                    {
+                        domainQuestion.CategoryId = question.CategoryId;
+                        domainQuestion.QuestionId = question.QuestionId;
+                        domainQuestion.QuestionName = question.QuestionName;
+                        domainQuestion.TimesCorrect = question.TimesCorrect;
+                        domainQuestion.TimesViewed = question.TimesViewed;
+                    }
                 }
 
-                return questionsToGet;
+                var questionsWithAnswers = GetAnswersToQuestions(domainQuestions);
+
+                return questionsWithAnswers;
+            }
+        }
+
+        private IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
+        {
+            using (var db = new SQLite.SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                //IEnumerable<Answer> answers = null;
+                foreach (var question in questionsForDomain)
+                {
+                    question.CorrectAnswer = (from answer in db.Table<Answer>() select answer)
+                                              .Where(answer => 
+                                                  answer.QuestionId == question.QuestionId 
+                                                  && answer.IsCorrect)
+                                              .First();
+
+                    foreach (var answer in question.WrongAnswers)
+                    {
+                        question.WrongAnswers = (from a in db.Table<Answer>() select a)
+                            .Where(a => a.QuestionId == question.QuestionId && !a.IsCorrect);
+                    }
+                }
+
+                return questionsForDomain;
             }
         }
 

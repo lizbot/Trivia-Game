@@ -103,13 +103,13 @@
   <ItemGroup>
     <Compile Include="Domain\ICategoryServices.cs" />
     <Compile Include="Domain\IQuestionService.cs" />
-    <Compile Include="DTOs\AnswerDto.cs" />
-    <Compile Include="DTOs\CategoryDto.cs" />
-    <Compile Include="DTOs\CustomOptionsDto.cs" />
-    <Compile Include="DTOs\GameSavedDto.cs" />
-    <Compile Include="DTOs\GeneralOptionsDto.cs" />
-    <Compile Include="DTOs\QuestionDto.cs" />
-    <Compile Include="DTOs\StatisticsDto.cs" />
+    <Compile Include="Model\Answer.cs" />
+    <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\CustomOptions.cs" />
+    <Compile Include="Model\GameSaved.cs" />
+    <Compile Include="Model\GeneralOptions.cs" />
+    <Compile Include="Model\Question.cs" />
+    <Compile Include="Model\Statistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

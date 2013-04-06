@@ -1,5 +1,4 @@
 ﻿using System;
-using Domain.Extensions;
 
 namespace Domain.Model
 {

@@ -17,8 +17,6 @@ namespace UI.Pages
     {
         private IQuestionService _QuestionService;
 
-        //private readonly IQuestionService _QuestionService;
-
         public GameSelectionPage()
         {
             // do this for all of your dependencies. (this is an anti-pattern... see Mark Seemann)

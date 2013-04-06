@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Application.DTOs
+namespace Application.Model
 {
-    public class CategoryDto
+    public class Category
     {
         public Int32 CategoryId { get; set; }
 
