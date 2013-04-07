@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Application.Model;
 using Domain.Persistence;
 using Infrastructure.Initialization;
@@ -53,8 +52,6 @@ namespace Infrastructure.Persistence
 
         private IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
         {
-            using (var db = new SQLite.SQLiteConnection(PersistenceConfiguration.Database))
-            {
                 //IEnumerable<Answer> answers = null;
                 foreach (var question in questionsForDomain)
                 {
@@ -64,7 +61,6 @@ namespace Infrastructure.Persistence
                 }
 
                 return questionsForDomain;
-            }
         }
 
         /// <summary>
