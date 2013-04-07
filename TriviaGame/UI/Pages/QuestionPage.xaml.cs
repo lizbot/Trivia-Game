@@ -30,6 +30,7 @@ namespace UI
         int _NumQuestionsAnswered;
         int questionThreshold;
         int _CurrentQuestionIndex;
+        int _CorrectAnswerIndex;
         int numCorrect;
         int numIncorrect;
         int currentCorrectStreak;
@@ -110,53 +111,57 @@ namespace UI
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+
+            //_Questions = questions;
         }
 
         private void UpdateQuestion()
         {
-            displayQuestion(questions.ElementAt(++_CurrentQuestionIndex));
+            _CurrentQuestionIndex++;
+
+            displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void displayQuestion(QuestionDto question)
         {
             QuestionText.Text = question.QuestionName;
-            _CurrentQuestionIndex = random.Next(0, 4);
+            int randomIndex = random.Next(0, 4);
 
-            if (_CurrentQuestionIndex == 0)
+            if (randomIndex == 0)
             {
                 AnswerAText.Text = question.CorrectAnswer.Name;
                 AnswerBText.Text = question.WrongAnswers.ElementAt(0).Name;
                 AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
                 AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
 
-                _CurrentQuestionIndex = 0;
+                _CorrectAnswerIndex = 0;
             }
-            else if (_CurrentQuestionIndex == 1)
+            else if (randomIndex == 1)
             {
                 AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
                 AnswerBText.Text = question.CorrectAnswer.Name;
                 AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
                 AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
 
-                _CurrentQuestionIndex = 1;
+                _CorrectAnswerIndex = 1;
             }
-            else if (_CurrentQuestionIndex == 2)
+            else if (randomIndex == 2)
             {
                 AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
                 AnswerBText.Text = question.WrongAnswers.ElementAt(1).Name;
                 AnswerCText.Text = question.CorrectAnswer.Name;
                 AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
 
-                _CurrentQuestionIndex = 2;
+                _CorrectAnswerIndex = 2;
             }
-            else if (_CurrentQuestionIndex == 3)
+            else if (randomIndex == 3)
             {
                 AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
                 AnswerBText.Text = question.WrongAnswers.ElementAt(2).Name;
                 AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
                 AnswerDText.Text = question.CorrectAnswer.Name;
 
-                _CurrentQuestionIndex = 3;
+                _CorrectAnswerIndex = 3;
             }
             else
                 QuestionText.Text = "I didn't work!";
@@ -192,7 +197,7 @@ namespace UI
 
         private void isAnswerCorrect(int buttonIndex)
         {
-            if (buttonIndex == _CurrentQuestionIndex)
+            if (buttonIndex == _CorrectAnswerIndex)
             {
                 questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 previousAnswerWasCorrect = true;
