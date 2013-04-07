@@ -111,6 +111,7 @@
     <Compile Include="Persistence\IAnswerRepository.cs" />
     <Compile Include="Persistence\ICategoryRepository.cs" />
     <Compile Include="Persistence\IGameRepository.cs" />
+    <Compile Include="Persistence\IOptionsRepository.cs" />
     <Compile Include="Persistence\IQuestionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AnswerServices.cs" />
