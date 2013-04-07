@@ -117,8 +117,9 @@ namespace Infrastructure.Initialization
                     TimesViewed = 0
                 };
 
-                var questionId = db.Insert(question);
-
+                db.Insert(question);
+                var questionId = question.QuestionId;
+               
                 var rightAnswer = new Answer
                 { 
                     IsCorrect = true, 
