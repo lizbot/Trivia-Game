@@ -18,9 +18,9 @@ namespace Domain.Services
             _GameRepository = gameRepository;
         }        
         
-        bool IsGameInProgress() 
+        public Boolean IsGameInProgress() 
         {
-            bool checkForGame = _GameRepository.IsGameInProgress();
+            var checkForGame = _GameRepository.IsGameInProgress();
 
             return checkForGame;
         }

@@ -14,14 +14,27 @@ namespace UI.Pages
     public sealed partial class GameSelectionPage
     {
         private IQuestionService _QuestionService;
-       
+
+        private readonly IGameService _GameService;
+
         public GameSelectionPage()
         {
             // do this for all of your dependencies. (this is an anti-pattern... see Mark Seemann)
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
+            _GameService = ServiceLocator.Current.GetInstance<IGameService>();
 
 
             InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+
+            //I don't know how this works for the xaml but i was just trying to see if it would get information from the repository and bring it back.
+            var gameIsInProgress = _GameService.IsGameInProgress();
+
+            ResumeButton.Visibility = gameIsInProgress ? Visibility.Visible : Visibility.Collapsed;
+            base.OnNavigatedTo(e);
         }
 
         /// <summary>
