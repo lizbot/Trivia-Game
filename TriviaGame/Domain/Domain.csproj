@@ -108,17 +108,16 @@
   <ItemGroup>
     <Compile Include="Extensions\AutoIncrement.cs" />
     <Compile Include="Extensions\PrimaryKey.cs" />
-    <Compile Include="Persistence\IAnswerRepository.cs" />
     <Compile Include="Persistence\ICategoryRepository.cs" />
     <Compile Include="Persistence\IGameRepository.cs" />
     <Compile Include="Persistence\IOptionsRepository.cs" />
     <Compile Include="Persistence\IQuestionRepository.cs" />
+    <Compile Include="Persistence\IStatisticsRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\AnswerServices.cs" />
-    <Compile Include="Services\CategoryServices.cs" />
+    <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\Configuration\DomainConfiguration.cs" />
-    <Compile Include="Services\GameServices.cs" />
-    <Compile Include="Services\OptionsServices.cs" />
+    <Compile Include="Services\GameService.cs" />
+    <Compile Include="Services\OptionsService.cs" />
     <Compile Include="Services\QuestionService.cs" />
     <Compile Include="Services\StatisticsService.cs" />
   </ItemGroup>

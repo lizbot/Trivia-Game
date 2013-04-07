@@ -101,9 +101,11 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Domain\IAnswerServices.cs" />
-    <Compile Include="Domain\ICategoryServices.cs" />
+    <Compile Include="Domain\ICategoryService.cs" />
+    <Compile Include="Domain\IGameService.cs" />
+    <Compile Include="Domain\IOptionsService.cs" />
     <Compile Include="Domain\IQuestionService.cs" />
+    <Compile Include="Domain\IStatisticsService.cs" />
     <Compile Include="Model\Answer.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\CustomOptions.cs" />

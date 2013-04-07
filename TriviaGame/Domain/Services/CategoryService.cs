@@ -6,11 +6,11 @@ namespace Domain.Services
 {
     using System.Collections.Generic;
 
-    public class CategoryServices : ICategoryServices
+    public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _CategoryRepository;
 
-        public CategoryServices(ICategoryRepository categoryRepository) 
+        public CategoryService(ICategoryRepository categoryRepository) 
         {
             _CategoryRepository = categoryRepository;
         }

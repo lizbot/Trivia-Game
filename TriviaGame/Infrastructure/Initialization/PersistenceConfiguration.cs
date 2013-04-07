@@ -23,6 +23,9 @@ namespace Infrastructure.Initialization
         {
             unityContainer.RegisterType<IQuestionRepository, QuestionRepository>();
             unityContainer.RegisterType<IGameRepository, GameRepository>();
+            unityContainer.RegisterType<ICategoryRepository, CategoryRepository>();
+            unityContainer.RegisterType<IStatisticsRepository, StatisticsRepository>();
+            unityContainer.RegisterType<IOptionsRepository, OptionsRepository>();
 
             return unityContainer;
         }

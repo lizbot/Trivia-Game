@@ -8,6 +8,10 @@ namespace Domain.Services.Configuration
         public static IUnityContainer ConfigureDependencies(IUnityContainer unityContainer)
         {
             unityContainer.RegisterType<IQuestionService, QuestionService>();
+            unityContainer.RegisterType<ICategoryService, CategoryService>();
+            unityContainer.RegisterType<IGameService, GameService>();
+            unityContainer.RegisterType<IOptionsService, OptionsService>();
+            unityContainer.RegisterType<IStatisticsService, StatisticsService>();
             
             return unityContainer;
         }

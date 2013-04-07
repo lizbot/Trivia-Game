@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Domain;
 using Application.Model;
 using Domain.Persistence;
 
 namespace Domain.Services
 {
-    public class OptionsServices
+    public class OptionsService : IOptionsService 
     {
 
         private IOptionsRepository _OptionsRepository;
 
-        public OptionsServices(IOptionsRepository OptionsRepository)
+        public OptionsService(IOptionsRepository OptionsRepository)
         {
             _OptionsRepository = OptionsRepository;
         }

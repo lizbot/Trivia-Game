@@ -2,7 +2,7 @@
 using Application.Model;
 namespace Application.Domain
 {
-    public interface ICategoryServices
+    public interface ICategoryService
     {
         IEnumerable<Category> GetCategories();
     }
