@@ -5,9 +5,13 @@ using Domain.Persistence;
 using Infrastructure.Initialization;
 using Infrastructure.Model;
 using Answer = Application.Model.Answer;
-using AutoMapper.Mappers;
+using System.Linq;
+using AutoMapper;
+
 namespace Infrastructure.Persistence
 {
+    using System.Collections.ObjectModel;
+
     public class QuestionRepository : IQuestionRepository
     {
         /// <summary>
@@ -23,10 +27,23 @@ namespace Infrastructure.Persistence
         {
             using (var db = new SQLite.SQLiteConnection(PersistenceConfiguration.Database))
             {
-                var domainQuestions = new List<Question>();
+                //Mapper.CreateMap<Model.Answer, Answer>();
 
-                //var mapper = AutoMapper.Mapper.CreateMap<Questions, Question>();
+                //Mapper.CreateMap<Questions, Question>()
+                //      .ForMember(dest => dest.CorrectAnswer, opt => opt.UseValue(default(Answer)))
+                //      .ForMember(dest => dest.WrongAnswers, opt => opt.UseValue(default(Answer)));
+
+                //      //.ConstructUsing(q => new Question
+                //      //    {
+                //      //        QuestionId = q.QuestionId,
+                //      //        QuestionName = q.QuestionName,
+                //      //        CorrectAnswer = Mapper.Map<Infrastructure.Model.Answer, Application.Model.Answer>()
+                //      //    });
                 
+                //Mapper.AssertConfigurationIsValid();
+
+
+
                 IEnumerable<Questions> questionsToGet =
                     (from question in db.Table<Questions>()
                      select question
@@ -34,22 +51,16 @@ namespace Infrastructure.Persistence
                       .OrderByDescending(quest => quest.TimesViewed)
                       .OrderByDescending(quest => quest.TimesCorrect);
 
+                var domainQuestions = new List<Question>();
+
                 foreach (var question in questionsToGet)
                 {
-                   // domainQuestions.Add(question);
-                    
-                    foreach (var domainQuestion in domainQuestions)
-                    {
-                        domainQuestion.CategoryId = question.CategoryId;
-                        domainQuestion.QuestionId = question.QuestionId;
-                        domainQuestion.QuestionName = question.QuestionName;
-                        domainQuestion.TimesCorrect = question.TimesCorrect;
-                        domainQuestion.TimesViewed = question.TimesViewed;
-                    }
+                    //domainQuestions.Add();
                 }
 
                 var questionsWithAnswers = GetAnswersToQuestions(domainQuestions);
 
+                throw new NotImplementedException();
                 return questionsWithAnswers;
             }
         }
