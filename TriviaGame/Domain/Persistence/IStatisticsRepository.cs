@@ -9,13 +9,13 @@ namespace Domain.Persistence
 {
     public interface IStatisticsRepository
     {
-        public Int32 GetOverallCorrectAnswers();
+        Int32 GetOverallCorrectAnswers();
 
-        public Int32 GetOverallQuestionsAttempted();
+        Int32 GetOverallQuestionsAttempted();
 
-        public Int32 GetGameCorrectAnswers();
+        Int32 GetGameCorrectAnswers();
 
-        public Int32 GetGameQuestionsAttempted();
+        Int32 GetGameQuestionsAttempted();
 
     }
 }
