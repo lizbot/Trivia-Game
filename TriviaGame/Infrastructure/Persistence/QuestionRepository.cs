@@ -5,7 +5,7 @@ using Domain.Persistence;
 using Infrastructure.Initialization;
 using Infrastructure.Model;
 using Answer = Application.Model.Answer;
-
+using AutoMapper.Mappers;
 namespace Infrastructure.Persistence
 {
     public class QuestionRepository : IQuestionRepository
@@ -23,8 +23,10 @@ namespace Infrastructure.Persistence
         {
             using (var db = new SQLite.SQLiteConnection(PersistenceConfiguration.Database))
             {
-                IEnumerable<Question> domainQuestions = new List<Question>();
+                var domainQuestions = new List<Question>();
 
+                //var mapper = AutoMapper.Mapper.CreateMap<Questions, Question>();
+                
                 IEnumerable<Questions> questionsToGet =
                     (from question in db.Table<Questions>()
                      select question
@@ -34,6 +36,8 @@ namespace Infrastructure.Persistence
 
                 foreach (var question in questionsToGet)
                 {
+                   // domainQuestions.Add(question);
+                    
                     foreach (var domainQuestion in domainQuestions)
                     {
                         domainQuestion.CategoryId = question.CategoryId;
