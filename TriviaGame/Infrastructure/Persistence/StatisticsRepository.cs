@@ -2,7 +2,7 @@
 
 namespace Infrastructure.Persistence
 {
-    public class StatisticsRepository : IStatisticsRepository 
+    public interface StatisticsRepository : IStatisticsRepository 
     {
     }
 }

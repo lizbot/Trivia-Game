@@ -1,18 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
 using Application.Domain;
-using Application.Model;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Domain.Persistence;
+
 
 namespace Domain.Services
 {
-     public class StatisticsService : IStatisticsService 
-     {
-        //Create something similar to the questions service to pass the statistics of the user.
-        //This includes percent correct. Streak of answers correct. 
-        public IEnumerable<Statistics> GetStatistics()
+    public class StatisticsService
+    {
+        private readonly IStatisticsRepository _StaisticsRepository;
+
+        public StatisticsService(IStatisticsRepository statisticsRepository)
         {
-            throw new NotImplementedException();
+            _StaisticsRepository = statisticsRepository;
+        }
+
+        //The easiest way to get and process user statistics is to use integers 
+        public Int32 GetOverallStatistics()
+        {
+            Int32 overallStatistics = 0;
+
+            Int32 totalAnsweredCorrectly = _StaisticsRepository.GetOverallCorrectAnswers();
+            Int32 totalQuestionsAnswered = _StaisticsRepository.GetOverallQuestionsAttempted();
+
+            overallStatistics = (totalQuestionsAnswered / totalAnsweredCorrectly);
+
+            return overallStatistics;
 
         }
+
+        public Int32 GetGameStatistics()
+        {
+            Int32 gameStatistics = 0;
+
+            Int32 answeredCorrectly = _StaisticsRepository.GetGameCorrectAnswers();
+            Int32 questionsAnswered = _StaisticsRepository.GetGameQuestionsAttempted();
+
+            gameStatistics = (questionsAnswered / answeredCorrectly);
+
+            return gameStatistics;
+        }
+
     }
 }
