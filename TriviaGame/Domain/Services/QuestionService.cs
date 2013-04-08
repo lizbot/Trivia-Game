@@ -33,7 +33,7 @@ namespace Domain.Services
         {
             // Do we want this just for getting questions for a specific category 
             //or apply user settings every time they play game, regardless of type?
-            var userPreferredQuestionOption = _OptionsRepository.GetCustomOptions().NumberOfQuestionsDesired;
+            var userPreferredQuestionOption = 20;//_OptionsRepository.GetCustomOptions().NumberOfQuestionsDesired;
 
             if (userPreferredQuestionOption == null)
                 userPreferredQuestionOption = 20;
