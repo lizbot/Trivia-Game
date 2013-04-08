@@ -58,8 +58,9 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
-            //var questions = _QuestionService.GetQuestions();
-            //var thing = questions;
+            // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
+            var questions = _QuestionService.GetQuestions();
+            
             // Possibly change other pages to get questions in order to pass questions parameter to questions page
 
             //questions = (IEnumerable<QuestionDto>)e.Parameter;

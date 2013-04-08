@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
-  <Identity Name="996fbc0a-a48a-4fd5-be0f-02dcd1e148df" Publisher="CN=Daniel" Version="1.0.0.0" />
+  <Identity Name="Windows-Store-Trivia-Game" Publisher="CN=Daniel" Version="1.0.0.0" />
   <Properties>
-    <DisplayName>TriviaUI</DisplayName>
+    <DisplayName>UI</DisplayName>
     <PublisherDisplayName>Daniel</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TriviaUI.App">
-      <VisualElements DisplayName="TriviaUI" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="TriviaUI" ForegroundText="light" BackgroundColor="#464646">
+      <VisualElements DisplayName="Trivia Game" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Trivia Game" ForegroundText="light" BackgroundColor="#464646">
         <DefaultTile ShowName="allLogos" ShortName="Trivia!" />
         <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="black" />
         <InitialRotationPreference>

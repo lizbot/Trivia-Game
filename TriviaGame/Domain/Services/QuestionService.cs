@@ -1,7 +1,6 @@
 ﻿using System;
 using Application.Domain;
 using Application.Model;
-using AutoMapper;
 using Domain.Persistence;
 
 namespace Domain.Services
