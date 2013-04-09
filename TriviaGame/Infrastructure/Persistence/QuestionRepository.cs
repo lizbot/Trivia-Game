@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Application.Model;
 using Domain.Persistence;
 using Infrastructure.Initialization;
 using Infrastructure.Model;
+using SQLite;
 using Answer = Application.Model.Answer;
-using System.Linq;
 using AutoMapper;
 
 namespace Infrastructure.Persistence
 {
-    using System.Collections.ObjectModel;
-
     public class QuestionRepository : IQuestionRepository
     {
         /// <summary>
@@ -25,25 +24,8 @@ namespace Infrastructure.Persistence
         /// </returns>
         public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions)
         {
-            using (var db = new SQLite.SQLiteConnection(PersistenceConfiguration.Database))
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                //Mapper.CreateMap<Model.Answer, Answer>();
-
-                //Mapper.CreateMap<Questions, Question>()
-                //      .ForMember(dest => dest.CorrectAnswer, opt => opt.UseValue(default(Answer)))
-                //      .ForMember(dest => dest.WrongAnswers, opt => opt.UseValue(default(Answer)));
-
-                //      //.ConstructUsing(q => new Question
-                //      //    {
-                //      //        QuestionId = q.QuestionId,
-                //      //        QuestionName = q.QuestionName,
-                //      //        CorrectAnswer = Mapper.Map<Infrastructure.Model.Answer, Application.Model.Answer>()
-                //      //    });
-                
-                //Mapper.AssertConfigurationIsValid();
-
-
-
                 IEnumerable<Questions> questionsToGet =
                     (from question in db.Table<Questions>()
                      select question
@@ -52,30 +34,51 @@ namespace Infrastructure.Persistence
                       .OrderByDescending(quest => quest.TimesCorrect);
 
                 var domainQuestions = new List<Question>();
-
+                var dQuestion = new Question();
                 foreach (var question in questionsToGet)
                 {
-                    //domainQuestions.Add();
+                    dQuestion.CategoryId = question.CategoryId;
+                    dQuestion.QuestionId = question.QuestionId;
+                    dQuestion.QuestionName = question.QuestionName;
+                    dQuestion.TimesCorrect = question.TimesCorrect;
+                    dQuestion.TimesViewed = question.TimesViewed;
+                    dQuestion.CorrectAnswer = new Answer();
+                    dQuestion.WrongAnswers = new List<Answer>();
+                    domainQuestions.Add(dQuestion);
                 }
 
                 var questionsWithAnswers = GetAnswersToQuestions(domainQuestions);
 
-                throw new NotImplementedException();
                 return questionsWithAnswers;
+            }
+        }
+
+        public void StoreQuestionToGameInProgress(AnsweredQuestion question)
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                var game = new Model.GameSaved
+                    {
+                        AnswerId = question.SelectedAnswerId,
+                        QuestionId = question.QuestionId
+                    };
+
+                db.Insert(game);
             }
         }
 
         private IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
         {
-                //IEnumerable<Answer> answers = null;
-                foreach (var question in questionsForDomain)
-                {
-                    question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
+            var answersToQuestions = questionsForDomain as IList<Question> ?? questionsForDomain.ToList();
 
-                    question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
-                }
+            foreach (var question in answersToQuestions)
+            {
+                question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
+                    
+                question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
+            }
 
-                return questionsForDomain;
+            return answersToQuestions;
         }
 
         /// <summary>
@@ -85,11 +88,11 @@ namespace Infrastructure.Persistence
         /// <returns></returns>
         private IEnumerable<Answer> GetWrongAnswersFromQuestion(Int32 questionId)
         {
-            using (var db = new SQLite.SQLiteConnection (PersistenceConfiguration.Database))
+            using (var db = new SQLiteConnection (PersistenceConfiguration.Database))
             {
                 return db.Table<Answer>()
                          .Where(answer => answer.QuestionId == questionId &&
-                                          answer.IsCorrect == false);
+                                          answer.IsCorrect == false).ToList();
             }
         }
 
@@ -104,11 +107,11 @@ namespace Infrastructure.Persistence
         /// </returns>
         private Answer GetRightAnswerFromQuestion(Int32 questionId)
         {
-            using (var db = new SQLite.SQLiteConnection (PersistenceConfiguration.Database))
+            using (var db = new SQLiteConnection (PersistenceConfiguration.Database))
             {
                 return db.Table<Answer> ()
                          .Where(answer => answer.QuestionId == questionId &&
-                                          answer.IsCorrect == true).First();
+                                          answer.IsCorrect).First();
             }
         }
     }

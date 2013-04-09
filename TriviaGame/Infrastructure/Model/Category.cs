@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Model
 {
-    class Category
+    public class Category
     {
         [SQLite.PrimaryKey, SQLite.AutoIncrement]
         public Int32 CategoryId { get; set; }

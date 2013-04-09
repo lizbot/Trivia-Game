@@ -5,5 +5,7 @@
     public interface IGameService
     {
         Boolean IsGameInProgress();
+
+        void DeleteGameInProgress();
     }
 }

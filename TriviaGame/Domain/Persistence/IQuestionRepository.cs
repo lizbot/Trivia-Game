@@ -17,5 +17,7 @@ namespace Domain.Persistence
         /// An <see cref="IEnumerable{T}"/> of the questions.
         /// </returns>
         IEnumerable<Question> GetQuestions(Int32 amountOfQuestions);
+
+        void StoreQuestionToGameInProgress(AnsweredQuestion question);
     }
 }

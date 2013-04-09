@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Application.Model;
 using SQLite;
 using Infrastructure.Model;
 using System.Linq;
@@ -22,7 +21,7 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                DeleteFromDB();
+                DeleteFromDb();
 
                 db.CreateTable<Questions>();
                 db.CreateTable<Answer>();
@@ -42,7 +41,7 @@ namespace Infrastructure.Initialization
             //var categoryId = questions.CategoryId;
         }
 
-        private static void DeleteFromDB()
+        private static void DeleteFromDb()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
@@ -60,10 +59,10 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                String questionName = null;
-                Int32 categoryId = 0;
-                String rightAnswerName = null;
-                var wrongAnswerNames = new List<String>();
+                String questionName;
+                Int32 categoryId;
+                String rightAnswerName;
+                List<String> wrongAnswerNames;
 
                 //Create the information to generate the questions and answers.
                 questionName = "What is a theme park located in Anaheim, California near the city of Stanton. The park's slogan is \"The Little Theme Park that's BIG on Family Fun\"?";

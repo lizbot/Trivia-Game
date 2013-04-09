@@ -1,9 +1,4 @@
 ﻿using System;
-using Application.Domain;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Domain.Persistence;
 
 
@@ -21,10 +16,10 @@ namespace Domain.Services
         //The easiest way to get and process user statistics is to use integers 
         public Int32 GetOverallStatistics()
         {
-            Int32 overallStatistics = 0;
+            var overallStatistics = 0;
 
-            Int32 totalAnsweredCorrectly = _StaisticsRepository.GetOverallCorrectAnswers();
-            Int32 totalQuestionsAnswered = _StaisticsRepository.GetOverallQuestionsAttempted();
+            var totalAnsweredCorrectly = _StaisticsRepository.GetOverallCorrectAnswers();
+            var totalQuestionsAnswered = _StaisticsRepository.GetOverallQuestionsAttempted();
 
             overallStatistics = (totalQuestionsAnswered / totalAnsweredCorrectly);
 
@@ -34,10 +29,10 @@ namespace Domain.Services
 
         public Int32 GetGameStatistics()
         {
-            Int32 gameStatistics = 0;
+            var gameStatistics = 0;
 
-            Int32 answeredCorrectly = _StaisticsRepository.GetGameCorrectAnswers();
-            Int32 questionsAnswered = _StaisticsRepository.GetGameQuestionsAttempted();
+            var answeredCorrectly = _StaisticsRepository.GetGameCorrectAnswers();
+            var questionsAnswered = _StaisticsRepository.GetGameQuestionsAttempted();
 
             gameStatistics = (questionsAnswered / answeredCorrectly);
 

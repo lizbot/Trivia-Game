@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Application.Model;
 using Domain.Persistence;
 using Infrastructure.Initialization;
+using SQLite;
 
 namespace Infrastructure.Persistence
 {
@@ -22,6 +23,14 @@ namespace Infrastructure.Persistence
                 var currentGame = db.ExecuteScalar<Boolean>("SELECT EXISTS(SELECT 1 FROM GameSaved WHERE GameId=1 LIMIT 1);");
 
                 return currentGame;
+            }
+        }
+
+        public void DeleteGameInProgress()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.DeleteAll<GameSaved>();
             }
         }
     }

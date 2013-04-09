@@ -106,8 +106,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\AutoIncrement.cs" />
-    <Compile Include="Extensions\PrimaryKey.cs" />
     <Compile Include="Persistence\ICategoryRepository.cs" />
     <Compile Include="Persistence\IGameRepository.cs" />
     <Compile Include="Persistence\IOptionsRepository.cs" />
@@ -122,14 +120,6 @@
     <Compile Include="Services\StatisticsService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoMapper.3.0.0-ci1029\lib\windows8\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.WinRT, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\AutoMapper.3.0.0-ci1029\lib\windows8\AutoMapper.WinRT.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Practices.Unity.WinRT">
       <HintPath>..\packages\Unity.3.0.1208-Preview\lib\WinRT45\Microsoft.Practices.Unity.WinRT.dll</HintPath>
     </Reference>

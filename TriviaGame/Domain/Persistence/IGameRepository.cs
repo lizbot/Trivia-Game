@@ -9,5 +9,7 @@ namespace Domain.Persistence
         IEnumerable<GameSaved> GetGameInProgress();
 
         Boolean IsGameInProgress();
+
+        void DeleteGameInProgress();
     }
 }
