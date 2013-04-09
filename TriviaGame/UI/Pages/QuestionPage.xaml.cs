@@ -16,11 +16,18 @@ namespace UI.Pages
     public sealed partial class QuestionPage
     {
         Int32 _NumQuestionsAnswered;
-        Int32    _CurrentQuestionIndex;
+        Int32 _CurrentQuestionIndex;
         private readonly Int32 _QuestionThreshold;
+
+        int numCorrect;
+        int numIncorrect;
+        int currentCorrectStreak;
+        int bestCorrectStreak;
+
 
         Int32 _CorrectAnswerIndex;
  
+
         Int32 _NumCorrect;
         Int32 _NumIncorrect;
         Int32 _CurrentCorrectStreak;
@@ -34,12 +41,19 @@ namespace UI.Pages
         List<Question> _Questions;
         private readonly IGameService _GameService;
 
+        IEnumerable<Question> questions;
+
         public QuestionPage()
         {
             InitializeComponent();
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
+
+            // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
+            questions = _QuestionService.GetQuestions();
+
+            //_Questions = questions;
 
             _NumQuestionsAnswered = 0;
             _QuestionThreshold = 5;
@@ -62,8 +76,7 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
-            // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
-            var questions = _QuestionService.GetQuestions();
+            
             
             // Possibly change other pages to get questions in order to pass questions parameter to questions page
 
@@ -108,6 +121,14 @@ namespace UI.Pages
             BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+
+
+            //DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+
+            //_Questions = questions;
+
+            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+
             DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
 
             //_Questions = questions;
@@ -118,6 +139,7 @@ namespace UI.Pages
         {
             _CurrentQuestionIndex++;
 
+            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
             DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             //currentQuestion = questions[currentQuestionIndex];
        
@@ -127,8 +149,8 @@ namespace UI.Pages
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
+
             int randomIndex = _Random.Next(0, 4);
-            _CurrentQuestionIndex = _Random.Next(0, 4);
 
             if (randomIndex == 0)
             {

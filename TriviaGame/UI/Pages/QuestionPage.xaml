@@ -49,58 +49,69 @@
             </Border>
         </Popup>
 
-        <StackPanel Grid.Row="1" VerticalAlignment="Bottom">
-            <StackPanel Orientation="Horizontal">
-                <Button Name="AButton"
+        <Grid Grid.Row="1" Name="ChildGrid" Margin="10,10,-10,-10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="AButton"
                         Content="A"
-                        Width="150"
+                        Width="120"
                         FontSize="40" 
-                        Margin="20,20,20,20"
+                        Margin="40,20,20,20"
                         Click="AnswerAClick"/>
-                <TextBlock Name="AnswerAText" 
+                    <TextBlock Name="AnswerAText" 
                            Text="LOL"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal">
-                <Button Name="BButton" 
+                </StackPanel>
+                
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="BButton" 
                         Content="B"
-                        Width="150"
+                        Width="120"
                         FontSize="40" 
-                        Margin="20,20,20,20"
+                        Margin="40,20,20,40"
                         Click="AnswerBClick"/>
-                <TextBlock Name="AnswerBText"
+                    <TextBlock Name="AnswerBText"
                            Text="ROFL"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
+                </StackPanel>
             </StackPanel>
             
-            <StackPanel Orientation="Horizontal">
-                <Button Name="CButton" 
+            <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Bottom">
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="CButton" 
                         Content="C" 
-                        Width="150"
+                        Width="120"
                         FontSize="40" 
-                        Margin="20,20,20,20"
+                        Margin="40,20,20,20"
                         Click="AnswerCClick"/>
-                <TextBlock Name="AnswerCText"
+                    <TextBlock Name="AnswerCText"
                            Text="ASDF"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal">
-                <Button Name="DButton"
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Name="DButton"
                         Content="D" 
-                        Width="150"
+                        Width="120"
                         FontSize="40" 
-                        Margin="20,20,20,20"
+                        Margin="40,20,20,40"
                         Click="AnswerDClick"/>
-                <TextBlock Name="AnswerDText"
+                    <TextBlock Name="AnswerDText"
                            Text="Microsoft is Awesome!"
                            VerticalAlignment="Center" 
                            FontSize="30"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
     </Grid>
 </Page>
