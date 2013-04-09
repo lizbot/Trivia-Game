@@ -18,11 +18,12 @@ namespace Infrastructure.Persistence
 
         public Boolean IsGameInProgress()
         {
-            using (var db = new SQLite.SQLiteConnection(PersistenceConfiguration.Database))
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                var currentGame = db.ExecuteScalar<Boolean>("SELECT EXISTS(SELECT 1 FROM GameSaved WHERE GameId=1 LIMIT 1);");
+                //var currentGame = db.ExecuteScalar<Boolean>("SELECT EXISTS(SELECT TOP 1 FROM GameSaved);");
 
-                return currentGame;
+               // return currentGame;
+                return false;
             }
         }
 

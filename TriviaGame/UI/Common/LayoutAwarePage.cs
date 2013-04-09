@@ -416,7 +416,7 @@ namespace UI.Common
                 public K Key { get; private set; }
             }
 
-            private Dictionary<K, V> _dictionary = new Dictionary<K, V>();
+            private readonly Dictionary<K, V> _Dictionary = new Dictionary<K, V>();
             public event MapChangedEventHandler<K, V> MapChanged;
 
             private void InvokeMapChanged(CollectionChange change, K key)
@@ -430,7 +430,7 @@ namespace UI.Common
 
             public void Add(K key, V value)
             {
-                this._dictionary.Add(key, value);
+                this._Dictionary.Add(key, value);
                 this.InvokeMapChanged(CollectionChange.ItemInserted, key);
             }
 
@@ -441,7 +441,7 @@ namespace UI.Common
 
             public bool Remove(K key)
             {
-                if (this._dictionary.Remove(key))
+                if (this._Dictionary.Remove(key))
                 {
                     this.InvokeMapChanged(CollectionChange.ItemRemoved, key);
                     return true;
@@ -452,8 +452,8 @@ namespace UI.Common
             public bool Remove(KeyValuePair<K, V> item)
             {
                 V currentValue;
-                if (this._dictionary.TryGetValue(item.Key, out currentValue) &&
-                    Object.Equals(item.Value, currentValue) && this._dictionary.Remove(item.Key))
+                if (this._Dictionary.TryGetValue(item.Key, out currentValue) &&
+                    Object.Equals(item.Value, currentValue) && this._Dictionary.Remove(item.Key))
                 {
                     this.InvokeMapChanged(CollectionChange.ItemRemoved, item.Key);
                     return true;
@@ -465,19 +465,19 @@ namespace UI.Common
             {
                 get
                 {
-                    return this._dictionary[key];
+                    return this._Dictionary[key];
                 }
                 set
                 {
-                    this._dictionary[key] = value;
+                    this._Dictionary[key] = value;
                     this.InvokeMapChanged(CollectionChange.ItemChanged, key);
                 }
             }
 
             public void Clear()
             {
-                var priorKeys = this._dictionary.Keys.ToArray();
-                this._dictionary.Clear();
+                var priorKeys = this._Dictionary.Keys.ToArray();
+                this._Dictionary.Clear();
                 foreach (var key in priorKeys)
                 {
                     this.InvokeMapChanged(CollectionChange.ItemRemoved, key);
@@ -486,32 +486,32 @@ namespace UI.Common
 
             public ICollection<K> Keys
             {
-                get { return this._dictionary.Keys; }
+                get { return this._Dictionary.Keys; }
             }
 
             public bool ContainsKey(K key)
             {
-                return this._dictionary.ContainsKey(key);
+                return this._Dictionary.ContainsKey(key);
             }
 
             public bool TryGetValue(K key, out V value)
             {
-                return this._dictionary.TryGetValue(key, out value);
+                return this._Dictionary.TryGetValue(key, out value);
             }
 
             public ICollection<V> Values
             {
-                get { return this._dictionary.Values; }
+                get { return this._Dictionary.Values; }
             }
 
             public bool Contains(KeyValuePair<K, V> item)
             {
-                return this._dictionary.Contains(item);
+                return this._Dictionary.Contains(item);
             }
 
             public int Count
             {
-                get { return this._dictionary.Count; }
+                get { return this._Dictionary.Count; }
             }
 
             public bool IsReadOnly
@@ -521,18 +521,18 @@ namespace UI.Common
 
             public IEnumerator<KeyValuePair<K, V>> GetEnumerator()
             {
-                return this._dictionary.GetEnumerator();
+                return this._Dictionary.GetEnumerator();
             }
 
             System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
             {
-                return this._dictionary.GetEnumerator();
+                return this._Dictionary.GetEnumerator();
             }
 
             public void CopyTo(KeyValuePair<K, V>[] array, int arrayIndex)
             {
                 int arraySize = array.Length;
-                foreach (var pair in this._dictionary)
+                foreach (var pair in this._Dictionary)
                 {
                     if (arrayIndex >= arraySize) break;
                     array[arrayIndex++] = pair;

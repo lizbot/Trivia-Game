@@ -38,7 +38,7 @@ namespace UI.Pages
 
             //var categories = _CategoryService.GetCategories();
 
-            List<Category> categories = new List<Category>();
+            var categories = new List<Category>();
 
 
 

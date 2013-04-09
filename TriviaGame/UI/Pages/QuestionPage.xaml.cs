@@ -201,6 +201,8 @@ namespace UI.Pages
                 ResetColors();
                 ShowResultsPopup();
                 DisableButtons();
+
+                //Does this happen before or after the results are being shown?
                 _GameService.DeleteGameInProgress();
             }
             else

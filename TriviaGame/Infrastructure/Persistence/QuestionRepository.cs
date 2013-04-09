@@ -7,7 +7,6 @@ using Infrastructure.Initialization;
 using Infrastructure.Model;
 using SQLite;
 using Answer = Application.Model.Answer;
-using AutoMapper;
 
 namespace Infrastructure.Persistence
 {
@@ -19,19 +18,36 @@ namespace Infrastructure.Persistence
         /// <param name="amountOfQuestions">
         /// The amount of questions.
         /// </param>
+        /// <param name="categoryId">
+        /// The categoryId if needed.
+        /// </param>
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> of the questions mapped to the domain.
         /// </returns>
-        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions)
+        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32 categoryId = 0)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                IEnumerable<Questions> questionsToGet =
+                IEnumerable<Questions> questionsToGet;
+                if(categoryId == 0)
+                {
+                    questionsToGet =
                     (from question in db.Table<Questions>()
                      select question
-                     ).Take(amountOfQuestions)
-                      .OrderByDescending(quest => quest.TimesViewed)
-                      .OrderByDescending(quest => quest.TimesCorrect);
+                    ).Take(amountOfQuestions)
+                     .OrderByDescending(quest => quest.TimesViewed)
+                     .OrderByDescending(quest => quest.TimesCorrect);
+                }
+                else
+                {
+                    questionsToGet =
+                    (from question in db.Table<Questions>()
+                     select question
+                    ).Where(q => q.CategoryId == categoryId)
+                     .Take(amountOfQuestions)
+                     .OrderByDescending(quest => quest.TimesViewed)
+                     .OrderByDescending(quest => quest.TimesCorrect);
+                }
 
                 var domainQuestions = new List<Question>();
                 var dQuestion = new Question();
@@ -53,6 +69,10 @@ namespace Infrastructure.Persistence
             }
         }
 
+        /// <summary>
+        /// This stores the question answered to a game in progress so the user can pick up where they left off if they log off.
+        /// </summary>
+        /// <param name="question"></param>
         public void StoreQuestionToGameInProgress(AnsweredQuestion question)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
@@ -67,6 +87,11 @@ namespace Infrastructure.Persistence
             }
         }
 
+        /// <summary>
+        /// This populates the question domain objects with answers associated to each question.
+        /// </summary>
+        /// <param name="questionsForDomain"></param>
+        /// <returns></returns>
         private IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
         {
             var answersToQuestions = questionsForDomain as IList<Question> ?? questionsForDomain.ToList();
