@@ -19,21 +19,12 @@ namespace UI.Pages
         Int32    _CurrentQuestionIndex;
         private readonly Int32 _QuestionThreshold;
 
-<<<<<<< HEAD
-        int _NumQuestionsAnswered;
-        int questionThreshold;
-        int _CurrentQuestionIndex;
-        int _CorrectAnswerIndex;
-        int numCorrect;
-        int numIncorrect;
-        int currentCorrectStreak;
-        int bestCorrectStreak;
-=======
+        Int32 _CorrectAnswerIndex;
+ 
         Int32 _NumCorrect;
         Int32 _NumIncorrect;
         Int32 _CurrentCorrectStreak;
         Int32 _BestCorrectStreak;
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
 
         Boolean _PreviousAnswerWasCorrect;
 
@@ -81,7 +72,7 @@ namespace UI.Pages
             _Questions = new List<Question>();
 
 
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 var correct = new Answer
                     {
@@ -117,36 +108,27 @@ namespace UI.Pages
             BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-<<<<<<< HEAD
-            displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
 
             //_Questions = questions;
-=======
             DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
         }
 
         private void UpdateQuestion()
         {
-<<<<<<< HEAD
             _CurrentQuestionIndex++;
 
-            displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
-=======
+            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             //currentQuestion = questions[currentQuestionIndex];
        
             DisplayQuestion(_Questions.ElementAt(++_CurrentQuestionIndex));
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
         }
 
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
-<<<<<<< HEAD
-            int randomIndex = random.Next(0, 4);
-=======
+            int randomIndex = _Random.Next(0, 4);
             _CurrentQuestionIndex = _Random.Next(0, 4);
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
 
             if (randomIndex == 0)
             {
@@ -230,13 +212,10 @@ namespace UI.Pages
 
         private void IsAnswerCorrect(Int32 buttonIndex)
         {
-<<<<<<< HEAD
             if (buttonIndex == _CorrectAnswerIndex)
-=======
             //var questions = _QuestionService.GetQuestions();
 
             if (buttonIndex == _CurrentQuestionIndex)
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
             {
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
