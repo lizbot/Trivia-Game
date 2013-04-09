@@ -38,13 +38,20 @@ namespace UI.Pages
 
             //var categories = _CategoryService.GetCategories();
 
-            List<Category> categories = new List<Category>();
+            var categories = _CategoryService.GetCategories();
 
+            foreach (Category cat in categories)
+            {
+                Button b = new Button();
+                b.Content = cat.Name;
+                b.FontSize = 100;
+                CategoryStackPanel.Children.Add(b);
+            }
 
 
 
             //var categories = _CategoryService.GetCategories();
-
+            base.OnNavigatedTo(e);
         }
 
         /// <summary>

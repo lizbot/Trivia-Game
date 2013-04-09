@@ -16,24 +16,23 @@ namespace UI.Pages
     public sealed partial class QuestionPage
     {
         Int32 _NumQuestionsAnswered;
-        Int32    _CurrentQuestionIndex;
+        Int32 _CurrentQuestionIndex;
         private readonly Int32 _QuestionThreshold;
 
-<<<<<<< HEAD
-        int _NumQuestionsAnswered;
+
+
         int questionThreshold;
-        int _CurrentQuestionIndex;
         int _CorrectAnswerIndex;
         int numCorrect;
         int numIncorrect;
         int currentCorrectStreak;
         int bestCorrectStreak;
-=======
+
         Int32 _NumCorrect;
         Int32 _NumIncorrect;
         Int32 _CurrentCorrectStreak;
         Int32 _BestCorrectStreak;
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
+
 
         Boolean _PreviousAnswerWasCorrect;
 
@@ -43,12 +42,19 @@ namespace UI.Pages
         List<Question> _Questions;
         private readonly IGameService _GameService;
 
+        IEnumerable<Question> questions;
+
         public QuestionPage()
         {
             InitializeComponent();
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
+
+            // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
+            questions = _QuestionService.GetQuestions();
+
+            //_Questions = questions;
 
             _NumQuestionsAnswered = 0;
             _QuestionThreshold = 5;
@@ -71,8 +77,7 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
-            // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
-            var questions = _QuestionService.GetQuestions();
+            
             
             // Possibly change other pages to get questions in order to pass questions parameter to questions page
 
@@ -117,36 +122,26 @@ namespace UI.Pages
             BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-<<<<<<< HEAD
-            displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+
+            //DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
 
             //_Questions = questions;
-=======
-            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
+
+            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void UpdateQuestion()
         {
-<<<<<<< HEAD
             _CurrentQuestionIndex++;
 
-            displayQuestion(questions.ElementAt(_CurrentQuestionIndex));
-=======
-            //currentQuestion = questions[currentQuestionIndex];
-       
-            DisplayQuestion(_Questions.ElementAt(++_CurrentQuestionIndex));
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
+            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
-<<<<<<< HEAD
-            int randomIndex = random.Next(0, 4);
-=======
-            _CurrentQuestionIndex = _Random.Next(0, 4);
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
+
+            int randomIndex = _Random.Next(0, 4);
 
             if (randomIndex == 0)
             {
@@ -230,13 +225,9 @@ namespace UI.Pages
 
         private void IsAnswerCorrect(Int32 buttonIndex)
         {
-<<<<<<< HEAD
-            if (buttonIndex == _CorrectAnswerIndex)
-=======
             //var questions = _QuestionService.GetQuestions();
 
-            if (buttonIndex == _CurrentQuestionIndex)
->>>>>>> 316d251bf81cffc5f7fc5d2a2ef1b8c864009598
+            if (buttonIndex == _CorrectAnswerIndex)
             {
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
