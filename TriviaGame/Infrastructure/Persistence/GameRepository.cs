@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Application.Model;
 using Domain.Persistence;
 using Infrastructure.Initialization;
@@ -11,18 +12,23 @@ namespace Infrastructure.Persistence
     {
         public IEnumerable<GameSaved> GetGameInProgress()
         {
-            throw new NotImplementedException();
-            // Currently on property will always be passed in as (for the prop on the gameSaved for iscorrect) 1
-            // and update all other rows with that gameId to 0.
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                var questions = db.CreateCommand("SELECT QuestionId, AnswerId FROM GAMESAVED").ExecuteQuery<GameSaved>();
+                var bo = questions;
+                return bo;
+            }
         }
 
         public Boolean IsGameInProgress()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                //var currentGame = db.ExecuteScalar<Boolean>("SELECT EXISTS(SELECT TOP 1 FROM GameSaved);");
+                //var currentGame = db.CreateCommand("SELECT Count(*) FROM GameSaved").ExecuteNonQuery();
 
-               // return currentGame;
+               // var exists = currentGame != 0;
+
+               // return exists;
                 return false;
             }
         }
