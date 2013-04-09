@@ -1,8 +1,7 @@
 ﻿using System;
 using Application.Domain;
-using Application.DTOs;
+using Application.Model;
 using AutoMapper;
-using Domain.Model;
 using Domain.Persistence;
 
 namespace Domain.Services
@@ -15,25 +14,34 @@ namespace Domain.Services
 
         // Change this when we implement default settings to program against.
         private Int32 _DefaultNumber = 20;
+        private IOptionsRepository _OptionsRepository;
 
         // this is a type of constructor injection for dependency injection.
-        public QuestionService (IQuestionRepository questionRepository)
+        public QuestionService(
+            IQuestionRepository questionRepository, 
+            IOptionsRepository optionsRepository)
         {
             _QuestionRepository = questionRepository;
+            _OptionsRepository = optionsRepository;
         }
-
-        public IEnumerable<QuestionDto> GetQuestions()
+        
+        /// <summary>
+        /// This method is written to get 20 generic questions, specific to quick-play.
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<Question> GetQuestions()
         {
-            // defines how the mapping will occur.  If there are properties that need custom mapping, you do so in the parameter.
-            Mapper.CreateMap<Question, QuestionDto>();
+            // Do we want this just for getting questions for a specific category 
+            //or apply user settings every time they play game, regardless of type?
+            var userPreferredQuestionOption = 20;//_OptionsRepository.GetCustomOptions().NumberOfQuestionsDesired;
+
+            if (userPreferredQuestionOption == null)
+                userPreferredQuestionOption = 20;
 
             // this gets the IEnumerable<Question> of all the questions that you want from the database.
-            var questions = _QuestionRepository.GetQuestions(_DefaultNumber);
+            var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption);
 
-            // then we have to map them to Dtos to pass to the UI layer and return them.
-            var questionDtos = Mapper.Map<IEnumerable<Question>, IEnumerable<QuestionDto>>(questions);
-
-            return questionDtos;
+            return questions;
         }
 
         //Gets the questions as a parameter and gets them back to the repository

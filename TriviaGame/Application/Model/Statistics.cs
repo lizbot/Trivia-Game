@@ -1,7 +1,6 @@
 ﻿using System;
-using Domain.Extensions;
 
-namespace Domain.Model
+namespace Application.Model
 {
     public class Statistics
     {

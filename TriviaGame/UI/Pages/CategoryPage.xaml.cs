@@ -12,6 +12,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Application.Domain;
+using Application.Model;
+using Microsoft.Practices.ServiceLocation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -23,12 +25,12 @@ namespace UI
     public sealed partial class CategoryPage : UI.Common.LayoutAwarePage
     {
 
-        private readonly IQuestionService _QuestionService;
+        private readonly ICategoryService _CategoryService;
         //private readonly ICategoryService _CategoryService;
 
         public CategoryPage(IQuestionService questionService/*add dependency injection for category service*/)
         {
-            _QuestionService = questionService;
+            _CategoryService = ServiceLocator.Current.GetInstance<ICategoryService>();
 
             this.InitializeComponent();
         }
@@ -40,7 +42,11 @@ namespace UI
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //var categories = _CategoryService.getCategories();
+            //var categories = _CategoryService.GetCategories();
+
+            List<Category> categories = new List<Category>();
+
+
 
         }
 

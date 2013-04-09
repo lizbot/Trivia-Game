@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Domain.Model
+namespace Application.Model
 {
-    class CustomOptions
+    public class CustomOptions
     {
         public Int32 OptionId { set; get; }
 
@@ -15,5 +11,7 @@ namespace Domain.Model
         public Int32 NumberOfAnswersDisplayed { set; get; }
 
         public Int32 CategoryId { set; get; }
+
+        public Int32 NumberOfQuestionsDesired { get; set; }
     }
 }

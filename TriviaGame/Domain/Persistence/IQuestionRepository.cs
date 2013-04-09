@@ -1,10 +1,9 @@
 ﻿using System;
+using Application.Model;
 
 namespace Domain.Persistence
 {
     using System.Collections.Generic;
-
-    using Model;
 
     public interface IQuestionRepository
     {

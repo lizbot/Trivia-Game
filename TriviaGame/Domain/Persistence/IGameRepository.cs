@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
-using Domain.Model;
+﻿using System;
+using System.Collections.Generic;
+using Application.Model;
 
 namespace Domain.Persistence
 {
     public interface IGameRepository
     {
         IEnumerable<GameSaved> GetGameInProgress();
+
+        Boolean IsGameInProgress();
     }
 }

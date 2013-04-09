@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Domain.Extensions;
 
-namespace Domain.Model
+namespace Application.Model
 {
     public class GameSaved
     {

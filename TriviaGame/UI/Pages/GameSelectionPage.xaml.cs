@@ -5,33 +5,36 @@ using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Application.Domain;
-using Domain.Services;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class GameSelectionPage : UI.Common.LayoutAwarePage
+    public sealed partial class GameSelectionPage
     {
         private IQuestionService _QuestionService;
 
-        //QuestionService questionService = new QuestionService(
-
-
-
-        //UIServiceHelper helper = new UIServiceHelper();
-        
+        private readonly IGameService _GameService;
 
         public GameSelectionPage()
         {
             // do this for all of your dependencies. (this is an anti-pattern... see Mark Seemann)
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
+            _GameService = ServiceLocator.Current.GetInstance<IGameService>();
 
 
-            this.InitializeComponent();
+            InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(Windows.UI.Xaml.Navigation.NavigationEventArgs e)
+        {
+
+            //I don't know how this works for the xaml but i was just trying to see if it would get information from the repository and bring it back.
+            var gameIsInProgress = _GameService.IsGameInProgress();
+
+            ResumeButton.Visibility = gameIsInProgress ? Visibility.Visible : Visibility.Collapsed;
+            base.OnNavigatedTo(e);
         }
 
         /// <summary>

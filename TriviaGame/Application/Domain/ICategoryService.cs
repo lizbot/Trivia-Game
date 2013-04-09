@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using Application.Model;
-
 namespace Application.Domain
 {
-    public interface IQuestionService
+    public interface ICategoryService
     {
-        IEnumerable<Question> GetQuestions();
+        IEnumerable<Category> GetCategories();
     }
 }
