@@ -38,7 +38,9 @@ namespace UI.Pages
 
             //var categories = _CategoryService.GetCategories();
 
+
             var categories = _CategoryService.GetCategories();
+
 
             foreach (Category cat in categories)
             {

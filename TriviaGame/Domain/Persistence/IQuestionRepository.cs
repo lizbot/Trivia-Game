@@ -13,10 +13,13 @@ namespace Domain.Persistence
         /// <param name="amountOfQuestions">
         /// The amount of questions.
         /// </param>
+        /// <param name="categoryId">
+        /// The categoryId if needed
+        /// </param>
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> of the questions.
         /// </returns>
-        IEnumerable<Question> GetQuestions(Int32 amountOfQuestions);
+        IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32 categoryId = 0);
 
         void StoreQuestionToGameInProgress(AnsweredQuestion question);
     }

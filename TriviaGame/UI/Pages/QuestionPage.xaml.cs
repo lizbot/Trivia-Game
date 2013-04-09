@@ -19,20 +19,19 @@ namespace UI.Pages
         Int32 _CurrentQuestionIndex;
         private readonly Int32 _QuestionThreshold;
 
-
-
-        int questionThreshold;
-        int _CorrectAnswerIndex;
         int numCorrect;
         int numIncorrect;
         int currentCorrectStreak;
         int bestCorrectStreak;
 
+
+        Int32 _CorrectAnswerIndex;
+ 
+
         Int32 _NumCorrect;
         Int32 _NumIncorrect;
         Int32 _CurrentCorrectStreak;
         Int32 _BestCorrectStreak;
-
 
         Boolean _PreviousAnswerWasCorrect;
 
@@ -86,7 +85,7 @@ namespace UI.Pages
             _Questions = new List<Question>();
 
 
-            for (int i = 0; i < 5; i++)
+            for (var i = 0; i < 5; i++)
             {
                 var correct = new Answer
                     {
@@ -123,11 +122,17 @@ namespace UI.Pages
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
 
+
             //DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
 
             //_Questions = questions;
 
             DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+
+            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+
+            //_Questions = questions;
+            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void UpdateQuestion()
@@ -135,6 +140,10 @@ namespace UI.Pages
             _CurrentQuestionIndex++;
 
             DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
+            //currentQuestion = questions[currentQuestionIndex];
+       
+            DisplayQuestion(_Questions.ElementAt(++_CurrentQuestionIndex));
         }
 
         private void DisplayQuestion(Question question)
@@ -214,6 +223,8 @@ namespace UI.Pages
                 ResetColors();
                 ShowResultsPopup();
                 DisableButtons();
+
+                //Does this happen before or after the results are being shown?
                 _GameService.DeleteGameInProgress();
             }
             else
@@ -225,9 +236,10 @@ namespace UI.Pages
 
         private void IsAnswerCorrect(Int32 buttonIndex)
         {
+            if (buttonIndex == _CorrectAnswerIndex)
             //var questions = _QuestionService.GetQuestions();
 
-            if (buttonIndex == _CorrectAnswerIndex)
+            if (buttonIndex == _CurrentQuestionIndex)
             {
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;

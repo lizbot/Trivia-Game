@@ -1,4 +1,5 @@
-﻿using Application.Domain;
+﻿using System;
+using Application.Domain;
 using Application.Model;
 using Domain.Persistence;
 
@@ -9,10 +10,14 @@ namespace Domain.Services
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _CategoryRepository;
+        private readonly IQuestionRepository _QuestionRepository;
 
-        public CategoryService(ICategoryRepository categoryRepository) 
+        public CategoryService(
+            ICategoryRepository categoryRepository,
+            IQuestionRepository questionRepository)
         {
             _CategoryRepository = categoryRepository;
+            _QuestionRepository = questionRepository;
         }
 
         public IEnumerable<Category> GetCategories() 
@@ -20,6 +25,13 @@ namespace Domain.Services
             var category = _CategoryRepository.GetCategories();
 
             return category;           
+        }
+
+        public IEnumerable<Question> GetQuestionsForCategory(Int32 numberOfQuestions)
+        {
+            var questions = _QuestionRepository.GetQuestions(numberOfQuestions);
+
+            return questions;
         }
     }
 }

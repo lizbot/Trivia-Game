@@ -10,14 +10,14 @@ namespace Domain.Services
     {
         private readonly IQuestionRepository _QuestionRepository;
 
-        private readonly IOptionsRepository _OptionsRepository;
+        private readonly IOptionsService _OptionsService;
 
         public QuestionService(
-            IQuestionRepository questionRepository, 
-            IOptionsRepository optionsRepository)
+            IQuestionRepository questionRepository,
+            IOptionsService optionsService)
         {
             _QuestionRepository = questionRepository;
-            _OptionsRepository = optionsRepository;
+            _OptionsService = optionsService;
         }
         
         /// <summary>
@@ -28,7 +28,10 @@ namespace Domain.Services
         {
             // Do we want this just for getting questions for a specific category 
             //or apply user settings every time they play game, regardless of type?
-            var userPreferredQuestionOption = 20;// _OptionsRepository.GetCustomOptions().NumberOfQuestionsDesired;
+            var userPreferredQuestionOption = 15;
+ 
+            //use this to get the userPreferredQuestionOption.
+            //var x = _OptionsService.GetCustomOptions().NumberOfQuestionsDesired;
 
             if (userPreferredQuestionOption == null)
                 userPreferredQuestionOption = 20;

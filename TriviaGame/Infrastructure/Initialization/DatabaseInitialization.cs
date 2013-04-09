@@ -249,7 +249,11 @@ namespace Infrastructure.Initialization
             }
         }
 
-        private static void GenerateAnswersForQuestions(String questionName, Int32 categoryId, String rightAnswerName, IEnumerable<String> wrongAnswerNames)
+        private static void GenerateAnswersForQuestions(
+            String questionName, 
+            Int32 categoryId, 
+            String rightAnswerName, 
+            IEnumerable<String> wrongAnswerNames)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {

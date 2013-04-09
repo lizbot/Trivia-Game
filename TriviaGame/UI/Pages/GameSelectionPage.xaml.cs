@@ -62,7 +62,7 @@ namespace UI.Pages
         {
             //var questions = _QuestionService.GetQuestions();
 
-            Frame.Navigate(typeof(QuestionPage)/*, questions*/);
+            Frame.Navigate(typeof(QuestionPage));
         }
 
         private void NewGameClick(object sender, RoutedEventArgs e)
