@@ -30,12 +30,14 @@ namespace UI.Pages
 
         readonly Random _Random = new Random();
         List<Question> _Questions;
+        private readonly IGameService _GameService;
 
         public QuestionPage()
         {
             InitializeComponent();
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
+            _GameService = ServiceLocator.Current.GetInstance<IGameService>();
 
             _NumQuestionsAnswered = 0;
             _QuestionThreshold = 5;
@@ -167,9 +169,18 @@ namespace UI.Pages
 
         private void AnswerDClick(object sender, RoutedEventArgs e) { QuestionAnswered(3); }
 
-        private void QuestionAnswered(int buttonIndex)
+        private void QuestionAnswered(Int32 buttonIndex)
         {
            // var questions = _QuestionService.GetQuestions();
+
+            // hey daniel! i don't know how you see what was answered and 
+            // with what but i mapped how to pass it down so i can store a game in progress for you.
+            var questionAnswered = new AnsweredQuestion
+                {
+                    QuestionId = 1, SelectedAnswerId = 1
+                };
+
+            _QuestionService.StoreAnsweredQuestion(questionAnswered);
 
             _NumQuestionsAnswered++;
             IsAnswerCorrect(buttonIndex);
@@ -181,6 +192,7 @@ namespace UI.Pages
                 ResetColors();
                 ShowResultsPopup();
                 DisableButtons();
+                _GameService.DeleteGameInProgress();
             }
             else
             {
@@ -189,7 +201,7 @@ namespace UI.Pages
             }
         }
 
-        private void IsAnswerCorrect(int buttonIndex)
+        private void IsAnswerCorrect(Int32 buttonIndex)
         {
             //var questions = _QuestionService.GetQuestions();
 

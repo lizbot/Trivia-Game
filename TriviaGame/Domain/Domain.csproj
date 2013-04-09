@@ -106,8 +106,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\AutoIncrement.cs" />
-    <Compile Include="Extensions\PrimaryKey.cs" />
     <Compile Include="Persistence\ICategoryRepository.cs" />
     <Compile Include="Persistence\IGameRepository.cs" />
     <Compile Include="Persistence\IOptionsRepository.cs" />

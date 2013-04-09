@@ -13,16 +13,12 @@ namespace UI.Pages
     /// </summary>
     public sealed partial class GameSelectionPage
     {
-        private IQuestionService _QuestionService;
 
         private readonly IGameService _GameService;
 
         public GameSelectionPage()
         {
-            // do this for all of your dependencies. (this is an anti-pattern... see Mark Seemann)
-            _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
-
 
             InitializeComponent();
         }
@@ -64,7 +60,7 @@ namespace UI.Pages
         
         private void QuickplayClick(object sender, RoutedEventArgs e)
         {
-            //var questions = _QuestionService.GetQuestions(null);
+            //var questions = _QuestionService.GetQuestions();
 
             Frame.Navigate(typeof(QuestionPage)/*, questions*/);
         }

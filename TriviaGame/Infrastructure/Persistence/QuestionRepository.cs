@@ -7,6 +7,7 @@ using Infrastructure.Initialization;
 using Infrastructure.Model;
 using SQLite;
 using Answer = Application.Model.Answer;
+using AutoMapper;
 
 namespace Infrastructure.Persistence
 {
@@ -25,23 +26,6 @@ namespace Infrastructure.Persistence
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                //Mapper.CreateMap<Model.Answer, Answer>();
-
-                //Mapper.CreateMap<Questions, Question>()
-                //      .ForMember(dest => dest.CorrectAnswer, opt => opt.UseValue(default(Answer)))
-                //      .ForMember(dest => dest.WrongAnswers, opt => opt.UseValue(default(Answer)));
-
-                //      //.ConstructUsing(q => new Question
-                //      //    {
-                //      //        QuestionId = q.QuestionId,
-                //      //        QuestionName = q.QuestionName,
-                //      //        CorrectAnswer = Mapper.Map<Infrastructure.Model.Answer, Application.Model.Answer>()
-                //      //    });
-                
-                //Mapper.AssertConfigurationIsValid();
-
-
-
                 IEnumerable<Questions> questionsToGet =
                     (from question in db.Table<Questions>()
                      select question
@@ -69,20 +53,32 @@ namespace Infrastructure.Persistence
             }
         }
 
-        private IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
+        public void StoreQuestionToGameInProgress(AnsweredQuestion question)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                //IEnumerable<Answer> answers = null;
-                foreach (var question in questionsForDomain)
-                {
-                    question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
-                    
-                    question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
-                }
+                var game = new Model.GameSaved
+                    {
+                        AnswerId = question.SelectedAnswerId,
+                        QuestionId = question.QuestionId
+                    };
 
-                return questionsForDomain;
+                db.Insert(game);
             }
+        }
+
+        private IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
+        {
+            var answersToQuestions = questionsForDomain as IList<Question> ?? questionsForDomain.ToList();
+
+            foreach (var question in answersToQuestions)
+            {
+                question.CorrectAnswer = GetRightAnswerFromQuestion(question.QuestionId);
+                    
+                question.WrongAnswers = GetWrongAnswersFromQuestion(question.QuestionId);
+            }
+
+            return answersToQuestions;
         }
 
         /// <summary>
@@ -111,7 +107,7 @@ namespace Infrastructure.Persistence
         /// </returns>
         private Answer GetRightAnswerFromQuestion(Int32 questionId)
         {
-            using (var db = new SQLite.SQLiteConnection (PersistenceConfiguration.Database))
+            using (var db = new SQLiteConnection (PersistenceConfiguration.Database))
             {
                 return db.Table<Answer> ()
                          .Where(answer => answer.QuestionId == questionId &&

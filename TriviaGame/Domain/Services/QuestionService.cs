@@ -1,5 +1,4 @@
-﻿using System;
-using Application.Domain;
+﻿using Application.Domain;
 using Application.Model;
 using Domain.Persistence;
 
@@ -11,11 +10,8 @@ namespace Domain.Services
     {
         private readonly IQuestionRepository _QuestionRepository;
 
-        // Change this when we implement default settings to program against.
-        private Int32 _DefaultNumber = 20;
-        private IOptionsRepository _OptionsRepository;
+        private readonly IOptionsRepository _OptionsRepository;
 
-        // this is a type of constructor injection for dependency injection.
         public QuestionService(
             IQuestionRepository questionRepository, 
             IOptionsRepository optionsRepository)
@@ -32,7 +28,7 @@ namespace Domain.Services
         {
             // Do we want this just for getting questions for a specific category 
             //or apply user settings every time they play game, regardless of type?
-            var userPreferredQuestionOption = 20;//_OptionsRepository.GetCustomOptions().NumberOfQuestionsDesired;
+            var userPreferredQuestionOption = 20;// _OptionsRepository.GetCustomOptions().NumberOfQuestionsDesired;
 
             if (userPreferredQuestionOption == null)
                 userPreferredQuestionOption = 20;
@@ -41,6 +37,11 @@ namespace Domain.Services
             var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption);
 
             return questions;
+        }
+
+        public void StoreAnsweredQuestion(AnsweredQuestion question)
+        {
+            _QuestionRepository.StoreQuestionToGameInProgress(question);
         }
 
         //Gets the questions as a parameter and gets them back to the repository

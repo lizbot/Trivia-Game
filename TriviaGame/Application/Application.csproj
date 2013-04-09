@@ -107,6 +107,7 @@
     <Compile Include="Domain\IQuestionService.cs" />
     <Compile Include="Domain\IStatisticsService.cs" />
     <Compile Include="Model\Answer.cs" />
+    <Compile Include="Model\AnsweredQuestion.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\CustomOptions.cs" />
     <Compile Include="Model\GameSaved.cs" />

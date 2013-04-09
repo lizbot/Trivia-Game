@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Application.Domain;
 using Domain.Persistence;
 
@@ -23,6 +19,11 @@ namespace Domain.Services
             var checkForGame = _GameRepository.IsGameInProgress();
 
             return checkForGame;
+        }
+
+        public void DeleteGameInProgress()
+        {
+            _GameRepository.DeleteGameInProgress();
         }
     }
 }
