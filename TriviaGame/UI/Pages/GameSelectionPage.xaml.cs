@@ -62,7 +62,7 @@ namespace UI.Pages
         {
             //var questions = _QuestionService.GetQuestions();
 
-            Frame.Navigate(typeof(QuestionPage));
+            Frame.Navigate(typeof(QuestionPage), null);
         }
 
         private void NewGameClick(object sender, RoutedEventArgs e)
@@ -72,7 +72,7 @@ namespace UI.Pages
 
         private void ResumeGameClick(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(QuestionPage));
+            Frame.Navigate(typeof(QuestionPage), null);
         }
     }
 }
