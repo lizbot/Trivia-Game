@@ -73,7 +73,7 @@ namespace UI.Pages
             if(e.Parameter == null)
                 questions = _QuestionService.GetQuestions();
             else
-                questions = _QuestionService.GetQuestions(e.Parameter);
+                questions = _QuestionService.GetQuestions(e.Parameter as Int32?);
 
             AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
