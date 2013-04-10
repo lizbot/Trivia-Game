@@ -34,11 +34,6 @@ namespace Infrastructure.Initialization
             // Generate base scripts for initializing values in the database.
             GenerateCategories();
             GenerateQuestionsAndAnswers();
-
-            //Use for testing.
-            // DoesQuestionNameInTableExist("Hello?");
-            //var questions = GetQuestions("How are you?");
-            //var categoryId = questions.CategoryId;
         }
 
         private static void DeleteFromDb()

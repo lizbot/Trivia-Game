@@ -24,12 +24,11 @@ namespace Infrastructure.Persistence
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                //var currentGame = db.CreateCommand("SELECT Count(*) FROM GameSaved").ExecuteNonQuery();
+                var currentGame = db.CreateCommand("SELECT Count(*) FROM GameSaved").ExecuteNonQuery();
 
-               // var exists = currentGame != 0;
+                var exists = currentGame != 0;
 
-               // return exists;
-                return false;
+                return exists;
             }
         }
 

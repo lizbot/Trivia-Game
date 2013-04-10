@@ -6,8 +6,6 @@ namespace Application.Model
     {
         private Int32 _NumberOfQuestionsDesired = 20;
 
-        public Int32 OptionId { set; get; }
-
         public Boolean IsTimerOn { set; get; }
 
         public Int32 NumberOfAnswersDisplayed { set; get; }
