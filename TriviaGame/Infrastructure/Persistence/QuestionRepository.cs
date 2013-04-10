@@ -49,19 +49,18 @@ namespace Infrastructure.Persistence
                      .OrderByDescending(quest => quest.TimesCorrect);
                 }
 
-                var domainQuestions = new List<Question>();
-                var dQuestion = new Question();
-                foreach (var question in questionsToGet)
-                {
-                    dQuestion.CategoryId = question.CategoryId;
-                    dQuestion.QuestionId = question.QuestionId;
-                    dQuestion.QuestionName = question.QuestionName;
-                    dQuestion.TimesCorrect = question.TimesCorrect;
-                    dQuestion.TimesViewed = question.TimesViewed;
-                    dQuestion.CorrectAnswer = new Answer();
-                    dQuestion.WrongAnswers = new List<Answer>();
-                    domainQuestions.Add(dQuestion);
-                }
+                var domainQuestions = questionsToGet
+                    .Select(question => 
+                        new Question
+                        {
+                            CategoryId = question.CategoryId, 
+                            QuestionId = question.QuestionId, 
+                            QuestionName = question.QuestionName, 
+                            TimesCorrect = question.TimesCorrect, 
+                            TimesViewed = question.TimesViewed, 
+                            CorrectAnswer = new Answer(), 
+                            WrongAnswers = new List<Answer>()
+                        }).ToList();
 
                 var questionsWithAnswers = GetAnswersToQuestions(domainQuestions);
 
