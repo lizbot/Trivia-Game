@@ -1,4 +1,5 @@
-﻿using Application.Domain;
+﻿using System;
+using Application.Domain;
 using Application.Model;
 using Domain.Persistence;
 
@@ -24,7 +25,7 @@ namespace Domain.Services
         /// This method is written to get 20 generic questions, specific to quick-play.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Question> GetQuestions()
+        public IEnumerable<Question> GetQuestions(Int32? categoryId = 0)
         {
             // Do we want this just for getting questions for a specific category 
             //or apply user settings every time they play game, regardless of type?

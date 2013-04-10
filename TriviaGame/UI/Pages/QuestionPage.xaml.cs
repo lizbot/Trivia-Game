@@ -19,11 +19,6 @@ namespace UI.Pages
         Int32 _CurrentQuestionIndex;
         private readonly Int32 _QuestionThreshold;
 
-        int numCorrect;
-        int numIncorrect;
-        int currentCorrectStreak;
-        int bestCorrectStreak;
-
 
         Int32 _CorrectAnswerIndex;
  
@@ -51,7 +46,7 @@ namespace UI.Pages
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
 
             // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
-            questions = _QuestionService.GetQuestions();
+            
 
             //_Questions = questions;
 
@@ -75,64 +70,17 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            // TODO Get numQuestionsAnswered on resume game and questionthreshold for every game in this method call
-            
-            
-            // Possibly change other pages to get questions in order to pass questions parameter to questions page
+            if(e.Parameter == null)
+                questions = _QuestionService.GetQuestions();
+            else
+                questions = _QuestionService.GetQuestions(e.Parameter as Int32?);
 
-            //questions = (IEnumerable<QuestionDto>)e.Parameter;
-
-            _Questions = new List<Question>();
-
-
-            for (var i = 0; i < 5; i++)
-            {
-                var correct = new Answer
-                    {
-                        IsCorrect = true,
-                        Name = "This is the correct answer"
-                    };
-
-                var q = new Question
-                    {
-                        QuestionName = "This is question " + (i + 1),
-                        CorrectAnswer = correct
-                    };
-
-
-                var wrongAnswers = new List<Answer>();
-
-                for (var j = 0; j < 3; j++)
-                {
-                    var wrong = new Answer
-                        {
-                            Name = "This is wrong answer " + (j + 1), 
-                            IsCorrect = false
-                        };
-
-                    wrongAnswers.Add(wrong);
-                }
-                q.WrongAnswers = wrongAnswers;
-                _Questions.Add(q);
-
-                
-            }
             AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
             DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
 
-
-            //DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
-
-            //_Questions = questions;
-
             DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
-
-            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
-
-            //_Questions = questions;
-            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void UpdateQuestion()
@@ -140,10 +88,6 @@ namespace UI.Pages
             _CurrentQuestionIndex++;
 
             DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
-            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
-            //currentQuestion = questions[currentQuestionIndex];
-       
-            DisplayQuestion(_Questions.ElementAt(++_CurrentQuestionIndex));
         }
 
         private void DisplayQuestion(Question question)
@@ -208,7 +152,8 @@ namespace UI.Pages
             // with what but i mapped how to pass it down so i can store a game in progress for you.
             var questionAnswered = new AnsweredQuestion
                 {
-                    QuestionId = 1, SelectedAnswerId = 1
+                    QuestionId = questions.ElementAt(_CurrentQuestionIndex).QuestionId, 
+                    //SelectedAnswerId =
                 };
 
             _QuestionService.StoreAnsweredQuestion(questionAnswered);
@@ -220,9 +165,11 @@ namespace UI.Pages
 
             if (IsGameOver())
             {
-                ResetColors();
+                //ResetColors();
                 ShowResultsPopup();
                 DisableButtons();
+
+                // Store Statistics Here
 
                 //Does this happen before or after the results are being shown?
                 _GameService.DeleteGameInProgress();
@@ -237,11 +184,8 @@ namespace UI.Pages
         private void IsAnswerCorrect(Int32 buttonIndex)
         {
             if (buttonIndex == _CorrectAnswerIndex)
-            //var questions = _QuestionService.GetQuestions();
-
-            if (buttonIndex == _CurrentQuestionIndex)
             {
-                _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
+                questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
                 _NumCorrect++;
             }
@@ -251,7 +195,7 @@ namespace UI.Pages
                 _PreviousAnswerWasCorrect = false;
                 _NumIncorrect++;
             }
-            _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
+            questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
         }
 
         private void UpdateCorrectQuestionStreak()

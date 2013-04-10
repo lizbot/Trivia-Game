@@ -7,6 +7,8 @@ using Windows.UI.Xaml.Navigation;
 using Application.Domain;
 using Application.Model;
 using Microsoft.Practices.ServiceLocation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Media;
 
 namespace UI.Pages
 {
@@ -35,10 +37,6 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
-            //var categories = _CategoryService.GetCategories();
-
-
             var categories = _CategoryService.GetCategories();
 
 
@@ -46,7 +44,13 @@ namespace UI.Pages
             {
                 Button b = new Button();
                 b.Content = cat.Name;
-                b.FontSize = 100;
+                b.FontSize = 80;
+                b.Width = 1000;
+                b.Height = 150;
+                b.Tag = cat.CategoryId;
+                b.Background = new SolidColorBrush(Windows.UI.Colors.DarkSeaGreen);
+                b.Margin = new Thickness(20);
+                b.Click += new RoutedEventHandler(ButtonClick);
                 CategoryStackPanel.Children.Add(b);
             }
 
@@ -54,6 +58,15 @@ namespace UI.Pages
 
             //var categories = _CategoryService.GetCategories();
             base.OnNavigatedTo(e);
+        }
+
+
+        private void ButtonClick(object sender, RoutedEventArgs e)
+        {
+            Button b = (Button)sender;
+            b.Name.Trim();
+
+            Frame.Navigate(typeof(QuestionPage), b.Tag);
         }
 
         /// <summary>

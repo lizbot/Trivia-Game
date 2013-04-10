@@ -7,5 +7,9 @@ namespace Domain.Persistence
        CustomOptions GetCustomOptions();
 
        GeneralOptions GetGeneralOptions();
+
+       void UpdateCustomOptions(CustomOptions customOption);
+
+       void UpdateGeneralOptions(GeneralOptions generalOption);
     }
 }
