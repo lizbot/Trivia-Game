@@ -29,6 +29,7 @@ namespace Domain.Services
         {
             // Do we want this just for getting questions for a specific category 
             //or apply user settings every time they play game, regardless of type?
+            // Daniel: "yes, I would say apply settings to all games types"
             var userPreferredQuestionOption = 15;
  
             //use this to get the userPreferredQuestionOption.
