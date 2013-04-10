@@ -48,6 +48,8 @@ namespace Infrastructure.Initialization
                 db.DropTable<Questions>();
                 db.DropTable<Answer>();
                 db.DropTable<Category>();
+                db.DropTable<GeneralOptions>();
+                db.DropTable<CustomOptions>();
 
                 db.Commit();
             }
@@ -322,9 +324,12 @@ namespace Infrastructure.Initialization
 
                 var customOptions = new CustomOptions
                 {
-
+                      IsTimerOn = false,
+                      NumberOfAnswersDisplayed = 4,
+                      NumberOfQuestionsDesired = 20
                 };
 
+                db.Insert(customOptions);
                 db.Commit();
             }
         }
@@ -337,9 +342,11 @@ namespace Infrastructure.Initialization
 
                 var option = new GeneralOptions
                 {
-
+                    IsMusicOn = false,
+                    IsSoundEffectsOn = false
                 };
 
+                db.Insert(option);
                 db.Commit();
             }
         }
