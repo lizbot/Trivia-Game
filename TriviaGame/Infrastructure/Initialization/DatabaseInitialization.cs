@@ -246,6 +246,56 @@ namespace Infrastructure.Initialization
                 wrongAnswerNames = new List<string> {"Zui Quan", "Unicycle hockey", "Surf fishing"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and the second largest city of the United Arab Emirates in terms of population and the largest of the seven member emirates of the United Arab Emirates?";
+                categoryId = 4;
+                rightAnswerName = "Abu Dhabi";
+                wrongAnswerNames = new List<string>{"Algiers", "Bishkek", "Gaborone"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital city of Nigeria. It is located in the centre of Nigeria, within the Federal Capital Territory (FCT)?";
+                categoryId = 4;
+                rightAnswerName = "Abuja";
+                wrongAnswerNames = new List<string>{"Bamako", "Episkopi Cantonment", "Doha"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and largest city of Ghana, with an estimated urban population of 2,291,352 . It is also the capital of the Greater  Region and of the  Metropolitan District, with which it is coterminous?";
+                categoryId = 4;
+                rightAnswerName = "Accra";
+                wrongAnswerNames = new List<string>{"Malabo", "Kampala", "Basseterre"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is Abeba (the spelling used by the official Ethiopian Mapping Authority), is the capital city of Ethiopia?";
+                categoryId = 4;
+                rightAnswerName = "Addis Ababa";
+                wrongAnswerNames = new List<string> {"Copenhagen", "Lima", "Algiers"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and largest city of Algeria?";
+                categoryId = 4;
+                rightAnswerName = "Algiers";
+                wrongAnswerNames = new List<string> {"Manama", "Banjul", "Apia"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital of the Pacific Ocean island nation of Niue. With a population of 581 (census of 2006),  has the distinction of being the smallest national capital city in terms of population?";
+                categoryId = 4;
+                rightAnswerName = "Alofi";
+                wrongAnswerNames = new List<string> {"Accra", "Paramaribo", "Edinburgh"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and largest city of Jordan. It is the country's political, cultural and commercial center and one of the oldest continuously inhabited cities in the world?";
+                categoryId = 4;
+                rightAnswerName = "Amman";
+                wrongAnswerNames = new List<string> { "Road Town", "Belmopan", "Kuwait City" };
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
             }
         }
 
