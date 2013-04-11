@@ -65,6 +65,8 @@ namespace Infrastructure.Persistence
 
                 var questionsWithAnswers = GetAnswersToQuestions(domainQuestions);
 
+                //_GameRepository.StoreGameInProgress(questionsWithAnswers);
+
                 return questionsWithAnswers;
             }
         }

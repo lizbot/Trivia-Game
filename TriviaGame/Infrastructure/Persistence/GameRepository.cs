@@ -20,6 +20,29 @@ namespace Infrastructure.Persistence
             }
         }
 
+        //public void StoreInitialGameInProgress(IEnumerable<Question> questionsToGameInProgress)
+        //{
+        //    using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+        //    {
+        //        db.BeginTransaction();
+
+        //        Model.GameSaved game;
+
+        //        foreach (var question in questionsToGameInProgress)
+        //        {
+        //            db.Table<Model.GameSaved>();
+        //            game = new Model.GameSaved
+        //                {
+        //                    QuestionId = question.QuestionId,
+        //                    AnswerId = 0
+        //                };
+        //            db.Insert(game);
+
+        //            db.Commit();
+        //        }
+        //    }
+        //}
+
         public Boolean IsGameInProgress()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
