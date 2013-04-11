@@ -60,13 +60,15 @@ namespace UI.Pages
         
         private void QuickplayClick(object sender, RoutedEventArgs e)
         {
-            //var questions = _QuestionService.GetQuestions();
+            _GameService.DeleteGameInProgressIfExists();
 
             Frame.Navigate(typeof(QuestionPage), null);
         }
 
         private void NewGameClick(object sender, RoutedEventArgs e)
         {
+            _GameService.DeleteGameInProgressIfExists();
+
             Frame.Navigate(typeof(CategoryPage));
         }
 

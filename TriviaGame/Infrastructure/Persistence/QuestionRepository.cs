@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using Application.Model;
 using Domain.Persistence;
 using Infrastructure.Initialization;
@@ -65,6 +66,35 @@ namespace Infrastructure.Persistence
                 var questionsWithAnswers = GetAnswersToQuestions(domainQuestions);
 
                 return questionsWithAnswers;
+            }
+        }
+
+        public Question GetQuestion(Int32 questionId)
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                Question returnedQuestion;
+
+                var q =
+                    (from question in db.Table<Model.GameSaved>()
+                     select question
+                    ).Join(db.Table<Questions>(), 
+                           game => game.QuestionId, 
+                           questionObject => questionObject.QuestionId,
+                           (game,questionObject) => questionObject).First();
+
+                returnedQuestion = new Question
+                    {
+                        CategoryId = q.CategoryId,
+                        CorrectAnswer = new Answer(),
+                        QuestionId = q.QuestionId,
+                        QuestionName = q.QuestionName,
+                        TimesCorrect = q.TimesCorrect,
+                        TimesViewed = q.TimesViewed,
+                        WrongAnswers = new List<Answer>()
+                    };
+
+                return returnedQuestion;
             }
         }
 

@@ -9,5 +9,7 @@ namespace Application.Domain
         IEnumerable<Question> GetQuestions(Int32? categoryId = 0);
 
         void StoreAnsweredQuestion(AnsweredQuestion question);
+
+        Question GetExistingQuestion(Int32 questionId);
     }
 }

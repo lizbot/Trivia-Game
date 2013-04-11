@@ -16,14 +16,16 @@ namespace Domain.Services
         
         public Boolean IsGameInProgress() 
         {
-            var checkForGame = _GameRepository.IsGameInProgress();
+            //var checkForGame = _GameRepository.IsGameInProgress();
 
-            return checkForGame;
+            //return checkForGame;
+
+            return false;
         }
 
-        public void DeleteGameInProgress()
+        public void DeleteGameInProgressIfExists()
         {
-            _GameRepository.DeleteGameInProgress();
+            _GameRepository.DeleteGameInProgressIfExists();
         }
     }
 }

@@ -172,7 +172,7 @@ namespace UI.Pages
                 // Store Statistics Here
 
                 //Does this happen before or after the results are being shown?
-                _GameService.DeleteGameInProgress();
+                _GameService.DeleteGameInProgressIfExists();
             }
             else
             {
