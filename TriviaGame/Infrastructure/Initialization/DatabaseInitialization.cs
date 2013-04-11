@@ -21,15 +21,17 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                DeleteFromDb();
 
-                db.CreateTable<Questions>();
-                db.CreateTable<Answer>();
-                db.CreateTable<CustomOptions>();
-                db.CreateTable<GeneralOptions>();
-                // db.CreateTable<Statistics>();
-                db.CreateTable<GameSaved>();
-                db.CreateTable<Category>();
+                    DeleteFromDb();
+
+                    db.CreateTable<Questions>();
+                    db.CreateTable<Answer>();
+                    db.CreateTable<CustomOptions>();
+                    db.CreateTable<GeneralOptions>();
+                    // db.CreateTable<Statistics>();
+                    db.CreateTable<GameSaved>();
+                    db.CreateTable<Category>();
+                 
             }
 
             // Generate base scripts for initializing values in the database.

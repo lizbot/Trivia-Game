@@ -24,21 +24,17 @@ namespace Infrastructure.Persistence
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                //var currentGame = db.CreateCommand("SELECT Count(*) FROM GameSaved").ExecuteQuery<Model.GameSaved>().First();
-                
-                //return currentGame.AnswerId != 0 && currentGame.QuestionId != 0;
+               
+                db.BeginTransaction();
 
-                var cmd = db.ExecuteScalar<Model.GameSaved>("SELECT * FROM GameSaved");
+                //var cmd = db.ExecuteScalar<Model.GameSaved>("SELECT * FROM GameSaved");
+                var command = db.Query<Model.GameSaved>("SELECT * FROM GameSaved");
 
-                //if (cmd.AnswerId == 0 && cmd.QuestionId == 0)
-                //    return false;
-                //else
-                //{
-                //    return true;
-                //}
-
-                //TODO(LM): FIGURE THIS PROBLEM OUT.
-                return false;
+                if (command.Count == 0)
+                {
+                    return false;
+                }
+                else return true;
             }
         }
 
