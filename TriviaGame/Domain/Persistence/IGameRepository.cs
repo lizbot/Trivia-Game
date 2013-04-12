@@ -10,6 +10,6 @@ namespace Domain.Persistence
 
         Boolean IsGameInProgress();
 
-        void DeleteGameInProgress();
+        void DeleteGameInProgressIfExists();
     }
 }

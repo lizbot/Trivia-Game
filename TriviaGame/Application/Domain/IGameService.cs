@@ -6,6 +6,6 @@
     {
         Boolean IsGameInProgress();
 
-        void DeleteGameInProgress();
+        void DeleteGameInProgressIfExists();
     }
 }

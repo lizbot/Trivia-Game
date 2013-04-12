@@ -21,19 +21,24 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                DeleteFromDb();
 
-                db.CreateTable<Questions>();
-                db.CreateTable<Answer>();
-                //db.CreateTable<Options>();
-                // db.CreateTable<Statistics>();
-                db.CreateTable<GameSaved>();
-                db.CreateTable<Category>();
+                    DeleteFromDb();
+
+                    db.CreateTable<Questions>();
+                    db.CreateTable<Answer>();
+                    db.CreateTable<CustomOptions>();
+                    db.CreateTable<GeneralOptions>();
+                    // db.CreateTable<Statistics>();
+                    db.CreateTable<GameSaved>();
+                    db.CreateTable<Category>();
+                 
             }
 
             // Generate base scripts for initializing values in the database.
             GenerateCategories();
             GenerateQuestionsAndAnswers();
+            GenerateGeneralOptions();
+            GenerateCustomOptions();
         }
 
         private static void DeleteFromDb()
@@ -45,6 +50,8 @@ namespace Infrastructure.Initialization
                 db.DropTable<Questions>();
                 db.DropTable<Answer>();
                 db.DropTable<Category>();
+                db.DropTable<GeneralOptions>();
+                db.DropTable<CustomOptions>();
 
                 db.Commit();
             }
@@ -152,95 +159,145 @@ namespace Infrastructure.Initialization
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is the practice of flying maneuvers involving aircraft attitudes that are not used in normal flight?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Aerobatics";
                 wrongAnswerNames = new List<string> {"Mountainboarding", "Shoot boxing", "kung fu"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a Japanese martial art developed by Morihei Ueshiba as a synthesis of his martial studies, philosophy, and religious beliefs?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Aikido";
                 wrongAnswerNames = new List<string> {"Ba game", "Muay Thai", "Savate"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a motorsport that involves airplanes competing over a fixed course, with the winner either returning the shortest time, the one to complete it with the most points, or to come closest to a previously estimated time?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Air racing";
                 wrongAnswerNames = new List<string> {"Clout archery", "Hwa Rang Do", "Kickboxing"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a sport or recreational activity in which participants eliminate opponents by hitting each other with spherical non-metallic pellets launched via replica firearms?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Airsoft";
                 wrongAnswerNames = new List<string> {"Artistic billiards", "Rodeo", "International rules football"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a team sport. It is played by two teams, eleven players to a side, who advance an oval ball  over a rectangular field that is 120 yards long by 53.3 yards wide and has goalposts at both ends?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "American football";
                 wrongAnswerNames = new List<string> {"Sandboarding", "Horse racing", "Flight archery"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a method of fishing by means of an angle (fish hook). The hook is usually attached to a fishing line and the line is often attached to a fishing rod?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Angling";
                 wrongAnswerNames = new List<string> {"Disc golf", "Trick shot competition", "Sumo"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a variety of gridiron football played by the Arena Football League (AFL). It is a proprietary game, the rights to which are owned by Gridiron Enterprises, and is played indoors on a smaller field than American or Canadian outdoor football, resulting in a faster and higher-scoring game?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Arena football";
                 wrongAnswerNames = new List<string> {"Harpastum" ,  "Equestrian vaulting" , "Street football"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a carom billiards discipline in which players compete at performing 76 preset shots of varying difficulty?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Artistic billiards";
                 wrongAnswerNames = new List<string> { "Pato", "Taido", "Pehlwani" };
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a form of competitive indoor cycling in which athletes perform tricks (called exercises) for points on specialized, fixed-gear bikes in a format similar to ballet or gymnastics?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Artistic cycling";
                 wrongAnswerNames = new List<string> { "Test cricket", "Obstacle variations", "A Bracciuta" };
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a shot played on a billiards table (most often a pool table, though snooker tables are also used), which seems unlikely or impossible or requires significant skill?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Artistic pool";
                 wrongAnswerNames = new List<string> { "Kuk Sool Won", "Artistic billiards", "Western Pleasure" };
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a sport played between two teams of typically eleven players, though other variations in player numbers such as 5 and 7 are also played, with a spherical ball?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Association football";
                 wrongAnswerNames = new List<string> { "Haidong Gumdo", "Flag football", "Harness racing" };
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is marketed as AFL, after the Australian Football League, the only fully professional  league) is a sport played between two teams of 18 players on the field on either an Australian Football ground, a modified cricket field or similar sized sports venue?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Australian football";
                 wrongAnswerNames = new List<string> {"Kurash", "Eton College", "Beach basketball"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
 
                 questionName = "What is a sport which was started in Australia during World War II when U.S. soldiers wanted to play a form of football against the Australians?";
-                categoryId = 2;
+                categoryId = 1;
                 rightAnswerName = "Austus";
                 wrongAnswerNames = new List<string> {"Zui Quan", "Unicycle hockey", "Surf fishing"};
 
                 GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and the second largest city of the United Arab Emirates in terms of population and the largest of the seven member emirates of the United Arab Emirates?";
+                categoryId = 4;
+                rightAnswerName = "Abu Dhabi";
+                wrongAnswerNames = new List<string>{"Algiers", "Bishkek", "Gaborone"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital city of Nigeria. It is located in the centre of Nigeria, within the Federal Capital Territory (FCT)?";
+                categoryId = 4;
+                rightAnswerName = "Abuja";
+                wrongAnswerNames = new List<string>{"Bamako", "Episkopi Cantonment", "Doha"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and largest city of Ghana, with an estimated urban population of 2,291,352 . It is also the capital of the Greater  Region and of the  Metropolitan District, with which it is coterminous?";
+                categoryId = 4;
+                rightAnswerName = "Accra";
+                wrongAnswerNames = new List<string>{"Malabo", "Kampala", "Basseterre"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is Abeba (the spelling used by the official Ethiopian Mapping Authority), is the capital city of Ethiopia?";
+                categoryId = 4;
+                rightAnswerName = "Addis Ababa";
+                wrongAnswerNames = new List<string> {"Copenhagen", "Lima", "Algiers"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and largest city of Algeria?";
+                categoryId = 4;
+                rightAnswerName = "Algiers";
+                wrongAnswerNames = new List<string> {"Manama", "Banjul", "Apia"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital of the Pacific Ocean island nation of Niue. With a population of 581 (census of 2006),  has the distinction of being the smallest national capital city in terms of population?";
+                categoryId = 4;
+                rightAnswerName = "Alofi";
+                wrongAnswerNames = new List<string> {"Accra", "Paramaribo", "Edinburgh"};
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
+                questionName = "What is the capital and largest city of Jordan. It is the country's political, cultural and commercial center and one of the oldest continuously inhabited cities in the world?";
+                categoryId = 4;
+                rightAnswerName = "Amman";
+                wrongAnswerNames = new List<string> { "Road Town", "Belmopan", "Kuwait City" };
+
+                GenerateAnswersForQuestions(questionName, categoryId, rightAnswerName, wrongAnswerNames);
+
             }
         }
 
@@ -310,5 +367,41 @@ namespace Infrastructure.Initialization
                 db.Commit();
             }
         }
+
+        private static void GenerateCustomOptions()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var customOptions = new CustomOptions
+                {
+                      IsTimerOn = false,
+                      NumberOfAnswersDisplayed = 4,
+                      NumberOfQuestionsDesired = 20
+                };
+
+                db.Insert(customOptions);
+                db.Commit();
+            }
+        }
+
+        private static void GenerateGeneralOptions()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var option = new GeneralOptions
+                {
+                    IsMusicOn = false,
+                    IsSoundEffectsOn = false
+                };
+
+                db.Insert(option);
+                db.Commit();
+            }
+        }
+
     }
 }

@@ -19,11 +19,13 @@ namespace Domain.Services
             var checkForGame = _GameRepository.IsGameInProgress();
 
             return checkForGame;
+
+            //return false;
         }
 
-        public void DeleteGameInProgress()
+        public void DeleteGameInProgressIfExists()
         {
-            _GameRepository.DeleteGameInProgress();
+            _GameRepository.DeleteGameInProgressIfExists();
         }
     }
 }

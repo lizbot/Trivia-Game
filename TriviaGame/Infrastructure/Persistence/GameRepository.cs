@@ -20,20 +20,48 @@ namespace Infrastructure.Persistence
             }
         }
 
+        //public void StoreInitialGameInProgress(IEnumerable<Question> questionsToGameInProgress)
+        //{
+        //    using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+        //    {
+        //        db.BeginTransaction();
+
+        //        Model.GameSaved game;
+
+        //        foreach (var question in questionsToGameInProgress)
+        //        {
+        //            db.Table<Model.GameSaved>();
+        //            game = new Model.GameSaved
+        //                {
+        //                    QuestionId = question.QuestionId,
+        //                    AnswerId = 0
+        //                };
+        //            db.Insert(game);
+
+        //            db.Commit();
+        //        }
+        //    }
+        //}
+
         public Boolean IsGameInProgress()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-               // var currentGame = db.CreateCommand("SELECT Count(*) FROM GameSaved").ExecuteNonQuery();
+               
+                db.BeginTransaction();
 
-               // var exists = currentGame != 0;
+                //var cmd = db.ExecuteScalar<Model.GameSaved>("SELECT * FROM GameSaved");
+                var command = db.Query<Model.GameSaved>("SELECT * FROM GameSaved");
 
-               // return exists;
-                return false;
+                if (command.Count == 0)
+                {
+                    return false;
+                }
+                else return true;
             }
         }
 
-        public void DeleteGameInProgress()
+        public void DeleteGameInProgressIfExists()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {

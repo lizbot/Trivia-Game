@@ -22,5 +22,7 @@ namespace Domain.Persistence
         IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32 categoryId = 0);
 
         void StoreQuestionToGameInProgress(AnsweredQuestion question);
+
+        Question GetQuestion(Int32 questionId);
     }
 }

@@ -105,9 +105,10 @@
     <Compile Include="Initialization\PersistenceConfiguration.cs" />
     <Compile Include="Model\Answer.cs" />
     <Compile Include="Model\Category.cs" />
+    <Compile Include="Model\GeneralOptions.cs" />
+    <Compile Include="Model\CustomOptions.cs" />
     <Compile Include="Model\Statistics.cs" />
     <Compile Include="Model\Questions.cs" />
-    <Compile Include="Model\Options.cs" />
     <Compile Include="Model\GameSaved.cs" />
     <Compile Include="Persistence\GameRepository.cs" />
     <Compile Include="Persistence\CategoryRepository.cs" />

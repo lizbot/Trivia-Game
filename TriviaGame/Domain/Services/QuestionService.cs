@@ -29,6 +29,7 @@ namespace Domain.Services
         {
             // Do we want this just for getting questions for a specific category 
             //or apply user settings every time they play game, regardless of type?
+            // Daniel: "yes, I would say apply settings to all games types"
             var userPreferredQuestionOption = 15;
  
             //use this to get the userPreferredQuestionOption.
@@ -46,6 +47,11 @@ namespace Domain.Services
         public void StoreAnsweredQuestion(AnsweredQuestion question)
         {
             _QuestionRepository.StoreQuestionToGameInProgress(question);
+        }
+
+        public Question GetExistingQuestion(Int32 questionId)
+        {
+            return _QuestionRepository.GetQuestion(questionId);
         }
 
         //Gets the questions as a parameter and gets them back to the repository
