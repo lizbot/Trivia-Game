@@ -39,19 +39,25 @@ namespace UI.Pages
         {
             var categories = _CategoryService.GetCategories();
 
+            int selector = 0;
 
             foreach (Category cat in categories)
             {
                 Button b = new Button();
                 b.Content = cat.Name;
-                b.FontSize = 80;
-                b.Width = 1000;
-                b.Height = 150;
+                b.FontSize = 75;
+                b.Width = 550;
+                b.HorizontalAlignment = HorizontalAlignment.Stretch;
+                b.Height = 130;
                 b.Tag = cat.CategoryId;
                 b.Background = new SolidColorBrush(Windows.UI.Colors.DarkSeaGreen);
                 b.Margin = new Thickness(20);
                 b.Click += new RoutedEventHandler(ButtonClick);
-                CategoryStackPanel.Children.Add(b);
+                if(selector % 2 == 0)
+                    CategoryStackPanel1.Children.Add(b);
+                else
+                    CategoryStackPanel2.Children.Add(b);
+                selector++;
             }
 
 
