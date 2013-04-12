@@ -1,10 +1,17 @@
-﻿namespace Application.Domain
+﻿using Application.Model;
+using System;
+using System.Collections.Generic;
+
+
+
+namespace Application.Domain
 {
-    using System;
 
     public interface IGameService
     {
         Boolean IsGameInProgress();
+
+        IEnumerable<GameSaved> GetGameInProgress();
 
         void DeleteGameInProgressIfExists();
     }
