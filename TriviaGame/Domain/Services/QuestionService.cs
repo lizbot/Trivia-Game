@@ -46,7 +46,7 @@ namespace Domain.Services
 
         public void StoreAnsweredQuestion(AnsweredQuestion question)
         {
-            _QuestionRepository.StoreQuestionToGameInProgress(question);
+            _QuestionRepository.StoreQuestionToGameInProgress(question); 
         }
 
         public Question GetExistingQuestion(Int32 questionId)

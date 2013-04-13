@@ -152,6 +152,7 @@ namespace UI.Pages
             // with what but i mapped how to pass it down so i can store a game in progress for you.
             var questionAnswered = new AnsweredQuestion
                 {
+                   
                     QuestionId = questions.ElementAt(_CurrentQuestionIndex).QuestionId, 
                     //SelectedAnswerId =
                 };
