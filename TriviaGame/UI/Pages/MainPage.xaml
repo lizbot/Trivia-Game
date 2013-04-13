@@ -9,43 +9,49 @@
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Trivia Game!" 
                    Grid.Column="1" 
-                   FontSize="100" 
+                   FontSize="180" 
                    HorizontalAlignment="Center" 
                    Margin="0,30,0,0"/>
 
-        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="1" 
+                    Grid.Column="1" 
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center">
             
             <Button Content="Start Game"
-                    HorizontalAlignment="Center"
-                    FontSize="50"
-                    Margin="10,10,10,10"
+                    HorizontalAlignment="Stretch"
+                    FontSize="80"
+                    Margin="60,25,60,25"
                     Click="StartGameClick"
-                    ToolTipService.ToolTip="Opens the Game Selection Page"/>
+                    ToolTipService.ToolTip="Opens the Game Selection Page"
+                    Background="SlateGray"/>
             
             <Button Content="Statistics" 
-                    HorizontalAlignment="Center" 
-                    FontSize="50" 
-                    Margin="10,10,10,10"
+                    HorizontalAlignment="Stretch" 
+                    FontSize="80" 
+                    Margin="60,25,60,25"
                     Click="StatisticsClick"
-                    ToolTipService.ToolTip="Opens the Statistics Page"/>
+                    ToolTipService.ToolTip="Opens the Statistics Page"
+                    Background="SlateGray"/>
             
             <Button Content="Options" 
-                    HorizontalAlignment="Center" 
-                    FontSize="50" 
-                    Margin="10,10,10,10"
+                    HorizontalAlignment="Stretch" 
+                    FontSize="80" 
+                    Margin="60,25,60,25"
                     Click="OptionsClick"
-                    ToolTipService.ToolTip="Opens the Options Page"/>
+                    ToolTipService.ToolTip="Opens the Options Page"
+                    Background="SlateGray"/>
         </StackPanel>
     </Grid>
 </Page>

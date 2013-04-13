@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
 using Application.Domain;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.System;
+using Windows.Media;
+
 
 namespace UI.Pages
 {
@@ -47,7 +52,7 @@ namespace UI.Pages
 
             // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
             
-
+            
             //_Questions = questions;
 
             _NumQuestionsAnswered = 0;
@@ -146,8 +151,6 @@ namespace UI.Pages
 
         private void QuestionAnswered(Int32 buttonIndex)
         {
-           // var questions = _QuestionService.GetQuestions();
-
             // hey daniel! i don't know how you see what was answered and 
             // with what but i mapped how to pass it down so i can store a game in progress for you.
             var questionAnswered = new AnsweredQuestion
@@ -166,11 +169,11 @@ namespace UI.Pages
 
             if (IsGameOver())
             {
-                //ResetColors();
+                ResetColors();
                 ShowResultsPopup();
                 DisableButtons();
 
-                // Store Statistics Here
+                //Store Statistics Here
 
                 //Does this happen before or after the results are being shown?
                 _GameService.DeleteGameInProgressIfExists();
@@ -192,7 +195,7 @@ namespace UI.Pages
             }
             else
             {
-                //questions.ElementAt(currentQuestionIndex).TimesIncorrect++;
+                //questions.ElementAt(_CurrentQuestionIndex).TimesIncorrect++;
                 _PreviousAnswerWasCorrect = false;
                 _NumIncorrect++;
             }
@@ -201,8 +204,6 @@ namespace UI.Pages
 
         private void UpdateCorrectQuestionStreak()
         {
-            //var questions = _QuestionService.GetQuestions();
-
             if (_PreviousAnswerWasCorrect)
             {
                 _CurrentCorrectStreak++;
@@ -312,14 +313,61 @@ namespace UI.Pages
 
         private void ShowResultsPopup()
         {
-            AnswerTextBlock.Text =
-                String.Format("You got {0} questions right and {1} questions wrong!\n Your best streak was {2}",
-                              _NumCorrect, 
-                              _NumIncorrect, 
-                              _BestCorrectStreak);
+            string questionsRightNum = "questions";
+            string questionsWrongNum = "questions";
+            string correctStreakNum = "questions";
+
+            if (_NumCorrect == 1)
+                questionsRightNum = "question";
+            else if (_NumIncorrect == 1)
+                questionsWrongNum = "question";
+
+            if (_BestCorrectStreak == 1)
+                correctStreakNum = "question";
+
+            string Sad = "\t\t:(\tBetter read some 'pedia and try again...";
+            string Happy = "\t\t:D\tYou must be related to Ken Jennings!";
+
+            bool happy = true;
+            bool sad = true;
+
+            if (_NumCorrect == 0)
+                happy = false;
+            else if (_NumIncorrect == 0)
+                sad = false;
+            
+            if(!happy)
+                AnswerTextBlock.Text =
+                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n\n\n{6}",
+                                _NumCorrect,
+                                questionsRightNum,
+                                _NumIncorrect,
+                                questionsWrongNum,
+                                _BestCorrectStreak,
+                                correctStreakNum,
+                                Sad);
+            else if(!sad)
+                AnswerTextBlock.Text =
+                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n\n\n{6}",
+                                _NumCorrect,
+                                questionsRightNum,
+                                _NumIncorrect,
+                                questionsWrongNum,
+                                _BestCorrectStreak,
+                                correctStreakNum,
+                                Happy);
+            else
+                AnswerTextBlock.Text =
+                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.",
+                                _NumCorrect,
+                                questionsRightNum,
+                                _NumIncorrect, 
+                                questionsWrongNum,
+                                _BestCorrectStreak,
+                                correctStreakNum);
 
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
-            Frame.Opacity = 0.3;
+                Frame.Opacity = 0.3;
         }
 
         private void DisableButtons()
