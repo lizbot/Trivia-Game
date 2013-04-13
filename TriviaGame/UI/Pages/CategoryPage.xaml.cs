@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using UI.Common;
 using Windows.UI.Xaml.Controls;
@@ -8,6 +10,7 @@ using Application.Domain;
 using Application.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Windows.UI;
 
 namespace UI.Pages
 {
@@ -40,8 +43,10 @@ namespace UI.Pages
 
             int selector = 0;
 
-            foreach (Category cat in categories)
+            Category cat;
+            for (int i = 0; i < 5; i++)
             {
+                cat = categories.ElementAt(i);
                 Button b = new Button();
                 b.Content = cat.Name;
                 b.FontSize = 75;
@@ -49,17 +54,52 @@ namespace UI.Pages
                 b.HorizontalAlignment = HorizontalAlignment.Stretch;
                 b.Height = 130;
                 b.Tag = cat.CategoryId;
-                b.Background = new SolidColorBrush(Windows.UI.Colors.Goldenrod);
+                switch (i)
+                {
+                    case (0):
+                        b.Background = new SolidColorBrush(Colors.Purple);
+                        break;
+                    case (1):
+                        b.Background = new SolidColorBrush(Colors.Goldenrod);
+                        break;
+                    case (2):
+                        b.Background = new SolidColorBrush(Colors.Pink);
+                        break;
+                    case (3):
+                        b.Background = new SolidColorBrush(Colors.Plum);
+                        break;
+                    case (4):
+                        b.Background = new SolidColorBrush(Colors.Salmon);
+                        break;
+                }
+
                 b.Margin = new Thickness(20);
                 b.Click += new RoutedEventHandler(ButtonClick);
-                if(selector % 2 == 0)
+                if (selector % 2 == 0)
                     CategoryStackPanel1.Children.Add(b);
                 else
                     CategoryStackPanel2.Children.Add(b);
                 selector++;
             }
 
-
+            //foreach (Category cat in categories)
+            //{
+            //    Button b = new Button();
+            //    b.Content = cat.Name;
+            //    b.FontSize = 75;
+            //    b.Width = 550;
+            //    b.HorizontalAlignment = HorizontalAlignment.Stretch;
+            //    b.Height = 130;
+            //    b.Tag = cat.CategoryId;
+            //    b.Background = new SolidColorBrush();
+            //    b.Margin = new Thickness(20);
+            //    b.Click += new RoutedEventHandler(ButtonClick);
+            //    if(selector % 2 == 0)
+            //        CategoryStackPanel1.Children.Add(b);
+            //    else
+            //        CategoryStackPanel2.Children.Add(b);
+            //    selector++;
+            //}
 
             //var categories = _CategoryService.GetCategories();
             base.OnNavigatedTo(e);
