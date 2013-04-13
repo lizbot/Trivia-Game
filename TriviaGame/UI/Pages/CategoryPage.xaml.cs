@@ -6,7 +6,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Application.Domain;
 using Application.Model;
-using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
@@ -50,7 +49,7 @@ namespace UI.Pages
                 b.HorizontalAlignment = HorizontalAlignment.Stretch;
                 b.Height = 130;
                 b.Tag = cat.CategoryId;
-                b.Background = new SolidColorBrush(Windows.UI.Colors.DarkSeaGreen);
+                b.Background = new SolidColorBrush(Windows.UI.Colors.Goldenrod);
                 b.Margin = new Thickness(20);
                 b.Click += new RoutedEventHandler(ButtonClick);
                 if(selector % 2 == 0)
