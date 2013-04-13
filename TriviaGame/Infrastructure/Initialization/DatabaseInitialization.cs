@@ -21,8 +21,7 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-
-                    DeleteFromDb();
+                    DeleteFromDb();    
 
                     db.CreateTable<Questions>();
                     db.CreateTable<Answer>();
@@ -35,17 +34,47 @@ namespace Infrastructure.Initialization
             }
 
             // Generate base scripts for initializing values in the database.
-            GenerateCategories();
+           GenerateCategories();
 
-          //  CheckIfTheseTablesHaveData();
+           var checkTheTables = CheckIfTheseTablesHaveData();
 
-           // if (!exists)
-           // {
+           if (!checkTheTables)
+           {
                 GenerateQuestionsAndAnswers();
                 GenerateGeneralOptions();
                 GenerateCustomOptions();
-            //}
-            
+           }
+        }
+
+        private static Boolean CheckIfTheseTablesHaveData()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                
+                db.BeginTransaction();
+
+                int defaultId = 1;
+
+                var questionToFind = "What is the capital and largest city of Jordan. It is the country's political, cultural and commercial center and one of the oldest continuously inhabited cities in the world?";
+
+                var resultFromQuestions = (from QuestionName in db.Table<Questions>()
+                                           select QuestionName).Where(q => q.QuestionName == questionToFind).Count();
+ 
+                var resultFromGeneralOptions =  (from GeneralQuestionId in db.Table<GeneralOptions>() 
+                                                select GeneralQuestionId).Where(q => q.GeneralOptionId == defaultId).Count();
+
+                var resultFromCustomOptions = (from CustomQuestionId in db.Table<CustomOptions>()
+                                               select CustomQuestionId).Where(q => q.CustomOptionId == defaultId).Count();
+
+                if ((resultFromQuestions != 0) && (resultFromGeneralOptions != 0 ) && (resultFromCustomOptions != 0))
+                {
+                  return true;
+                }
+                else
+                {
+                  return false;
+                };  
+            }
         }
 
         private static void DeleteFromDb()
@@ -54,11 +83,11 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                db.DropTable<Questions>();
-                db.DropTable<Answer>();
+                //db.DropTable<Questions>();
+                //db.DropTable<Answer>();
                 db.DropTable<Category>();
-                db.DropTable<GeneralOptions>();
-                db.DropTable<CustomOptions>();
+                //db.DropTable<GeneralOptions>();
+                //db.DropTable<CustomOptions>();
 
                 db.Commit();
             }

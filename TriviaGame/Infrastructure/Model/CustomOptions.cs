@@ -8,6 +8,9 @@ namespace Infrastructure.Model
 {
     class CustomOptions
     {
+        [SQLite.PrimaryKey, SQLite.AutoIncrement]
+        public Int32 CustomOptionId { get; set; }
+
         public Boolean IsTimerOn { set; get; }
 
         public Int32 NumberOfAnswersDisplayed { set; get; }

@@ -154,8 +154,7 @@ namespace UI.Pages
             // hey daniel! i don't know how you see what was answered and 
             // with what but i mapped how to pass it down so i can store a game in progress for you.
             var questionAnswered = new AnsweredQuestion
-                {
-                   
+                {  
                     QuestionId = questions.ElementAt(_CurrentQuestionIndex).QuestionId, 
                     //SelectedAnswerId =
                 };
