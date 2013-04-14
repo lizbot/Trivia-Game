@@ -47,8 +47,7 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var categories = _CategoryService.GetCategories();
-            PlaySound();
+            var categories = _CategoryService.GetCategories();         
 
             foreach (Category cat in categories)
             {
