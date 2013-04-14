@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
-using Application.Model;
+
+﻿using Application.Model;
+using System;
+using System.Collections.Generic;
+
+
 
 namespace Application.Domain
 {
-    using System;
 
     public interface IGameService
     {
