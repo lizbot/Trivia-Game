@@ -249,7 +249,8 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
             }
 
-            _Questions.ElementAt(_CurrentQuestionIndex).IncreaseTimeViewed;
+            _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
+            _Questions.ElementAt(_CurrentQuestionIndex).IncreaseTimesViewedAndOrTimesCorrect(_QuestionService);
         }
 
         private void UpdateCorrectQuestionStreak()

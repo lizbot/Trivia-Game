@@ -52,6 +52,11 @@ namespace Domain.Services
             _GameRepository.StoreQuestionToGameInProgress(questionId, answerId);
         }
 
+        public void IncrementTimesViewedAndOrTimesCorrect(Question question)
+        {
+            _QuestionRepository.IncreaseTimesCorrectAndOrTimesViewed(question);
+        }
+
         public Question GetExistingQuestion(Int32 questionId)
         {
             return _QuestionRepository.GetQuestion(questionId);
