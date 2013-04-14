@@ -33,16 +33,17 @@ namespace Infrastructure.Persistence
                 };
 
                 //TODO(LAURA): need to work out on overriding the second row of the options 
-
-                //if (options.GeneralOptionId == 2)
+                //var isTimeToOverride = db.Table<GeneralOptions>().Count();
+               
+                //if (isTimeToOverride > 1)
                 //{
-                //    db.Update(userGeneralOptions);
-                //    db.Commit();
+                //   db.Update(options);
+                //   db.Commit();
                 //}
                 //else
                 //{
-                    db.Insert(userGeneralOptions);
-                    db.Commit();
+                //    db.Insert(userGeneralOptions);
+                //    db.Commit();
                 //}
             }
         }

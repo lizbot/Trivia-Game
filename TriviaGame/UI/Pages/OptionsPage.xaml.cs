@@ -34,13 +34,13 @@ namespace UI
             //This is for testing so we can make sure that if the user changes the options, they are going to be
             //updated in the general and custom options tables
 
-            //var opsGen = new GeneralOptions
-            //{
-            //    IsMusicOn = true,
-            //    IsSoundEffectsOn = true,
-            //};
+            var opsGen = new GeneralOptions
+            {
+                IsMusicOn = true,
+                IsSoundEffectsOn = true,
+            };
 
-            //_OptionsService.UpdateGeneralOptions(opsGen);
+            _OptionsService.UpdateGeneralOptions(opsGen);
 
             //var opsCust = new CustomOptions
             //{
