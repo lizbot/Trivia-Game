@@ -8,5 +8,9 @@ namespace Application.Model
         public IEnumerable<Question> Questions { get; set; }
 
         public Int32 QuestionToResumeId { get; set; }
+
+        public Int32 LongestStreakCurrently { get; set; }
+
+        public Boolean IsStillInLongestStreak { get; set; }
     }
 }

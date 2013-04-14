@@ -87,8 +87,8 @@ namespace UI.Pages
 
             if (gameExists)
             {
-                _QuestionThreshold = gameInProgress.Questions.Count();
                 var list = gameInProgress.Questions as List<Question>;
+                _QuestionThreshold = gameInProgress.Questions.Count();
 
                 _CurrentQuestionIndex = list.FindIndex(q => q.QuestionId == gameInProgress.QuestionToResumeId);
                 _NumQuestionsAnswered = _CurrentQuestionIndex;
@@ -118,7 +118,6 @@ namespace UI.Pages
 
             var randomIndex = _Random.Next(0, 4);
             _QuestionAnsweredId = question.QuestionId;
-
 
             switch (randomIndex)
             {
@@ -199,6 +198,7 @@ namespace UI.Pages
             UpdateCorrectQuestionStreak();
             DrawRightWrong();
 
+            _Questions.ElementAt(_CurrentQuestionIndex).IncreaseTimesViewedAndOrTimesCorrect(_QuestionService);
             if (IsGameOver())
             {
                 ResetColors();
@@ -223,8 +223,8 @@ namespace UI.Pages
             {
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
-                _NumCorrect++;
-
+                //_NumCorrect++;
+                
                 if (buttonIndex == 0)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
                 if (buttonIndex == 1)
@@ -233,12 +233,15 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(CButton.CommandParameter));
                 if (buttonIndex == 3)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
+
+                _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, true);
+
             }
             else
             {
                 _PreviousAnswerWasCorrect = false;
-                _NumIncorrect++;
-
+                //_NumIncorrect++;
+                
                 if(buttonIndex == 0)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
                 if(buttonIndex == 1)
@@ -247,10 +250,11 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(CButton.CommandParameter));
                 if(buttonIndex == 3)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
+
+                _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, false);
             }
 
             _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
-            _Questions.ElementAt(_CurrentQuestionIndex).IncreaseTimesViewedAndOrTimesCorrect(_QuestionService);
         }
 
         private void UpdateCorrectQuestionStreak()

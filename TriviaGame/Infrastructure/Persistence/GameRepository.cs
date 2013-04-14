@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Application.Model;
 using Domain.Persistence;
@@ -25,6 +24,8 @@ namespace Infrastructure.Persistence
 
                 var id = GetQuestionIdWhereGameWasLeftOff();
 
+                var current = GetIfStreakStillApplicable();
+
                 var game = new GameSaved
                     {
                         Questions = questions,
@@ -32,6 +33,20 @@ namespace Infrastructure.Persistence
                     };
 
                 return game;
+            }
+        }
+
+        private static Boolean GetIfStreakStillApplicable()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var a = db.Get<Model.GameSaved>(game => game.AnswerId == 0).AnsweredCorrectly;
+
+
+                throw new NotImplementedException();
+                db.Commit();
             }
         }
 
@@ -92,6 +107,27 @@ namespace Infrastructure.Persistence
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
                 db.DeleteAll<GameSaved>();
+            }
+        }
+
+        public void MarkCorrectOrIncorrect(Int32 questionId, Boolean isCorrect)
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var currentStateOfGame = db.Get<Model.GameSaved>(game => game.QuestionId == questionId);
+
+                var updatedContent = new Model.GameSaved
+                    {
+                        AnsweredCorrectly = isCorrect,
+                        AnswerId = currentStateOfGame.AnswerId,
+                        QuestionId = questionId
+                    };
+
+                db.Update(updatedContent);
+
+                db.Commit();
             }
         }
     }
