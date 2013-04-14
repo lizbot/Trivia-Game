@@ -88,11 +88,10 @@ namespace UI.Pages
             if (gameExists)
             {
                 _QuestionThreshold = gameInProgress.Questions.Count();
-                var questionToReturnTo = gameInProgress.Questions.Where(q => q.QuestionId == gameInProgress.QuestionToResumeId).First();
+                var list = gameInProgress.Questions as List<Question>;
 
-                _CurrentQuestionIndex = gameInProgress.QuestionToResumeId;
-
-            //    _CurrentQuestionIndex = gameInProgress.Questions;
+                _CurrentQuestionIndex = list.FindIndex(q => q.QuestionId == gameInProgress.QuestionToResumeId);
+                _NumQuestionsAnswered = _CurrentQuestionIndex;
 
                 DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             }
@@ -250,7 +249,7 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
             }
 
-            _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
+            _Questions.ElementAt(_CurrentQuestionIndex).IncreaseTimeViewed;
         }
 
         private void UpdateCorrectQuestionStreak()
