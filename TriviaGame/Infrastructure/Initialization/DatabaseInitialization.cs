@@ -38,7 +38,7 @@ namespace Infrastructure.Initialization
 
             // Generate base scripts for initializing values in the database.
            GenerateCategories();
-     
+
            var checkTheTables = CheckIfTheseTablesHaveData();
 
            if (!checkTheTables)
@@ -47,6 +47,7 @@ namespace Infrastructure.Initialization
                 GenerateGeneralOptions();
                 GenerateCustomOptions();
            }
+
         }
 
         private static Boolean CheckIfTheseTablesHaveData()
@@ -73,10 +74,12 @@ namespace Infrastructure.Initialization
                     && (resultFromGeneralOptions != 0 ) 
                     && (resultFromCustomOptions != 0);
             }
+
         }
 
         private static void DeleteFromDb()
         {
+
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
                 db.BeginTransaction();
