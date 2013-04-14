@@ -41,23 +41,23 @@
                     Margin="60,25,60,25"
                     Click="StartGameClick"
                     ToolTipService.ToolTip="Opens the Game Selection Page"
-                    Background="SlateGray"/>
-            
-            <Button Content="Statistics" 
-                    HorizontalAlignment="Stretch" 
-                    FontSize="80" 
-                    Margin="60,25,60,25"
-                    Click="StatisticsClick"
-                    ToolTipService.ToolTip="Opens the Statistics Page"
-                    Background="SlateGray"/>
-            
+                    Background="Goldenrod"/>
+
             <Button Content="Options" 
                     HorizontalAlignment="Stretch" 
                     FontSize="80" 
                     Margin="60,25,60,25"
                     Click="OptionsClick"
                     ToolTipService.ToolTip="Opens the Options Page"
-                    Background="SlateGray"/>
+                    Background="Goldenrod"/>
+
+            <Button Content="Statistics" 
+                    HorizontalAlignment="Stretch" 
+                    FontSize="80" 
+                    Margin="60,25,60,25"
+                    Click="StatisticsClick"
+                    ToolTipService.ToolTip="Opens the Statistics Page"
+                    Background="Goldenrod"/> 
         </StackPanel>
     </Grid>
 </Page>

@@ -11,6 +11,9 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Application.Domain;
+using Application.Model;
+using Microsoft.Practices.ServiceLocation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -21,9 +24,33 @@ namespace UI
     /// </summary>
     public sealed partial class OptionsPage : UI.Common.LayoutAwarePage
     {
+        private readonly IOptionsService _OptionsService;
+
         public OptionsPage()
         {
             this.InitializeComponent();
+            _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
+
+            //This is for testing so we can make sure that if the user changes the options, they are going to be
+            //updated in the general and custom options tables
+
+            //var opsGen = new GeneralOptions
+            //{
+            //    IsMusicOn = true,
+            //    IsSoundEffectsOn = true,
+            //};
+
+            //_OptionsService.UpdateGeneralOptions(opsGen);
+
+            //var opsCust = new CustomOptions
+            //{
+            //    IsTimerOn = true,
+            //    NumberOfAnswersDisplayed = 3,
+            //    NumberOfQuestionsDesired = 10,
+            //};
+
+            //_OptionsService.UpdateCustomOptions(opsCust); 
+
         }
 
         /// <summary>

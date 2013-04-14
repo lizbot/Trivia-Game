@@ -7,8 +7,6 @@ namespace Application.Model
     {
         public IEnumerable<Question> Questions { get; set; }
 
-        public Int32 AnswerId { get; set; }
-
-        public Boolean IsRight { get; set; }
+        public Int32 QuestionToResumeId { get; set; }
     }
 }

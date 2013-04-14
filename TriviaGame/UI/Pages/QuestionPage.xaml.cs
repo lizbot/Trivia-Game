@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
 using Application.Domain;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Windows.System;
-using Windows.Media;
 
 
 namespace UI.Pages
@@ -20,13 +16,13 @@ namespace UI.Pages
     /// </summary>
     public sealed partial class QuestionPage
     {
+        #region class variables
         Int32 _NumQuestionsAnswered;
         Int32 _CurrentQuestionIndex;
-        private readonly Int32 _QuestionThreshold;
-
+        Int32 _QuestionThreshold;
 
         Int32 _CorrectAnswerIndex;
- 
+        Int32 _QuestionAnsweredId;
 
         Int32 _NumCorrect;
         Int32 _NumIncorrect;
@@ -38,10 +34,13 @@ namespace UI.Pages
         private readonly IQuestionService _QuestionService;
 
         readonly Random _Random = new Random();
-        List<Question> _Questions;
         private readonly IGameService _GameService;
 
-        IEnumerable<Question> questions;
+        #endregion
+
+        List<Question> _Questions = new List<Question>();
+
+        public Int32 QuestionThreshold { get; set; }
 
         public QuestionPage()
         {
@@ -49,24 +48,13 @@ namespace UI.Pages
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
-
-            // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
-            
-            
-            //_Questions = questions;
-
-            _NumQuestionsAnswered = 0;
-            _QuestionThreshold = 5;
-
+           
             _CurrentQuestionIndex = 0;
+            _NumQuestionsAnswered = 0;
             _NumCorrect = 0;
             _NumIncorrect = 0;
-            _CurrentCorrectStreak = 0;
-            _BestCorrectStreak = 0;
             _PreviousAnswerWasCorrect = false;
         }
-
-        public int QuestionThreshold { get; set; }
 
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -75,70 +63,120 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if(e.Parameter == null)
-                questions = _QuestionService.GetQuestions();
+            ResetColors();
+
+            var gameExists = _GameService.IsGameInProgress();
+            GameSaved gameInProgress = new GameSaved();
+            if (gameExists)
+            {
+                gameInProgress = _GameService.GetGameInProgress();
+            
+                foreach (var question in gameInProgress.Questions)
+                {
+                    _Questions.Add(question);
+                }
+            }
+
             else
-                questions = _QuestionService.GetQuestions(e.Parameter as Int32?);
+            {
+                if (e.Parameter == null)
+                    _Questions = _QuestionService.GetQuestions() as List<Question>;
+                else
+                    _Questions = _QuestionService.GetQuestions((int?) e.Parameter) as List<Question>;
+            }
 
-            AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            if (gameExists)
+            {
+                _QuestionThreshold = gameInProgress.Questions.Count();
+                _CurrentQuestionIndex = gameInProgress.QuestionToResumeId;
 
-            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+                DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
+            }
+                
+            else
+            {
+                _QuestionThreshold = _Questions.Count();
+
+                DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
+            }
+            
         }
 
         private void UpdateQuestion()
         {
             _CurrentQuestionIndex++;
 
-            DisplayQuestion(questions.ElementAt(_CurrentQuestionIndex));
+            DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
         }
 
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
 
-            int randomIndex = _Random.Next(0, 4);
+            var randomIndex = _Random.Next(0, 4);
+            _QuestionAnsweredId = question.QuestionId;
 
-            if (randomIndex == 0)
+
+            switch (randomIndex)
             {
-                AnswerAText.Text = question.CorrectAnswer.Name;
-                AnswerBText.Text = question.WrongAnswers.ElementAt(0).Name;
-                AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
-                AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
+                case 0:
+                    AnswerAText.Text = question.CorrectAnswer.Name;
+                    AnswerBText.Text = question.WrongAnswers.ElementAt(0).Name;
+                    AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
+                    AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
 
-                _CorrectAnswerIndex = 0;
-            }
-            else if (randomIndex == 1)
-            {
-                AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
-                AnswerBText.Text = question.CorrectAnswer.Name;
-                AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
-                AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
+                    AButton.CommandParameter = question.CorrectAnswer.AnswerId;
+                    BButton.CommandParameter = question.WrongAnswers.ElementAt(0).AnswerId;
+                    CButton.CommandParameter = question.WrongAnswers.ElementAt(1).AnswerId;
+                    DButton.CommandParameter = question.WrongAnswers.ElementAt(2).AnswerId;
 
-                _CorrectAnswerIndex = 1;
-            }
-            else if (randomIndex == 2)
-            {
-                AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
-                AnswerBText.Text = question.WrongAnswers.ElementAt(1).Name;
-                AnswerCText.Text = question.CorrectAnswer.Name;
-                AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
+                    _CorrectAnswerIndex = 0;
+                    break;
+                case 1:
+                    AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
+                    AnswerBText.Text = question.CorrectAnswer.Name;
+                    AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
+                    AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
 
-                _CorrectAnswerIndex = 2;
-            }
-            else if (randomIndex == 3)
-            {
-                AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
-                AnswerBText.Text = question.WrongAnswers.ElementAt(1).Name;
-                AnswerCText.Text = question.WrongAnswers.ElementAt(2).Name;
-                AnswerDText.Text = question.CorrectAnswer.Name;
+                    AButton.CommandParameter = question.WrongAnswers.ElementAt(0).AnswerId;
+                    BButton.CommandParameter = question.CorrectAnswer.AnswerId;
+                    CButton.CommandParameter = question.WrongAnswers.ElementAt(1).AnswerId;
+                    DButton.CommandParameter = question.WrongAnswers.ElementAt(2).AnswerId;
 
-                _CorrectAnswerIndex = 3;
+                    _CorrectAnswerIndex = 1;
+                    break;
+                case 2:
+                    AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
+                    AnswerBText.Text = question.WrongAnswers.ElementAt(1).Name;
+                    AnswerCText.Text = question.CorrectAnswer.Name;
+                    AnswerDText.Text = question.WrongAnswers.ElementAt(2).Name;
+
+
+                    AButton.CommandParameter = question.WrongAnswers.ElementAt(0).AnswerId;
+                    BButton.CommandParameter = question.WrongAnswers.ElementAt(1).AnswerId;
+                    CButton.CommandParameter = question.CorrectAnswer.AnswerId;
+                    DButton.CommandParameter = question.WrongAnswers.ElementAt(2).AnswerId;
+
+                    _CorrectAnswerIndex = 2;
+                    break;
+                case 3:
+                    AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
+                    AnswerBText.Text = question.WrongAnswers.ElementAt(1).Name;
+                    AnswerCText.Text = question.WrongAnswers.ElementAt(2).Name;
+                    AnswerDText.Text = question.CorrectAnswer.Name;
+
+                    AButton.CommandParameter = question.WrongAnswers.ElementAt(0).AnswerId;
+                    BButton.CommandParameter = question.WrongAnswers.ElementAt(1).AnswerId;
+                    CButton.CommandParameter = question.WrongAnswers.ElementAt(2).AnswerId;
+                    DButton.CommandParameter = question.CorrectAnswer.AnswerId;
+
+                    _CorrectAnswerIndex = 3;
+                    break;
+                default:
+                    QuestionText.Text = "I didn't work!";
+                    break;
             }
-            else
-                QuestionText.Text = "I didn't work!";
+
             QuestionFadeInStoryboard.Begin();
             AnswerFadeInStoryboard.Begin();
         }
@@ -153,19 +191,6 @@ namespace UI.Pages
 
         private void QuestionAnswered(Int32 buttonIndex)
         {
-            // hey daniel! i don't know how you see what was answered and 
-            // with what but i mapped how to pass it down so i can store a game in progress for you.
-
-            var questionAnswered = new AnsweredQuestion
-                {
-                    QuestionId = questions.ElementAt(_CurrentQuestionIndex).QuestionId,
-
-//------------------Instead of the answer couldn't we just send back whether it was right or wrong?
-                    //SelectedAnswerId =
-                };
-
-            _QuestionService.StoreAnsweredQuestion(questionAnswered);
-
             _NumQuestionsAnswered++;
             IsAnswerCorrect(buttonIndex);
             UpdateCorrectQuestionStreak();
@@ -193,17 +218,35 @@ namespace UI.Pages
         {
             if (buttonIndex == _CorrectAnswerIndex)
             {
-                questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
+                _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
                 _NumCorrect++;
+
+                if (buttonIndex == 0)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
+                if (buttonIndex == 1)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(BButton.CommandParameter));
+                if (buttonIndex == 2)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(CButton.CommandParameter));
+                if (buttonIndex == 3)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
             }
             else
             {
-                //questions.ElementAt(_CurrentQuestionIndex).TimesIncorrect++;
                 _PreviousAnswerWasCorrect = false;
                 _NumIncorrect++;
+
+                if(buttonIndex == 0)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
+                if(buttonIndex == 1)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(BButton.CommandParameter));
+                if(buttonIndex == 2)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(CButton.CommandParameter));
+                if(buttonIndex == 3)
+                    _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
             }
-            questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
+
+            _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
         }
 
         private void UpdateCorrectQuestionStreak()
