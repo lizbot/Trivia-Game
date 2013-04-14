@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using SQLite;
 using Infrastructure.Model;
 using System.Linq;
+using Application.Model;
 using Answer = Infrastructure.Model.Answer;
 using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
+using GeneralOptions = Infrastructure.Model.GeneralOptions;
+using CustomOptions = Infrastructure.Model.CustomOptions;
 
 namespace Infrastructure.Initialization
 {
@@ -410,7 +413,7 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var customOptions = new CustomOptions
+                var customOptions = new Model.CustomOptions
                 {
                       IsTimerOn = false,
                       NumberOfAnswersDisplayed = 4,
@@ -428,7 +431,7 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var option = new GeneralOptions
+                var option = new Model.GeneralOptions
                 {
                     IsMusicOn = false,
                     IsSoundEffectsOn = false
@@ -438,6 +441,5 @@ namespace Infrastructure.Initialization
                 db.Commit();
             }
         }
-
     }
 }

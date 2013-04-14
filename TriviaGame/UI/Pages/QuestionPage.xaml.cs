@@ -49,9 +49,10 @@ namespace UI.Pages
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
+           
 
             // Liz: Daniel, this call will actually return you questions now. :-)  With the right and wrong answers.
-            
+
             
             //_Questions = questions;
 
