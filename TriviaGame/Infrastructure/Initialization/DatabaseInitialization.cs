@@ -37,14 +37,9 @@ namespace Infrastructure.Initialization
             // Generate base scripts for initializing values in the database.
             GenerateCategories();
 
-          //  CheckIfTheseTablesHaveData();
-
-           // if (!exists)
-           // {
-                GenerateQuestionsAndAnswers();
-                GenerateGeneralOptions();
-                GenerateCustomOptions();
-            //}
+            GenerateQuestionsAndAnswers();
+            GenerateGeneralOptions();
+            GenerateCustomOptions();
             
         }
 
