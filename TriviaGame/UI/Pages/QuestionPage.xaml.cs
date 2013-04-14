@@ -131,14 +131,16 @@ namespace UI.Pages
             else if (randomIndex == 3)
             {
                 AnswerAText.Text = question.WrongAnswers.ElementAt(0).Name;
-                AnswerBText.Text = question.WrongAnswers.ElementAt(2).Name;
-                AnswerCText.Text = question.WrongAnswers.ElementAt(1).Name;
+                AnswerBText.Text = question.WrongAnswers.ElementAt(1).Name;
+                AnswerCText.Text = question.WrongAnswers.ElementAt(2).Name;
                 AnswerDText.Text = question.CorrectAnswer.Name;
 
                 _CorrectAnswerIndex = 3;
             }
             else
                 QuestionText.Text = "I didn't work!";
+            QuestionFadeInStoryboard.Begin();
+            AnswerFadeInStoryboard.Begin();
         }
 
         private void AnswerAClick(object sender, RoutedEventArgs e) { QuestionAnswered(0); }
@@ -153,9 +155,12 @@ namespace UI.Pages
         {
             // hey daniel! i don't know how you see what was answered and 
             // with what but i mapped how to pass it down so i can store a game in progress for you.
+
             var questionAnswered = new AnsweredQuestion
                 {
-                    QuestionId = questions.ElementAt(_CurrentQuestionIndex).QuestionId, 
+                    QuestionId = questions.ElementAt(_CurrentQuestionIndex).QuestionId,
+
+//------------------Instead of the answer couldn't we just send back whether it was right or wrong?
                     //SelectedAnswerId =
                 };
 

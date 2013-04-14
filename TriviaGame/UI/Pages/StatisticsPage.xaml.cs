@@ -1,7 +1,15 @@
-﻿using System;
+﻿using Application.Domain;
+using Microsoft.Practices.ServiceLocation;
+using System;
 using System.Collections.Generic;
 using UI.Common;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
@@ -12,9 +20,39 @@ namespace UI
     /// </summary>
     public sealed partial class StatisticsPage : UI.Common.LayoutAwarePage
     {
+        private readonly IStatisticsService _StatisticsService;
+
         public StatisticsPage()
         {
+            //_StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
+
             this.InitializeComponent();
+        }
+
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //var numCorrect = _StatisticsService.GetTotalAnsweredCorrectly(); 
+            //var numTotal = _StatisticsService.GetTotalQuestionsAnswered();
+
+            //AnswersCorrectTextBlock.Text = "Total Answers Correct: " + numCorrect;
+            //AnswersIncorrectTextBlock.Text = "Total Answers Incorrect: " + (numTotal - numCorrect);
+            
+            //if (numCorrect != 0)
+            //    OverallStatisticsTextBlock.Text = "Overall Statistics: " + (numTotal / numCorrect * 100) + "%";
+            //else if(numCorrect == numTotal)
+            //    OverallStatisticsTextBlock.Text = "100% :D";
+            //else
+            //    OverallStatisticsTextBlock.Text = "0% :(";
+
+            base.OnNavigatedTo(e);
+
+            CallStoryboard();
+        }
+
+        public void CallStoryboard()
+        {
+            StatisticsFadeInStoryboard.Begin();
         }
 
         /// <summary>
