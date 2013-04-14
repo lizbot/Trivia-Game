@@ -4,6 +4,8 @@ namespace Application.Model
 {
     public class CustomOptions
     {
+        public Int32 CustomOptionId { get; set; }
+
         private Int32 _NumberOfQuestionsDesired = 20;
 
         public Boolean IsTimerOn { set; get; }

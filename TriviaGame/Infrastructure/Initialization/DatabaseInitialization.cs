@@ -24,7 +24,7 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                    DeleteFromDb();    
+                    DeleteFromDb();
 
                     db.CreateTable<Questions>();
                     db.CreateTable<Answer>();

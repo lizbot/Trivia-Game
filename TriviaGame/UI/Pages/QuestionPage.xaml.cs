@@ -7,6 +7,7 @@ using Windows.UI.Xaml;
 using Application.Domain;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using UI.Common;
 
 
 namespace UI.Pages
@@ -64,7 +65,6 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             ResetColors();
-
             var gameExists = _GameService.IsGameInProgress();
             var gameInProgress = new GameSaved();
             if (gameExists)
@@ -355,10 +355,10 @@ namespace UI.Pages
 
         private void ResetColors()
         {
-            AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            AButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
+            BButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
+            CButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
+            DButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
         }
 
         private bool IsGameOver()
@@ -393,7 +393,7 @@ namespace UI.Pages
             
             if(!happy)
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -403,7 +403,7 @@ namespace UI.Pages
                                 Sad);
             else if(!sad)
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -413,7 +413,7 @@ namespace UI.Pages
                                 Happy);
             else
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n\n",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect, 

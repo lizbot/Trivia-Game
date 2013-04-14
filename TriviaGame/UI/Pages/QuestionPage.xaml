@@ -36,39 +36,45 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Name="QuestionText"
-                   FontSize="50" 
+                   FontSize="40" 
                    TextWrapping="Wrap" 
-                   Margin="20,40,20,20"/>
-
-        <Popup x:Name="ResultsPopup" 
+                   Margin="20,30,20,20"/>
+        
+            <Popup x:Name="ResultsPopup" 
                Grid.Row="1"
-               IsLightDismissEnabled="False"
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Top" 
-               Height="200" Width="400">
+               IsLightDismissEnabled="False" Margin="280,99,450,300">
+                
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition/>
                 </TransitionCollection>
             </Popup.ChildTransitions>
-            <Border BorderBrush="Firebrick" BorderThickness="10" Background="Black">
+            <Grid Background="#bcd37b">
                 <StackPanel Name="StackPanel">
                     <TextBlock  Name="AnswerTextBlock"
                                 Text="LOL"
-                                FontSize="40"
+                                Foreground="Black"
+                                FontStyle="Italic"
+                                FontSize="30"
                                 TextWrapping="Wrap"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
-                    <Button Content="Close" 
-                            HorizontalAlignment="Center" 
-                            FontSize="30" 
-                            Click="ResultsPopupCloseClick" 
+                    <Button Content="Close"
+                            FontStyle="Italic"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            FontSize="28"
+                            Foreground="Black"
+                            BorderBrush="Black"
+                            Click="ResultsPopupCloseClick"
+                            Background="#d37b91"
                             ToolTipService.ToolTip="Return to the Game Selection Menu"/>
                 </StackPanel>
-            </Border>
+            </Grid>
         </Popup>
 
-        <Grid Grid.Row="1" Name="ChildGrid" Margin="10,10,-10,-10">
+
+        <Grid Grid.Row="1" Name="ChildGrid" Margin="0,50,0,50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -84,13 +90,14 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,20"
+                        Background="#d3be7b"
                         Click="AnswerAClick">
                         <Button.Transitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition/>
                             </TransitionCollection>
                         </Button.Transitions>
-                        </Button>
+                       </Button>
                     <TextBlock Name="AnswerAText" 
                            Text="LOL"
                            VerticalAlignment="Center" 
@@ -103,6 +110,7 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,40"
+                        Background="#d3be7b"
                         Click="AnswerBClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -124,6 +132,7 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,20"
+                        Background="#d3be7b"
                         Click="AnswerCClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -142,6 +151,7 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,40"
+                        Background="#d3be7b"
                         Click="AnswerDClick">
                         <Button.Transitions>
                             <TransitionCollection>

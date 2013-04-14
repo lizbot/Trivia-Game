@@ -34,8 +34,11 @@ namespace UI
             //This is for testing so we can make sure that if the user changes the options, they are going to be
             //updated in the general and custom options tables
 
+            //This was can be use to pass the new options from the UI to the db in order to update the changes and save them.
+
             //var opsGen = new GeneralOptions
             //{
+            //    GeneralOptionsId = 2,
             //    IsMusicOn = true,
             //    IsSoundEffectsOn = true,
             //};
@@ -44,9 +47,10 @@ namespace UI
 
             //var opsCust = new CustomOptions
             //{
+            //    CustomOptionId = 2,
             //    IsTimerOn = true,
-            //    NumberOfAnswersDisplayed = 3,
-            //    NumberOfQuestionsDesired = 10,
+            //    NumberOfAnswersDisplayed = 2,
+            //    NumberOfQuestionsDesired = 15,
             //};
 
             //_OptionsService.UpdateCustomOptions(opsCust); 
