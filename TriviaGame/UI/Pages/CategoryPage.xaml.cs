@@ -59,19 +59,54 @@ namespace UI.Pages
                 switch (i)
                 {
                     case (0):
-                        b.Background = new SolidColorBrush(Colors.Purple);
+                        Color purpleishColor = new Color();
+
+                        purpleishColor.R = Convert.ToByte("147");
+                        purpleishColor.G = Convert.ToByte("125");
+                        purpleishColor.B = Convert.ToByte("211");
+                        purpleishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(purpleishColor);
                         break;
                     case (1):
-                        b.Background = new SolidColorBrush(Colors.Goldenrod);
+                        Color bluenishColor = new Color();
+
+                        bluenishColor.R = Convert.ToByte("124");
+                        bluenishColor.G = Convert.ToByte("211");
+                        bluenishColor.B = Convert.ToByte("190");
+                        bluenishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(bluenishColor);
                         break;
                     case (2):
-                        b.Background = new SolidColorBrush(Colors.Pink);
+                        Color greenishColor = new Color();
+
+                        greenishColor.R = Convert.ToByte("188");
+                        greenishColor.G = Convert.ToByte("211");
+                        greenishColor.B = Convert.ToByte("123");
+                        greenishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(greenishColor);
                         break;
                     case (3):
-                        b.Background = new SolidColorBrush(Colors.Plum);
+                        Color renkishColor = new Color();
+
+                        renkishColor.R = Convert.ToByte("211");
+                        renkishColor.G = Convert.ToByte("123");
+                        renkishColor.B = Convert.ToByte("145");
+                        renkishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(renkishColor);
                         break;
                     case (4):
-                        b.Background = new SolidColorBrush(Colors.Salmon);
+                        Color ishColor = new Color();
+
+                        ishColor.R = Convert.ToByte("211");
+                        ishColor.G = Convert.ToByte("190");
+                        ishColor.B = Convert.ToByte("123");
+                        ishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(ishColor);
                         break;
                 }
 
@@ -83,6 +118,8 @@ namespace UI.Pages
                     CategoryStackPanel2.Children.Add(b);
                 selector++;
             }
+
+            //var categories = _CategoryService.GetCategories();
             base.OnNavigatedTo(e);
         }
 
