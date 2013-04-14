@@ -8,9 +8,11 @@ namespace Application.Domain
 {
     public interface IStatisticsService
     {
-        Int32 GetOverallStatistics();
+        Double GetOverallStatistics();
 
-        Int32 GetGameStatistics();
+        Double GetGameStatistics();
+
+        Int32 GetLongestStreak();
 
     }
 }

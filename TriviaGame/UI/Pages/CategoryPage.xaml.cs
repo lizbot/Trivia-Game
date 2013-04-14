@@ -10,6 +10,16 @@ using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
+
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+#if !WINDOWS_PHONE
+using Windows.UI.Xaml.Data;
+#else
+using System.Windows.Data;
+#endif
+
 namespace UI.Pages
 {
     /// <summary>
@@ -38,7 +48,7 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var categories = _CategoryService.GetCategories();
-
+            PlaySound();
 
             foreach (Category cat in categories)
             {
@@ -91,5 +101,6 @@ namespace UI.Pages
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
+    
     }
 }
