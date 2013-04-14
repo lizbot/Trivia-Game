@@ -15,16 +15,16 @@ namespace Domain.Services
         }
 
         //The easiest way to get and process user statistics is to use integers 
-        public Int32 GetOverallStatistics()
+        public Double GetOverallStatistics()
         {
             var overallStatistics = 0;
 
             var totalAnsweredCorrectly = _StatisticsRepository.GetOverallCorrectAnswers();
             var totalQuestionsAnswered = _StatisticsRepository.GetOverallQuestionsAttempted();
 
-            overallStatistics = (totalQuestionsAnswered / totalAnsweredCorrectly);
+            overallStatistics = (totalAnsweredCorrectly / totalQuestionsAnswered) * 100;
 
-            return overallStatistics * 100;
+            return overallStatistics;
         }
 
         public Int32 GetTotalAnsweredCorrectly()
@@ -37,16 +37,25 @@ namespace Domain.Services
             return _StatisticsRepository.GetOverallQuestionsAttempted();
         }
 
-        public Int32 GetGameStatistics()
+        public Double GetGameStatistics()
         {
-            var gameStatistics = 0;
+            var thisGameStatistics = 0;
 
-            var answeredCorrectly = _StatisticsRepository.GetGameCorrectAnswers();
-            var questionsAnswered = _StatisticsRepository.GetGameQuestionsAttempted();
+            var answeredCorrectlyThisGame = _StatisticsRepository.GetGameCorrectAnswers();
+            var questionsAttemptedThisGame = _StatisticsRepository.GetGameQuestionsAttempted();
 
-            gameStatistics = (questionsAnswered / answeredCorrectly);
+            thisGameStatistics = (answeredCorrectlyThisGame / questionsAttemptedThisGame) * 100;
 
-            return gameStatistics;
+            return thisGameStatistics;
+        }
+
+        public Int32 GetLongestStreak()
+        {
+            Int32 longestStreak = 0;
+
+            longestStreak = _StatisticsRepository.GetGameLongestStreak();
+
+            return longestStreak;
         }
 
     }

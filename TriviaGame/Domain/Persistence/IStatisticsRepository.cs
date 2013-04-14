@@ -16,6 +16,8 @@ namespace Domain.Persistence
         Int32 GetGameCorrectAnswers();
 
         Int32 GetGameQuestionsAttempted();
+        
+        Int32 GetGameLongestStreak();
 
     }
 }

@@ -1,14 +1,23 @@
-﻿using System;
+
+﻿
+using System;
+using System.Collections.Generic;
+using Application.Model;
+
 namespace Application.Domain
 {
     public interface IStatisticsService
     {
-        Int32 GetOverallStatistics();
+
+        Double GetOverallStatistics();
+
+        Double GetGameStatistics();
+
+        Int32 GetLongestStreak();
 
         Int32 GetTotalAnsweredCorrectly();
 
         Int32 GetTotalQuestionsAnswered();
 
-        Int32 GetGameStatistics();
     }
 }
