@@ -24,7 +24,7 @@ namespace Infrastructure.Persistence
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> of the questions mapped to the domain.
         /// </returns>
-        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32 categoryId = 0)
+        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32? categoryId = 0)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {

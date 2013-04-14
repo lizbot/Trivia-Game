@@ -42,7 +42,7 @@ namespace Domain.Services
                 userPreferredQuestionOption = 20;
 
             // this gets the IEnumerable<Question> of all the questions that you want from the database.
-            var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption);
+            var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption, categoryId);
 
             return questions;
         }
