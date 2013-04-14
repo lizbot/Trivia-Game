@@ -8,7 +8,7 @@ namespace Application.Domain
     {
         IEnumerable<Question> GetQuestions(Int32? categoryId = 0);
 
-        void StoreAnsweredQuestion(AnsweredQuestion question);
+        void StoreAnsweredQuestion(Int32 questionId, Int32 answerId);
 
         Question GetExistingQuestion(Int32 questionId);
     }

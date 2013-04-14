@@ -1,10 +1,11 @@
 ﻿using System;
 using Domain.Persistence;
+using Application.Domain;
 
 
 namespace Domain.Services
 {
-    public class StatisticsService
+    public class StatisticsService : IStatisticsService
     {
         private readonly IStatisticsRepository _StatisticsRepository;
 
@@ -23,8 +24,17 @@ namespace Domain.Services
 
             overallStatistics = (totalQuestionsAnswered / totalAnsweredCorrectly);
 
-            return overallStatistics;
+            return overallStatistics * 100;
+        }
 
+        public Int32 GetTotalAnsweredCorrectly()
+        {
+            return _StatisticsRepository.GetOverallCorrectAnswers();
+        }
+
+        public Int32 GetTotalQuestionsAnswered()
+        {
+            return _StatisticsRepository.GetOverallQuestionsAttempted();
         }
 
         public Int32 GetGameStatistics()

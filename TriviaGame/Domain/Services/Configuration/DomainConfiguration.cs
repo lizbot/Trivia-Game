@@ -11,7 +11,7 @@ namespace Domain.Services.Configuration
             unityContainer.RegisterType<ICategoryService, CategoryService>();
             unityContainer.RegisterType<IGameService, GameService>();
             unityContainer.RegisterType<IOptionsService, OptionsService>();
-       //     unityContainer.RegisterType<IStatisticsService, StatisticsService>();
+            unityContainer.RegisterType<IStatisticsService, StatisticsService>();
             
             return unityContainer;
         }

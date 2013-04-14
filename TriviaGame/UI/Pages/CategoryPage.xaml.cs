@@ -1,16 +1,17 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using UI.Common;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Application.Domain;
 using Application.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
-using Windows.UI;
+using Windows.UI.Xaml.Media.Animation;
+
 
 namespace UI.Pages
 {
@@ -40,66 +41,48 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var categories = _CategoryService.GetCategories();
-
-            int selector = 0;
+            var selector = 0;
 
             Category cat;
-            for (int i = 0; i < 5; i++)
+
+            for (var i = 0; i < 5; i++)
             {
                 cat = categories.ElementAt(i);
-                Button b = new Button();
-                b.Content = cat.Name;
-                b.FontSize = 75;
-                b.Width = 550;
-                b.HorizontalAlignment = HorizontalAlignment.Stretch;
-                b.Height = 130;
-                b.Tag = cat.CategoryId;
+                var b = new Button
+                    {
+                        Content = cat.Name,
+                        FontSize = 75,
+                        Width = 550,
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        Height = 130,
+                        Tag = cat.CategoryId
+                    };
                 switch (i)
                 {
                     case (0):
-                        b.Background = new SolidColorBrush(Colors.Purple);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("purpleishColor"));
                         break;
                     case (1):
-                        b.Background = new SolidColorBrush(Colors.Goldenrod);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("bluenishColor"));
                         break;
                     case (2):
-                        b.Background = new SolidColorBrush(Colors.Pink);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("greenishColor"));
                         break;
                     case (3):
-                        b.Background = new SolidColorBrush(Colors.Plum);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("renkishColor"));
                         break;
                     case (4):
-                        b.Background = new SolidColorBrush(Colors.Salmon);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
                         break;
                 }
-
                 b.Margin = new Thickness(20);
-                b.Click += new RoutedEventHandler(ButtonClick);
+                b.Click += ButtonClick;
                 if (selector % 2 == 0)
                     CategoryStackPanel1.Children.Add(b);
                 else
                     CategoryStackPanel2.Children.Add(b);
                 selector++;
             }
-
-            //foreach (Category cat in categories)
-            //{
-            //    Button b = new Button();
-            //    b.Content = cat.Name;
-            //    b.FontSize = 75;
-            //    b.Width = 550;
-            //    b.HorizontalAlignment = HorizontalAlignment.Stretch;
-            //    b.Height = 130;
-            //    b.Tag = cat.CategoryId;
-            //    b.Background = new SolidColorBrush();
-            //    b.Margin = new Thickness(20);
-            //    b.Click += new RoutedEventHandler(ButtonClick);
-            //    if(selector % 2 == 0)
-            //        CategoryStackPanel1.Children.Add(b);
-            //    else
-            //        CategoryStackPanel2.Children.Add(b);
-            //    selector++;
-            //}
 
             //var categories = _CategoryService.GetCategories();
             base.OnNavigatedTo(e);
@@ -108,7 +91,7 @@ namespace UI.Pages
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
+            var b = (Button)sender;
             b.Name.Trim();
 
             Frame.Navigate(typeof(QuestionPage), b.Tag);

@@ -1,4 +1,7 @@
-﻿namespace Application.Domain
+﻿using System.Collections.Generic;
+using Application.Model;
+
+namespace Application.Domain
 {
     using System;
 
@@ -7,5 +10,7 @@
         Boolean IsGameInProgress();
 
         void DeleteGameInProgressIfExists();
+
+        GameSaved GetGameInProgress();
     }
 }

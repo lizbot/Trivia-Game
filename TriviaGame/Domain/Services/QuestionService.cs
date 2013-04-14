@@ -12,13 +12,16 @@ namespace Domain.Services
         private readonly IQuestionRepository _QuestionRepository;
 
         private readonly IOptionsService _OptionsService;
+        private readonly IGameRepository _GameRepository;
 
         public QuestionService(
             IQuestionRepository questionRepository,
-            IOptionsService optionsService)
+            IOptionsService optionsService,
+            IGameRepository gameRepository)
         {
             _QuestionRepository = questionRepository;
             _OptionsService = optionsService;
+            _GameRepository = gameRepository;
         }
         
         /// <summary>
@@ -39,14 +42,14 @@ namespace Domain.Services
                 userPreferredQuestionOption = 20;
 
             // this gets the IEnumerable<Question> of all the questions that you want from the database.
-            var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption);
+            var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption, categoryId);
 
             return questions;
         }
 
-        public void StoreAnsweredQuestion(AnsweredQuestion question)
+        public void StoreAnsweredQuestion(Int32 questionId, Int32 answerId)
         {
-            _QuestionRepository.StoreQuestionToGameInProgress(question); 
+            _GameRepository.StoreQuestionToGameInProgress(questionId, answerId);
         }
 
         public Question GetExistingQuestion(Int32 questionId)
