@@ -33,14 +33,36 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
-        
-        <ScrollViewer Name="CategoryScrollViewer" Grid.Row="1" HorizontalScrollMode ="Disabled" VerticalScrollMode="Enabled" ZoomMode="Disabled" VerticalScrollBarVisibility="Visible" VerticalSnapPointsAlignment="Center">
-            <StackPanel Name="CategoryStackPanel" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Top">
-                
-            </StackPanel>
-        </ScrollViewer>
-        
 
+
+        <ScrollViewer Name="CategoryScrollViewer" 
+                      Grid.Row="1" 
+                      HorizontalScrollMode ="Disabled" 
+                      VerticalScrollMode="Enabled" 
+                      ZoomMode="Disabled" 
+                      VerticalScrollBarVisibility="Visible" 
+                      VerticalSnapPointsAlignment="Center">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                    <StackPanel Name="CategoryStackPanel1" 
+                            Grid.Column="0"
+                            Orientation="Vertical" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Top">
+                    </StackPanel>
+                    <StackPanel Name="CategoryStackPanel2" 
+                            Grid.Column="1"
+                            Orientation="Vertical" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Top">
+                    </StackPanel>
+           </Grid>
+        </ScrollViewer>
+
+        
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->

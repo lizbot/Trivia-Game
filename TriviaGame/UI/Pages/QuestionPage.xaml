@@ -8,6 +8,25 @@
     mc:Ignorable="d">
 
     <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.Resources>
+            <Storyboard x:Name="QuestionFadeInStoryboard">
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="QuestionText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.6" />
+            </Storyboard>
+            <Storyboard x:Name="AnswerFadeInStoryboard">
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerAText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerBText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerCText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerDText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="AButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="BButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="CButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="DButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+            </Storyboard>
+            <Storyboard x:Name="QuestionFadeOutStoryboard">
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="QuestionText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.6" />
+            </Storyboard>
+        </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -65,7 +84,13 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,20"
-                        Click="AnswerAClick"/>
+                        Click="AnswerAClick">
+                        <Button.Transitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition/>
+                            </TransitionCollection>
+                        </Button.Transitions>
+                        </Button>
                     <TextBlock Name="AnswerAText" 
                            Text="LOL"
                            VerticalAlignment="Center" 
@@ -78,7 +103,13 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,40"
-                        Click="AnswerBClick"/>
+                        Click="AnswerBClick">
+                        <Button.Transitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition/>
+                            </TransitionCollection>
+                        </Button.Transitions>
+                    </Button>
                     <TextBlock Name="AnswerBText"
                            Text="ROFL"
                            VerticalAlignment="Center" 
@@ -93,7 +124,13 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,20"
-                        Click="AnswerCClick"/>
+                        Click="AnswerCClick">
+                        <Button.Transitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition/>
+                            </TransitionCollection>
+                        </Button.Transitions>
+                    </Button>
                     <TextBlock Name="AnswerCText"
                            Text="ASDF"
                            VerticalAlignment="Center" 
@@ -105,7 +142,13 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,40"
-                        Click="AnswerDClick"/>
+                        Click="AnswerDClick">
+                        <Button.Transitions>
+                            <TransitionCollection>
+                                <EntranceThemeTransition/>
+                            </TransitionCollection>
+                        </Button.Transitions>
+                    </Button>
                     <TextBlock Name="AnswerDText"
                            Text="Microsoft is Awesome!"
                            VerticalAlignment="Center" 

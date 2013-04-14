@@ -1,6 +1,10 @@
 ﻿using Application.Model;
 using Domain.Persistence;
 using System;
+using SQLite;
+using Infrastructure.Initialization;
+using GeneralOptions = Application.Model.GeneralOptions;
+using CustomOptions = Application.Model.CustomOptions;
 
 namespace Infrastructure.Persistence
 {
@@ -18,12 +22,58 @@ namespace Infrastructure.Persistence
 
         public void UpdateGeneralOptions(GeneralOptions options)
         {
-            throw new NotImplementedException();
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var userGeneralOptions = new GeneralOptions
+                {
+                    IsMusicOn = options.IsMusicOn,
+                    IsSoundEffectsOn = options.IsSoundEffectsOn,
+                };
+
+                //TODO(LAURA): need to work out on overriding the second row of the options 
+
+                //if (options.GeneralOptionId == 2)
+                //{
+                //    db.Update(userGeneralOptions);
+                //    db.Commit();
+                //}
+                //else
+                //{
+                    db.Insert(userGeneralOptions);
+                    db.Commit();
+                //}
+            }
         }
 
         public void UpdateCustomOptions(CustomOptions options)
         {
-            throw new NotImplementedException();
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var userCustomOption = new CustomOptions
+                {
+                    IsTimerOn = options.IsTimerOn,
+                    NumberOfAnswersDisplayed = options.NumberOfAnswersDisplayed,
+                    NumberOfQuestionsDesired = options.NumberOfQuestionsDesired,
+                };
+
+                //TODO(LAURA): need to work out on overriding the second row of the options
+
+                //if (options.CustomOptionId == 2)
+                //{
+                //    db.Update(userCustomOption);
+                //    db.Commit();
+                //}
+
+                //else
+                //{
+                    db.Insert(userCustomOption);
+                    db.Commit();
+                //}
+            }
         }
     }
 }

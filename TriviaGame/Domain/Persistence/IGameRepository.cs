@@ -6,10 +6,12 @@ namespace Domain.Persistence
 {
     public interface IGameRepository
     {
-        IEnumerable<GameSaved> GetGameInProgress();
+        GameSaved GetGameInProgress();
 
         Boolean IsGameInProgress();
 
         void DeleteGameInProgressIfExists();
+        
+        void StoreQuestionToGameInProgress(Int32 questionId, Int32 answerId);
     }
 }

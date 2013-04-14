@@ -19,10 +19,8 @@ namespace Domain.Persistence
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> of the questions.
         /// </returns>
-        IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32 categoryId = 0);
-
-        void StoreQuestionToGameInProgress(AnsweredQuestion question);
-
+        IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32? categoryId = 0);
+        
         Question GetQuestion(Int32 questionId);
     }
 }

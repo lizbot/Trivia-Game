@@ -27,9 +27,9 @@ namespace Domain.Services
             return category;           
         }
 
-        public IEnumerable<Question> GetQuestionsForCategory(Int32 numberOfQuestions)
+        public IEnumerable<Question> GetQuestionsForCategory(Int32 numberOfQuestions, Int32 categoryId)
         {
-            var questions = _QuestionRepository.GetQuestions(numberOfQuestions);
+            var questions = _QuestionRepository.GetQuestions(numberOfQuestions, categoryId);
 
             return questions;
         }

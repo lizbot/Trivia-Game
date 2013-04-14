@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using UI.Common;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Application.Domain;
 using Application.Model;
-using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
+using Windows.UI.Xaml.Media.Animation;
+
 
 
 using System.Linq;
@@ -47,23 +50,52 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+
             var categories = _CategoryService.GetCategories();         
 
-            foreach (Category cat in categories)
+            var selector = 0;
+
+            Category cat;
+
+
+            for (var i = 0; i < 5; i++)
             {
-                Button b = new Button();
-                b.Content = cat.Name;
-                b.FontSize = 80;
-                b.Width = 1000;
-                b.Height = 150;
-                b.Tag = cat.CategoryId;
-                b.Background = new SolidColorBrush(Windows.UI.Colors.DarkSeaGreen);
+                cat = categories.ElementAt(i);
+                var b = new Button
+                    {
+                        Content = cat.Name,
+                        FontSize = 75,
+                        Width = 550,
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        Height = 130,
+                        Tag = cat.CategoryId
+                    };
+                switch (i)
+                {
+                    case (0):
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("purpleishColor"));
+                        break;
+                    case (1):
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("bluenishColor"));
+                        break;
+                    case (2):
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("greenishColor"));
+                        break;
+                    case (3):
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("renkishColor"));
+                        break;
+                    case (4):
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
+                        break;
+                }
                 b.Margin = new Thickness(20);
-                b.Click += new RoutedEventHandler(ButtonClick);
-                CategoryStackPanel.Children.Add(b);
+                b.Click += ButtonClick;
+                if (selector % 2 == 0)
+                    CategoryStackPanel1.Children.Add(b);
+                else
+                    CategoryStackPanel2.Children.Add(b);
+                selector++;
             }
-
-
 
             //var categories = _CategoryService.GetCategories();
             base.OnNavigatedTo(e);
@@ -72,7 +104,7 @@ namespace UI.Pages
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
+            var b = (Button)sender;
             b.Name.Trim();
 
             Frame.Navigate(typeof(QuestionPage), b.Tag);

@@ -1,3 +1,4 @@
+
 ﻿using Application.Model;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,8 @@ namespace Application.Domain
     {
         Boolean IsGameInProgress();
 
-        IEnumerable<GameSaved> GetGameInProgress();
-
         void DeleteGameInProgressIfExists();
+
+        GameSaved GetGameInProgress();
     }
 }

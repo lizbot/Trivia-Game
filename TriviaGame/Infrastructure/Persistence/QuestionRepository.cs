@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using Application.Model;
 using Domain.Persistence;
 using Infrastructure.Initialization;
@@ -25,7 +24,7 @@ namespace Infrastructure.Persistence
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> of the questions mapped to the domain.
         /// </returns>
-        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32 categoryId = 0)
+        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32? categoryId = 0)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
@@ -65,7 +64,11 @@ namespace Infrastructure.Persistence
 
                 var questionsWithAnswers = GetAnswersToQuestions(domainQuestions);
 
-                return questionsWithAnswers;
+                var questionsToGameInProgress = questionsWithAnswers;
+
+                StoreInitialGameInProgress(questionsToGameInProgress);
+
+                return questionsToGameInProgress;
             }
         }
 
@@ -73,46 +76,44 @@ namespace Infrastructure.Persistence
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                Question returnedQuestion;
+                var q = (from question in db.Table<Questions>()
+                         select question)
+                         .First(qq => qq.QuestionId == questionId);
 
-                var q =
-                    (from question in db.Table<Model.GameSaved>()
-                     select question
-                    ).Join(db.Table<Questions>(), 
-                           game => game.QuestionId, 
-                           questionObject => questionObject.QuestionId,
-                           (game,questionObject) => questionObject).First();
-
-                returnedQuestion = new Question
+                var returnedQuestion = new Question
                     {
                         CategoryId = q.CategoryId,
-                        CorrectAnswer = new Answer(),
+                        CorrectAnswer = GetRightAnswerFromQuestion(q.QuestionId),
                         QuestionId = q.QuestionId,
                         QuestionName = q.QuestionName,
                         TimesCorrect = q.TimesCorrect,
                         TimesViewed = q.TimesViewed,
-                        WrongAnswers = new List<Answer>()
+                        WrongAnswers = GetWrongAnswersFromQuestion(q.QuestionId)
                     };
 
                 return returnedQuestion;
             }
         }
 
-        /// <summary>
-        /// This stores the question answered to a game in progress so the user can pick up where they left off if they log off.
-        /// </summary>
-        /// <param name="question"></param>
-        public void StoreQuestionToGameInProgress(AnsweredQuestion question)
+        private static void StoreInitialGameInProgress(IEnumerable<Question> questionsToGameInProgress)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                var game = new Model.GameSaved
-                    {
-                        AnswerId = question.SelectedAnswerId,
-                        QuestionId = question.QuestionId
-                    };
+                db.BeginTransaction();
 
-                db.Insert(game);
+                foreach (var question in questionsToGameInProgress)
+                {
+                    db.Table<Model.GameSaved>();
+
+                    var game = new Model.GameSaved
+                        {
+                            QuestionId = question.QuestionId,
+                            AnswerId = 0
+                        };
+
+                    db.Insert(game);
+                    db.Commit();
+                }
             }
         }
 
@@ -121,7 +122,7 @@ namespace Infrastructure.Persistence
         /// </summary>
         /// <param name="questionsForDomain"></param>
         /// <returns></returns>
-        private IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
+        private static IEnumerable<Question> GetAnswersToQuestions(IEnumerable<Question> questionsForDomain)
         {
             var answersToQuestions = questionsForDomain as IList<Question> ?? questionsForDomain.ToList();
 
@@ -140,7 +141,7 @@ namespace Infrastructure.Persistence
         /// </summary>
         /// <param name="questionId"> </param>
         /// <returns></returns>
-        private IEnumerable<Answer> GetWrongAnswersFromQuestion(Int32 questionId)
+        private static IEnumerable<Answer> GetWrongAnswersFromQuestion(Int32 questionId)
         {
             using (var db = new SQLiteConnection (PersistenceConfiguration.Database))
             {
@@ -159,7 +160,7 @@ namespace Infrastructure.Persistence
         /// <returns>
         /// Returns answer object populated with correct answer.
         /// </returns>
-        private Answer GetRightAnswerFromQuestion(Int32 questionId)
+        private static Answer GetRightAnswerFromQuestion(Int32 questionId)
         {
             using (var db = new SQLiteConnection (PersistenceConfiguration.Database))
             {

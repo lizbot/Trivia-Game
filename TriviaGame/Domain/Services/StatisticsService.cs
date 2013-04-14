@@ -1,16 +1,17 @@
 ﻿using System;
 using Domain.Persistence;
+using Application.Domain;
 
 
 namespace Domain.Services
 {
-    public class StatisticsService
+    public class StatisticsService : IStatisticsService
     {
-        private readonly IStatisticsRepository _StaisticsRepository;
+        private readonly IStatisticsRepository _StatisticsRepository;
 
         public StatisticsService(IStatisticsRepository statisticsRepository)
         {
-            _StaisticsRepository = statisticsRepository;
+            _StatisticsRepository = statisticsRepository;
         }
 
         //The easiest way to get and process user statistics is to use integers 
@@ -18,21 +19,30 @@ namespace Domain.Services
         {
             var overallStatistics = 0;
 
-            var totalAnsweredCorrectly = _StaisticsRepository.GetOverallCorrectAnswers();
-            var totalQuestionsAnswered = _StaisticsRepository.GetOverallQuestionsAttempted();
+            var totalAnsweredCorrectly = _StatisticsRepository.GetOverallCorrectAnswers();
+            var totalQuestionsAnswered = _StatisticsRepository.GetOverallQuestionsAttempted();
 
             overallStatistics = (totalAnsweredCorrectly / totalQuestionsAnswered) * 100;
 
             return overallStatistics;
+        }
 
+        public Int32 GetTotalAnsweredCorrectly()
+        {
+            return _StatisticsRepository.GetOverallCorrectAnswers();
+        }
+
+        public Int32 GetTotalQuestionsAnswered()
+        {
+            return _StatisticsRepository.GetOverallQuestionsAttempted();
         }
 
         public Double GetGameStatistics()
         {
             var thisGameStatistics = 0;
 
-            var answeredCorrectlyThisGame = _StaisticsRepository.GetGameCorrectAnswers();
-            var questionsAttemptedThisGame = _StaisticsRepository.GetGameQuestionsAttempted();
+            var answeredCorrectlyThisGame = _StatisticsRepository.GetGameCorrectAnswers();
+            var questionsAttemptedThisGame = _StatisticsRepository.GetGameQuestionsAttempted();
 
             thisGameStatistics = (answeredCorrectlyThisGame / questionsAttemptedThisGame) * 100;
 
@@ -43,7 +53,7 @@ namespace Domain.Services
         {
             Int32 longestStreak = 0;
 
-            longestStreak = _StaisticsRepository.GetGameLongestStreak();
+            longestStreak = _StatisticsRepository.GetGameLongestStreak();
 
             return longestStreak;
         }

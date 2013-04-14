@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Application.Domain;
+using Application.Model;
 using Domain.Persistence;
 using Application.Model;
 using System.Collections.Generic;
@@ -20,8 +22,6 @@ namespace Domain.Services
             var checkForGame = _GameRepository.IsGameInProgress();
 
             return checkForGame;
-
-            //return false;
         }
 
         public void DeleteGameInProgressIfExists()
@@ -29,9 +29,10 @@ namespace Domain.Services
             _GameRepository.DeleteGameInProgressIfExists();
         }
 
-        public IEnumerable<GameSaved> GetGameInProgress()
+
+        public GameSaved GetGameInProgress()
         {
-            throw new NotImplementedException();
+            return _GameRepository.GetGameInProgress();
         }
     }
 }
