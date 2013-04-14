@@ -6,11 +6,11 @@ namespace Domain.Services
 {
     public class StatisticsService
     {
-        private readonly IStatisticsRepository _StaisticsRepository;
+        private readonly IStatisticsRepository _StatisticsRepository;
 
         public StatisticsService(IStatisticsRepository statisticsRepository)
         {
-            _StaisticsRepository = statisticsRepository;
+            _StatisticsRepository = statisticsRepository;
         }
 
         //The easiest way to get and process user statistics is to use integers 
@@ -18,8 +18,8 @@ namespace Domain.Services
         {
             var overallStatistics = 0;
 
-            var totalAnsweredCorrectly = _StaisticsRepository.GetOverallCorrectAnswers();
-            var totalQuestionsAnswered = _StaisticsRepository.GetOverallQuestionsAttempted();
+            var totalAnsweredCorrectly = _StatisticsRepository.GetOverallCorrectAnswers();
+            var totalQuestionsAnswered = _StatisticsRepository.GetOverallQuestionsAttempted();
 
             overallStatistics = (totalQuestionsAnswered / totalAnsweredCorrectly);
 
@@ -31,8 +31,8 @@ namespace Domain.Services
         {
             var gameStatistics = 0;
 
-            var answeredCorrectly = _StaisticsRepository.GetGameCorrectAnswers();
-            var questionsAnswered = _StaisticsRepository.GetGameQuestionsAttempted();
+            var answeredCorrectly = _StatisticsRepository.GetGameCorrectAnswers();
+            var questionsAnswered = _StatisticsRepository.GetGameQuestionsAttempted();
 
             gameStatistics = (questionsAnswered / answeredCorrectly);
 

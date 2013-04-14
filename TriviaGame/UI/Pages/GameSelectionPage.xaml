@@ -45,6 +45,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="QuickplayClick"
+                    Background="Purple"
                     ToolTipService.ToolTip="Start a game with questions from all categories"/>
             
             <Button Content="Select a Category"
@@ -54,6 +55,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="NewGameClick"
+                    Background="Purple"
                     ToolTipService.ToolTip="Go to the Category Selection Page"/>
             
             <Button Content="Resume Last Game"
@@ -64,6 +66,7 @@
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="ResumeGameClick"
+                    Background="Purple"
                     ToolTipService.ToolTip="Resume the Last Played Game"/>
             
             

@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using UI.Common;
 using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Application.Domain;
+using Application.Model;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
@@ -38,11 +40,13 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var categories = _CategoryService.GetCategories();
-
             var selector = 0;
 
-            foreach (var cat in categories)
+            Category cat;
+
+            for (var i = 0; i < 5; i++)
             {
+                cat = categories.ElementAt(i);
                 var b = new Button
                     {
                         Content = cat.Name,
@@ -50,19 +54,35 @@ namespace UI.Pages
                         Width = 550,
                         HorizontalAlignment = HorizontalAlignment.Stretch,
                         Height = 130,
-                        Tag = cat.CategoryId,
-                        Background = new SolidColorBrush(Windows.UI.Colors.DarkSeaGreen),
-                        Margin = new Thickness(20)
+                        Tag = cat.CategoryId
                     };
+                switch (i)
+                {
+                    case (0):
+                        b.Background = new SolidColorBrush(Colors.Purple);
+                        break;
+                    case (1):
+                        b.Background = new SolidColorBrush(Colors.Goldenrod);
+                        break;
+                    case (2):
+                        b.Background = new SolidColorBrush(Colors.Pink);
+                        break;
+                    case (3):
+                        b.Background = new SolidColorBrush(Colors.Plum);
+                        break;
+                    case (4):
+                        b.Background = new SolidColorBrush(Colors.Salmon);
+                        break;
+                }
 
+                b.Margin = new Thickness(20);
                 b.Click += ButtonClick;
-                if(selector % 2 == 0)
+                if (selector % 2 == 0)
                     CategoryStackPanel1.Children.Add(b);
                 else
                     CategoryStackPanel2.Children.Add(b);
                 selector++;
             }
-
             base.OnNavigatedTo(e);
         }
 
