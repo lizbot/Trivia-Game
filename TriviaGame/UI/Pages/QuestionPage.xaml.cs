@@ -48,9 +48,7 @@ namespace UI.Pages
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
-
-            _BestCorrectStreak = 0;
-            _CurrentCorrectStreak = 0;
+           
             _CurrentQuestionIndex = 0;
             _NumQuestionsAnswered = 0;
             _NumCorrect = 0;
