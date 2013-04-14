@@ -46,32 +46,32 @@
             
             <Button Content="Quickplay"
                     FontSize="80"
-                    Margin="30"
+                    Margin="250, 30"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="QuickplayClick"
-                    Background="Purple"
+                    Background="#937dd3"
                     ToolTipService.ToolTip="Start a game with questions from all categories"/>
             
             <Button Content="Select a Category"
                     Grid.Row="1"
                     FontSize="80"
-                    Margin="30"
+                    Margin="250, 30"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="NewGameClick"
-                    Background="Purple"
+                    Background="#bcd37b"
                     ToolTipService.ToolTip="Go to the Category Selection Page"/>
             
             <Button Content="Resume Last Game"
                     Name="ResumeButton"
                     Grid.Row="2"
                     FontSize="80"
-                    Margin="30"
+                    Margin="250, 30"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="ResumeGameClick"
-                    Background="Purple"
+                    Background="#d3be7b"
                     ToolTipService.ToolTip="Resume the Last Played Game"/>
             
             
