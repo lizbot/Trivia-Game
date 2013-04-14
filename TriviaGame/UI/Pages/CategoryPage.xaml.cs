@@ -57,57 +57,21 @@ namespace UI.Pages
                 switch (i)
                 {
                     case (0):
-                        Color purpleishColor = new Color();
-
-                        purpleishColor.R = Convert.ToByte("147");
-                        purpleishColor.G = Convert.ToByte("125");
-                        purpleishColor.B = Convert.ToByte("211");
-                        purpleishColor.A = Convert.ToByte("255");
-
-                        b.Background = new SolidColorBrush(purpleishColor);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("purpleishColor"));
                         break;
                     case (1):
-                        Color bluenishColor = new Color();
-
-                        bluenishColor.R = Convert.ToByte("124");
-                        bluenishColor.G = Convert.ToByte("211");
-                        bluenishColor.B = Convert.ToByte("190");
-                        bluenishColor.A = Convert.ToByte("255");
-
-                        b.Background = new SolidColorBrush(bluenishColor);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("bluenishColor"));
                         break;
                     case (2):
-                        Color greenishColor = new Color();
-
-                        greenishColor.R = Convert.ToByte("188");
-                        greenishColor.G = Convert.ToByte("211");
-                        greenishColor.B = Convert.ToByte("123");
-                        greenishColor.A = Convert.ToByte("255");
-
-                        b.Background = new SolidColorBrush(greenishColor);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("greenishColor"));
                         break;
                     case (3):
-                        Color renkishColor = new Color();
-
-                        renkishColor.R = Convert.ToByte("211");
-                        renkishColor.G = Convert.ToByte("123");
-                        renkishColor.B = Convert.ToByte("145");
-                        renkishColor.A = Convert.ToByte("255");
-
-                        b.Background = new SolidColorBrush(renkishColor);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("renkishColor"));
                         break;
                     case (4):
-                        Color ishColor = new Color();
-
-                        ishColor.R = Convert.ToByte("211");
-                        ishColor.G = Convert.ToByte("190");
-                        ishColor.B = Convert.ToByte("123");
-                        ishColor.A = Convert.ToByte("255");
-
-                        b.Background = new SolidColorBrush(ishColor);
+                        b.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
                         break;
                 }
-
                 b.Margin = new Thickness(20);
                 b.Click += new RoutedEventHandler(ButtonClick);
                 if (selector % 2 == 0)
