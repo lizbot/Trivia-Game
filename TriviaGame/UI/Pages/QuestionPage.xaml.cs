@@ -66,7 +66,7 @@ namespace UI.Pages
             ResetColors();
 
             var gameExists = _GameService.IsGameInProgress();
-            GameSaved gameInProgress = new GameSaved();
+            var gameInProgress = new GameSaved();
             if (gameExists)
             {
                 gameInProgress = _GameService.GetGameInProgress();
@@ -88,7 +88,11 @@ namespace UI.Pages
             if (gameExists)
             {
                 _QuestionThreshold = gameInProgress.Questions.Count();
+                var questionToReturnTo = gameInProgress.Questions.Where(q => q.QuestionId == gameInProgress.QuestionToResumeId).First();
+
                 _CurrentQuestionIndex = gameInProgress.QuestionToResumeId;
+
+            //    _CurrentQuestionIndex = gameInProgress.Questions;
 
                 DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             }
@@ -340,10 +344,10 @@ namespace UI.Pages
             
         }
 
-        async private void WaitForUser()
-        {
-            await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
-        }
+        //async private void WaitForUser()
+        //{
+        //    await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
+        //}
 
         private void ResetColors()
         {

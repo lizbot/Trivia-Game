@@ -86,7 +86,7 @@ namespace Infrastructure.Initialization
 
                 //db.DropTable<Questions>();
                 //db.DropTable<Answer>();
-                //db.DropTable<Category>();
+                db.DropTable<Category>();
                 //db.DropTable<GeneralOptions>();
                 //db.DropTable<CustomOptions>();
 
