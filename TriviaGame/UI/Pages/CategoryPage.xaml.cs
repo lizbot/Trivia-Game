@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Practices.ServiceLocation;
 using UI.Common;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Application.Domain;
 using Application.Model;
-using Microsoft.Practices.ServiceLocation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
+
 
 namespace UI.Pages
 {
@@ -39,29 +41,84 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             var categories = _CategoryService.GetCategories();
+            var selector = 0;
 
-            int selector = 0;
+            Category cat;
 
-            foreach (Category cat in categories)
+            for (var i = 0; i < 5; i++)
             {
-                Button b = new Button();
-                b.Content = cat.Name;
-                b.FontSize = 75;
-                b.Width = 550;
-                b.HorizontalAlignment = HorizontalAlignment.Stretch;
-                b.Height = 130;
-                b.Tag = cat.CategoryId;
-                b.Background = new SolidColorBrush(Windows.UI.Colors.DarkSeaGreen);
+                cat = categories.ElementAt(i);
+                var b = new Button
+                    {
+                        Content = cat.Name,
+                        FontSize = 75,
+                        Width = 550,
+                        HorizontalAlignment = HorizontalAlignment.Stretch,
+                        Height = 130,
+                        Tag = cat.CategoryId
+                    };
+                switch (i)
+                {
+                    case (0):
+                        Color purpleishColor = new Color();
+
+                        purpleishColor.R = Convert.ToByte("147");
+                        purpleishColor.G = Convert.ToByte("125");
+                        purpleishColor.B = Convert.ToByte("211");
+                        purpleishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(purpleishColor);
+                        break;
+                    case (1):
+                        Color bluenishColor = new Color();
+
+                        bluenishColor.R = Convert.ToByte("124");
+                        bluenishColor.G = Convert.ToByte("211");
+                        bluenishColor.B = Convert.ToByte("190");
+                        bluenishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(bluenishColor);
+                        break;
+                    case (2):
+                        Color greenishColor = new Color();
+
+                        greenishColor.R = Convert.ToByte("188");
+                        greenishColor.G = Convert.ToByte("211");
+                        greenishColor.B = Convert.ToByte("123");
+                        greenishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(greenishColor);
+                        break;
+                    case (3):
+                        Color renkishColor = new Color();
+
+                        renkishColor.R = Convert.ToByte("211");
+                        renkishColor.G = Convert.ToByte("123");
+                        renkishColor.B = Convert.ToByte("145");
+                        renkishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(renkishColor);
+                        break;
+                    case (4):
+                        Color ishColor = new Color();
+
+                        ishColor.R = Convert.ToByte("211");
+                        ishColor.G = Convert.ToByte("190");
+                        ishColor.B = Convert.ToByte("123");
+                        ishColor.A = Convert.ToByte("255");
+
+                        b.Background = new SolidColorBrush(ishColor);
+                        break;
+                }
+
                 b.Margin = new Thickness(20);
-                b.Click += new RoutedEventHandler(ButtonClick);
-                if(selector % 2 == 0)
+                b.Click += ButtonClick;
+                if (selector % 2 == 0)
                     CategoryStackPanel1.Children.Add(b);
                 else
                     CategoryStackPanel2.Children.Add(b);
                 selector++;
             }
-
-
 
             //var categories = _CategoryService.GetCategories();
             base.OnNavigatedTo(e);
@@ -70,7 +127,7 @@ namespace UI.Pages
 
         private void ButtonClick(object sender, RoutedEventArgs e)
         {
-            Button b = (Button)sender;
+            var b = (Button)sender;
             b.Name.Trim();
 
             Frame.Navigate(typeof(QuestionPage), b.Tag);
