@@ -26,24 +26,33 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var userGeneralOptions = new GeneralOptions
+                var userGeneralOptions = new Model.GeneralOptions
                 {
+                    GeneralOptionId = options.GeneralOptionsId,
                     IsMusicOn = options.IsMusicOn,
                     IsSoundEffectsOn = options.IsSoundEffectsOn,
                 };
 
-                //TODO(LAURA): need to work out on overriding the second row of the options 
+                if (userGeneralOptions.GeneralOptionId == 1)
+                {
+                    if (!(userGeneralOptions.IsMusicOn == false) || !(userGeneralOptions.IsSoundEffectsOn == false))
+                    {
+                        var newRowToInsert = new Model.GeneralOptions
+                        {
+                            IsMusicOn = options.IsMusicOn,
+                            IsSoundEffectsOn = options.IsSoundEffectsOn,
+                        };
 
-                //if (options.GeneralOptionId == 2)
-                //{
-                //    db.Update(userGeneralOptions);
-                //    db.Commit();
-                //}
-                //else
-                //{
-                    db.Insert(userGeneralOptions);
+                        db.Insert(newRowToInsert);
+                        db.Commit();
+                    }
+                }
+                else
+                {
+                    db.Update(userGeneralOptions);
                     db.Commit();
-                //}
+                }
+              
             }
         }
 
@@ -53,26 +62,34 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var userCustomOption = new CustomOptions
+                var userCustomOption = new Model.CustomOptions
                 {
+                    CustomOptionId = options.CustomOptionId,
                     IsTimerOn = options.IsTimerOn,
                     NumberOfAnswersDisplayed = options.NumberOfAnswersDisplayed,
                     NumberOfQuestionsDesired = options.NumberOfQuestionsDesired,
                 };
 
-                //TODO(LAURA): need to work out on overriding the second row of the options
+                if (userCustomOption.CustomOptionId == 1)
+                {
+                    if (!(userCustomOption.IsTimerOn == false) || !(userCustomOption.NumberOfAnswersDisplayed == 4) || !(userCustomOption.NumberOfQuestionsDesired == 20))
+                    {
+                        var newRowToInsert = new Model.CustomOptions
+                        {
+                            IsTimerOn = options.IsTimerOn,
+                            NumberOfAnswersDisplayed = options.NumberOfAnswersDisplayed,
+                            NumberOfQuestionsDesired = options.NumberOfQuestionsDesired,
+                        };
 
-                //if (options.CustomOptionId == 2)
-                //{
-                //    db.Update(userCustomOption);
-                //    db.Commit();
-                //}
-
-                //else
-                //{
-                    db.Insert(userCustomOption);
+                        db.Insert(newRowToInsert);
+                        db.Commit();
+                    }
+                }
+                else
+                {
+                    db.Update(userCustomOption);
                     db.Commit();
-                //}
+                }
             }
         }
     }

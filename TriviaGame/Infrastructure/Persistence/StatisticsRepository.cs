@@ -23,5 +23,10 @@ namespace Infrastructure.Persistence
         {
             throw new System.NotImplementedException();
         }
+
+        public int GetGameLongestStreak()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

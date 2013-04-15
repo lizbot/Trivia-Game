@@ -20,6 +20,8 @@ namespace Application.Model
         public Int32 TotalCorrectAnswers { get; set; }
         
         public Int32 TotalQuestionsAttempted { get; set; }
+
+        public Int32 GameQuestionsAttempted { get; set; }
         
         public Double PercentageCorrect { get; set; }
     }
