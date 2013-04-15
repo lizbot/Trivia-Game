@@ -27,6 +27,7 @@ namespace UI
         /// </summary>
         public App()
         {
+            
             InitializeComponent();
             Suspending += OnSuspending;
 
@@ -45,6 +46,7 @@ namespace UI
             var provider = new UnityServiceLocator(unityContainer);
             ServiceLocator.SetLocatorProvider(() => provider);
         }
+
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

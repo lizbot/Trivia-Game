@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Application.Domain;
 using Application.Model;
 using Domain.Persistence;
-
+using Application.Model;
+using System.Collections.Generic;
 
 namespace Domain.Services
 {
@@ -27,6 +28,7 @@ namespace Domain.Services
         {
             _GameRepository.DeleteGameInProgressIfExists();
         }
+
 
         public GameSaved GetGameInProgress()
         {
