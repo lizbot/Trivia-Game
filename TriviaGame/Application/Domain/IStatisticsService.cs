@@ -1,14 +1,9 @@
-
-﻿
 using System;
-using System.Collections.Generic;
-using Application.Model;
 
 namespace Application.Domain
 {
     public interface IStatisticsService
     {
-
         Double GetOverallStatistics();
 
         Double GetGameStatistics();
@@ -19,5 +14,6 @@ namespace Application.Domain
 
         Int32 GetTotalQuestionsAnswered();
 
+        void AnalyzeEndOfGameData();
     }
 }

@@ -24,8 +24,6 @@ namespace Infrastructure.Persistence
 
                 var id = GetQuestionIdWhereGameWasLeftOff();
 
-                var current = GetIfStreakStillApplicable();
-
                 var game = new GameSaved
                     {
                         Questions = questions,
@@ -36,17 +34,16 @@ namespace Infrastructure.Persistence
             }
         }
 
-        private static Boolean GetIfStreakStillApplicable()
+        public Boolean IsGameInProgress()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
+               
                 db.BeginTransaction();
 
-                var a = db.Get<Model.GameSaved>(game => game.AnswerId == 0).AnsweredCorrectly;
+                var command = db.Query<Model.GameSaved>("SELECT * FROM GameSaved");
 
-
-                throw new NotImplementedException();
-                db.Commit();
+                return command.Count != 0;
             }
         }
 
@@ -70,35 +67,6 @@ namespace Infrastructure.Persistence
                 db.Update(game);
 
                 db.Commit();
-            }
-        }
-
-        private static Int32 GetQuestionIdWhereGameWasLeftOff()
-        {
-            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
-            {
-                db.BeginTransaction();
-
-                var questionId = (from answer in db.Table<Model.GameSaved>()
-                                  select answer)
-                                    .First(a => a.AnswerId == 0)
-                                    .QuestionId;
-                db.Commit();
-
-                return questionId;
-            }
-        }
-
-        public Boolean IsGameInProgress()
-        {
-            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
-            {
-               
-                db.BeginTransaction();
-
-                var command = db.Query<Model.GameSaved>("SELECT * FROM GameSaved");
-
-                return command.Count != 0;
             }
         }
 
@@ -128,6 +96,22 @@ namespace Infrastructure.Persistence
                 db.Update(updatedContent);
 
                 db.Commit();
+            }
+        }
+
+        private static Int32 GetQuestionIdWhereGameWasLeftOff()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var questionId = (from answer in db.Table<Model.GameSaved>()
+                                  select answer)
+                    .First(a => a.AnswerId == 0)
+                    .QuestionId;
+                db.Commit();
+
+                return questionId;
             }
         }
     }

@@ -40,6 +40,7 @@ namespace UI.Pages
         #endregion
 
         List<Question> _Questions = new List<Question>();
+        private readonly IStatisticsService _StatisticsService;
 
         public Int32 QuestionThreshold { get; set; }
 
@@ -49,7 +50,8 @@ namespace UI.Pages
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
-           
+            _StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
+
             _CurrentQuestionIndex = 0;
             _NumQuestionsAnswered = 0;
             _NumCorrect = 0;
@@ -208,6 +210,7 @@ namespace UI.Pages
                 //Store Statistics Here
 
                 //Does this happen before or after the results are being shown?
+                _StatisticsService.AnalyzeEndOfGameData();
                 _GameService.DeleteGameInProgressIfExists();
             }
             else
@@ -223,7 +226,6 @@ namespace UI.Pages
             {
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
-                //_NumCorrect++;
                 
                 if (buttonIndex == 0)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
@@ -240,7 +242,6 @@ namespace UI.Pages
             else
             {
                 _PreviousAnswerWasCorrect = false;
-                //_NumIncorrect++;
                 
                 if(buttonIndex == 0)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
