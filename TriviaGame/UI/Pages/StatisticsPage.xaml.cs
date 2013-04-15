@@ -34,10 +34,12 @@ namespace UI
         {
             //var numCorrect = _StatisticsService.GetTotalAnsweredCorrectly(); 
             //var numTotal = _StatisticsService.GetTotalQuestionsAnswered();
+            //var longestStreak = _StatisticsService.GetLongestStreak();
 
             //AnswersCorrectTextBlock.Text = "Total Answers Correct: " + numCorrect;
             //AnswersIncorrectTextBlock.Text = "Total Answers Incorrect: " + (numTotal - numCorrect);
-            
+            //LongestStreakTextBlock.Text = "Longest Correct Streak: " + longestStreak;
+
             //if (numCorrect != 0)
             //    OverallStatisticsTextBlock.Text = "Overall Statistics: " + (numTotal / numCorrect * 100) + "%";
             //else if(numCorrect == numTotal)

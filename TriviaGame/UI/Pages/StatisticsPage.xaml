@@ -29,7 +29,7 @@
         </Grid.ChildrenTransitions>
         <Grid.Resources>
             <Storyboard x:Name="StatisticsFadeInStoryboard">
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="GamesPlayedTextBlock" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
+                <DoubleAnimation From="0" To="1" Storyboard.TargetName="LongestStreakTextBlock" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
                 <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswersCorrectTextBlock" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
                 <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswersIncorrectTextBlock" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
                 <DoubleAnimation From="0" To="1" Storyboard.TargetName="OverallStatisticsTextBlock" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
@@ -48,7 +48,7 @@
         
         <StackPanel x:Name="StatsStackPanel" Grid.Row="1" Margin="10,0,10,0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="0">
-                        <TextBlock Name="GamesPlayedTextBlock" FontSize="55" VerticalAlignment="Center" Margin="40,20,20,30">
+                        <TextBlock Name="LongestStreakTextBlock" FontSize="55" VerticalAlignment="Center" Margin="40,20,20,30">
                         This
                         </TextBlock> 
                         <TextBlock Name="AnswersCorrectTextBlock" FontSize="55" VerticalAlignment="Center" Margin="40,20,20,30">
