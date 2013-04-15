@@ -7,9 +7,11 @@ using Windows.UI.Xaml;
 using Application.Domain;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using UI.Common;
+using System.Diagnostics;
 
 
-namespace UI.Pages
+namespace UI.Pages 
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
@@ -41,6 +43,17 @@ namespace UI.Pages
         List<Question> _Questions = new List<Question>();
 
         public Int32 QuestionThreshold { get; set; }
+        Stopwatch timer = new Stopwatch();
+
+        DispatcherTimer dispatcherTimer;
+        int timesTicked = 0;
+        int timesToTick = 1;
+        public void DispatcherTimerSetup()
+        {
+            dispatcherTimer = new DispatcherTimer();
+            dispatcherTimer.Tick += dispatcherTimer_Tick;
+            dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+        }
 
         public QuestionPage()
         {
@@ -54,6 +67,7 @@ namespace UI.Pages
             _NumCorrect = 0;
             _NumIncorrect = 0;
             _PreviousAnswerWasCorrect = false;
+            DispatcherTimerSetup();
         }
 
         /// <summary>
@@ -99,7 +113,8 @@ namespace UI.Pages
 
                 DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             }
-            
+            base.OnNavigatedTo(e);
+            timer.Start();
         }
 
         private void UpdateQuestion()
@@ -112,6 +127,7 @@ namespace UI.Pages
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
+            QuestionNumTextBlock.Text = "Q " + (_CurrentQuestionIndex+1) + " of " + _Questions.Count();
 
             var randomIndex = _Random.Next(0, 4);
             _QuestionAnsweredId = question.QuestionId;
@@ -191,14 +207,18 @@ namespace UI.Pages
 
         private void QuestionAnswered(Int32 buttonIndex)
         {
+            DisableButtons();
             _NumQuestionsAnswered++;
             IsAnswerCorrect(buttonIndex);
             UpdateCorrectQuestionStreak();
             DrawRightWrong();
+            dispatcherTimer.Start();
+            
 
             if (IsGameOver())
             {
-                ResetColors();
+                dispatcherTimer.Stop();
+                timer.Stop();
                 ShowResultsPopup();
                 DisableButtons();
 
@@ -209,8 +229,7 @@ namespace UI.Pages
             }
             else
             {
-                ResetColors();
-                UpdateQuestion();
+                
             }
         }
 
@@ -263,94 +282,63 @@ namespace UI.Pages
 
         private void DrawRightWrong()
         {
-            switch (_CurrentQuestionIndex)
+            switch (_CorrectAnswerIndex)
             {
-                case 0: 
-                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-                    if (AButton.IsPointerOver)
-                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-
-                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (BButton.IsPointerOver)
-                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (CButton.IsPointerOver)
-                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (DButton.IsPointerOver)
-                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                case 0:
+                    AnswerAText.Foreground = new SolidColorBrush(Windows.UI.Colors.Green);
+                    AnswerBText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
                     break;
 
                 case 1:
-                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (AButton.IsPointerOver)
-                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-                    if (BButton.IsPointerOver)
-                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-
-                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (CButton.IsPointerOver)
-                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (DButton.IsPointerOver)
-                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerAText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerBText.Foreground = new SolidColorBrush(Windows.UI.Colors.Green);
+                    AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
                     break;
 
                 case 2:
-                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (AButton.IsPointerOver)
-                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (BButton.IsPointerOver)
-                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-                    if (CButton.IsPointerOver)
-                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-
-                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (DButton.IsPointerOver)
-                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerAText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerBText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.Green);
+                    AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
                     break;
 
                 case 3:
-                    AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (AButton.IsPointerOver)
-                        AButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (BButton.IsPointerOver)
-                        BButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-                    if (CButton.IsPointerOver)
-                        CButton.Background = new SolidColorBrush(Windows.UI.Colors.Red);
-
-                    DButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
-                    if (DButton.IsPointerOver)
-                        DButton.Background = new SolidColorBrush(Windows.UI.Colors.Green);
+                    AnswerAText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerBText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.Red);
+                    AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.Green);
                     break;
             }
-            
         }
 
-        async private void WaitForUser()
+        void dispatcherTimer_Tick(object sender, object e)
         {
-            await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
+            timesTicked++;
+
+            if (timesTicked == timesToTick)
+            {
+                QuestionFadeOutStoryboard.Begin();
+                AnswerFadeOutStoryboard.Begin();
+            }
+            if (timesTicked > timesToTick)
+            {
+                dispatcherTimer.Stop();
+                timesTicked = 0;
+                ResetColors();
+                UpdateQuestion();
+                EnableButtons();
+            }
         }
 
         private void ResetColors()
         {
-            AButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            BButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            CButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
-            DButton.Background = new SolidColorBrush(Windows.UI.Colors.Black);
+            AnswerAText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+            AnswerBText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+            AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+            AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
         }
 
         private bool IsGameOver()
@@ -360,6 +348,7 @@ namespace UI.Pages
 
         private void ShowResultsPopup()
         {
+            double elapsedTime = timer.ElapsedMilliseconds / 1000;
             string questionsRightNum = "questions";
             string questionsWrongNum = "questions";
             string correctStreakNum = "questions";
@@ -385,7 +374,7 @@ namespace UI.Pages
             
             if(!happy)
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n\n\n{6}",
+                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n{6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -395,7 +384,7 @@ namespace UI.Pages
                                 Sad);
             else if(!sad)
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n\n\n{6}",
+                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n{6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -405,13 +394,14 @@ namespace UI.Pages
                                 Happy);
             else
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\n\nYour best streak was {4} {5} answered correctly in a row.",
+                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\nYour best streak was {4} {5} answered correctly in a row.\nYour time was {6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect, 
                                 questionsWrongNum,
                                 _BestCorrectStreak,
-                                correctStreakNum);
+                                correctStreakNum,
+                                elapsedTime);
 
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
                 Frame.Opacity = 0.3;
@@ -425,10 +415,22 @@ namespace UI.Pages
             DButton.IsEnabled = false;
         }
 
+        private void EnableButtons()
+        {
+            AButton.IsEnabled = true;
+            BButton.IsEnabled = true;
+            CButton.IsEnabled = true;
+            DButton.IsEnabled = true;
+        }
+
         private void ResultsPopupCloseClick(object sender, RoutedEventArgs e)
         {
             Frame.Opacity = 1;
-            Frame.GoBack();
+            if (this.Frame != null)
+            {
+                while (this.Frame.CanGoBack) this.Frame.GoBack();
+            }
+            
         }
     }
 }
