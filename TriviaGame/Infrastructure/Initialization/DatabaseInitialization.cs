@@ -4,11 +4,15 @@ using SQLite;
 using Infrastructure.Model;
 using System.Linq;
 using Application.Model;
+using System.IO;
 using Answer = Infrastructure.Model.Answer;
 using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
 using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
+using System.Reflection;
+using Windows.Storage;
+
 
 namespace Infrastructure.Initialization
 {
@@ -100,6 +104,11 @@ namespace Infrastructure.Initialization
             Int32 categoryId;
             String rightAnswerName;
             List<String> wrongAnswerNames;
+
+            
+            string path = @"C:\Users\JorgeJ\Documents\GitHub\Trivia-Game\TriviaGame\bin\Americancomputerprogrammers_People.xml";
+
+
 
             //Create the information to generate the questions and answers.
             questionName = "What is a theme park located in Anaheim, California near the city of Stanton. The park's slogan is \"The Little Theme Park that's BIG on Family Fun\"?";
