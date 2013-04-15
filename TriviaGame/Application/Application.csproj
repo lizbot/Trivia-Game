@@ -112,8 +112,9 @@
     <Compile Include="Model\CustomOptions.cs" />
     <Compile Include="Model\GameSaved.cs" />
     <Compile Include="Model\GeneralOptions.cs" />
+    <Compile Include="Model\OverallStatistics.cs" />
     <Compile Include="Model\Question.cs" />
-    <Compile Include="Model\Statistics.cs" />
+    <Compile Include="Model\EndOfGameStatistics.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

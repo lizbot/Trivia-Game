@@ -24,7 +24,7 @@ namespace Infrastructure.Persistence
         /// <returns>
         /// An <see cref="IEnumerable{T}"/> of the questions mapped to the domain.
         /// </returns>
-        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32 categoryId = 0)
+        public IEnumerable<Question> GetQuestions(Int32 amountOfQuestions, Int32? categoryId = 0)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
@@ -35,8 +35,8 @@ namespace Infrastructure.Persistence
                     (from question in db.Table<Questions>()
                      select question
                     ).Take(amountOfQuestions)
-                     .OrderByDescending(quest => quest.TimesViewed)
-                     .OrderByDescending(quest => quest.TimesCorrect);
+                     .OrderBy(quest => quest.TimesViewed)
+                     .OrderBy(quest => quest.TimesCorrect);
                 }
                 else
                 {
@@ -45,8 +45,8 @@ namespace Infrastructure.Persistence
                      select question
                     ).Where(q => q.CategoryId == categoryId)
                      .Take(amountOfQuestions)
-                     .OrderByDescending(quest => quest.TimesViewed)
-                     .OrderByDescending(quest => quest.TimesCorrect);
+                     .OrderBy(quest => quest.TimesViewed)
+                     .OrderBy(quest => quest.TimesCorrect);
                 }
 
                 var domainQuestions = questionsToGet
@@ -92,6 +92,27 @@ namespace Infrastructure.Persistence
                     };
 
                 return returnedQuestion;
+            }
+        }
+
+        public void IncreaseTimesCorrectAndOrTimesViewed(Question question)
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var dbQuestion = new Questions
+                    {
+                        CategoryId = question.CategoryId,
+                        QuestionId = question.QuestionId,
+                        QuestionName = question.QuestionName,
+                        TimesCorrect = question.TimesCorrect,
+                        TimesViewed = question.TimesViewed
+                    };
+                db.Update(dbQuestion);
+
+                db.Commit();
+
             }
         }
 

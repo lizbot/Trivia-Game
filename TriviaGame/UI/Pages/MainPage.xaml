@@ -24,7 +24,8 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Trivia Game!" 
+        <TextBlock Text="Diversity Trivia"
+                   FontStyle="Oblique"
                    Grid.Column="1" 
                    FontSize="180" 
                    HorizontalAlignment="Center" 
@@ -41,7 +42,7 @@
                     Margin="60,25,60,25"
                     Click="StartGameClick"
                     ToolTipService.ToolTip="Opens the Game Selection Page"
-                    Background="Goldenrod"/>
+                    Background="#7cd3be"/>
 
             <Button Content="Options" 
                     HorizontalAlignment="Stretch" 
@@ -49,7 +50,7 @@
                     Margin="60,25,60,25"
                     Click="OptionsClick"
                     ToolTipService.ToolTip="Opens the Options Page"
-                    Background="Goldenrod"/>
+                    Background="#bcd37b"/>
 
             <Button Content="Statistics" 
                     HorizontalAlignment="Stretch" 
@@ -57,7 +58,7 @@
                     Margin="60,25,60,25"
                     Click="StatisticsClick"
                     ToolTipService.ToolTip="Opens the Statistics Page"
-                    Background="Goldenrod"/> 
+                    Background="#d37b91"/> 
         </StackPanel>
     </Grid>
 </Page>

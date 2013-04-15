@@ -42,7 +42,7 @@ namespace Domain.Services
                 userPreferredQuestionOption = 20;
 
             // this gets the IEnumerable<Question> of all the questions that you want from the database.
-            var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption);
+            var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption, categoryId);
 
             return questions;
         }
@@ -50,6 +50,11 @@ namespace Domain.Services
         public void StoreAnsweredQuestion(Int32 questionId, Int32 answerId)
         {
             _GameRepository.StoreQuestionToGameInProgress(questionId, answerId);
+        }
+
+        public void IncrementTimesViewedAndOrTimesCorrect(Question question)
+        {
+            _QuestionRepository.IncreaseTimesCorrectAndOrTimesViewed(question);
         }
 
         public Question GetExistingQuestion(Int32 questionId)

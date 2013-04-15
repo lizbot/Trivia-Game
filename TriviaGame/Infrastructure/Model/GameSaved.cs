@@ -8,5 +8,7 @@ namespace Infrastructure.Model
         public Int32 QuestionId { get; set; }
 
         public Int32 AnswerId { get; set; }
+
+        public Boolean? AnsweredCorrectly { get; set; }
     }
 }

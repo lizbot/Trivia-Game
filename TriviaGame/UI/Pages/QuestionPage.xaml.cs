@@ -11,6 +11,7 @@ using UI.Common;
 using System.Diagnostics;
 
 
+
 namespace UI.Pages 
 {
     /// <summary>
@@ -41,6 +42,7 @@ namespace UI.Pages
         #endregion
 
         List<Question> _Questions = new List<Question>();
+        private readonly IStatisticsService _StatisticsService;
 
         public Int32 QuestionThreshold { get; set; }
         Stopwatch timer = new Stopwatch();
@@ -61,7 +63,8 @@ namespace UI.Pages
 
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
-           
+            _StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
+
             _CurrentQuestionIndex = 0;
             _NumQuestionsAnswered = 0;
             _NumCorrect = 0;
@@ -77,10 +80,9 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ResetColors();
-
+            ResetButtonColors();
             var gameExists = _GameService.IsGameInProgress();
-            GameSaved gameInProgress = new GameSaved();
+            var gameInProgress = new GameSaved();
             if (gameExists)
             {
                 gameInProgress = _GameService.GetGameInProgress();
@@ -101,8 +103,11 @@ namespace UI.Pages
 
             if (gameExists)
             {
+                var list = gameInProgress.Questions as List<Question>;
                 _QuestionThreshold = gameInProgress.Questions.Count();
-                _CurrentQuestionIndex = gameInProgress.QuestionToResumeId;
+
+                _CurrentQuestionIndex = list.FindIndex(q => q.QuestionId == gameInProgress.QuestionToResumeId);
+                _NumQuestionsAnswered = _CurrentQuestionIndex;
 
                 DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             }
@@ -114,6 +119,7 @@ namespace UI.Pages
                 DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             }
             base.OnNavigatedTo(e);
+            ResetButtonColors();
             timer.Start();
         }
 
@@ -131,7 +137,6 @@ namespace UI.Pages
 
             var randomIndex = _Random.Next(0, 4);
             _QuestionAnsweredId = question.QuestionId;
-
 
             switch (randomIndex)
             {
@@ -215,6 +220,7 @@ namespace UI.Pages
             dispatcherTimer.Start();
             
 
+            _Questions.ElementAt(_CurrentQuestionIndex).IncreaseTimesViewedAndOrTimesCorrect(_QuestionService);
             if (IsGameOver())
             {
                 dispatcherTimer.Stop();
@@ -225,6 +231,7 @@ namespace UI.Pages
                 //Store Statistics Here
 
                 //Does this happen before or after the results are being shown?
+                _StatisticsService.AnalyzeEndOfGameData();
                 _GameService.DeleteGameInProgressIfExists();
             }
             else
@@ -239,8 +246,7 @@ namespace UI.Pages
             {
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
-                _NumCorrect++;
-
+                
                 if (buttonIndex == 0)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
                 if (buttonIndex == 1)
@@ -249,12 +255,15 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(CButton.CommandParameter));
                 if (buttonIndex == 3)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
+
+                _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, true);
+
+                _NumCorrect++;
             }
             else
             {
                 _PreviousAnswerWasCorrect = false;
-                _NumIncorrect++;
-
+                
                 if(buttonIndex == 0)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(AButton.CommandParameter));
                 if(buttonIndex == 1)
@@ -263,6 +272,10 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(CButton.CommandParameter));
                 if(buttonIndex == 3)
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
+
+                _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, false);
+
+                _NumIncorrect++;
             }
 
             _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
@@ -314,6 +327,7 @@ namespace UI.Pages
             }
         }
 
+
         void dispatcherTimer_Tick(object sender, object e)
         {
             timesTicked++;
@@ -327,18 +341,26 @@ namespace UI.Pages
             {
                 dispatcherTimer.Stop();
                 timesTicked = 0;
-                ResetColors();
+                ResetTextColors();
                 UpdateQuestion();
                 EnableButtons();
             }
         }
 
-        private void ResetColors()
+        private void ResetTextColors()
         {
             AnswerAText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             AnswerBText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
+        }
+
+        private void ResetButtonColors()
+        {
+            AButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
+            BButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
+            CButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
+            DButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
         }
 
         private bool IsGameOver()
@@ -374,7 +396,8 @@ namespace UI.Pages
             
             if(!happy)
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
+
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -384,7 +407,7 @@ namespace UI.Pages
                                 Sad);
             else if(!sad)
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\nYour best streak was {4} {5} answered correctly in a row.\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -394,7 +417,8 @@ namespace UI.Pages
                                 Happy);
             else
                 AnswerTextBlock.Text =
-                    String.Format("You got {0} {1} right and {2} {3} wrong!\n\n\nYour best streak was {4} {5} answered correctly in a row.\nYour time was {6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n\n",
+
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect, 

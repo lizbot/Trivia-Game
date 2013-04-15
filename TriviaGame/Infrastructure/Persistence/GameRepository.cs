@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Application.Model;
 using Domain.Persistence;
@@ -35,6 +34,19 @@ namespace Infrastructure.Persistence
             }
         }
 
+        public Boolean IsGameInProgress()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+               
+                db.BeginTransaction();
+
+                var command = db.Query<Model.GameSaved>("SELECT * FROM GameSaved");
+
+                return command.Count != 0;
+            }
+        }
+
         /// <summary>
         /// This stores the question answered to a game in progress so the user can pick up where they left off if they log off.
         /// </summary>
@@ -58,6 +70,35 @@ namespace Infrastructure.Persistence
             }
         }
 
+        public void DeleteGameInProgressIfExists()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.DeleteAll<GameSaved>();
+            }
+        }
+
+        public void MarkCorrectOrIncorrect(Int32 questionId, Boolean isCorrect)
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var currentStateOfGame = db.Get<Model.GameSaved>(game => game.QuestionId == questionId);
+
+                var updatedContent = new Model.GameSaved
+                    {
+                        AnsweredCorrectly = isCorrect,
+                        AnswerId = currentStateOfGame.AnswerId,
+                        QuestionId = questionId
+                    };
+
+                db.Update(updatedContent);
+
+                db.Commit();
+            }
+        }
+
         private static Int32 GetQuestionIdWhereGameWasLeftOff()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
@@ -66,32 +107,11 @@ namespace Infrastructure.Persistence
 
                 var questionId = (from answer in db.Table<Model.GameSaved>()
                                   select answer)
-                                    .First(a => a.AnswerId == 0)
-                                    .QuestionId;
+                    .First(a => a.AnswerId == 0)
+                    .QuestionId;
                 db.Commit();
 
                 return questionId;
-            }
-        }
-
-        public Boolean IsGameInProgress()
-        {
-            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
-            {
-               
-                db.BeginTransaction();
-
-                var command = db.Query<Model.GameSaved>("SELECT * FROM GameSaved");
-
-                return command.Count != 0;
-            }
-        }
-
-        public void DeleteGameInProgressIfExists()
-        {
-            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
-            {
-                db.DeleteAll<GameSaved>();
             }
         }
     }
