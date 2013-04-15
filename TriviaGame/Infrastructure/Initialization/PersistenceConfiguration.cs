@@ -19,6 +19,16 @@ namespace Infrastructure.Initialization
             }
         }
 
+        public static string WebBot
+        {
+            get
+            {
+                return Path.Combine(ApplicationDirectory, "question_answers.txt");
+            }
+        }
+
+
+
         public static IUnityContainer ConfigureDependencies(IUnityContainer unityContainer)
         {
             unityContainer.RegisterType<IQuestionRepository, QuestionRepository>();

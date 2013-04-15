@@ -145,7 +145,7 @@
       <HintPath>..\packages\Unity.3.0.1208-Preview\lib\WinRT45\Microsoft.Practices.Unity.WinRT.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition="'$(Platform)' == 'x86' Or '$(Platform)' == 'x64' Or '$(Platform)' == 'ARM'">
+  <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">
       <Name>Microsoft Visual C++ Runtime Package</Name>
     </SDKReference>
