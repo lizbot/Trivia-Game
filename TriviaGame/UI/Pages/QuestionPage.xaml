@@ -18,16 +18,19 @@
                 <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerCText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
                 <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerDText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
 
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="AButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="BButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="CButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="DButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
             </Storyboard>
             <Storyboard x:Name="QuestionFadeOutStoryboard">
-                <DoubleAnimation From="1" To="0" Storyboard.TargetName="QuestionText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.6" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="QuestionText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+            </Storyboard>
+            <Storyboard x:Name="AnswerFadeOutStoryboard">
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerAText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerBText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerCText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerDText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
             </Storyboard>
         </Grid.Resources>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -35,15 +38,35 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Name="QuestionText"
-                   FontSize="40" 
-                   TextWrapping="Wrap" 
-                   Margin="20,30,20,20"/>
+        <TextBlock Name="QuestionNumTextBlock"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   FontSize="30"
+                   Margin="0,10,10,0"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="QuestionText"
+                       Grid.Column="0"
+                       FontSize="50" 
+                       TextWrapping="Wrap"
+                       Margin="10,5,10,0"/>
+            <TextBlock Name="Timer"
+                       Grid.Column="1"
+                       FontSize="30"
+                       Text="{Binding timer.EllappsedMilliseconds, Mode=OneWay}"/>
+        </Grid>
+        
+
         
             <Popup x:Name="ResultsPopup" 
                Grid.Row="1"
-               IsLightDismissEnabled="False" Margin="280,99,450,300">
+               IsLightDismissEnabled="False" 
+               Margin="280,99,450,300">
                 
+
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition/>
@@ -73,8 +96,8 @@
             </Grid>
         </Popup>
 
+        <Grid Grid.Row="2" Name="ChildGrid">
 
-        <Grid Grid.Row="1" Name="ChildGrid" Margin="0,50,0,50">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -84,13 +107,15 @@
             </Grid.RowDefinitions>
             
             <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Name="StackPanelA" Orientation="Horizontal">
                     <Button Name="AButton"
                         Content="A"
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,20"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"
                         Click="AnswerAClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -111,6 +136,8 @@
                         FontSize="40" 
                         Margin="40,20,20,40"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"
                         Click="AnswerBClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -133,6 +160,8 @@
                         FontSize="40" 
                         Margin="40,20,20,20"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"                        
                         Click="AnswerCClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -152,6 +181,8 @@
                         FontSize="40" 
                         Margin="40,20,20,40"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"                        
                         Click="AnswerDClick">
                         <Button.Transitions>
                             <TransitionCollection>

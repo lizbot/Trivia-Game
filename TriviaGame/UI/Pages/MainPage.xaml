@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Diversity Trivia"
-                   FontStyle="Oblique"
+                   FontStyle="Italic"
                    Grid.Column="1" 
                    FontSize="180" 
                    HorizontalAlignment="Center" 

@@ -34,7 +34,8 @@ namespace Infrastructure.Initialization
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();
                     db.CreateTable<GeneralOptions>();
-                    // db.CreateTable<Statistics>();
+                    // db.CreateTable<EndOfGameStatistics>();
+                    // db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
                  
