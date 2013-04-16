@@ -10,10 +10,11 @@ using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
 using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
+using EndOfGameStatistics = Infrastructure.Model.EndOfGameStatistics;
+using OverallStatistics = Infrastructure.Model.OverallStatistics; 
 using System.Reflection;
 using Windows.Storage;
 using System.Threading.Tasks;
-
 
 namespace Infrastructure.Initialization
 {
@@ -35,8 +36,8 @@ namespace Infrastructure.Initialization
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();
                     db.CreateTable<GeneralOptions>();
-                    // db.CreateTable<EndOfGameStatistics>();
-                    // db.CreateTable<OverallStatistics>();
+                    db.CreateTable<EndOfGameStatistics>();
+                    db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
 
@@ -52,6 +53,8 @@ namespace Infrastructure.Initialization
                 GenerateQuestionsAndAnswers();
                 GenerateGeneralOptions();
                 GenerateCustomOptions();
+                DefaultOverallStatistics();
+                DefaultEndOfGameStatistics();
            }
 
         }
@@ -76,9 +79,17 @@ namespace Infrastructure.Initialization
                 var resultFromCustomOptions = (from customQuestionId in db.Table<CustomOptions>()
                                                select customQuestionId).Count(q => q.CustomOptionId == defaultId);
 
+                var resultFromDefault = (from StatisticsId in db.Table<OverallStatistics>()
+                                         select StatisticsId).Count(q => q.StatisticsId == defaultId);
+
+                var resultsFromEndOfGame = (from StatisticsId in db.Table<EndOfGameStatistics>()
+                                            select StatisticsId).Count(q => q.StatisticsId == defaultId);
+
                 return (resultFromQuestions != 0) 
                     && (resultFromGeneralOptions != 0 ) 
-                    && (resultFromCustomOptions != 0);
+                    && (resultFromCustomOptions != 0)
+                    && (resultFromDefault != 0)
+                    && (resultsFromEndOfGame != 0);
             }
 
         }
@@ -453,6 +464,42 @@ namespace Infrastructure.Initialization
                 };
 
                 db.Insert(option);
+                db.Commit();
+            }
+        }
+
+        private static void DefaultOverallStatistics()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var defaultOverallOption = new Model.OverallStatistics
+                {
+                    TotalCorrectAnswers = 0,
+                    TotalQuestionsAttempted = 0,
+                    LongestOverallStreak = 0,                   
+                };
+
+                db.Insert(defaultOverallOption);
+                db.Commit();
+            }
+        }
+
+        private static void DefaultEndOfGameStatistics()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var defaultEndOfGameStats = new Model.EndOfGameStatistics
+                {
+                    TotalAnsweredCorrectly = 0,
+                    TotalAnsweredIncorrectly = 0,
+                    LongestStreak = 0,
+                };
+
+                db.Insert(defaultEndOfGameStats);
                 db.Commit();
             }
         }
