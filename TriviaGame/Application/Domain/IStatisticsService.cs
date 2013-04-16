@@ -4,7 +4,7 @@ namespace Application.Domain
 {
     public interface IStatisticsService
     {
-        Double GetOverallStatistics();
+        Double GetPercentageOfOverallStatistics();
 
         Double GetGameStatistics();
 

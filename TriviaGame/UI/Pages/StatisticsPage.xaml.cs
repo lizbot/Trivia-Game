@@ -36,11 +36,7 @@ namespace UI.Pages
             LongestStreakTextBlock.Text = "Longest Correct Streak: " + longestStreak;
 
             if (numCorrect != 0)
-                OverallStatisticsTextBlock.Text = "Overall Statistics: " + (numTotal / numCorrect * 100) + "%";
-            else if (numCorrect == numTotal)
-                OverallStatisticsTextBlock.Text = "100% :D";
-            else
-                OverallStatisticsTextBlock.Text = "0% :(";
+                OverallStatisticsTextBlock.Text = "Overall Statistics: " + _StatisticsService.GetPercentageOfOverallStatistics()+ "%";
 
             base.OnNavigatedTo(e);
 
