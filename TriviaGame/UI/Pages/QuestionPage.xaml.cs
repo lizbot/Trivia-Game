@@ -80,7 +80,7 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ResetButtonColors();
+            ResetColors();
             var gameExists = _GameService.IsGameInProgress();
             var gameInProgress = new GameSaved();
             if (gameExists)
@@ -119,7 +119,7 @@ namespace UI.Pages
                 DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             }
             base.OnNavigatedTo(e);
-            ResetButtonColors();
+            ResetColors();
             timer.Start();
         }
 
@@ -258,7 +258,6 @@ namespace UI.Pages
 
                 _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, true);
 
-                _NumCorrect++;
             }
             else
             {
@@ -274,8 +273,6 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
 
                 _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, false);
-
-                _NumIncorrect++;
             }
 
             _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
@@ -354,8 +351,12 @@ namespace UI.Pages
             AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
         }
+        //async private void WaitForUser()
+        //{
+        //    await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
+        //}
 
-        private void ResetButtonColors()
+        private void ResetColors()
         {
             AButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
             BButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
