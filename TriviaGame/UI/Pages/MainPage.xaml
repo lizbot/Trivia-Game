@@ -24,11 +24,19 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+
+
         <TextBlock Text="Trivia Game!" 
                    Grid.Column="1" 
                    FontSize="180" 
                    HorizontalAlignment="Center" 
                    Margin="0,30,0,0"/>
+        
+         <!--Play sound effect -->
+        <StackPanel>
+            <MediaElement x:Name="sound" Source="Assets/sound/mission2.wav" AutoPlay="True"/>
+        </StackPanel>
+
 
         <StackPanel Grid.Row="1" 
                     Grid.Column="1" 
