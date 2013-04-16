@@ -9,6 +9,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using UI.Common;
 using System.Diagnostics;
+using Windows.UI.Xaml.Controls;
+using System.IO;
+using Windows.Storage;
 
 
 
@@ -80,7 +83,7 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            ResetButtonColors();
+            ResetColors();
             var gameExists = _GameService.IsGameInProgress();
             var gameInProgress = new GameSaved();
             if (gameExists)
@@ -119,7 +122,7 @@ namespace UI.Pages
                 DisplayQuestion(_Questions.ElementAt(_CurrentQuestionIndex));
             }
             base.OnNavigatedTo(e);
-            ResetButtonColors();
+            ResetColors();
             timer.Start();
         }
 
@@ -240,10 +243,32 @@ namespace UI.Pages
             }
         }
 
+
+        private async void playsound(string result)
+        {
+
+            string file_name; 
+            MediaElement _mySound = new MediaElement();
+            Windows.Storage.StorageFolder _Folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Infrastructure\Sound");
+            
+            if (result == "correct")
+                file_name = "right.wav";
+            else
+                file_name = "wrong.wav";
+
+            Windows.Storage.StorageFile _File = await _Folder.GetFileAsync(file_name);
+
+            var stream = await _File.OpenReadAsync();
+            _mySound.SetSource(stream, _File.ContentType);
+
+            _mySound.Play();
+        }
+
         private void IsAnswerCorrect(Int32 buttonIndex)
         {
             if (buttonIndex == _CorrectAnswerIndex)
             {
+                playsound("correct");
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
                 
@@ -258,10 +283,10 @@ namespace UI.Pages
 
                 _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, true);
 
-                _NumCorrect++;
             }
             else
             {
+                playsound("incorrect");
                 _PreviousAnswerWasCorrect = false;
                 
                 if(buttonIndex == 0)
@@ -274,12 +299,12 @@ namespace UI.Pages
                     _QuestionService.StoreAnsweredQuestion(_QuestionAnsweredId, Convert.ToInt32(DButton.CommandParameter));
 
                 _GameService.MarkCorrectOrIncorrect(_Questions.ElementAt(_CurrentQuestionIndex).QuestionId, false);
-
-                _NumIncorrect++;
             }
 
             _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
         }
+
+        
 
         private void UpdateCorrectQuestionStreak()
         {
@@ -354,8 +379,12 @@ namespace UI.Pages
             AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
         }
+        //async private void WaitForUser()
+        //{
+        //    await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
+        //}
 
-        private void ResetButtonColors()
+        private void ResetColors()
         {
             AButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
             BButton.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));

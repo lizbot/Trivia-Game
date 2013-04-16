@@ -33,7 +33,7 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-            <TextBlock Text="Options"
+        <TextBlock Text="Options"
                        FontSize="90" 
                        Margin="0,0,0,0"
                        HorizontalAlignment="Center"
@@ -47,20 +47,22 @@
 
             <Button Name="GeneralOptionsButton"
                         Grid.Column="0"
-                        Content="General Options"
+                        Content="General"
                         FontSize="60"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        Margin="50,40,50,40"
+                        Margin="309,108,25,127"
+                        Background="#937dd3"
                         Click="GeneralOptionsClick"/>
 
             <Button Name="CustomOptionsButton"
                         Grid.Column="1"
-                        Content="Custom Options"
+                        Content="Custom"
                         FontSize="60"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
-                        Margin="50,40,50,40"
+                        Margin="32,108,307,127"
+                        Background="#bcd37b"
                         Click="CustomOptionsClick"/>
 
 
@@ -71,11 +73,11 @@
 
 
 
-            <!--<Grid.ColumnDefinitions>
+        <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>-->
-                <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="0">
+        <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="45" VerticalAlignment="Center" Margin="20,20,20,20">
                         Option 1:
@@ -103,7 +105,7 @@
                         <CheckBox ToolTipService.ToolTip="Click to Enable Option 4"/>
                     </StackPanel>
                 </StackPanel>-->
-            
+
 
         <VisualStateManager.VisualStateGroups>
 
