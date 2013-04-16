@@ -148,10 +148,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Logo.png" />
-    <Content Include="Assets\sounds\mission2.wav" />
     <Content Include="Assets\SmallLogo.png" />
+    <Content Include="Assets\sounds\mission2.wav" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\WideLogo.png" />
     <Content Include="Common\ReadMe.txt" />
     <Content Include="TriviaUI.csproj" />
   </ItemGroup>
