@@ -10,11 +10,12 @@ using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
 using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
+using EndOfGameStatistics = Infrastructure.Model.EndOfGameStatistics;
+using OverallStatistics = Infrastructure.Model.OverallStatistics; 
 using System.Reflection;
 using Windows.Storage;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
-
 
 namespace Infrastructure.Initialization
 {
@@ -38,8 +39,8 @@ namespace Infrastructure.Initialization
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();
                     db.CreateTable<GeneralOptions>();
-                    // db.CreateTable<EndOfGameStatistics>();
-                    // db.CreateTable<OverallStatistics>();
+                    db.CreateTable<EndOfGameStatistics>();
+                    db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
                  
@@ -55,6 +56,8 @@ namespace Infrastructure.Initialization
                 GenerateQuestionsAndAnswers();
                 GenerateGeneralOptions();
                 GenerateCustomOptions();
+                DefaultOverallStatistics();
+                DefaultEndOfGameStatistics();
            }
 
         }
@@ -67,11 +70,12 @@ namespace Infrastructure.Initialization
                 db.BeginTransaction();
 
                 //This checks whether there is a questions in the database
-                var resultFromGeneralOptions =  (from generalQuestionId in db.Table<GeneralOptions>() 
-                                                select generalQuestionId).Count();
+                 var resultFromGeneralOptions =  (from generalQuestionId in db.Table<GeneralOptions>()select generalQuestionId).Count();
+
                 if (resultFromGeneralOptions >= 1)
-                    return true;
+                   return true;
                 else return false;
+
             }
 
         }
@@ -264,6 +268,42 @@ namespace Infrastructure.Initialization
                 };
 
                 db.Insert(option);
+                db.Commit();
+            }
+        }
+
+        private static void DefaultOverallStatistics()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var defaultOverallOption = new Model.OverallStatistics
+                {
+                    TotalCorrectAnswers = 0,
+                    TotalQuestionsAttempted = 0,
+                    LongestOverallStreak = 0,                   
+                };
+
+                db.Insert(defaultOverallOption);
+                db.Commit();
+            }
+        }
+
+        private static void DefaultEndOfGameStatistics()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var defaultEndOfGameStats = new Model.EndOfGameStatistics
+                {
+                    TotalAnsweredCorrectly = 0,
+                    TotalAnsweredIncorrectly = 0,
+                    LongestStreak = 0,
+                };
+
+                db.Insert(defaultEndOfGameStats);
                 db.Commit();
             }
         }
