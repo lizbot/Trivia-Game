@@ -1,0 +1,740 @@
+﻿What is application software that records and processes accounting transactions within functional modules such as accounts payable, accounts receivable, payroll, and trial balance?
+Accounting software    Genomics    Graphical user interface    Music
+
+What is a service provided by ground-based controllers who direct aircraft on the ground and through controlled airspace?
+Air traffic control    Trade    Numerical Analysis    Automatic Teller Machine
+
+What is part of the so-called passenger service systems (PSS), which is applications supporting the direct contact with the passenger?
+Airline reservations    Embedded system    Architecture    Air traffic control
+
+What is the discovery and communication of meaningful patterns in data. Especially valuable in areas rich with recorded information, analytics relies on the simultaneous application of statistics, computer programming and operations research to quantify performance?
+Analytics    Reverse auctions     Numerical Analysis    Drill
+
+What is both the process and product of planning, designing, and construction?
+Architecture    Trade    Air traffic control    Cheque
+
+What is a process of buying and selling goods or services by offering them up for bid, taking bids, and then selling the item to the highest bidder?
+Auctions     Instant messaging    Loader     Accounting software
+
+What is embedded software with legally mandated safety and reliability concerns used in avionics?
+Avionics software    Manufacturing    Medical software    Automatic Teller Machine
+
+What is a financial institution and a financial intermediary that accepts deposits and channels those deposits into lending activities, either directly by loaning or indirectly through capital markets?
+Banking    Loader     Management Information Systems    Management Information Systems
+
+What is a financial market where participants can issue new debt, known as the primary market, or buy and sell debt securities, known as the Secondary market, usually in the form of bonds?
+Bond market    Presentation program    Distributed control system    Architecture
+
+What is any software or set of computer programs that are used by business users to perform various business functions?
+Business software    Music sequencers    Medical software    Telemetry
+
+What are the components that a telephone operator or telco uses to run its business operations towards customer?
+Business Support Systems    Special effects for video and film    Distributed control system    Sea lane
+
+What is the use of computer systems to assist in the creation, modification, analysis, or optimization of a design?
+CAD    Banking    Business software    Avionics software
+
+What is the whole system of an economy that constitutes an environment for business. The system includes legal, economic, political, social, cultural and technological systems that are in operation in any country?
+Commerce    Telephony    Sea lane    Speech processing
+
+What is a compiler that tries to minimize or maximize some attributes of an executable computer program?
+Compiler optimization    Contact managers    Drill    Simulation
+
+What is a computer program (or set of programs) that transforms source code written in a programming language (the source language) into another computer language (the target language, often having a binary form known as object code)?
+Compilers    Management Information Systems    Loader     Telemetry
+
+What is a block of arbitrary information, or resource for storing information, which is available to a computer program and is usually based on some kind of durable storage?
+Computer file    Air traffic control    Spatial Visualization Ability    Instant messaging
+
+What is a method where multiple tasks, also known as processes, are performed during the same period of time?
+Computer multitasking    Sea lane    Credit cards    Network Management
+
+What is a type of telecommunications network between data processing nodes for the purpose of data communications?
+Computer network    Optical character recognition    Distributed control system    Genomics
+
+What is a computer program, run on a single computer, or a network of computers, that attempts to simulate an abstract model of a particular system?
+Computer simulation    Credit cards    Office suites    Computer file
+
+What is a payment card issued to users as a system of payment. It allows the cardholder to pay for goods and services based on the holder's promise to pay for them?
+Credit cards    Computer graphics    Accounting software    Laboratory information system
+
+What is the practice and study of techniques for secure communication in the presence of third parties (called adversaries)?
+Cryptography    Video games    Telemetry    Airline reservations
+
+What is a hierarchical distributed naming system for computers, services, or any resource connected to the Internet or a private network?
+Domain Name System    Computer graphics    Operating systems    Special effects for video and film
+
+What is a tool fitted with a cutting tool attachment or driving tool attachment, usually a drill bit or driver bit, used for drilling holes in various materials or fastening various materials together with the use of fasteners?
+Drill    Sciences    Genomics    Web server
+
+What is the process of selecting and preparing written, visual, audible, and film media used to convey information through the processes of correction, condensation, organization, and other modifications performed with an intention of producing a correct, consistent, accurate, and complete work?
+Editing    Contact managers    Animation    Animation
+
+What is a category of software tools for designing electronic systems such as printed circuit boards and integrated circuits?
+Electronic Design Automation    Accounting software    Spatial Visualization Ability    Interpreter 
+
+What is a term encompassing several different types of voting, embracing both electronic means of casting a vote and electronic means of counting votes?
+Electronic voting    Data mining closely related to database    Cheque    Video games
+
+What is a computer system  designed for specific control functions within a larger system, often with real-time computing constraints?
+Embedded system    Presentation program    Compilers    HVAC
+
+What is the application of scientific, economic, social, and practical knowledge, in order to design, build, and maintain structures, machines, devices, systems, materials and processes?
+Engineering    Engineering    MUD    Auctions 
+
+What is the study of how people allocate their assets over time under conditions of certainty and uncertainty?
+Finance    Manufacturing    Analytics    Drill
+
+What is a central financial exchange where people can trade standardized futures contracts; that is, a contract to buy specific quantities of a commodity or financial instrument at a specified price with delivery set at a specified time in the future?
+Futures market    Contact managers    Music sequencers    Office suites
+
+What is a video gaming website that provides news, reviews, previews, downloads, and other information on certain video games?
+Games    Spreadsheets    Cryptography    Business Support Systems
+
+What is a discipline in genetics that applies recombinant DNA, DNA sequencing methods, and bioinformatics to sequence, assemble, and analyze the function and structure of genomes (the complete set of DNA within a single cell of an organism)?
+Genomics    Operations Support System    Parsers    Logistics
+
+What is a type of user interface that allows users to interact with electronic devices using images rather than text commands?
+Graphical user interface    Computer simulation    Air traffic control    Speech processing
+
+What is the ability of a computer to receive and interpret intelligible handwritten input from sources such as paper documents, photographs, touch-screens and other devices?
+Handwriting recognition    Numerical Analysis    Futures market    Computer simulation
+
+What is the technology of indoor and automotive environmental comfort?
+HVAC    Engineering    Contact managers    Special effects for video and film
+
+What is a form of communication over the Internet that offers quick transmission of text-based messages from sender to receiver?
+Instant messaging    Reverse auctions     Training    Special effects for video and film
+
+What is the facilitating of oral or sign-language communication, either simultaneously or consecutively, between users of different languages?
+Interpreter     Medical software    Video games    Business Support Systems
+
+What is a software-based laboratory and information management system that offers a set of key features that support a modern laboratory's operations?
+Laboratory information system    Drill    Speech processing    Automatic Teller Machine
+
+What is a computer program that takes one or more object files generated by a compiler and combines them into a single executable program?
+Linker     Sciences    Compiler optimization    Engineering
+
+What is the management of the flow of resources between the point of origin and the point of destination in order to meet some requirements, for example, of customers or corporations?
+Logistics    Embedded system    CAD    Loader 
+
+What is the production of goods for use or sale using labor and machines, tools, chemical and biological processing, or formulation?
+Manufacturing    Finance    Reverse auctions     Presentation program
+
+What is a multiplayer real-time virtual world, usually text-based?
+MUD    Compiler optimization    World wide web    Distributed control system
+
+What is an art form whose medium is sound and silence. Its common elements are pitch (which governs melody and harmony), rhythm (and its associated concepts tempo, meter, and articulation), dynamics, and the sonic qualities of timbre and texture?
+Music    Computer graphics    Special effects for video and film    Banking
+
+What is a device or application software that can record, edit, or play back music, by handling note and performance information in several forms, typically MIDI or CV/Gate, and possibly audio and automation data for DAWs and plug-ins?
+Music sequencers    Knowledge management    Poker    Operating systems
+
+What is a combination of hardwis and software used to monitor and administer a computer network or networks?
+Network management system    Handwriting recognition    Knowledge management    Sound effects
+
+What is a collection of software that  manages computer hardware resources and provides common services for computer programs?
+Operating systems    Data mining closely related to database    Engineering    Data mining closely related to database
+
+What are computer systems used by telecommunications service providers?
+Operations Support System    Electronic voting    Cheque    Compiler optimization
+
+What is the mechanical or electronic conversion of scanned images of handwritten, typewritten or printed text into machine-encoded text?
+Optical character recognition    Genomics    Web server    Training
+
+What is a family of card games involving betting and individualistic play whereby the winner is determined by the ranks and combinations of their cards, some of which remain hidden until the end of the game?
+Poker    Sciences    Loader     Electronic voting
+
+What is a computer software package used to display information, normally in the form of a slide show?
+Presentation program    Credit cards    Business Support Systems    Credit cards
+
+What is a system of digital message formats and rules for exchanging those messages in or between computing systems and in telecommunications?
+Protocol     Sea lane    Telephony    Telephony
+
+What is a type of auction in which the roles of buyer and seller are reversed. In an ordinary auction (also known as a forward auction), buyers compete to obtain a good or service by offering increasingly higher prices?
+Reverse auctions     Computer multitasking    Numerical Analysis    Contact managers
+
+What is the branch of technology that deals with the design, construction, operation, and application of robots, as well as computer systems for their control, sensory feedback, and information processing?
+Robotics    Music sequencers    Video games    Computer graphics
+
+What is a device that forwards data packets between computer networks, creating an overlay internetwork?
+Router     Testing    Cheque    Auctions 
+
+What is a systematic enterprise that builds and organizes knowledge in the form of testable explanations and predictions about the universe?
+Sciences    Element Management System    Embedded system    Word processors
+
+What is a regularly used route for ocean-going and Great Lakes vessels. In the time of sailing ships they were not only determined by the distribution of land masses but also the prevailing winds, whose discovery was crucial for the success of long voyages?
+Sea lane    Communication    Traffic Control    Genomics
+
+What is the imitation of the operation of a real-world process or system over time. The act of simulating something first requires that a model be developed; this model represents the key characteristics or behaviors of the selected physical or abstract system or process?
+Simulation    Sound effects    Business software    Logistics
+
+What is artificially created or enhanced sounds, or sound processes used to emphasize artistic or other content of films, television shows, live performance, animation, video games, music, or other media?
+Sound effects    Handwriting recognition    Auctions     Data mining closely related to database
+
+What is the study of speech signals and the processing methods of these signals. The signals are usually processed in a digital representation, so speech processing can be regarded as a special case of digital signal processing, applied to speech signal?
+Speech processing    Air traffic control    Optical character recognition    Web browser
+
+What is an interactive computer application program for organization and analysis of data in tabular form?
+Spreadsheets    Genomics    CAD    Stock market
+
+What is a public entity (a loose network of economic transactions, not a physical facility or discrete entity) for the trading of company stock (shares) and derivatives at an agreed price; these are securities listed on a stock exchange as well as those only traded privately?
+Stock market    Business software    Analytics    Bar code scanners
+
+What is the management of a network of interconnected businesses involved in the provision of product and service packages required by the end customers in a supply chain?
+Supply chain management    Computer file    Auctions     Robotics
+
+What is the highly automated communications process by which measurements are made and other data collected at remote or inaccessible points and transmitted to receiving equipment for monitoring?
+Telemetry    Analytics    Router     Computer file
+
+What is the transfer of ownership of goods   and services from one person or entity to another by getting something in exchange from the buyer?
+Trade    Spreadsheets    Medical software    Music sequencers
+
+What is the acquisition of knowledge, skills, and competencies as a result of the teaching of vocational or practical skills and knowledge that relate to specific useful competencies?
+Training    Robotics    Distributed control system    Special effects for video and film
+
+What is an electronic game that involves human interaction with a user interface to generate visual feedback on a video device?
+Video games    Music    Telephony    Network Management
+
+What is a softwis application for retrieving, presenting and traversing information resources on the World Wide Web?
+Web browser    Contact managers    HVAC    Accounting software
+
+What is a computer application used for the production (including composition, editing, formatting and possibly printing) of any sort of printable material?
+Word processors    Supply chain management    Web server    Stock market
+
+What is a system of interlinked hypertext documents accessed via the Internet?
+World wide web    Parsers    Sciences    Embedded system
+
+What is the Association for Computing Machinery's Special Interest Group on programming language?
+ACM SIGPLAN Programming Languages Software Award    Calgary Challenge    Turing Award    Presburger Award
+
+What is an annual award that honors people or an organization "for developing a software system that has had a lasting influence, reflected in contributions to concepts, in commercial acceptance, or both"?
+ACM Software System Award    Jon Postel    Fulkerson Prize    Knuth Prize
+
+What is a class of data compression algorithms that allows the exact original data to be reconstructed from the compressed data?
+Calgary Challenge    Knuth Prize    Machtey Award    EATCS Award
+
+What is a computer program designed to simulate an intelligent conversation with one or more human users via auditory or textual methods, primarily for engaging in small talk?
+Chatterbox Challenge    Gerard Salton Award    EATCS Award    SIGCOMM Award
+
+What is a group of researchers honored by SIGCHI, the Special Interest Group in Computerâ€“Human Interaction of the Association for Computing Machinery?
+CHI Academy    Chatterbox Challenge    Loebner Prize    Lovelace Medal
+
+What is an academic conference in the field of theoretical computer science?
+Danny Lewin Best Student Paper Award    Knuth Prize    Pirelli Internetional Award    Hutter Prize
+
+What is an international award sponsored by the Digital Preservation Coalition?
+Digital Preservation Award    Lovelace Medal    Dijkstra Prize    GÃ¶del Prize
+
+What is an international organization with a European focus, founded in 1972. Its aim is to facilitate the exchange of ideas and results among theoretical computer scientists as well as to stimulate cooperation between the theoretical and the practical community in computer science?
+EATCS Award    Gordon Bell Prize    Knuth Prize    White Camel award
+
+What area of discrete mathematics is sponsored jointly by the Mathematical Programming Society (MPS)  and the American Mathematical Society (AMS)?
+Fulkerson Prize    EATCS Award    IJCAI Award for Research Excellence    Pirelli Internetional Award
+
+What is presented by the Association for Computing Machinery (ACM) Special Interest Group on Information Retrieval (SIGIR) every three years to an individual who has made "significant, sustained and continuing contributions to research in information retrieval"?
+Gerard Salton Award    Gerard Salton Award    Jon Postel    Lovelace Medal
+
+What is a prize for outstanding papers in theoretical computer science, named after Kurt GÃ¶del and awarded jointly by the European Association for Theoretical Computer Science (EATCS) and the Association for Computing Machinery Special Interest Group on Algorithms and Computation Theory (ACM SIGACT)?
+GÃ¶del Prize    Tsutomu Kanai Award    Konrad Zuse Medal    GÃ¶del Prize
+
+What is an award presented by the Association for Computing Machinery each year in conjunction with the SC Conference series (formerly known as the Supercomputing Conference)?
+Gordon Bell Prize    Gerard Salton Award    SIGCOMM Award    Nevanlinna Prize
+
+What is a cash prize funded by Marcus Hutter which rewards data compression improvements on a specific 100 MB English text file?
+Hutter Prize    Gerard Salton Award    Dijkstra Prize    Ken Kennedy Award
+
+What is a biannual award given at the IJCAI conference to researcher in artificial intelligence as a recognition of excellence of their career?
+IJCAI Award for Research Excellence    John von Neumann Theory Prize    White Camel award    Turing Award
+
+What is a prize for outstanding contributions to the foundations of computer science, named after Donald E?
+Knuth Prize    Paris Kanellakis Award    Lovelace Medal    Digital Preservation Award
+
+What is the highest award of the Gesellschaft fÃ¼r Informatik (the German Computer Science Society), given every two years to one or sometimes two leading German computer scientists?
+Konrad Zuse Medal    Chatterbox Challenge    Grace Murray Hopper Award    Grace Murray Hopper Award
+
+What is an annual competition in artificial intelligence that awards prizes to the chatterbot considered by the judges to be the most human-like?
+Loebner Prize    Loebner Prize    Gerard Salton Award    Machtey Award
+
+What is a theoretical computer science prize given awarded for  outstanding papers in the area of multivariate algorithmics?
+Nerode Prize    White Camel award    Sidney Fernbach Award    Ken Kennedy Award
+
+What is awarded once every 4 years at the International Congress of Mathematicians, for outstanding contributions in Mathematical Aspects of Information Sciences includin?
+Nevanlinna Prize    Nerode Prize    Sloan Fellowship    Herbrand Award
+
+What is awarded each year by the European Association for Theoretical Computer Science (EATCS) to "a young scientist for outstanding contributions in theoretical computer science, documented by a published paper or a series of published papers." The award is named after Mojzesz Presburger who accomplished his path-breaking work on decidability of the theory of addition (which today is called Presburger arithmetic) as a student in 192?
+Presburger Award    Seymour Cray Computer Engineering Award    Grace Murray Hopper Award    ACM SIGPLAN Programming Languages Software Award
+
+What is an award given by the IEEE Computer Society, to recognize significant and innovative contributions in the field of high-performance computing?
+Seymour Cray Computer Engineering Award    EATCS Award    Konrad Zuse Medal    Loebner Prize
+
+What is awarded annually by the Alfred P. Sloan Foundation since 1955 to "provide support and recognition to early-career scientists and scholars"?
+Sloan Fellowship    GÃ¶del Prize    Knuth Prize    CHI Academy
+
+What is a software engineering award given in memory of Wayne Stevens. The international  was created to recognize outstanding contributions to the literature or practice of methods for softwis and systems development?
+Stevens Award    Turing Award    Fulkerson Prize    Sidney Fernbach Award
+
+What is an annual award for outstanding contributions to the field of information retrieval and is presented in memory of Dr Tony Kent, a past Fellow of the Institute of Information Scientists (IIS), who died in 1997. Tony Kent made a major contribution to the development of information science and information services both in the UK and internationally, particularly in the field of chemistry?
+Tony Kent Strix award    Knuth Prize    Presburger Award    SIGCOMM Award
+
+What is an annual prize given by the Association for Computing Machinery (ACM) to "an individual selected for contributions of a technical nature made to the computing community"?
+Turing Award    Gordon Bell Prize    Calgary Challenge    Pirelli Internetional Award
+
+What is given to important contributors to the Perl Programming Language community?
+White Camel award    Tsutomu Kanai Award    Nerode Prize    Danny Lewin Best Student Paper Award
+
+What is the state of experiencing humorous and entertaining events or situations, and is associated with enjoyment, happiness, laughter and pleasure?
+ Amusements    Pirates Cove     Aquatica Florida    Riverside Amusement Park 
+
+What is a Filipino comics creator, writer and illustrato?
+Adventure Kingdom     Riverside Amusement Park     Chankanaab Park    Valle Fantastico
+
+What is a Mexican zoo park that was established in 1972 by Captain Carlos Camacho EspÃ­ritu. It is located about  from the city of Puebla?
+Africam Safari    Dry Town Water Park    Thunder Road     Parque de Diversiones
+
+What is a chain of water parks owned and operated by SeaWorld Parks & Entertainment. Aquatica parks are operating in Orlando, Florida and San Antonio, Texas, with a third location set to open in Chula Vista, California in 201?
+Aquatica Florida    Old Town     Xcaret Park    Riverfront Park 
+
+What is a chain of water parks owned and operated by SeaWorld Parks & Entertainment. Aquatica parks are operating in Orlando, Florida and San Antonio, Texas, with a third location set to open in Chula Vista, California in 201?
+Aquatica San Antonio    Riverfront Park     Aquatica San Antonio    Full Blast 
+
+What is located on U.S. Route 22 West in Scotch Plains, New Jersey?
+Bowcraft Amusement Park     Amusements    Adventure Kingdom      Amusements
+
+What is a water park operated by the city of Palmdale, California, opened in 2006. It is located on the grounds of the Palmdale Oasis Park & Recreation Center in the southeast portion of the city?
+Dry Town Water Park    Islands of Adventure    Africam Safari    Full Blast 
+
+What is a forest under, or containing, enchantments. Such forests are described in the oldest folklore from regions where forests are common, and occur throughout the centuries to modern works of fantasy?
+Enchanted Forest     Historic Bushkill Park    Scandia Amusements    Adventureland 
+
+What issues, reopened May 23, 2009, under the Freestyle brand,  and closed yet again after its 2009 season?
+Freestyle Music Park    Big Splash     Storyland     Old Town 
+
+What is a small family amusement park located in Angola, Indiana, USA. Although it was small in comparison to parks in neighboring states, such as Cedar Point and Michigan's Adventure, it remained one of the largest parks in the region?
+Fun Spot     Big Splash     Pyrite Rapids Water Park    Belmont Park 
+
+What is located in Northeastern Pennsylvania just outside of the city of Easton. It is a small amusement park, generally geared toward younger audiences?
+Historic Bushkill Park    Big Splash     Turtle Farm    Adventure Island 
+
+What is a theme park located in Orlando, Florida?
+Islands of Adventure    Enchanted Island     Enchanted Forest     Dry Town Water Park
+
+What is a  ski resort located in Ludlow, Vermont. Before becoming a popular ski resort destination, Ludlow was originally a mill town, and was the home of a General Electric plant until 1977. The resort experienced 600,000 skier visits in 2009. Parents Magazine rated it the Top US Family Snow Resort?
+Okemo Mountain    Thunder Road     Big Splash     Adventureland 
+
+What is an amusement park located in San JosÃ©, Costa Rica?
+Parque de Diversiones    Wonderland Park     Parque de Diversiones    Full Blast 
+
+What is a board game designed by Paul Randles and Daniel Stahl, and published in Europe in 2002 by Amigo Spiele and in the United States in 2003 by Days of Wonder?
+Pirates Cove     Turtle Farm    Aquatica San Antonio    Village Vacances Valcartier 
+
+What is a chain of Scandinavian-themed family amusement centers in California, including three locations: Scandia Fun Center in Sacramento, Scandia Family Fun Center in Victorville, and Scandia Amusement Park in Ontario?
+Scandia Amusements    Pyrite Rapids Water Park    Centreville Amusement Park at Toronto Islands    Dry Town Water Park
+
+What is the practice of raising turtles and tortoises of various species commercially. Raised animals are sold for use as gourmet food, traditional medicine ingredients, or as pets?
+Turtle Farm    Storyland     Big Splash     Centreville Amusement Park at Toronto Islands
+
+What is a privately owned and operated theme park, resort and self-described ecotourism development located in the Riviera Maya, a portion of the Caribbean coastline of Mexico's state of Quintana Roo that has been designated as a zone for tourism development?
+Xcaret Park    Ontario Place     Castle Park     Belmont Park 
+
+What is a model based systems engineering software platform used for a range of activities including building and operating real-time simulation-based lab test facilities for hardware-in-the-loop simulation purposes?
+ADvantage Framework    Software architectural model    Model View ViewModel    Federated Portal Network
+
+What is a microcrystalline variety of silica, chiefly chalcedony, characterised by its fineness of grain and brightness of color?
+AGATE     OOHDM    Semantic architecture    Open Service Interface Definitions
+
+What is a blueprint for softwis agents and intelligent control systems, depicting the arrangement of components?
+Agent architecture    Messaging Open Service Interface Definition    Multitenancy    Software architecture analysis method
+
+What is an O.K.I. specification which supports the creation, retrieval and deletion of Agent and Groups?
+Agent Open Service Interface Definition    Functional software architecture    Mibe architecture    Situational application
+
+What is the use of a software domain model where the business logic is implemented outside the domain objects?
+Anemic domain model    SIGMDSE    Principle of good enough    Repository Open Service Interface Definition
+
+What is a mechanism (similar to a process in an operating system) used within the Common Language Infrastructure (CLI) to isolate executed softwis applications from one another so that they do not affect each other?
+Application domain    Application service architecture    Architecture framework    Software analysis pattern
+
+What is an emerging discipline within IT that involves a top down approach to monitoring, controlling, securing, and optimizing applications in transit?
+Application service architecture    Software architecture    Public interface    IDEAS Group
+
+What is a standard design in the field of softwis architecture. The concept of an architectural pattern has a broader scope than the concept of design pattern?
+Architectural pattern    Authentication Open Service Interface Definition    Presenter First    Synchrony abstraction
+
+What are the system engineering community, the software engineering community and the enterprise modelling and engineering communi?
+Architecture description language    Technical debt    Software architecture recovery    EMML 
+
+What is arid when it is characterized by a severe lack of available water, to the extent of hindering or preventing the growth and development of plant and animal life?
+ARID    Open architecture    Reference architecture    Software analysis pattern
+
+What is making individual software components, such as speech synthesizers, interoperable with other components, such as common sense knowledgebases, in order to create larger, broader and more capable A.I?
+Artificial intelligence systems integration    Node graph architecture    Open Service Interface Definitions    CPPSERV
+
+What is an O.K.I. specification which supports creating, organizing, administrating, evaluating, storing and retrieving assessment information?
+Assessment Open Service Interface Definition    Connection broker    Monolithic application    Transparency 
+
+What is an O.K.I. specification which supports invoking an authentication process?
+Authentication Open Service Interface Definition    Filing Open Service Interface Definition    SIGMDSE    Task computing
+
+What is an O.K.I. specification which provides the means to define who is authorized to do what, when?
+Authorization Open Service Interface Definition    Coupling     MODELISAR    BORO method
+
+What is an open and standardized automotive softwis architecture, jointly developed by automobile manufacturers, suppliers and tool developers?
+AUTOSAR    Colony Framework    Synthetic Environment for Analysis and Simulations    ADvantage Framework
+
+What is a compositional .NET MVC framework with concepts from REST and AOP. Bistro modifies the traditional concepts of MVC by breaking down a single HTTP request into a series of aspects, each processed by a separate controller?
+Bistro Framework    Messaging Open Service Interface Definition    OpenPipeline    Software framework
+
+What is an artificial intelligence application based on the blackboard architectural model, where a common knowledge base, the "blackboard", is iteratively updated by a diverse group of specialist knowledge sources, starting with a problem specification and ending with a solution?
+Blackboard system    IDEAS Group    Darwin     Software architect
+
+What is an approach to developing ontological or semantic models for large complex operational applications that consists of a top ontology and a process for constructing the ontology?
+BORO method    Solution architecture    Graphical user interface    MVC4WPF
+
+What is the set of classes that represent objects in the business model being implemented?
+Business domain    Interface metaphor    Occasionally connected computing    Demonolithicized application
+
+What is a non-technical term generally used to describe the functional algorithms that handle information exchange between a database and a user interface?
+Business logic    Architecture tradeoff analysis method    Common Component Architecture    Artificial intelligence systems integration
+
+What is an open source plugin framework specification. Implementations of the specification offer a runtime component model, that allows for plugins to be installed, started, stopped, updated and uninstalled without requiring the application container to be stopped?
+Colony Framework    Evocb    ARID    Authorization Open Service Interface Definition
+
+What is a standard for Component-based software engineering used in high-performance (also known as scientific) computing?
+Common Component Architecture    Solution architecture    Node graph architecture    Bistro Framework
+
+What are the most common layers in a logical multilayered architecture for an information system with an object-oriented desig?
+Common layers in an information system logical architecture    Knowledge Discovery Metamodel    Scaffold     Software framework
+
+What is an addition to Microsoft's .NET Framework for creating complex user interfaces made of loosely coupled components?
+Composite UI Application Block    Business logic    Wright     Mashup 
+
+What is a technique by which classes may achieve polymorphic behavior and code reuse by containing other classes that implement the desired functionality instead of through inheritance?
+Composition over inheritance    Office controller    Functional design    Enterprise service bus
+
+What is a device used to connect two shafts together at their ends for the purpose of transmitting power?
+Coupling     Open architecture    Scheduling Open Service Interface Definition    Task computing
+
+What is an O.K.I. specification which supports the creation and management of a course catalog (CourseCatalog)?
+CourseManagement Open Service Interface Definition    Presenter First    Demonolithicized application    Naked objects
+
+What is C++ Servlet Engine. It provides Servlet-like API to C++ programmers. This allows them to write small, extremely efficient web applications, with an ease that was only available to Java programmers?
+CPPSERV    Software architect    Model View ViewModel    Solution architecture
+
+What is the result of breaking a monolithic application into small manageable pieces the deliver the same or superior business results?
+Demonolithicized application    Rich Internet application    Transparency     Logging Open Service Interface Definition
+
+What is a software design pattern that allows removing hard-coded dependencies and making it possible to change them, whether at run-time or compile-time?
+Dependency injection    Transparency     Synchrony abstraction    PureMVC
+
+What is an interface metaphor which is a set of unifying concepts used by graphical user interfaces to help users more easily interact with the computer?
+Desktop metaphor    Desktop metaphor    Digital nervous system    Office controller
+
+What is an O.K.I. specification which supports creating and populating dictionaries of tag-value pairs?
+Dictionary Open Service Interface Definition    Scheduling Open Service Interface Definition    Interface metaphor    Smart client
+
+What is a phrase, popularly associated with Bill Gates of Microsoft, used to describe a vision for how the IT infrastructure of an enterprise could be analogous to the autonomic nervous system of a biological organism?
+Digital nervous system    Scheduling Open Service Interface Definition    Integrated data management    IDEAS Group
+
+What is a small column of liquid, bounded completely or almost completely by free surfaces?
+Droplets     Composition over inheritance    Extensibility    Functional software architecture
+
+What is an XML markup language for creating enterprise mashups, which are softwis applications that consume and mash data from variety of sources, often performing logical or mathematical operations as well as presenting data?
+Enterprise Mashup Markup Language    Dependency injection    Blackboard system    Business logic
+
+What is a distributed object system that is constructed on top of publish/subscribe event systems. This design decision implies modeling method calls as events and subscriptions over the underlying messaging middleware?
+Evocb    Presentation logic    Runahead solution    SAP Enterprise Architecture Framework
+
+What is a framework for remote content sharing between enterprise portal?
+Federated Portal Network    Web application    Application Mediation    Simulated reality
+
+What is an O.K.I. specificatio?
+Filing Open Service Interface Definition    Model View ViewModel    Filing Open Service Interface Definition    Library Oriented Architecture
+
+What is a paradigm used to simplify the design of hardwis and software devices such as computer softwis and increasingly, 3D models?
+Functional design    Shared nothing architecture    Application service architecture    Architecture tradeoff analysis method
+
+What is a piece of  mineral, which, in cut and polished form, is used to make jewelry or other adornments?
+Gemstone     Implicit invocation    Wright     Filing Open Service Interface Definition
+
+What is a development environment and an application server for Web Applications. It is characterized by strict separation of data storage, processing and user interface development?
+GNUstepWeb    Common layers in an information system logical architecture    Model View ViewModel    BORO method
+
+What is an Open Knowledge Initiative specification. OSIDs are programmatic interfaces which comprise a Service Oriented Architecture for designing and building reusable and interoperable software?
+Grading Open Service Interface Definition    Wright     Pipe and filter architecture    Scheduling Open Service Interface Definition
+
+What is a type of user interface that allows users to interact with electronic devices using images rather than text commands?
+Graphical user interface    Model View ViewModel    Software architecture analysis method    Naked objects
+
+What is an Open Knowledge Initiative specification. OSIDs are programmatic interfaces which comprise a Service Oriented Architecture for designing and building reusable and interoperable software?
+Hierarchy Open Service Interface Definition    Logging Open Service Interface Definition    ARID    PureMVC
+
+What is the International Defence Enterprise Architecture Specification for exchange Group?
+IDEAS Group    BORO method    CPPSERV    Digital nervous system
+
+What is an IEEE Standard  for describing the architecture of a software-intensive system, also known as softwis architecture?
+IEEE 1471    Multimodal Architecture and Interfaces    Extensibility    Solution architecture
+
+What is a term used by some authors for a style of softwis architecture in which a system is structured around event handling, using a form of callback?
+Implicit invocation    Functional design    Subsumption architecture    Software blueprint
+
+What is a tools approach to facilitate data management and improve performance?
+Integrated data management    Public interface    Library Oriented Architecture    Architecture description language
+
+What is a software development firm that was created in 2002. The company is a systems integrator and solutions provider for knowledge management, automation and plant process management and decision support applications?
+Integration Objects    Architectural pattern    Web API    IBM PureQuery
+
+What is a set of user interface visuals, actions and procedures that exploit specific knowledge that users already have of other domains?
+Interface metaphor    Open Service Interface Definitions    Coupling     SAP Enterprise Architecture Framework
+
+What is publicly available specification from the Object Management Group (OMG)?
+Knowledge Discovery Metamodel    Authorization Open Service Interface Definition    Workflow Open Service Interface Definition    Functional software architecture
+
+What is an O.K.I. specification which supports a means of reading and writing log files?
+Logging Open Service Interface Definition    Software architecture recovery    Smart client    Situational application
+
+What is a web application and mobile app that provides a free automatic video editing service for amateurs?
+Magisto    ARID    Rich client platform    Multitenancy
+
+What is an O.K.I. specification which provides a means of sending, subscribing and receiving messages?
+Messaging Open Service Interface Definition    Common modeling infrastructure    Software architecture recovery    Open Service Interface Definitions
+
+What is the section of a database or other data holding structure that is designated to hold data that will act as source code or metadata?
+Metatable    Interface metaphor    Smart client    OOHDM
+
+What is a behavior-based robot architecture developed at [http://www.airlab.elet.polimi.it/ Artificial Intelligence and Robotics Lab] of Politecnico di Milano by Fabio La Daga and [http://home.dei.polimi.it/bonarini/index.html Andrea Bonarini] in 1998. MIBE architecture is based on the idea of animat and derived from subsumption architecture, formerly developed by Rodney Brooks and colleagues at MIT in 198?
+Mibe architecture    Demonolithicized application    Digital nervous system    Common Component Architecture
+
+What are two commonly used design models, referred to as  and Model ?
+Model 1    Principle of good enough    Inversion of control    Software framework
+
+What is a complex design pattern used in the design of Java Web applications which separates the display of content from the logic used to obtain and manipulate the content?
+Model 2    Common layers in an information system logical architecture    Software architectural model    Software architecture description
+
+What is an architectural pattern used in software engineering that originated from Microsoft as a specialization of the presentation model design pattern introduced by Martin Fowler?
+Model View ViewModel    Technical debt    OpenPipeline    Functional software architecture
+
+What is an ITEA 2 (Information Technology for European Advancement) European project aiming to improve the design of systems and of embedded software in vehicles?
+MODELISAR    Workflow Open Service Interface Definition    Agent Open Service Interface Definition    Demonolithicized application
+
+What is an architectural pattern used in software engineering that came about as an enhancement to the MVVM design pattern?
+Multiuse Model View    Enterprise Mashup Markup Language    Software architecture analysis method    Presenter First
+
+What is an open-source, extensible, automated code pattern developed at Information Control Corporation for Windows Presentation Foundation (WPF) development based on the Model-View-Controller (MVC) and Presentation-Abstraction-Control (PAC) patterns?
+MVC4WPF    Common Component Architecture    Evocb    Model 2
+
+What is an architectural pattern used in software engineerin?
+Naked objects    Node graph architecture    Pipe and filter architecture    Workflow Open Service Interface Definition
+
+What is a type of software design which builds around modular node components which can be connected to form a graph?
+Node graph architecture    UIMA    BORO method    Architecture description language
+
+What is a term used in computing for an architecture or framework which permits running some aspects of a web application when not connected to the Internet?
+Occasionally connected computing    Common modeling infrastructure    Business logic    Dictionary Open Service Interface Definition
+
+What is a method for the development of Web application?
+OOHDM    EFx Factory    Architectural pattern    EMML 
+
+What is a type of computer architecture or softwis architecture that is designed to make adding, upgrading and swapping components easy?
+Open architecture    Monolithic application    Common modeling infrastructure    Public interface
+
+What are programmatic interface specifications describing services?
+Open Service Interface Definitions    Integrated data management    Common layers in an information system logical architecture    MODELISAR
+
+What is open source software for crawling, parsing, analyzing and routing documents. It is intended to tie together otherwise incomplete solutions for enterprise search and document processing?
+OpenPipeline    CPPSERV    Shared nothing architecture    GNUstepWeb
+
+What is the ability to send a payload (the document or request object sent to a Service) without regard to what protocol might be configured?
+Payload abstraction    Logging Open Service Interface Definition    Software architect    QP 
+
+What is a software development approach that combines the ideas of the modelâ€“viewâ€“presenter (MVP) design pattern, test-driven development, and Feature-driven development?
+Presenter First    Simulated reality    Scheduling Open Service Interface Definition    Software architect
+
+What is a rule for softwis and systems design?
+Principle of good enough    ARID    Authentication Open Service Interface Definition    Implicit invocation
+
+What is the logical point at which independent software entities interact. The entities may interact with each other within a single computer, across a network, or across a variety of other topologies?
+Public interface    Payload abstraction    Droplets     SAP Enterprise Architecture Framework
+
+What is a framework for creating applications based upon the well-established Model-View-Controller design pattern?
+PureMVC    Federated Portal Network    Open Service Interface Definitions    Business domain
+
+What is an English professional football club, based in White City, London?
+QP     Application Mediation    SIGMDSE    Software Architecture styles and patterns
+
+What is an O.K.I. specification which defines the storing and retrieving of digital content, referred to as Assets?
+Repository Open Service Interface Definition    Workflow Open Service Interface Definition    Rich client platform    Blackboard system
+
+What is a style of softwis architecture for distributed systems such as the World Wide Web?
+Representational state transfer    Wright     Functional design    Software Architecture styles and patterns
+
+What is a programmer tool that makes it easier to integrate independent software components, where most of the data processing occurs on the client side?
+Rich client platform    Multitier architecture    Inversion of control    Enterprise Mashup Markup Language
+
+What is a Web application that has many of the characteristics of desktop application software, typically delivered by way of a site-specific browser, a browser plug-in, an independent sandbox, extensive use of JavaScript, or a virtual machine?
+Rich Internet application    Functional design    ARID    Messaging Open Service Interface Definition
+
+What is a methodology and toolset primarily to support the effective adoption of SOA?
+SAP Enterprise Architecture Framework    Authentication Open Service Interface Definition    Messaging Open Service Interface Definition    Droplets 
+
+What is a temporary structure used to support people and material in the construction or repair of buildings and other large structures?
+Scaffold     Logging Open Service Interface Definition    Integration Objects    Architecture framework
+
+What is an O.K.I. specification. OSIDs are programmatic interfaces which comprise a Service Oriented Architecture for designing and building reusable and interoperable software?
+Scheduling Open Service Interface Definition    Debugging patterns    Semantic architecture    Solution architecture
+
+What is a novel concept in softwis architecture which envisions enabling the architecture community to unambiguously capture, catalog, communicate, preserve, and interoperably exchange semantics of their architectures, thus making architecture descriptions true assets?
+Semantic architecture    Shared disk architecture    Solution architecture    Blackboard system
+
+What is the hypothesis that reality could be simulatedâ€”for example by computer simulationâ€”to a degree indistinguishable from "true" reality, and may in fact be such a simulation?
+Simulated reality    Application server    Situational application    Grading Open Service Interface Definition
+
+What is "good enough" software created for a narrow group of users with a unique set of needs?
+Situational application    UIMA    Metatable    Open Service Interface Definitions
+
+What is a term describing an application environment whic?
+Smart client    Assessment Open Service Interface Definition    Digital nervous system    Common modeling infrastructure
+
+What is a computer programmer who makes high-level design choices and dictates technical standards, including software coding standards, tools, and platforms?
+Software architect    Naked objects    Task computing    Dictionary Open Service Interface Definition
+
+What is a method used in softwis architecture to evaluate a system architecture?
+Software architecture analysis method    Darwin     Common modeling infrastructure    Library Oriented Architecture
+
+What is a set of methods for the extraction of architectural information from lower level representations of a software system, such as source code?
+Software architecture recovery    Dictionary Open Service Interface Definition    Model 1    UIMA
+
+What is a general, reusable solution to a commonly occurring problem in softwis architecture within a given context?
+Software Architecture styles and patterns    Occasionally connected computing    Naked objects    Multimodal Architecture and Interfaces
+
+What is a reactive robot architecture heavily associated with behavior-based robotics?
+Subsumption architecture    Principle of good enough    Model 2    Payload abstraction
+
+What is a collection of open source software released by Sun Microsystems for developing web applications that run on Java EE application servers?
+Sun Web Developer Pack    Payload abstraction    Occasionally connected computing    Messaging Open Service Interface Definition
+
+What is the proposed ability to generically call a Service/Operati?
+Synchrony abstraction    Rich Internet application    Demonolithicized application    Pipe and filter architecture
+
+What is currently being used by Homeland Security and the US Defense Department to simulate crises on the US mainland?
+Synthetic Environment for Analysis and Simulations    Multilayered architecture    Technical debt    Software Architecture styles and patterns
+
+What is the conceptual model that defines the structure, behavior, and more views of a system?
+Systems architecture    AJAX Service Bus    SIGMDSE    Node graph architecture
+
+What is a computatiÎ¿n to fill the gap between tasks (what user wants to be done), and services (functionalities that is available to the user)?
+Task computing    Synthetic Environment for Analysis and Simulations    Connascence     Business domain
+
+What is a neologistic metaphor referring to the eventual consequences of poor or evolving softwis architecture and software development within a codebase?
+Technical debt    Office controller    Software analysis pattern    Scaffold 
+
+What is to date the only industry standard for content analytics?
+UIMA    Sun Web Developer Pack    Application Mediation    Software Architecture styles and patterns
+
+What is used to refer to both a server-side API upon a web server as well as client-side API within a web browser?
+Web API    MVC4WPF    Pipe and filter architecture    Task computing
+
+What is an application that is accessed by users over a network such as the Internet or an intranet?
+Web application    Functional software architecture    Bistro Framework    Multimodal Architecture and Interfaces
+
+What is the component of a web server that interacts with Java servlets?
+Web container    Knowledge Discovery Metamodel    Multilayered architecture    Payload abstraction
+
+What is an O.K.I. specification which provides the means to define a Process composed of Steps?
+Workflow Open Service Interface Definition    Smart client    Architectural pattern    Repository Open Service Interface Definition
+
+What is an iconic series of robotic pets designed and manufactured by Sony?
+AIBO    FlyTech Dragonfly    RoboSapien    Robopet
+
+What is a modified mini-fridge that catapults beer to the desired drinker by use of a keyless remote system?
+Beer Launching Fridge    Tux Droid    Tux Droid    Sony Rolly
+
+What is a robot built primarily with Lego Mindstorms and a Samsung Galaxy S2 for solving a Rubik's Cube?
+CubeStormer II    Robopanda    Robopanda    CubeStormer II
+
+What is, as the name indicates, a robot that is not made for utilitarian use, as in production or domestic services, but for the sole subjective pleasure of the human it serves, usually the owner or his housemates, guests or clients?
+Entertainment robot    FlyTech Dragonfly    Milton Bradley Playmate    Hexbug
+
+What is a female humanoid robot that WowWee announced at CES in January 2008. It can respond to sight, sound, and touch and can be programmed with a sequence of movements?
+FemiSapien    Spykee    RS Media    PaPeRo
+
+What is WowWee's entry into remote-controlled flying toy industry. The Dragonfly has been incorrectly billed as the world's first commercially available RC ornithopter (flapping wing aircraft)?
+FlyTech Dragonfly    Robopet    Entertainment robot    Kota the triceratops
+
+What is an electronic robotic toy resembling a hamster or owl-like creature which went through a period of being a "must-have" toy following its launch in the holiday season of 1998, with continual sales until 2000. Over 40 million Furbies were sold during the three years of its original production, with 1.8 million sold in 1998, and 14 million in 1999. Its speaking capabilities were translated into 24 languages?
+Furby    Entertainment robot    Sarcoman    Entertainment robot
+
+What is a robotic dog produced by the Korean company Dasarobot of Dasatec?
+Genibo    Genibo    CubeStormer II    WowWee Alive Chimpanzee
+
+What is an undertaking by Canadian inventor Jaimie Mantzel to construct a large 6-legged robot?
+Giant Robot Project    FemiSapien    Pleo    Giant Robot Project
+
+What is a brand of toy automatons developed and distributed by Innovation First.   was inspired by BEAM robotics, and uses many elements of it?
+Hexbug    Nabaztag    Pekoppa    Hexbug
+
+What is a robot dog toy designed and manufactured by Sega Toys, marketed by Hasbro in the United States?
+IDog    Giant Robot Project    FlyTech Dragonfly    RoboSapien
+
+What is an animatronic toy dinosaur made by Hasbro and Playskool. It is modeled after a triceratops, and intended for children aged 3 to ?
+Kota the triceratops    Robosapien v2    Robosapien v2    FlyTech Dragonfly
+
+What are transforming robotic dinosaurs.   is owned by Mike West and Transaurus is owned by Rick and Sheri Dorritie?
+Megasaurus    Push the Talking Trash Can    AIBO    Robopanda
+
+What is a personal robot developed by Japanese firm NEC Corporation?
+PaPeRo    Roboboa    Zhu Zhu Pets    FlyTech Dragonfly
+
+What is a battery-powered plastic plant, manufactured by Sega, which reacts with nodding movements when being spoken to?
+Pekoppa    RoboSapien    Robosapien v2    Tux Droid
+
+What is the largest order in the fungal class Dothideomycetes.  By some estimates it contains 23 families, 332 genera and more than 4700 species?
+Pleo    Pleo    Hexbug    Milton Bradley Playmate
+
+What is a radio-controlled robot, created by Daniel Deutsch, which makes daily rounds throughout Tomorrowland inside the Magic Kingdom theme park at Walt Disney World in Orlando, Florida; Disneyland and Disney California Adventure Park park in Anaheim, California, Hong Kong Disneyland park as well as Disneyland Paris outside Paris, France and Tokyo Disneyland in Japan?
+Push the Talking Trash Can    Tux Droid    WowWee Alive Chimpanzee    Roboquad
+
+What is a robotic snake produced by WowWee. s has 4 angled body sections, allowing  to coil by rotating adjacent sections?
+Roboboa    Roboquad    Robosaurus    Nabaztag
+
+What is a robotic interactive companion produced by WowWee. The  uses interchangeable cartridges that contain personalities, stories and songs, and is controlled directly by touch and sound sensors?
+Robopanda    Robopet    Furby    Entertainment robot
+
+What is a robotic dog produced by WowWee that is based on the biomorphic work of Mark W. Tilden?
+Robopet    RS Media    Spykee    Genibo
+
+What is one of the 5 robots that WowWee announced at CES in January 2007. It is a 4-legged robot that somewhat resembles a spider and a dog?
+Roboquad    Push the Talking Trash Can    FlyTech Dragonfly    Beer Launching Fridge
+
+What is a robotic toy invented by Mark Tilden and distributed by Wow Wee Toys International. It is the successor to the RoboSapien robot and uses motion technology based on realistic biomechanics that give it fluid and natural movements?
+Roboraptor    IDog    CubeStormer II    CubeStormer II
+
+What is a toy-like biomorphic robot designed by Mark Tilden and produced by WowWee toys. The  is preprogrammed with moves, and also can be controlled by an infrared remote control included with the toy, or by either a personal computer equipped with an infrared transmitter or an infrared transmitter-equipped PDA?
+RoboSapien    FemiSapien    IDog    Pekoppa
+
+What is the second generation of Mark Tilden's Robosapien robot. It is nearly twice the size of the original robot, standing around  tall?
+Robosapien v2    Robopet    Roboboa    Pleo
+
+What is a transforming dinosaur robot created by inventor Doug Malewicki in 1989 and is now owned and operated by Monster Robots, Inc?
+Robosaurus    Entertainment robot    Roboraptor    RoboSapien
+
+What is another product in WowWee's line of biomorphic robots, based on a walking system designed by Mark Tilden?
+RS Media    Megasaurus    RoboSapien    Spykee
+
+What is an entertainment robot remotely controlled by a human operator (For example, an appropriately trained comedian)?
+Sarcoman    Megasaurus    RS Media    RS Media
+
+What is an egg-shaped digital robotic music player made by Sony, combining music functions with robotic dancing?
+Sony Rolly    Pleo    Sony Rolly    Genibo
+
+What is a robotic toy made by Erector/Meccano. It contains a USB webcam, microphone and speakers. Controlled by computer locally or over the internet, the owner can move the robot to various locations within range of the local router, take pictures and video, listen to surroundings with the on-board microphone and play sounds/music or various built-in recordings (Robot laugh, laser guns, etc.) through the speaker?
+Spykee    FlyTech Dragonfly    Roboreptile    Genibo
+
+What is a Linux wireless Tux mascot (210mm x 180mm x 140mm - with lowered wings) with a programmable interface, allowing it to announce events by its gestures and by ALSA driven sound?
+Tux Droid    Sony Rolly    Entertainment robot    Roboreptile
+
+What is produced by WowWee Alive, a division of WowWee Ltd. The animatronic Chimpanzee is the first in WowWee Alive's product line?
+WowWee Alive Chimpanzee    FemiSapien    Beer Launching Fridge    Sarcoman
+
+What is an American line of plush robotic hamster toys, created by Cepia LLC in 2009. They were a craze during the 2009 Christmas season holidays?
+Zhu Zhu Pets    FemiSapien    PaPeRo    Roboraptor

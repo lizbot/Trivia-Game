@@ -114,6 +114,8 @@
                         FontSize="40" 
                         Margin="40,20,20,20"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"
                         Click="AnswerAClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -134,6 +136,8 @@
                         FontSize="40" 
                         Margin="40,20,20,40"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"
                         Click="AnswerBClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -156,6 +160,8 @@
                         FontSize="40" 
                         Margin="40,20,20,20"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"                        
                         Click="AnswerCClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -175,6 +181,8 @@
                         FontSize="40" 
                         Margin="40,20,20,40"
                         Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"                        
                         Click="AnswerDClick">
                         <Button.Transitions>
                             <TransitionCollection>
