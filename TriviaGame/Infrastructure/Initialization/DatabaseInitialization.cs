@@ -14,6 +14,7 @@ using EndOfGameStatistics = Infrastructure.Model.EndOfGameStatistics;
 using OverallStatistics = Infrastructure.Model.OverallStatistics; 
 using System.Reflection;
 using Windows.Storage;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Initialization
 {
@@ -105,17 +106,27 @@ namespace Infrastructure.Initialization
             }
         }
 
-        private static void GenerateQuestionsAndAnswers()
+        private async static void GenerateQuestionsAndAnswers()
         {
             String questionName;
             Int32 categoryId;
             String rightAnswerName;
             List<String> wrongAnswerNames;
 
+            //StorageFile _File = new StorageFile[5];
+
+            //string[] _path = { @"Metro.Helpsers.Tests\MyFolder\Education.txt", @"Metro.Helpsers.Tests\MyFolder\Sports.txt",
+            //                 @"Metro.Helpsers.Tests\MyFolder\Geography.txt",@"Metro.Helpsers.Tests\MyFolder\Entertainment.txt",
+            //                    @"Metro.Helpsers.Tests\MyFolder\People.txt"};
+            //var _Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
+
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    _File[i] = await _Folder.GetFileAsync(_path[i]);
+
+            //}
             
-            string path = @"C:\Users\JorgeJ\Documents\GitHub\Trivia-Game\TriviaGame\bin\Americancomputerprogrammers_People.xml";
-
-
+          
 
             //Create the information to generate the questions and answers.
             questionName = "What is a theme park located in Anaheim, California near the city of Stanton. The park's slogan is \"The Little Theme Park that's BIG on Family Fun\"?";

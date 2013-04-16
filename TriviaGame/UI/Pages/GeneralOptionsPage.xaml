@@ -1,14 +1,15 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
-    x:Class="UI.Pages.GameSelectionPage"
+    x:Class="UI.Pages.GeneralOptionsPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:UI"
+    xmlns:local="using:UI.Pages"
     xmlns:common="using:UI.Common"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
 
 
     <!--
@@ -17,11 +18,6 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
-        <Grid.ChildrenTransitions>
-            <TransitionCollection>
-                <ContentThemeTransition/>
-            </TransitionCollection>
-        </Grid.ChildrenTransitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
@@ -36,46 +32,32 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
+
         
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>                
-            </Grid.ColumnDefinitions>
-            
-            <Button Content="Quickplay"
-                    Grid.Column="0"
-                    FontSize="80"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Click="QuickplayClick"
-                    Background="#937dd3"
-                    Margin="20,40,20,40"
-                    ToolTipService.ToolTip="Start a game with questions from all categories"/>
-
-            <Button Content="Select a&#x0a;Category"
-                    Grid.Column="1"
-                    FontSize="80"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Click="NewGameClick"
-                    Background="#bcd37b"
-                    Margin="20,40,20,40"
-                    ToolTipService.ToolTip="Go to the Category Selection Page"/>
-
-            <Button Content="Resume&#x0a;Last Game"
-                    Name="ResumeButton"
-                    Grid.Column="2"
-                    FontSize="80"
-                    HorizontalAlignment="Stretch"
-                    VerticalAlignment="Stretch"
-                    Click="ResumeGameClick"
-                    Background="#d3be7b"
-                    Margin="20,40,20,40"
-                    ToolTipService.ToolTip="Resume the Last Played Game"/>
-        </Grid>
-
+        <StackPanel Name="OverallStackPanel" Grid.Row="1" Orientation="Vertical">
+            <StackPanel Name="MusicStackPanel" Orientation="Horizontal" Margin="10,60,10,10">
+                <CheckBox Name="MusicCheckBox" Margin="40,40,40,40" Checked="MusicOn" Unchecked="MusicOff"/>
+                <TextBlock FontSize="60" VerticalAlignment="Center">
+                    Music
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Name="SoundEffectsStackPanel" Orientation="Horizontal" Margin="10,10,10,10">
+                <CheckBox Name="SoundEffectsCheckBox" Margin="40,40,40,40" Checked="SoundEffectsOn" Unchecked="SoundEffectsOff"/>
+                <TextBlock FontSize="60" VerticalAlignment="Center">
+                    Sound Effects
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->

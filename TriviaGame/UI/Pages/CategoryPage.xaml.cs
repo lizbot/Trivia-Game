@@ -70,7 +70,7 @@ namespace UI.Pages
                         Height = 130,
                         Tag = cat.CategoryId
                     };
-                switch (i)
+                switch (i % 5)
                 {
                     case (0):
                         b.Background = new SolidColorBrush(ColorsUse.ColorToUse("purpleishColor"));
@@ -132,6 +132,5 @@ namespace UI.Pages
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
-    
     }
 }
