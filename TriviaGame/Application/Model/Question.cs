@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Application.Domain;
 
 namespace Application.Model
 {
@@ -11,12 +12,17 @@ namespace Application.Model
 
         public Answer CorrectAnswer { get; set; }
 
-        public IEnumerable<Answer> WrongAnswers { get; set; }
-
         public Int32 TimesViewed { get; set; }
 
         public Int32 TimesCorrect { get; set; }
 
         public Int32 CategoryId { get; set; }
+
+        public IEnumerable<Answer> WrongAnswers { get; set; }
+
+        public void IncreaseTimesViewedAndOrTimesCorrect(IQuestionService questionService)
+        {
+            questionService.IncrementTimesViewedAndOrTimesCorrect(this);
+        }
     }
 }

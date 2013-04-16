@@ -17,8 +17,7 @@
                 
             </ResourceDictionary.MergedDictionaries>
 
-
-            <x:String x:Key="AppName">Trivia Game!</x:String>
+            <x:String x:Key="AppName">Diversity Trivia!</x:String>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

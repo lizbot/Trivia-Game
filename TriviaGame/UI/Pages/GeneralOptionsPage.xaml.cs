@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.Domain;
+using Application.Model;
+using Microsoft.Practices.ServiceLocation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,51 +14,47 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Application.Domain;
-using Application.Model;
-using Microsoft.Practices.ServiceLocation;
-using UI.Pages;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace UI
+namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class OptionsPage : UI.Common.LayoutAwarePage
+    public sealed partial class GeneralOptionsPage : UI.Common.LayoutAwarePage
     {
         private readonly IOptionsService _OptionsService;
+        private GeneralOptions GenOps;
 
-        public OptionsPage()
+        public GeneralOptionsPage()
         {
-            this.InitializeComponent();
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
 
-            //This is for testing so we can make sure that if the user changes the options, they are going to be
-            //updated in the general and custom options tables
+            this.InitializeComponent();
+        }
 
-            //This was can be use to pass the new options from the UI to the db in order to update the changes and save them.
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //GenOps = _OptionsService.GetGeneralOptions();
 
-            //var opsGen = new GeneralOptions
-            //{
-            //    GeneralOptionsId = 2,
-            //    IsMusicOn = true,
-            //    IsSoundEffectsOn = true,
-            //};
+            //if (GenOps.IsMusicOn)
+            //    MusicCheckBox.Checked += MusicOn;
+            //else
+            //    MusicCheckBox.Checked += MusicOff;
 
-            //_OptionsService.UpdateGeneralOptions(opsGen);
+            //if (GenOps.IsSoundEffectsOn)
+            //    SoundEffectsCheckBox.Checked += SoundEffectsOn;
+            //else
+            //    SoundEffectsCheckBox.Checked += SoundEffectsOff;
+            base.OnNavigatedTo(e);
+        }
 
-            //var opsCust = new CustomOptions
-            //{
-            //    CustomOptionId = 2,
-            //    IsTimerOn = true,
-            //    NumberOfAnswersDisplayed = 2,
-            //    NumberOfQuestionsDesired = 15,
-            //};
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            //_OptionsService.UpdateGeneralOptions(GenOps);
 
-            //_OptionsService.UpdateCustomOptions(opsCust); 
-
+            base.OnNavigatedFrom(e);
         }
 
         /// <summary>
@@ -81,13 +80,24 @@ namespace UI
         {
         }
 
-        private void GeneralOptionsClick(object sender, RoutedEventArgs e)
+        private void SoundEffectsOn(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(GeneralOptionsPage));
+            //GenOps.IsSoundEffectsOn = true;
         }
-        private void CustomOptionsClick(object sender, RoutedEventArgs e)
+
+        private void SoundEffectsOff(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CustomOptionsPage));
+            //GenOps.IsSoundEffectsOn = false;
+        }
+
+        private void MusicOn(object sender, RoutedEventArgs e)
+        {
+            //GenOps.IsMusicOn = true;
+        }
+
+        private void MusicOff(object sender, RoutedEventArgs e)
+        {
+            //GenOps.IsMusicOn = false;
         }
     }
 }

@@ -19,6 +19,7 @@
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="140"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
@@ -32,17 +33,49 @@
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
 
-        <StackPanel Grid.Row="1">
             <TextBlock Text="Options"
                        FontSize="90" 
-                       Margin="0,30,0,50"
-                       HorizontalAlignment="Center"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
+                       Margin="0,0,0,0"
+                       HorizontalAlignment="Center"
+                       Grid.Row="1"/>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="GeneralOptionsButton"
+                        Grid.Column="0"
+                        Content="General Options"
+                        FontSize="60"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="50,40,50,40"
+                        Click="GeneralOptionsClick"/>
+
+            <Button Name="CustomOptionsButton"
+                        Grid.Column="1"
+                        Content="Custom Options"
+                        FontSize="60"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
+                        Margin="50,40,50,40"
+                        Click="CustomOptionsClick"/>
+
+
+        </Grid>
+
+
+
+
+
+
+            <!--<Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="0">
+                </Grid.ColumnDefinitions>-->
+                <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center" Grid.Column="0">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock FontSize="45" VerticalAlignment="Center" Margin="20,20,20,20">
                         Option 1:
@@ -69,9 +102,8 @@
                         </TextBlock>
                         <CheckBox ToolTipService.ToolTip="Click to Enable Option 4"/>
                     </StackPanel>
-                </StackPanel>
-            </Grid>
-        </StackPanel>
+                </StackPanel>-->
+            
 
         <VisualStateManager.VisualStateGroups>
 

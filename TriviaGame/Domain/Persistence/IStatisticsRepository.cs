@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace Domain.Persistence
@@ -13,11 +9,12 @@ namespace Domain.Persistence
 
         Int32 GetOverallQuestionsAttempted();
 
-        Int32 GetGameCorrectAnswers();
+        Int32 GetCurrentGameCorrectAnswers();
 
-        Int32 GetGameQuestionsAttempted();
+        Int32 GetCurrentGameQuestionsAttempted();
         
-        Int32 GetGameLongestStreak();
+        Int32 GetCurrentGameLongestStreak();
 
+        void AnalyzeEndOfGameData();
     }
 }

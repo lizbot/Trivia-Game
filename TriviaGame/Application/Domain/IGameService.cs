@@ -1,13 +1,8 @@
-
 ﻿using Application.Model;
 using System;
-using System.Collections.Generic;
-
-
 
 namespace Application.Domain
 {
-
     public interface IGameService
     {
         Boolean IsGameInProgress();
@@ -15,5 +10,7 @@ namespace Application.Domain
         void DeleteGameInProgressIfExists();
 
         GameSaved GetGameInProgress();
+
+        void MarkCorrectOrIncorrect(Int32 questionId, Boolean isCorrect);
     }
 }

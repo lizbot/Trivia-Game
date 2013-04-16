@@ -25,31 +25,32 @@
         </Grid.ColumnDefinitions>
 
 
+        <TextBlock Text="Diversity Trivia"
+                   FontStyle="Italic"
 
-        <TextBlock Text="Trivia Game!" 
                    Grid.Column="1" 
                    FontSize="180" 
                    HorizontalAlignment="Center" 
                    Margin="0,30,0,0"/>
         
-         <!--Play sound effect -->
-        <StackPanel>
-            <MediaElement x:Name="sound" Source="Assets/sound/mission2.wav" AutoPlay="True"/>
-        </StackPanel>
-
 
         <StackPanel Grid.Row="1" 
                     Grid.Column="1" 
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center">
-            
+          
+            <!--Play sound effect 
+            <MediaElement x:Name="sound" Source="Assets/sound/mission2.wav" AutoPlay="True"/>
+             -->
+
+
             <Button Content="Start Game"
                     HorizontalAlignment="Stretch"
                     FontSize="80"
                     Margin="60,25,60,25"
                     Click="StartGameClick"
                     ToolTipService.ToolTip="Opens the Game Selection Page"
-                    Background="Goldenrod"/>
+                    Background="#7cd3be"/>
 
             <Button Content="Options" 
                     HorizontalAlignment="Stretch" 
@@ -57,7 +58,7 @@
                     Margin="60,25,60,25"
                     Click="OptionsClick"
                     ToolTipService.ToolTip="Opens the Options Page"
-                    Background="Goldenrod"/>
+                    Background="#bcd37b"/>
 
             <Button Content="Statistics" 
                     HorizontalAlignment="Stretch" 
@@ -65,7 +66,7 @@
                     Margin="60,25,60,25"
                     Click="StatisticsClick"
                     ToolTipService.ToolTip="Opens the Statistics Page"
-                    Background="Goldenrod"/> 
+                    Background="#d37b91"/> 
         </StackPanel>
     </Grid>
 </Page>

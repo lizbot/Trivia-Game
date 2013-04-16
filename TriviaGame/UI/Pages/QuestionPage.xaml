@@ -18,16 +18,19 @@
                 <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerCText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
                 <DoubleAnimation From="0" To="1" Storyboard.TargetName="AnswerDText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
 
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="AButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="BButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="CButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
-                <DoubleAnimation From="0" To="1" Storyboard.TargetName="DButton" Storyboard.TargetProperty="Opacity" Duration="0:0:0.10" />
             </Storyboard>
             <Storyboard x:Name="QuestionFadeOutStoryboard">
-                <DoubleAnimation From="1" To="0" Storyboard.TargetName="QuestionText" Storyboard.TargetProperty="Opacity" Duration="0:0:0.6" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="QuestionText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+            </Storyboard>
+            <Storyboard x:Name="AnswerFadeOutStoryboard">
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerAText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerBText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerCText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
+                <DoubleAnimation From="1" To="0" Storyboard.TargetName="AnswerDText" Storyboard.TargetProperty="Opacity" Duration="0:0:1" />
             </Storyboard>
         </Grid.Resources>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -35,40 +38,66 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Name="QuestionText"
-                   FontSize="50" 
-                   TextWrapping="Wrap" 
-                   Margin="20,40,20,20"/>
+        <TextBlock Name="QuestionNumTextBlock"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top"
+                   FontSize="30"
+                   Margin="0,10,10,0"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="QuestionText"
+                       Grid.Column="0"
+                       FontSize="50" 
+                       TextWrapping="Wrap"
+                       Margin="10,5,10,0"/>
+            <TextBlock Name="Timer"
+                       Grid.Column="1"
+                       FontSize="30"
+                       Text="{Binding timer.EllappsedMilliseconds, Mode=OneWay}"/>
+        </Grid>
+        
 
-        <Popup x:Name="ResultsPopup" 
+        
+            <Popup x:Name="ResultsPopup" 
                Grid.Row="1"
-               IsLightDismissEnabled="False"
-               HorizontalAlignment="Left" 
-               VerticalAlignment="Top" 
-               Height="200" Width="400">
+               IsLightDismissEnabled="False" 
+               Margin="280,99,450,300">
+                
+
             <Popup.ChildTransitions>
                 <TransitionCollection>
                     <PaneThemeTransition/>
                 </TransitionCollection>
             </Popup.ChildTransitions>
-            <Border BorderBrush="Firebrick" BorderThickness="10" Background="Black">
+            <Grid Background="#bcd37b">
                 <StackPanel Name="StackPanel">
                     <TextBlock  Name="AnswerTextBlock"
                                 Text="LOL"
-                                FontSize="40"
+                                Foreground="Black"
+                                FontStyle="Italic"
+                                FontSize="30"
                                 TextWrapping="Wrap"
                                 HorizontalAlignment="Center"
                                 VerticalAlignment="Center"/>
-                    <Button Content="Close" 
-                            HorizontalAlignment="Center" 
-                            FontSize="30" 
-                            Click="ResultsPopupCloseClick" 
+                    <Button Content="Close"
+                            FontStyle="Italic"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Bottom"
+                            FontSize="28"
+                            Foreground="Black"
+                            BorderBrush="Black"
+                            Click="ResultsPopupCloseClick"
+                            Background="#d37b91"
                             ToolTipService.ToolTip="Return to the Game Selection Menu"/>
                 </StackPanel>
-            </Border>
+            </Grid>
         </Popup>
 
-        <Grid Grid.Row="1" Name="ChildGrid" Margin="10,10,-10,-10">
+        <Grid Grid.Row="2" Name="ChildGrid">
+
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -78,19 +107,22 @@
             </Grid.RowDefinitions>
             
             <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom">
-                <StackPanel Orientation="Horizontal">
+                <StackPanel Name="StackPanelA" Orientation="Horizontal">
                     <Button Name="AButton"
                         Content="A"
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,20"
+                        Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"
                         Click="AnswerAClick">
                         <Button.Transitions>
                             <TransitionCollection>
                                 <EntranceThemeTransition/>
                             </TransitionCollection>
                         </Button.Transitions>
-                        </Button>
+                       </Button>
                     <TextBlock Name="AnswerAText" 
                            Text="LOL"
                            VerticalAlignment="Center" 
@@ -103,6 +135,9 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,40"
+                        Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"
                         Click="AnswerBClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -124,6 +159,9 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,20"
+                        Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"                        
                         Click="AnswerCClick">
                         <Button.Transitions>
                             <TransitionCollection>
@@ -142,6 +180,9 @@
                         Width="120"
                         FontSize="40" 
                         Margin="40,20,20,40"
+                        Background="#d3be7b"
+                        Foreground="Black"
+                        BorderBrush="Black"                        
                         Click="AnswerDClick">
                         <Button.Transitions>
                             <TransitionCollection>

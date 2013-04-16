@@ -11,7 +11,9 @@ namespace Domain.Persistence
         Boolean IsGameInProgress();
 
         void DeleteGameInProgressIfExists();
-        
+
+        void MarkCorrectOrIncorrect(Int32 questionId, Boolean isCorrect);
+
         void StoreQuestionToGameInProgress(Int32 questionId, Int32 answerId);
     }
 }

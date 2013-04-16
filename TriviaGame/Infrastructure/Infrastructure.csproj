@@ -102,12 +102,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Initialization\DatabaseInitialization.cs" />
+    <Compile Include="Initialization\FileStream.cs" />
     <Compile Include="Initialization\PersistenceConfiguration.cs" />
     <Compile Include="Model\Answer.cs" />
     <Compile Include="Model\Category.cs" />
     <Compile Include="Model\GeneralOptions.cs" />
     <Compile Include="Model\CustomOptions.cs" />
-    <Compile Include="Model\Statistics.cs" />
+    <Compile Include="Model\EndOfGameStatistics.cs" />
+    <Compile Include="Model\OverallStatistics.cs" />
     <Compile Include="Model\Questions.cs" />
     <Compile Include="Model\GameSaved.cs" />
     <Compile Include="Persistence\GameRepository.cs" />
@@ -145,13 +147,30 @@
       <HintPath>..\packages\Unity.3.0.1208-Preview\lib\WinRT45\Microsoft.Practices.Unity.WinRT.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup Condition="'$(Platform)' == 'x86' Or '$(Platform)' == 'x64' Or '$(Platform)' == 'ARM'">
+  <ItemGroup>
     <SDKReference Include="Microsoft.VCLibs, Version=11.0">
       <Name>Microsoft Visual C++ Runtime Package</Name>
     </SDKReference>
     <SDKReference Include="SQLite.WinRT, Version=3.7.16.1">
       <Name>SQLite for Windows Runtime</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QA_TextFiles\Education.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\Entertainment.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\Geography.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\People.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\Sports.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

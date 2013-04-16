@@ -38,43 +38,42 @@
         </Grid>
         
         <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>                
+            </Grid.ColumnDefinitions>
             
             <Button Content="Quickplay"
+                    Grid.Column="0"
                     FontSize="80"
-                    Margin="30"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="QuickplayClick"
-                    Background="Purple"
+                    Background="#937dd3"
+                    Margin="20,40,20,40"
                     ToolTipService.ToolTip="Start a game with questions from all categories"/>
-            
-            <Button Content="Select a Category"
-                    Grid.Row="1"
+
+            <Button Content="Select a&#x0a;Category"
+                    Grid.Column="1"
                     FontSize="80"
-                    Margin="30"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="NewGameClick"
-                    Background="Purple"
+                    Background="#bcd37b"
+                    Margin="20,40,20,40"
                     ToolTipService.ToolTip="Go to the Category Selection Page"/>
-            
-            <Button Content="Resume Last Game"
+
+            <Button Content="Resume&#x0a;Last Game"
                     Name="ResumeButton"
-                    Grid.Row="2"
+                    Grid.Column="2"
                     FontSize="80"
-                    Margin="30"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="ResumeGameClick"
-                    Background="Purple"
+                    Background="#d3be7b"
+                    Margin="20,40,20,40"
                     ToolTipService.ToolTip="Resume the Last Played Game"/>
-            
-            
         </Grid>
 
         <VisualStateManager.VisualStateGroups>
