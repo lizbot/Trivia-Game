@@ -14,14 +14,6 @@ using Windows.UI.Xaml.Media.Animation;
 
 
 
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-#if !WINDOWS_PHONE
-using Windows.UI.Xaml.Data;
-#else
-using System.Windows.Data;
-#endif
 
 namespace UI.Pages
 {
@@ -43,6 +35,7 @@ namespace UI.Pages
             InitializeComponent();
         }
 
+
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
         /// </summary>
@@ -50,7 +43,7 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-
+      
             var categories = _CategoryService.GetCategories();         
 
             var selector = 0;
