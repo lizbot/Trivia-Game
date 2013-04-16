@@ -3,56 +3,48 @@ using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class CustomOptionsPage : UI.Common.LayoutAwarePage
+    public sealed partial class CustomOptionsPage
     {
         private readonly IOptionsService _OptionsService;
 
-        private CustomOptions CusOps;
+        private CustomOptions _CusOps;
 
         public CustomOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
             
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //CusOps = _OptionsService.GetCustomOptions();
+            _CusOps = _OptionsService.GetCustomOptions();
 
-            //QuestionNumSlider.Value = CusOps.NumberOfQuestionsDesired;
-            //AnswerNumSlider.Value = CusOps.NumberOfAnswersDisplayed;
+            QuestionNumSlider.Value = _CusOps.NumberOfQuestionsDesired;
+            AnswerNumSlider.Value = _CusOps.NumberOfAnswersDisplayed;
 
-            //if (CusOps.IsTimerOn)
-            //    TimeCheckBox.Checked += TimerOn;
-            //else
-            //    TimeCheckBox.Checked += TimerOff;
+            if (_CusOps.IsTimerOn)
+                TimeCheckBox.Checked += TimerOn;
+            else
+                TimeCheckBox.Checked += TimerOff;
 
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //_OptionsService.UpdateCustomOptions(CusOps);
+            _OptionsService.UpdateCustomOptions(_CusOps);
 
             base.OnNavigatedFrom(e);
         }
@@ -82,22 +74,22 @@ namespace UI.Pages
 
         private void TimerOn(object sender, RoutedEventArgs e)
         {
-            //CusOps.IsTimerOn = true;
+            _CusOps.IsTimerOn = true;
         }
 
         private void TimerOff(object sender, RoutedEventArgs e)
         {
-            //CusOps.IsTimerOn = false;
+            _CusOps.IsTimerOn = false;
         }
 
         private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            //CusOps.NumberOfAnswersDisplayed = (int)AnswerNumSlider.Value;
+            _CusOps.NumberOfAnswersDisplayed = (Int32)AnswerNumSlider.Value;
         }
 
         private void QuestionNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            //CusOps.NumberOfQuestionsDesired = (int)QuestionNumSlider.Value;
+            _CusOps.NumberOfQuestionsDesired = (Int32)QuestionNumSlider.Value;
         }
     }
 }

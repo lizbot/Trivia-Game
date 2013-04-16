@@ -39,7 +39,7 @@ namespace Infrastructure.Initialization
                     // db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
-                 
+
             }
 
             // Generate base scripts for initializing values in the database.

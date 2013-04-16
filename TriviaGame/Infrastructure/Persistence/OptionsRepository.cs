@@ -11,37 +11,39 @@ namespace Infrastructure.Persistence
     {
         public CustomOptions GetCustomOptions()
         {
-             var returnedOptions = new CustomOptions();
+            var returnedOptions = new CustomOptions();
 
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                var options = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 2);
-                if (options.CustomOptionId == 2)
+                var optionsRow = db.Table<Model.CustomOptions>().Where(opts => opts.CustomOptionId == 2).Count();
+
+                if (optionsRow == 1)
                 {
+                    var genOpts = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 2);
                     returnedOptions = new CustomOptions
-                        {
-                            CategoryId = (Int32) options.CategoryId,
-                            CustomOptionId = options.CustomOptionId,
-                            IsTimerOn = options.IsTimerOn,
-                            NumberOfAnswersDisplayed = options.NumberOfAnswersDisplayed,
-                            NumberOfQuestionsDesired = options.NumberOfQuestionsDesired
-                        };
+                    {
+                        CategoryId = (Int32) genOpts.CategoryId,
+                        CustomOptionId = genOpts.CustomOptionId,
+                        IsTimerOn = genOpts.IsTimerOn,
+                        NumberOfAnswersDisplayed = genOpts.NumberOfAnswersDisplayed,
+                        NumberOfQuestionsDesired = genOpts.NumberOfQuestionsDesired
+                    };
 
                     return returnedOptions;
                 }
 
-                options = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 1);
-
-                if (options.CustomOptionId == 1)
+                optionsRow = db.Table<CustomOptions>().Where(opts => opts.CustomOptionId == 1).Count();
+                if (optionsRow == 1)
                 {
+                    var genOpts = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 1);
                     returnedOptions = new CustomOptions
-                        {
-                            CategoryId = (Int32) options.CategoryId,
-                            CustomOptionId = options.CustomOptionId,
-                            IsTimerOn = options.IsTimerOn,
-                            NumberOfAnswersDisplayed = options.NumberOfAnswersDisplayed,
-                            NumberOfQuestionsDesired = options.NumberOfQuestionsDesired
-                        };
+                    {
+                        CategoryId = (Int32)genOpts.CategoryId,
+                        CustomOptionId = genOpts.CustomOptionId,
+                        IsTimerOn = genOpts.IsTimerOn,
+                        NumberOfAnswersDisplayed = genOpts.NumberOfAnswersDisplayed,
+                        NumberOfQuestionsDesired = genOpts.NumberOfQuestionsDesired
+                    };
 
                     return returnedOptions;
                 }
@@ -56,27 +58,30 @@ namespace Infrastructure.Persistence
 
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                var options = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 2);
-                if (options.GeneralOptionId == 2)
+                var optionsRow = db.Table<Model.GeneralOptions>().Where(opts => opts.GeneralOptionId == 2).Count();
+
+                if (optionsRow == 1)
                 {
+                    var genOpts = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 2);
                     returnedOptions = new GeneralOptions
                         {
-                            GeneralOptionsId = options.GeneralOptionId,
-                            IsMusicOn = options.IsMusicOn,
-                            IsSoundEffectsOn = options.IsSoundEffectsOn
+                            GeneralOptionsId = genOpts.GeneralOptionId,
+                            IsMusicOn = genOpts.IsMusicOn,
+                            IsSoundEffectsOn = genOpts.IsSoundEffectsOn
                         };
 
                     return returnedOptions;
                 }
                 
-                options = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 1);
-                if (options.GeneralOptionId == 1)
+                optionsRow = db.Table<Model.GeneralOptions>().Where(opts => opts.GeneralOptionId == 1).Count();
+                if (optionsRow == 1)
                 {
+                    var genOpts = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 1);
                     returnedOptions = new GeneralOptions
                         {
-                            GeneralOptionsId = options.GeneralOptionId,
-                            IsMusicOn = options.IsMusicOn,
-                            IsSoundEffectsOn = options.IsSoundEffectsOn
+                            GeneralOptionsId = genOpts.GeneralOptionId,
+                            IsMusicOn = genOpts.IsMusicOn,
+                            IsSoundEffectsOn = genOpts.IsSoundEffectsOn
                         };
 
                     return returnedOptions;

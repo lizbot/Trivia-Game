@@ -3,56 +3,50 @@ using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class GeneralOptionsPage : UI.Common.LayoutAwarePage
+    public sealed partial class GeneralOptionsPage
     {
         private readonly IOptionsService _OptionsService;
-        private GeneralOptions GenOps;
+        private GeneralOptions _GenOps;
 
         public GeneralOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //GenOps = _OptionsService.GetGeneralOptions();
+            _GenOps = _OptionsService.GetGeneralOptions();
 
-            //if (GenOps.IsMusicOn)
-            //    MusicCheckBox.Checked += MusicOn;
-            //else
-            //    MusicCheckBox.Checked += MusicOff;
+            if (_GenOps.IsMusicOn)
+            {
+                MusicCheckBox.Click += MusicOn;
+                MusicCheckBox.Checked += MusicOn;
+            }
 
-            //if (GenOps.IsSoundEffectsOn)
-            //    SoundEffectsCheckBox.Checked += SoundEffectsOn;
-            //else
-            //    SoundEffectsCheckBox.Checked += SoundEffectsOff;
+            if (_GenOps.IsSoundEffectsOn)
+            {
+                SoundEffectsCheckBox.Click += SoundEffectsOn;
+                SoundEffectsCheckBox.Checked += SoundEffectsOn;
+            }
+
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //_OptionsService.UpdateGeneralOptions(GenOps);
+            _OptionsService.UpdateGeneralOptions(_GenOps);
 
             base.OnNavigatedFrom(e);
         }
@@ -82,22 +76,12 @@ namespace UI.Pages
 
         private void SoundEffectsOn(object sender, RoutedEventArgs e)
         {
-            //GenOps.IsSoundEffectsOn = true;
+            _GenOps.IsSoundEffectsOn = true;
         }
-
-        private void SoundEffectsOff(object sender, RoutedEventArgs e)
-        {
-            //GenOps.IsSoundEffectsOn = false;
-        }
-
+        
         private void MusicOn(object sender, RoutedEventArgs e)
         {
-            //GenOps.IsMusicOn = true;
-        }
-
-        private void MusicOff(object sender, RoutedEventArgs e)
-        {
-            //GenOps.IsMusicOn = false;
+            _GenOps.IsMusicOn = true;
         }
     }
 }
