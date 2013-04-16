@@ -107,21 +107,19 @@ namespace Infrastructure.Initialization
             String rightAnswerName;
             List<String> wrongAnswerNames;
 
-            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
-            string path = localFolder.Path.ToString();
-            int index = path.IndexOf("AppData");
-            path = path.Remove(index);
-            path += @"Documents\GitHub\Trivia-Game\TriviaGame\bin\Question_Answers_Files\";
+            //StorageFile _File = new StorageFile[5];
 
-            string path_Education = path + "Education.xml";
-            string path_Sports = path + "Sports.xml";
-            string path_Geography = path + "Geography.xml";
-            string path_Entertainment = path + "Entertainment.xml";
-            string path_People = path + "People.xml";
+            //string[] _path = { @"Metro.Helpsers.Tests\MyFolder\Education.txt", @"Metro.Helpsers.Tests\MyFolder\Sports.txt",
+            //                 @"Metro.Helpsers.Tests\MyFolder\Geography.txt",@"Metro.Helpsers.Tests\MyFolder\Entertainment.txt",
+            //                    @"Metro.Helpsers.Tests\MyFolder\People.txt"};
+            //var _Folder = Windows.ApplicationModel.Package.Current.InstalledLocation;
 
-            StorageFile sampleFile = await localFolder.GetFileAsync(path_Education);
-            // Data is contained in timestamp
-            var timestamp = FileIO.ReadTextAsync(sampleFile);
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    _File[i] = await _Folder.GetFileAsync(_path[i]);
+
+            //}
+            
           
 
             //Create the information to generate the questions and answers.
