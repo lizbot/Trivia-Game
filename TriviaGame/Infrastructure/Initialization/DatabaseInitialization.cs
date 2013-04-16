@@ -9,6 +9,8 @@ using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
 using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
+using EndOfGameStatistics = Infrastructure.Model.EndOfGameStatistics;
+using OverallStatistics = Infrastructure.Model.OverallStatistics; 
 
 namespace Infrastructure.Initialization
 {
@@ -30,8 +32,8 @@ namespace Infrastructure.Initialization
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();
                     db.CreateTable<GeneralOptions>();
-                    // db.CreateTable<EndOfGameStatistics>();
-                    // db.CreateTable<OverallStatistics>();
+                    db.CreateTable<EndOfGameStatistics>();
+                    db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
                  
