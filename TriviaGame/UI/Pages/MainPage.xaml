@@ -24,18 +24,26 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
+
         <TextBlock Text="Diversity Trivia"
                    FontStyle="Italic"
+
                    Grid.Column="1" 
                    FontSize="180" 
                    HorizontalAlignment="Center" 
                    Margin="0,30,0,0"/>
+        
 
         <StackPanel Grid.Row="1" 
                     Grid.Column="1" 
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Center">
-            
+          
+            <!--Play sound effect 
+            <MediaElement x:Name="sound" Source="Assets/sound/mission2.wav" AutoPlay="True"/>
+             -->
+
+
             <Button Content="Start Game"
                     HorizontalAlignment="Stretch"
                     FontSize="80"

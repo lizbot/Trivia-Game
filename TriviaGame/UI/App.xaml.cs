@@ -27,7 +27,7 @@ namespace UI
         /// </summary>
         public App()
         {
-            
+
             InitializeComponent();
             Suspending += OnSuspending;
 
@@ -56,6 +56,7 @@ namespace UI
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+
             var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
