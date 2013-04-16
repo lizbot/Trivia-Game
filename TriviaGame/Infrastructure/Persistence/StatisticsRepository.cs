@@ -49,28 +49,14 @@ namespace Infrastructure.Persistence
         {
             using(var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                db.BeginTransaction();
+                db.BeginTransaction();                
 
-                //TODO:(Laura) analyze data.
-                // From GameSaved table, we need total right, total wrong, and longest streak from the AnsweredCorrectly column.
-                // Update end of game statistics into StatisticsId = 2 row of Statistics database if exists, otherwise Insert.
-                
-                /*
-                 * 1. Analyze the data in the GameSaved 'AnsweredCorrectly' column.
-                 *      a. Count how many were correct and store it in the 'TotalCorrectAnswers' column.
-                 */
                 var correctlyAnsweredCol = (from AnsweredCorrectly in db.Table<Model.GameSaved>()
                                             select AnsweredCorrectly).Where(q => q.AnsweredCorrectly == true).Count();
 
-
-                 /*     b.  Count how many were wrong and store it in the 'TotalWrongAnswers' column.
-                  * */
                 var incorrectlyAnswerCol = (from AnsweredCorrectly in db.Table<Model.GameSaved>()
                                             select AnsweredCorrectly).Where(q => q.AnsweredCorrectly == false).Count();
 
-
-                 /*     c. Write algorithm to find the longest streak of correct answers.
-                  */
                 var getrows = db.Table<Model.GameSaved>();
                 var streak = 0;
                 var longestStreak=0;
@@ -91,8 +77,6 @@ namespace Infrastructure.Persistence
 
                 var totalStreak = longestStreak;
 
-                /*      d. Put into EndOfGameStatistics object to use for other tasks. (endOfGameStats)
-                 */
                 var insertStatistics = new EndOfGameStatistics 
                 {
                     LongestStreak = totalStreak,
@@ -100,25 +84,34 @@ namespace Infrastructure.Persistence
                     TotalAnsweredIncorrectly = incorrectlyAnswerCol,
                 };  
 
-                 /* 2. Insert this object into the EndOfGameStatistics table.
-                  */
-                db.Insert(insertStatistics);
 
-                 /* 3. Get the object of the row in the overall statistics table. (currentStats)
-                  */
-                var objectFromOverAllStatistics = db.Table<OverallStatistics>();
+                db.Update(insertStatistics);
 
- 
-                 /* 4. Update the row in the OverallStatistics table:
-                 *      a.  var updatedStats = new OverallStatistics
-                 *              {
-                 *                  StatisticsId = 1,
-                 *                  StreakOfCorrectAnswers = max(currentLongestStreak, newLongestStreak),
-                 *                  TotalCorrectAnswers = endOfGameStats.TotalCorrectAnswers + currentStats.TotalCorrectAnswers,
-                 *                  TotalWrongAnswers = endOfGameStats.TotalWrongAnswers + currentStats.TotalWrongAnswers
-                 *              }
-                 * */
+                var correctAnswersFromOverall = db.Get<OverallStatistics>(correct => correct.StatisticsId == 1).TotalCorrectAnswers;
+                var totalQuestionsFromOverall = db.Get<OverallStatistics>(total => total.StatisticsId == 1).TotalQuestionsAttempted;
+                var d = db.Get<OverallStatistics>(stat => stat.StatisticsId == 1);
+                var newLongestStreak = 0;
+               
+                if (insertStatistics.LongestStreak > d.LongestOverallStreak)
+                {
+                    newLongestStreak = insertStatistics.LongestStreak;
+                }
+                else
+                {
+                    newLongestStreak = d.LongestOverallStreak;
+                }
 
+                var updatedStats = new OverallStatistics
+                               {
+                                   StatisticsId = 1,
+                                   LongestOverallStreak = newLongestStreak,
+                                   TotalCorrectAnswers = insertStatistics.TotalAnsweredCorrectly + correctAnswersFromOverall,
+                                   TotalQuestionsAttempted = insertStatistics.TotalAnsweredCorrectly + 
+                                                             insertStatistics.TotalAnsweredIncorrectly +
+                                                             totalQuestionsFromOverall,
+                               };
+
+                db.Update(updatedStats);
                 db.Commit();
             }
         }

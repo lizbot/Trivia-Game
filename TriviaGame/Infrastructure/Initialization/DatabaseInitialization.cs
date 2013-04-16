@@ -4,6 +4,7 @@ using SQLite;
 using Infrastructure.Model;
 using System.Linq;
 using Application.Model;
+using System.IO;
 using Answer = Infrastructure.Model.Answer;
 using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
@@ -11,6 +12,8 @@ using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
 using EndOfGameStatistics = Infrastructure.Model.EndOfGameStatistics;
 using OverallStatistics = Infrastructure.Model.OverallStatistics; 
+using System.Reflection;
+using Windows.Storage;
 
 namespace Infrastructure.Initialization
 {
@@ -49,6 +52,7 @@ namespace Infrastructure.Initialization
                 GenerateQuestionsAndAnswers();
                 GenerateGeneralOptions();
                 GenerateCustomOptions();
+                DefaultOverallStatistics();
            }
 
         }
@@ -73,9 +77,13 @@ namespace Infrastructure.Initialization
                 var resultFromCustomOptions = (from customQuestionId in db.Table<CustomOptions>()
                                                select customQuestionId).Count(q => q.CustomOptionId == defaultId);
 
+                var resultFromDefault = (from StatisticsId in db.Table<OverallStatistics>()
+                                         select StatisticsId).Count(q => q.StatisticsId == defaultId); 
+
                 return (resultFromQuestions != 0) 
                     && (resultFromGeneralOptions != 0 ) 
-                    && (resultFromCustomOptions != 0);
+                    && (resultFromCustomOptions != 0)
+                    && (resultFromDefault != 0);
             }
 
         }
@@ -103,6 +111,11 @@ namespace Infrastructure.Initialization
             Int32 categoryId;
             String rightAnswerName;
             List<String> wrongAnswerNames;
+
+            
+            string path = @"C:\Users\JorgeJ\Documents\GitHub\Trivia-Game\TriviaGame\bin\Americancomputerprogrammers_People.xml";
+
+
 
             //Create the information to generate the questions and answers.
             questionName = "What is a theme park located in Anaheim, California near the city of Stanton. The park's slogan is \"The Little Theme Park that's BIG on Family Fun\"?";
@@ -435,6 +448,24 @@ namespace Infrastructure.Initialization
                 };
 
                 db.Insert(option);
+                db.Commit();
+            }
+        }
+
+        private static void DefaultOverallStatistics()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var defaultOverallOption = new Model.OverallStatistics
+                {
+                    TotalCorrectAnswers = 0,
+                    TotalQuestionsAttempted = 0,
+                    LongestOverallStreak = 0,                   
+                };
+
+                db.Insert(defaultOverallOption);
                 db.Commit();
             }
         }
