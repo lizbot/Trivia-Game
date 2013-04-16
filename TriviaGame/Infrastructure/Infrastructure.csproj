@@ -102,6 +102,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Initialization\DatabaseInitialization.cs" />
+    <Compile Include="Initialization\FileStream.cs" />
     <Compile Include="Initialization\PersistenceConfiguration.cs" />
     <Compile Include="Model\Answer.cs" />
     <Compile Include="Model\Category.cs" />
@@ -153,6 +154,23 @@
     <SDKReference Include="SQLite.WinRT, Version=3.7.16.1">
       <Name>SQLite for Windows Runtime</Name>
     </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QA_TextFiles\Education.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\Entertainment.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\Geography.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\People.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="QA_TextFiles\Sports.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

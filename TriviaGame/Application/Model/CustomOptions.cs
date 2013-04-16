@@ -6,7 +6,7 @@ namespace Application.Model
     {
         public Int32 CustomOptionId { get; set; }
 
-        private Int32 _NumberOfQuestionsDesired = 20;
+        private Int32 _NumberOfQuestionsDesired = 15;
 
         public Boolean IsTimerOn { set; get; }
 

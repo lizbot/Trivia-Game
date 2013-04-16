@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.Domain;
+using Application.Model;
+using Microsoft.Practices.ServiceLocation;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,51 +14,47 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using Application.Domain;
-using Application.Model;
-using Microsoft.Practices.ServiceLocation;
-using UI.Pages;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace UI
+namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class OptionsPage : UI.Common.LayoutAwarePage
+    public sealed partial class CustomOptionsPage : UI.Common.LayoutAwarePage
     {
         private readonly IOptionsService _OptionsService;
 
-        public OptionsPage()
+        private CustomOptions CusOps;
+
+        public CustomOptionsPage()
         {
-            this.InitializeComponent();
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
+            
+            this.InitializeComponent();
+        }
 
-            //This is for testing so we can make sure that if the user changes the options, they are going to be
-            //updated in the general and custom options tables
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            //CusOps = _OptionsService.GetCustomOptions();
 
-            //This was can be use to pass the new options from the UI to the db in order to update the changes and save them.
+            //QuestionNumSlider.Value = CusOps.NumberOfQuestionsDesired;
+            //AnswerNumSlider.Value = CusOps.NumberOfAnswersDisplayed;
 
-            //var opsGen = new GeneralOptions
-            //{
-            //    GeneralOptionsId = 2,
-            //    IsMusicOn = true,
-            //    IsSoundEffectsOn = true,
-            //};
+            //if (CusOps.IsTimerOn)
+            //    TimeCheckBox.Checked += TimerOn;
+            //else
+            //    TimeCheckBox.Checked += TimerOff;
 
-            //_OptionsService.UpdateGeneralOptions(opsGen);
+            base.OnNavigatedTo(e);
+        }
 
-            //var opsCust = new CustomOptions
-            //{
-            //    CustomOptionId = 2,
-            //    IsTimerOn = true,
-            //    NumberOfAnswersDisplayed = 2,
-            //    NumberOfQuestionsDesired = 15,
-            //};
+        protected override void OnNavigatedFrom(NavigationEventArgs e)
+        {
+            //_OptionsService.UpdateCustomOptions(CusOps);
 
-            //_OptionsService.UpdateCustomOptions(opsCust); 
-
+            base.OnNavigatedFrom(e);
         }
 
         /// <summary>
@@ -81,13 +80,24 @@ namespace UI
         {
         }
 
-        private void GeneralOptionsClick(object sender, RoutedEventArgs e)
+        private void TimerOn(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(GeneralOptionsPage));
+            //CusOps.IsTimerOn = true;
         }
-        private void CustomOptionsClick(object sender, RoutedEventArgs e)
+
+        private void TimerOff(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(CustomOptionsPage));
+            //CusOps.IsTimerOn = false;
+        }
+
+        private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //CusOps.NumberOfAnswersDisplayed = (int)AnswerNumSlider.Value;
+        }
+
+        private void QuestionNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
+        {
+            //CusOps.NumberOfQuestionsDesired = (int)QuestionNumSlider.Value;
         }
     }
 }

@@ -12,6 +12,7 @@ using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
 using System.Reflection;
 using Windows.Storage;
+using System.Threading.Tasks;
 
 
 namespace Infrastructure.Initialization
@@ -99,17 +100,29 @@ namespace Infrastructure.Initialization
             }
         }
 
-        private static void GenerateQuestionsAndAnswers()
+        private async static void GenerateQuestionsAndAnswers()
         {
             String questionName;
             Int32 categoryId;
             String rightAnswerName;
             List<String> wrongAnswerNames;
 
-            
-            string path = @"C:\Users\JorgeJ\Documents\GitHub\Trivia-Game\TriviaGame\bin\Americancomputerprogrammers_People.xml";
+            var localFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            string path = localFolder.Path.ToString();
+            int index = path.IndexOf("AppData");
+            path = path.Remove(index);
+            path += @"Documents\GitHub\Trivia-Game\TriviaGame\bin\Question_Answers_Files\";
 
+            string path_Education = path + "Education.xml";
+            string path_Sports = path + "Sports.xml";
+            string path_Geography = path + "Geography.xml";
+            string path_Entertainment = path + "Entertainment.xml";
+            string path_People = path + "People.xml";
 
+            StorageFile sampleFile = await localFolder.GetFileAsync(path_Education);
+            // Data is contained in timestamp
+            var timestamp = FileIO.ReadTextAsync(sampleFile);
+          
 
             //Create the information to generate the questions and answers.
             questionName = "What is a theme park located in Anaheim, California near the city of Stanton. The park's slogan is \"The Little Theme Park that's BIG on Family Fun\"?";
