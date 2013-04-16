@@ -1,6 +1,5 @@
-﻿using Application.Model;
+﻿using System;
 using Domain.Persistence;
-using System;
 using SQLite;
 using Infrastructure.Initialization;
 using GeneralOptions = Application.Model.GeneralOptions;
@@ -12,12 +11,79 @@ namespace Infrastructure.Persistence
     {
         public CustomOptions GetCustomOptions()
         {
-            throw new System.NotImplementedException();
+             var returnedOptions = new CustomOptions();
+
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                var options = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 2);
+                if (options.CustomOptionId == 2)
+                {
+                    returnedOptions = new CustomOptions
+                        {
+                            CategoryId = (Int32) options.CategoryId,
+                            CustomOptionId = options.CustomOptionId,
+                            IsTimerOn = options.IsTimerOn,
+                            NumberOfAnswersDisplayed = options.NumberOfAnswersDisplayed,
+                            NumberOfQuestionsDesired = options.NumberOfQuestionsDesired
+                        };
+
+                    return returnedOptions;
+                }
+
+                options = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 1);
+
+                if (options.CustomOptionId == 1)
+                {
+                    returnedOptions = new CustomOptions
+                        {
+                            CategoryId = (Int32) options.CategoryId,
+                            CustomOptionId = options.CustomOptionId,
+                            IsTimerOn = options.IsTimerOn,
+                            NumberOfAnswersDisplayed = options.NumberOfAnswersDisplayed,
+                            NumberOfQuestionsDesired = options.NumberOfQuestionsDesired
+                        };
+
+                    return returnedOptions;
+                }
+            }
+
+            return returnedOptions;
         }
 
         public GeneralOptions GetGeneralOptions()
         {
-            throw new System.NotImplementedException();
+            var returnedOptions = new GeneralOptions();
+
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                var options = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 2);
+                if (options.GeneralOptionId == 2)
+                {
+                    returnedOptions = new GeneralOptions
+                        {
+                            GeneralOptionsId = options.GeneralOptionId,
+                            IsMusicOn = options.IsMusicOn,
+                            IsSoundEffectsOn = options.IsSoundEffectsOn
+                        };
+
+                    return returnedOptions;
+                }
+                
+                options = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 1);
+                if (options.GeneralOptionId == 1)
+                {
+                    returnedOptions = new GeneralOptions
+                        {
+                            GeneralOptionsId = options.GeneralOptionId,
+                            IsMusicOn = options.IsMusicOn,
+                            IsSoundEffectsOn = options.IsSoundEffectsOn
+                        };
+
+                    return returnedOptions;
+                }
+            }
+
+            return returnedOptions;
         }
 
         public void UpdateGeneralOptions(GeneralOptions options)

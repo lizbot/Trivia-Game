@@ -133,7 +133,7 @@ namespace UI.Pages
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
-            QuestionNumTextBlock.Text = "Q " + (_CurrentQuestionIndex+1) + " of " + _Questions.Count();
+            QuestionNumTextBlock.Text = "Question " + (_CurrentQuestionIndex+1) + " of " + _Questions.Count();
 
             var randomIndex = _Random.Next(0, 4);
             _QuestionAnsweredId = question.QuestionId;
