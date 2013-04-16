@@ -12,37 +12,93 @@ namespace Infrastructure.Persistence
         public Int32 GetOverallCorrectAnswers()
         {
             // Query and get the TotalCorrectAnswers from the OverallStatistics table.
-            throw new NotImplementedException();
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var totalCorrect = (from TotalCorrectAnswers in db.Table<Model.OverallStatistics>()
+                                    select TotalCorrectAnswers).Where(overall => overall.StatisticsId == 1).Count();
+
+                return totalCorrect;
+            }
         }
 
         public Int32 GetOverallQuestionsAttempted()
         {
             // Query and get the TotalQuestionsAttempted from OverallStatistics table.
-            throw new NotImplementedException();
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var totalQuestionsAsked = (from TotalQuestionsAttempted in db.Table<Model.OverallStatistics>()
+                                           select TotalQuestionsAttempted).Where(overall => overall.StatisticsId == 1).Count();
+
+                return totalQuestionsAsked;
+            }
         }
 
         public Int32 GetOverallLongestStreak()
         {
             //Query and get the LongestOverallStreak from OverallStatistics table. 
-            throw new NotImplementedException();
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var LongestSteak = (from LongestOverallStreak in db.Table<Model.OverallStatistics>()
+                                    select LongestOverallStreak).Where(overall => overall.StatisticsId == 1).Count();
+
+                return LongestSteak;
+            }
         }
 
         public Int32 GetCurrentGameCorrectAnswers()
         {
             //Query and get the TotalAnsweredCorrectly from EndOfGameStatistics table.
-            throw new NotImplementedException();
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var answeredquestionRight = (from TotalAnsweredCorrectly in db.Table<Model.EndOfGameStatistics>()
+                                     select TotalAnsweredCorrectly).Where(totalright => totalright.StatisticsId == 1).Count();
+
+                return answeredquestionRight;
+            }
+
         }
 
         public Int32 GetCurrentGameQuestionsAttempted()
         {
             // Query and get the (TotalAnsweredIncorrectly + TotalAnsweredCorrectly) from EndOfGameStatistics table.
-            throw new NotImplementedException();
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var answeredRight = (from TotalAnsweredCorrectly in db.Table<Model.EndOfGameStatistics>()
+                                     select TotalAnsweredCorrectly).Where(totalright => totalright.StatisticsId == 1).Count();
+
+                var answeredwrong = (from TotalAnsweredIncorrectly in db.Table<Model.EndOfGameStatistics>()
+                                     select TotalAnsweredIncorrectly).Where(totalwrong => totalwrong.StatisticsId == 1).Count();
+
+                var total = answeredRight + answeredwrong;
+
+                return total;
+ 
+            }
         }
 
         public Int32 GetCurrentGameLongestStreak()
         {
             // Query and get EndOfGameStatistics.LongestStreak property in database.
-            throw new NotImplementedException();
+            using(var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var currentGamelongestStreak = (from LongestStreak in db.Table<Model.EndOfGameStatistics>()
+                                                select LongestStreak).Where(currentgame => currentgame.StatisticsId == 1).Count();
+
+                return currentGamelongestStreak;
+                
+            }
         }
 
         public void AnalyzeEndOfGameData()
@@ -79,6 +135,7 @@ namespace Infrastructure.Persistence
 
                 var insertStatistics = new EndOfGameStatistics 
                 {
+                    StatisticsId = 1,
                     LongestStreak = totalStreak,
                     TotalAnsweredCorrectly = correctlyAnsweredCol,
                     TotalAnsweredIncorrectly = incorrectlyAnswerCol,
@@ -86,6 +143,7 @@ namespace Infrastructure.Persistence
 
 
                 db.Update(insertStatistics);
+                db.Commit();
 
                 var correctAnswersFromOverall = db.Get<OverallStatistics>(correct => correct.StatisticsId == 1).TotalCorrectAnswers;
                 var totalQuestionsFromOverall = db.Get<OverallStatistics>(total => total.StatisticsId == 1).TotalQuestionsAttempted;

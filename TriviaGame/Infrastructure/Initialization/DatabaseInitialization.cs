@@ -54,6 +54,7 @@ namespace Infrastructure.Initialization
                 GenerateGeneralOptions();
                 GenerateCustomOptions();
                 DefaultOverallStatistics();
+                DefaultEndOfGameStatistics();
            }
 
         }
@@ -79,12 +80,16 @@ namespace Infrastructure.Initialization
                                                select customQuestionId).Count(q => q.CustomOptionId == defaultId);
 
                 var resultFromDefault = (from StatisticsId in db.Table<OverallStatistics>()
-                                         select StatisticsId).Count(q => q.StatisticsId == defaultId); 
+                                         select StatisticsId).Count(q => q.StatisticsId == defaultId);
+
+                var resultsFromEndOfGame = (from StatisticsId in db.Table<EndOfGameStatistics>()
+                                            select StatisticsId).Count(q => q.StatisticsId == defaultId);
 
                 return (resultFromQuestions != 0) 
                     && (resultFromGeneralOptions != 0 ) 
                     && (resultFromCustomOptions != 0)
-                    && (resultFromDefault != 0);
+                    && (resultFromDefault != 0)
+                    && (resultsFromEndOfGame != 0);
             }
 
         }
@@ -477,6 +482,24 @@ namespace Infrastructure.Initialization
                 };
 
                 db.Insert(defaultOverallOption);
+                db.Commit();
+            }
+        }
+
+        private static void DefaultEndOfGameStatistics()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var defaultEndOfGameStats = new Model.EndOfGameStatistics
+                {
+                    TotalAnsweredCorrectly = 0,
+                    TotalAnsweredIncorrectly = 0,
+                    LongestStreak = 0,
+                };
+
+                db.Insert(defaultEndOfGameStats);
                 db.Commit();
             }
         }
