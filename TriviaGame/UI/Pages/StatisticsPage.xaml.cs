@@ -25,8 +25,9 @@ namespace UI
         public StatisticsPage()
         {
             //_StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
-
             this.InitializeComponent();
+
+
         }
 
 

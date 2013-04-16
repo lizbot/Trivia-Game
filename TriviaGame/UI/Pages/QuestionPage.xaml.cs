@@ -9,6 +9,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using UI.Common;
 using System.Diagnostics;
+using Windows.UI.Xaml.Controls;
+using System.IO;
+using Windows.Storage;
 
 
 
@@ -133,7 +136,7 @@ namespace UI.Pages
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
-            QuestionNumTextBlock.Text = "Q " + (_CurrentQuestionIndex+1) + " of " + _Questions.Count();
+            QuestionNumTextBlock.Text = "Question " + (_CurrentQuestionIndex+1) + " of " + _Questions.Count();
 
             var randomIndex = _Random.Next(0, 4);
             _QuestionAnsweredId = question.QuestionId;
@@ -240,10 +243,32 @@ namespace UI.Pages
             }
         }
 
+
+        private async void playsound(string result)
+        {
+
+            string file_name; 
+            MediaElement _mySound = new MediaElement();
+            Windows.Storage.StorageFolder _Folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Infrastructure\Sound");
+            
+            if (result == "correct")
+                file_name = "right.wav";
+            else
+                file_name = "wrong.wav";
+
+            Windows.Storage.StorageFile _File = await _Folder.GetFileAsync(file_name);
+
+            var stream = await _File.OpenReadAsync();
+            _mySound.SetSource(stream, _File.ContentType);
+
+            _mySound.Play();
+        }
+
         private void IsAnswerCorrect(Int32 buttonIndex)
         {
             if (buttonIndex == _CorrectAnswerIndex)
             {
+                playsound("correct");
                 _Questions.ElementAt(_CurrentQuestionIndex).TimesCorrect++;
                 _PreviousAnswerWasCorrect = true;
                 
@@ -261,6 +286,7 @@ namespace UI.Pages
             }
             else
             {
+                playsound("incorrect");
                 _PreviousAnswerWasCorrect = false;
                 
                 if(buttonIndex == 0)
@@ -277,6 +303,8 @@ namespace UI.Pages
 
             _Questions.ElementAt(_CurrentQuestionIndex).TimesViewed++;
         }
+
+        
 
         private void UpdateCorrectQuestionStreak()
         {
