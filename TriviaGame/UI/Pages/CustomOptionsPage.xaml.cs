@@ -18,19 +18,19 @@ namespace UI.Pages
     {
         private readonly IOptionsService _OptionsService;
 
-        private CustomOptions _CusOps;
+        private readonly CustomOptions _CusOps;
 
         public CustomOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
-            
+
+            _CusOps = _OptionsService.GetCustomOptions();
+
             InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _CusOps = _OptionsService.GetCustomOptions();
-
             QuestionNumSlider.Value = _CusOps.NumberOfQuestionsDesired;
             AnswerNumSlider.Value = _CusOps.NumberOfAnswersDisplayed;
 
@@ -84,12 +84,12 @@ namespace UI.Pages
 
         private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            _CusOps.NumberOfAnswersDisplayed = (Int32)AnswerNumSlider.Value;
+            _CusOps.NumberOfAnswersDisplayed = AnswerNumSlider != null ? (Int32)AnswerNumSlider.Value : 20;
         }
 
         private void QuestionNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            _CusOps.NumberOfQuestionsDesired = (Int32)QuestionNumSlider.Value;
+            _CusOps.NumberOfQuestionsDesired = QuestionNumSlider != null ? (Int32)QuestionNumSlider.Value : 20;
         }
     }
 }

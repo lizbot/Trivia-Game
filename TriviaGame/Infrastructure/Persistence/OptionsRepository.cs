@@ -22,7 +22,7 @@ namespace Infrastructure.Persistence
                     var genOpts = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 2);
                     returnedOptions = new CustomOptions
                     {
-                        CategoryId = (Int32) genOpts.CategoryId,
+                        CategoryId = genOpts.CategoryId,
                         CustomOptionId = genOpts.CustomOptionId,
                         IsTimerOn = genOpts.IsTimerOn,
                         NumberOfAnswersDisplayed = genOpts.NumberOfAnswersDisplayed,
@@ -38,7 +38,7 @@ namespace Infrastructure.Persistence
                     var genOpts = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 1);
                     returnedOptions = new CustomOptions
                     {
-                        CategoryId = (Int32)genOpts.CategoryId,
+                        CategoryId = genOpts.CategoryId,
                         CustomOptionId = genOpts.CustomOptionId,
                         IsTimerOn = genOpts.IsTimerOn,
                         NumberOfAnswersDisplayed = genOpts.NumberOfAnswersDisplayed,
@@ -124,6 +124,21 @@ namespace Infrastructure.Persistence
                     db.Commit();
                 }
               
+            }
+        }
+
+        public void DeleteUsersCustomOptions()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var opts = GetCustomOptions();
+
+                //db.Delete<Model.CustomOptions>();
+                //figure this out tomorrow. how to choose theirs or defaults.
+                throw new NotImplementedException();
+                db.Commit();
             }
         }
 
