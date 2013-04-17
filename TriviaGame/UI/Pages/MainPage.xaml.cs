@@ -18,25 +18,9 @@ namespace UI.Pages
     public sealed partial class MainPage : Page
     {
 
-        //private async void OnLoaded()
-        //{
-
-        //    string file_name = "background_music.wav";
-        //    MediaElement _mySound = new MediaElement();
-        //    Windows.Storage.StorageFolder _Folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Infrastructure\Sound");
-
-        //    Windows.Storage.StorageFile _File = await _Folder.GetFileAsync(file_name);
-
-        //    var stream = await _File.OpenReadAsync();
-        //    _mySound.SetSource(stream, _File.ContentType);
-
-        //    _mySound.Play();
-        //}
-
         public MainPage()
         {
             this.InitializeComponent();
-            //this.Loaded += OnLoaded;
         }
  
         
