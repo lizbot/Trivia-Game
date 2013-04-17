@@ -44,8 +44,9 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
       
-            var categories = _CategoryService.GetCategories();         
+            var categories = _CategoryService.GetCategories();
 
+            var doWeHaveCustomQuestions = _CategoryService.DoCustomQuestionsExist();
             var selector = 0;
 
             Category cat;
@@ -57,10 +58,11 @@ namespace UI.Pages
                 var b = new Button
                     {
                         Content = cat.Name,
-                        FontSize = 75,
-                        Width = 550,
-                        HorizontalAlignment = HorizontalAlignment.Stretch,
-                        Height = 130,
+                        FontSize = 30,
+                        Width = 230,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
+                        Height = 230,
                         Tag = cat.CategoryId
                     };
                 switch (i % 5)
@@ -81,7 +83,7 @@ namespace UI.Pages
                         b.Background = new SolidColorBrush(ColorsUse.ColorToUse("ishColor"));
                         break;
                 }
-                b.Margin = new Thickness(20);
+                b.Margin = new Thickness(30,10,30,10);
                 b.Click += ButtonClick;
                 if (selector % 2 == 0)
                     CategoryStackPanel1.Children.Add(b);

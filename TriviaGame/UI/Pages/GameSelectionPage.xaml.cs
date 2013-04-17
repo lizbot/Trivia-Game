@@ -60,6 +60,7 @@ namespace UI.Pages
         
         private void QuickplayClick(object sender, RoutedEventArgs e)
         {
+            ProgressRing.IsActive = true;
             _GameService.DeleteGameInProgressIfExists();
 
             Frame.Navigate(typeof(QuestionPage), null);
@@ -67,6 +68,8 @@ namespace UI.Pages
 
         private void NewGameClick(object sender, RoutedEventArgs e)
         {
+            ProgressRing.IsActive = true;
+
             _GameService.DeleteGameInProgressIfExists();
 
             Frame.Navigate(typeof(CategoryPage));
@@ -74,6 +77,8 @@ namespace UI.Pages
 
         private void ResumeGameClick(object sender, RoutedEventArgs e)
         {
+            ProgressRing.IsActive = true;
+
             Frame.Navigate(typeof(QuestionPage), null);
         }
     }

@@ -20,31 +20,37 @@ namespace UI.Pages
 
         private readonly CustomOptions _CusOps;
 
+        private IQuestionService _QuestionsService;
+
         public CustomOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
-
+            _QuestionsService = ServiceLocator.Current.GetInstance<IQuestionService>();
+            
             _CusOps = _OptionsService.GetCustomOptions();
 
             InitializeComponent();
+
+            // To be able to program against, Daniel.
+            // _QuestionsService.StoreCustomQuestionsAndAnswers(questionString, rightAnswerString, WrongAnswerListOfStrings);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            QuestionNumSlider.Value = _CusOps.NumberOfQuestionsDesired;
-            AnswerNumSlider.Value = _CusOps.NumberOfAnswersDisplayed;
+            //QuestionNumSlider.Value = _CusOps.NumberOfQuestionsDesired;
+            //AnswerNumSlider.Value = _CusOps.NumberOfAnswersDisplayed;
 
-            if (_CusOps.IsTimerOn)
-                TimeCheckBox.Checked += TimerOn;
-            else
-                TimeCheckBox.Checked += TimerOff;
+            //if (CusOps.IsTimerOn)
+                //TimerToggleSwitch.IsOn = true;
+            //else
+                //TimerToggleSwitch.IsOn = false;
 
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            _OptionsService.UpdateCustomOptions(_CusOps);
+            //_OptionsService.UpdateCustomOptions(_CusOps);
 
             base.OnNavigatedFrom(e);
         }
@@ -72,24 +78,22 @@ namespace UI.Pages
         {
         }
 
-        private void TimerOn(object sender, RoutedEventArgs e)
-        {
-            _CusOps.IsTimerOn = true;
-        }
-
-        private void TimerOff(object sender, RoutedEventArgs e)
-        {
-            _CusOps.IsTimerOn = false;
-        }
-
         private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            _CusOps.NumberOfAnswersDisplayed = AnswerNumSlider != null ? (Int32)AnswerNumSlider.Value : 20;
+            //_CusOps.NumberOfAnswersDisplayed = AnswerNumSlider != null ? (Int32)AnswerNumSlider.Value : 20;
         }
 
         private void QuestionNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            _CusOps.NumberOfQuestionsDesired = QuestionNumSlider != null ? (Int32)QuestionNumSlider.Value : 20;
+            //_CusOps.NumberOfQuestionsDesired = QuestionNumSlider != null ? (Int32)QuestionNumSlider.Value : 20;
+        }
+
+        private void TimerToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
+        {
+            //if (TimerToggleSwitch.IsOn)
+            //    CusOps.IsTimerOn = true;
+            //else
+            //    CusOps.IsTimerOn = false;
         }
     }
 }

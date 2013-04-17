@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using SQLite;
 using Infrastructure.Model;
 using System.Linq;
-using Application.Model;
-using System.IO;
 using Answer = Infrastructure.Model.Answer;
 using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
 using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
 using EndOfGameStatistics = Infrastructure.Model.EndOfGameStatistics;
-using OverallStatistics = Infrastructure.Model.OverallStatistics; 
-using System.Reflection;
-using Windows.Storage;
-using System.Threading.Tasks;
+using OverallStatistics = Infrastructure.Model.OverallStatistics;
 using System.Text.RegularExpressions;
 
 namespace Infrastructure.Initialization
@@ -31,10 +26,6 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                    DeleteFromDb();
-
-                    //db.DropTable<Questions>();
-                    //db.DropTable<Answer>();
                     db.CreateTable<Questions>();
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();
@@ -43,21 +34,19 @@ namespace Infrastructure.Initialization
                     db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
-
             }
 
             // Generate base scripts for initializing values in the database.
-           GenerateCategories();
-
            var checkTheTables = CheckIfTheseTablesHaveData();
 
            if (!checkTheTables)
            {
-                GenerateQuestionsAndAnswers();
-                GenerateGeneralOptions();
-                GenerateCustomOptions();
-                DefaultOverallStatistics();
-                DefaultEndOfGameStatistics();
+               GenerateGeneralOptions();
+               GenerateCustomOptions();
+               DefaultOverallStatistics();
+               DefaultEndOfGameStatistics();
+               GenerateQuestionsAndAnswers();
+               GenerateCategories();
            }
 
         }
@@ -69,32 +58,13 @@ namespace Infrastructure.Initialization
                 
                 db.BeginTransaction();
 
-                //This checks whether there is a questions in the database
+                //This checks whether there is as options in the database
                  var resultFromGeneralOptions =  (from generalQuestionId in db.Table<GeneralOptions>()select generalQuestionId).Count();
 
-                if (resultFromGeneralOptions >= 1)
-                   return true;
-                else return false;
+                return resultFromGeneralOptions >= 1;
 
             }
 
-        }
-
-        private static void DeleteFromDb()
-        {
-
-            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
-            {
-                db.BeginTransaction();
-
-                //db.DropTable<Questions>();
-                //db.DropTable<Answer>();
-                db.DropTable<Category>();
-                //db.DropTable<GeneralOptions>();
-                //db.DropTable<CustomOptions>();
-
-                db.Commit();
-            }
         }
 
         /**
@@ -230,8 +200,9 @@ namespace Infrastructure.Initialization
                 var c3 = new Category { Name = "People" };
                 var c4 = new Category { Name = "Geography" };
                 var c5 = new Category { Name = "Entertainment" };
+                var c6 = new Category { Name = "Custom" };
 
-                var categories = new List<Category> { c1, c2, c3, c4, c5 };
+                var categories = new List<Category> { c1, c2, c3, c4, c5, c6 };
 
                 db.BeginTransaction();
                 db.InsertAll(categories);

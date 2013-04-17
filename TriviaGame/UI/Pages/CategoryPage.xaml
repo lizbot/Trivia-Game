@@ -17,7 +17,7 @@
     -->
     <Grid Style="{StaticResource LayoutRootStyle}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="140"/>
+            <RowDefinition Height="120"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -38,27 +38,37 @@
      
         <ScrollViewer Name="CategoryScrollViewer" 
                       Grid.Row="1" 
-                      HorizontalScrollMode ="Disabled" 
-                      VerticalScrollMode="Enabled" 
+                      HorizontalScrollMode ="Enabled" 
+                      VerticalScrollMode="Disabled" 
                       ZoomMode="Disabled" 
-                      VerticalScrollBarVisibility="Visible" 
-                      VerticalSnapPointsAlignment="Center">
+                      HorizontalScrollBarVisibility="Visible"
+                      HorizontalContentAlignment="Center"
+                      VerticalScrollBarVisibility="Hidden">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           FontSize="90" 
+                           FontStyle="Italic"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center">
+                    Choose a Category
+                </TextBlock>
+                
                     <StackPanel Name="CategoryStackPanel1" 
-                            Grid.Column="0"
-                            Orientation="Vertical" 
+                            Grid.Row="1"
+                            Orientation="Horizontal" 
                             HorizontalAlignment="Center" 
-                            VerticalAlignment="Top">
+                            VerticalAlignment="Center">
                     </StackPanel>
                     <StackPanel Name="CategoryStackPanel2" 
-                            Grid.Column="1"
-                            Orientation="Vertical" 
+                            Grid.Row="2"
+                            Orientation="Horizontal" 
                             HorizontalAlignment="Center" 
-                            VerticalAlignment="Top">
+                            VerticalAlignment="Center">
                     </StackPanel>
            </Grid>
         </ScrollViewer>

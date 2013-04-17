@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Application.Model;
 
 namespace Domain.Persistence
@@ -6,5 +7,7 @@ namespace Domain.Persistence
    public interface ICategoryRepository
     {
        IEnumerable<Category> GetCategories();
+
+       Boolean DoCustomQuestionsExist();
     }
 }
