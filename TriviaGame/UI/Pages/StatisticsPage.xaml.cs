@@ -37,6 +37,8 @@ namespace UI.Pages
 
             if (numCorrect != 0)
                 OverallStatisticsTextBlock.Text = "Overall Statistics: " + _StatisticsService.GetPercentageOfOverallStatistics() + "%";
+            else
+                OverallStatisticsTextBlock.Text = "Go play the game!";
 
             base.OnNavigatedTo(e);
 
