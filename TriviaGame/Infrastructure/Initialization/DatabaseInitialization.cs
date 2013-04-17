@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using SQLite;
 using Infrastructure.Model;
 using System.Linq;
-using Application.Model;
-using System.IO;
 using Answer = Infrastructure.Model.Answer;
 using Category = Infrastructure.Model.Category;
 using GameSaved = Infrastructure.Model.GameSaved;
 using GeneralOptions = Infrastructure.Model.GeneralOptions;
 using CustomOptions = Infrastructure.Model.CustomOptions;
 using EndOfGameStatistics = Infrastructure.Model.EndOfGameStatistics;
-using OverallStatistics = Infrastructure.Model.OverallStatistics; 
-using System.Reflection;
-using Windows.Storage;
-using System.Threading.Tasks;
+using OverallStatistics = Infrastructure.Model.OverallStatistics;
 using System.Text.RegularExpressions;
 
 namespace Infrastructure.Initialization
