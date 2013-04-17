@@ -8,5 +8,7 @@ namespace Application.Domain
         IEnumerable<Category> GetCategories();
 
         IEnumerable<Question> GetQuestionsForCategory(Int32 numberOfQuestions, Int32 categoryId);
+
+        Boolean DoCustomQuestionsExist();
     }
 }
