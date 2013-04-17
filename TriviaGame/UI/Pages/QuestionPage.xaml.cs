@@ -231,9 +231,6 @@ namespace UI.Pages
                 ShowResultsPopup();
                 DisableButtons();
 
-                //Store Statistics Here
-
-                //Does this happen before or after the results are being shown?
                 _StatisticsService.AnalyzeEndOfGameData();
                 _GameService.DeleteGameInProgressIfExists();
             }
@@ -379,10 +376,6 @@ namespace UI.Pages
             AnswerCText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
             AnswerDText.Foreground = new SolidColorBrush(Windows.UI.Colors.White);
         }
-        //async private void WaitForUser()
-        //{
-        //    await System.Threading.Tasks.Task.Delay(TimeSpan.FromSeconds(2));
-        //}
 
         private void ResetColors()
         {
