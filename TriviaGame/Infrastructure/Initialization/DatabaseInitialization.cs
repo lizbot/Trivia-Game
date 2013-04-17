@@ -31,10 +31,18 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                    DeleteFromDb();
+                //db.BeginTransaction();
+                //    DeleteFromDb();
 
-                    //db.DropTable<Questions>();
-                    //db.DropTable<Answer>();
+                //db.DropTable<Questions>();
+                //db.DropTable<Answer>();
+                //db.DropTable<GeneralOptions>();
+                //db.DropTable<CustomOptions>();
+                //db.DropTable<EndOfGameStatistics>();
+                //db.DropTable<OverallStatistics>();
+                //db.DropTable<GameSaved>();
+                //db.DropTable<Category>();
+
                     db.CreateTable<Questions>();
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();
@@ -43,7 +51,8 @@ namespace Infrastructure.Initialization
                     db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
-                 
+                    
+                //db.Commit();
             }
 
             // Generate base scripts for initializing values in the database.
@@ -89,7 +98,7 @@ namespace Infrastructure.Initialization
 
                 //db.DropTable<Questions>();
                 //db.DropTable<Answer>();
-                db.DropTable<Category>();
+                //db.DropTable<Category>();
                 //db.DropTable<GeneralOptions>();
                 //db.DropTable<CustomOptions>();
 

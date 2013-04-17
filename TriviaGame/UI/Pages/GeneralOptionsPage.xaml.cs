@@ -39,14 +39,14 @@ namespace UI.Pages
             //GenOps = _OptionsService.GetGeneralOptions();
 
             //if (GenOps.IsMusicOn)
-            //    MusicCheckBox.Checked += MusicOn;
+                //MusicToggleSwitch.IsOn = true;
             //else
-            //    MusicCheckBox.Checked += MusicOff;
+                //MusicToggleSwitch.IsOn = false;
 
             //if (GenOps.IsSoundEffectsOn)
-            //    SoundEffectsCheckBox.Checked += SoundEffectsOn;
+                //SoundEffectsToggleSwitch.IsOn = true;
             //else
-            //    SoundEffectsCheckBox.Checked += SoundEffectsOff;
+                //SoundEffectsToggleSwitch.IsOn = false;
             base.OnNavigatedTo(e);
         }
 
@@ -80,24 +80,25 @@ namespace UI.Pages
         {
         }
 
-        private void SoundEffectsOn(object sender, RoutedEventArgs e)
+        private void MusicToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
         {
-            //GenOps.IsSoundEffectsOn = true;
+            //if (MusicToggleSwitch.IsOn)
+            //    GenOps.IsMusicOn = true;
+            //else
+            //    GenOps.IsMusicOn = false;
         }
 
-        private void SoundEffectsOff(object sender, RoutedEventArgs e)
+        private void SoundEffectsToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
         {
-            //GenOps.IsSoundEffectsOn = false;
+            //if (SoundEffectsToggleSwitch.IsOn)
+            //    GenOps.IsSoundEffectsOn = true;
+            //else
+            //    GenOps.IsSoundEffectsOn = false;
         }
 
-        private void MusicOn(object sender, RoutedEventArgs e)
+        private void HowToPlayButton_Click_1(object sender, RoutedEventArgs e)
         {
-            //GenOps.IsMusicOn = true;
-        }
 
-        private void MusicOff(object sender, RoutedEventArgs e)
-        {
-            //GenOps.IsMusicOn = false;
         }
     }
 }

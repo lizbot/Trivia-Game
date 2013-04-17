@@ -43,9 +43,9 @@ namespace UI.Pages
             //AnswerNumSlider.Value = CusOps.NumberOfAnswersDisplayed;
 
             //if (CusOps.IsTimerOn)
-            //    TimeCheckBox.Checked += TimerOn;
+                //TimerToggleSwitch.IsOn = true;
             //else
-            //    TimeCheckBox.Checked += TimerOff;
+                //TimerToggleSwitch.IsOn = false;
 
             base.OnNavigatedTo(e);
         }
@@ -80,15 +80,6 @@ namespace UI.Pages
         {
         }
 
-        private void TimerOn(object sender, RoutedEventArgs e)
-        {
-            //CusOps.IsTimerOn = true;
-        }
-
-        private void TimerOff(object sender, RoutedEventArgs e)
-        {
-            //CusOps.IsTimerOn = false;
-        }
 
         private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
@@ -98,6 +89,14 @@ namespace UI.Pages
         private void QuestionNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
             //CusOps.NumberOfQuestionsDesired = (int)QuestionNumSlider.Value;
+        }
+
+        private void TimerToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
+        {
+            //if (TimerToggleSwitch.IsOn)
+            //    CusOps.IsTimerOn = true;
+            //else
+            //    CusOps.IsTimerOn = false;
         }
     }
 }
