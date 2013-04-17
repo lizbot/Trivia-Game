@@ -36,28 +36,18 @@
         
         <StackPanel Name="OverallStackPanel" Grid.Row="1" Orientation="Vertical">
             <StackPanel Name="MusicStackPanel" Orientation="Horizontal" Margin="10,60,10,10">
-                <CheckBox Name="MusicCheckBox" Margin="40,40,40,40" Checked="MusicOn" Unchecked="MusicOff"/>
+                <CheckBox Name="MusicCheckBox" Margin="40,40,40,40" Checked="MusicOn"/>
                 <TextBlock FontSize="60" VerticalAlignment="Center">
                     Music
                 </TextBlock>
             </StackPanel>
             <StackPanel Name="SoundEffectsStackPanel" Orientation="Horizontal" Margin="10,10,10,10">
-                <CheckBox Name="SoundEffectsCheckBox" Margin="40,40,40,40" Checked="SoundEffectsOn" Unchecked="SoundEffectsOff"/>
+                <CheckBox Name="SoundEffectsCheckBox" Margin="40,40,40,40" Checked="SoundEffectsOn"/>
                 <TextBlock FontSize="60" VerticalAlignment="Center">
                     Sound Effects
                 </TextBlock>
             </StackPanel>
         </StackPanel>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->

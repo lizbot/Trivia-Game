@@ -1,6 +1,5 @@
-﻿using Application.Model;
+﻿using System;
 using Domain.Persistence;
-using System;
 using SQLite;
 using Infrastructure.Initialization;
 using GeneralOptions = Application.Model.GeneralOptions;
@@ -12,12 +11,84 @@ namespace Infrastructure.Persistence
     {
         public CustomOptions GetCustomOptions()
         {
-            throw new System.NotImplementedException();
+            var returnedOptions = new CustomOptions();
+
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                var optionsRow = db.Table<Model.CustomOptions>().Where(opts => opts.CustomOptionId == 2).Count();
+
+                if (optionsRow == 1)
+                {
+                    var genOpts = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 2);
+                    returnedOptions = new CustomOptions
+                    {
+                        CategoryId = genOpts.CategoryId,
+                        CustomOptionId = genOpts.CustomOptionId,
+                        IsTimerOn = genOpts.IsTimerOn,
+                        NumberOfAnswersDisplayed = genOpts.NumberOfAnswersDisplayed,
+                        NumberOfQuestionsDesired = genOpts.NumberOfQuestionsDesired
+                    };
+
+                    return returnedOptions;
+                }
+
+                optionsRow = db.Table<CustomOptions>().Where(opts => opts.CustomOptionId == 1).Count();
+                if (optionsRow == 1)
+                {
+                    var genOpts = db.Get<Model.CustomOptions>(opts => opts.CustomOptionId == 1);
+                    returnedOptions = new CustomOptions
+                    {
+                        CategoryId = genOpts.CategoryId,
+                        CustomOptionId = genOpts.CustomOptionId,
+                        IsTimerOn = genOpts.IsTimerOn,
+                        NumberOfAnswersDisplayed = genOpts.NumberOfAnswersDisplayed,
+                        NumberOfQuestionsDesired = genOpts.NumberOfQuestionsDesired
+                    };
+
+                    return returnedOptions;
+                }
+            }
+
+            return returnedOptions;
         }
 
         public GeneralOptions GetGeneralOptions()
         {
-            throw new System.NotImplementedException();
+            var returnedOptions = new GeneralOptions();
+
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                var optionsRow = db.Table<Model.GeneralOptions>().Where(opts => opts.GeneralOptionId == 2).Count();
+
+                if (optionsRow == 1)
+                {
+                    var genOpts = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 2);
+                    returnedOptions = new GeneralOptions
+                        {
+                            GeneralOptionsId = genOpts.GeneralOptionId,
+                            IsMusicOn = genOpts.IsMusicOn,
+                            IsSoundEffectsOn = genOpts.IsSoundEffectsOn
+                        };
+
+                    return returnedOptions;
+                }
+                
+                optionsRow = db.Table<Model.GeneralOptions>().Where(opts => opts.GeneralOptionId == 1).Count();
+                if (optionsRow == 1)
+                {
+                    var genOpts = db.Get<Model.GeneralOptions>(opts => opts.GeneralOptionId == 1);
+                    returnedOptions = new GeneralOptions
+                        {
+                            GeneralOptionsId = genOpts.GeneralOptionId,
+                            IsMusicOn = genOpts.IsMusicOn,
+                            IsSoundEffectsOn = genOpts.IsSoundEffectsOn
+                        };
+
+                    return returnedOptions;
+                }
+            }
+
+            return returnedOptions;
         }
 
         public void UpdateGeneralOptions(GeneralOptions options)
@@ -53,6 +124,21 @@ namespace Infrastructure.Persistence
                     db.Commit();
                 }
               
+            }
+        }
+
+        public void DeleteUsersCustomOptions()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var opts = GetCustomOptions();
+
+                //db.Delete<Model.CustomOptions>();
+                //figure this out tomorrow. how to choose theirs or defaults.
+                throw new NotImplementedException();
+                db.Commit();
             }
         }
 

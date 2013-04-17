@@ -4,12 +4,14 @@ namespace Domain.Persistence
 {
     public interface IOptionsRepository
     {
-       CustomOptions GetCustomOptions();
+        CustomOptions GetCustomOptions();
+        
+        GeneralOptions GetGeneralOptions();
 
-       GeneralOptions GetGeneralOptions();
+        void UpdateCustomOptions(CustomOptions customOption);
 
-       void UpdateCustomOptions(CustomOptions customOption);
+        void UpdateGeneralOptions(GeneralOptions generalOption);
 
-       void UpdateGeneralOptions(GeneralOptions generalOption);
+        void DeleteUsersCustomOptions();
     }
 }
