@@ -26,6 +26,14 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
+                //db.DropTable<Questions>();
+                //db.DropTable<Answer>();
+                //db.DropTable<CustomOptions>();
+                //db.DropTable<GeneralOptions>();
+                //db.DropTable<EndOfGameStatistics>();
+                //db.DropTable<OverallStatistics>();
+                //db.DropTable<GameSaved>();
+
                     db.CreateTable<Questions>();
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();

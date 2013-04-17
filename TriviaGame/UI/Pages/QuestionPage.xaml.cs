@@ -226,10 +226,10 @@ namespace UI.Pages
             {
                 dispatcherTimer.Stop();
                 timer.Stop();
+                _StatisticsService.AnalyzeEndOfGameData();
                 ShowResultsPopup();
                 DisableButtons();
 
-                _StatisticsService.AnalyzeEndOfGameData();
                 _GameService.DeleteGameInProgressIfExists();
             }
             else
@@ -396,6 +396,9 @@ namespace UI.Pages
             string questionsRightNum = "questions";
             string questionsWrongNum = "questions";
             string correctStreakNum = "questions";
+
+            _NumCorrect = _StatisticsService.GetTotalAnsweredCorrectly();
+            _BestCorrectStreak = _StatisticsService.GetLongestStreak();
 
             if (_NumCorrect == 1)
                 questionsRightNum = "question";
