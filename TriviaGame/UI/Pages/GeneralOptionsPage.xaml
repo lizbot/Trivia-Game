@@ -22,7 +22,19 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
+        
+        
+        <Popup Name="UserManualPopup" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel Orientation="Vertical">
+                <TextBlock Name="UserManualTextBlock" FontSize="40" TextWrapping="Wrap" Width="700">
+                    http://tdiversitytriviagame.wix.com/triviagame&#x0a;or the User Manual included!
+                </TextBlock>
+                <Button Name="ClosePopupButton" Click="ClosePopupButton_Click_1" FontSize="25" HorizontalAlignment="Center">
+                    Close
+                </Button>
+            </StackPanel>
+        </Popup>
+        
         <!-- Back button and page title -->
         <Grid>
             <Grid.ColumnDefinitions>
