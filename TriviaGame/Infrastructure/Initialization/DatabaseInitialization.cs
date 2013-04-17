@@ -37,17 +37,16 @@ namespace Infrastructure.Initialization
             }
 
             // Generate base scripts for initializing values in the database.
-           GenerateCategories();
-
            var checkTheTables = CheckIfTheseTablesHaveData();
 
            if (!checkTheTables)
            {
-                GenerateQuestionsAndAnswers();
-                GenerateGeneralOptions();
-                GenerateCustomOptions();
-                DefaultOverallStatistics();
-                DefaultEndOfGameStatistics();
+               GenerateGeneralOptions();
+               GenerateCustomOptions();
+               DefaultOverallStatistics();
+               DefaultEndOfGameStatistics();
+               GenerateQuestionsAndAnswers();
+               GenerateCategories();
            }
 
         }
@@ -62,9 +61,7 @@ namespace Infrastructure.Initialization
                 //This checks whether there is as options in the database
                  var resultFromGeneralOptions =  (from generalQuestionId in db.Table<GeneralOptions>()select generalQuestionId).Count();
 
-                if (resultFromGeneralOptions >= 1)
-                   return true;
-                else return false;
+                return resultFromGeneralOptions >= 1;
 
             }
 

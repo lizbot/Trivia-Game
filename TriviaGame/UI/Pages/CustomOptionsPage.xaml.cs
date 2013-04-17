@@ -20,13 +20,19 @@ namespace UI.Pages
 
         private readonly CustomOptions _CusOps;
 
+        private IQuestionService _QuestionsService;
+
         public CustomOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
-
+            _QuestionsService = ServiceLocator.Current.GetInstance<IQuestionService>();
+            
             _CusOps = _OptionsService.GetCustomOptions();
 
             InitializeComponent();
+
+            // To be able to program against, Daniel.
+            // _QuestionsService.StoreCustomQuestionsAndAnswers(questionString, rightAnswerString, WrongAnswerListOfStrings);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)

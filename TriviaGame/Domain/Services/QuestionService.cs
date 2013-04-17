@@ -30,21 +30,16 @@ namespace Domain.Services
         /// <returns></returns>
         public IEnumerable<Question> GetQuestions(Int32? categoryId = 0)
         {
-            // Do we want this just for getting questions for a specific category 
-            //or apply user settings every time they play game, regardless of type?
-            // Daniel: "yes, I would say apply settings to all games types"
-            var userPreferredQuestionOption = 15;
- 
-            //use this to get the userPreferredQuestionOption.
-            //var x = _OptionsService.GetCustomOptions().NumberOfQuestionsDesired;
+            var userPreferredQuestionOption = _OptionsService.GetCustomOptions().NumberOfQuestionsDesired;
 
-            if (userPreferredQuestionOption == null)
-                userPreferredQuestionOption = 20;
-
-            // this gets the IEnumerable<Question> of all the questions that you want from the database.
             var questions = _QuestionRepository.GetQuestions(userPreferredQuestionOption, categoryId);
 
             return questions;
+        }
+
+        public void StoreCustomQuestionsAndAnswers(String question, String rightAnswer, List<String> wrongAnswers)
+        {
+            _QuestionRepository.StoreCustomQuestionsAndAnswers(question, rightAnswer, wrongAnswers);
         }
 
         public void StoreAnsweredQuestion(Int32 questionId, Int32 answerId)

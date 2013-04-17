@@ -116,6 +116,56 @@ namespace Infrastructure.Persistence
             }
         }
 
+        public void StoreCustomQuestionsAndAnswers(String question, String rightAnswer, List<String> wrongAnswers)
+        {
+            GenerateAnswersForQuestions(question, 6, rightAnswer, wrongAnswers);
+        }
+
+        private static void GenerateAnswersForQuestions(
+            String questionName,
+            Int32 categoryId,
+            String rightAnswerName,
+            IEnumerable<String> wrongAnswerNames)
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+                db.BeginTransaction();
+
+                var question = new Questions
+                {
+                    CategoryId = categoryId,
+                    QuestionName = questionName,
+                    TimesCorrect = 0,
+                    TimesViewed = 0
+                };
+
+                db.Insert(question);
+                var questionId = question.QuestionId;
+
+                var rightAnswer = new Model.Answer
+                {
+                    IsCorrect = true,
+                    Name = rightAnswerName,
+                    QuestionId = questionId
+                };
+
+                db.Insert(rightAnswer);
+
+                var wrongAnswers = wrongAnswerNames
+                    .Select(answer => new Model.Answer
+                    {
+                        IsCorrect = false,
+                        Name = answer,
+                        QuestionId = questionId
+                    })
+                    .ToList();
+
+                db.InsertAll(wrongAnswers);
+
+                db.Commit();
+            }
+        }
+
         private static void StoreInitialGameInProgress(IEnumerable<Question> questionsToGameInProgress)
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
