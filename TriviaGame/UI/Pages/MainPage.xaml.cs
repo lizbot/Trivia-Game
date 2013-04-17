@@ -6,6 +6,7 @@ using Windows.Storage;
 using Windows.ApplicationModel;
 using System;
 using System.Collections.Generic;
+using Windows.UI.Xaml.Media;
 
 
 
@@ -17,26 +18,25 @@ namespace UI.Pages
     public sealed partial class MainPage : Page
     {
 
-/*
-        private async void PlaySound(object sender, RoutedEventArgs e)
-        {
-            MediaElement sound = new MediaElement();
-            StorageFolder folder = await Package.Current.InstalledLocation.GetFolderAsync("Assets/sounds");
-            StorageFile file = await folder.GetFileAsync("mission2.wav");
-            var stream = await file.OpenAsync(FileAccessMode.Read);
-            sound.SetSource(stream, file.ContentType);
-            sound.Play();
+        //private async void OnLoaded()
+        //{
 
-        }
+        //    string file_name = "background_music.wav";
+        //    MediaElement _mySound = new MediaElement();
+        //    Windows.Storage.StorageFolder _Folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Infrastructure\Sound");
 
-  */      
+        //    Windows.Storage.StorageFile _File = await _Folder.GetFileAsync(file_name);
+
+        //    var stream = await _File.OpenReadAsync();
+        //    _mySound.SetSource(stream, _File.ContentType);
+
+        //    _mySound.Play();
+        //}
+
         public MainPage()
         {
-
-        //    sound.MediaOpened += PlaySound;
-         //   sound.Play();
-           
             this.InitializeComponent();
+            //this.Loaded += OnLoaded;
         }
  
         
