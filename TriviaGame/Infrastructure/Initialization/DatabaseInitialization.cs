@@ -63,9 +63,9 @@ namespace Infrastructure.Initialization
             }
             if (!checkCategories)
             {
-                DefaultEndOfGameStatistics();
+                GenerateCategories();
             }
-            if (checkToSeeQuestionAndAnswers)
+            if (!checkToSeeQuestionAndAnswers)
             {
                 GenerateQuestionsAndAnswers();
             }
@@ -325,10 +325,10 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var option = new Model.GeneralOptions
+                var option = new GeneralOptions
                 {
-                    IsMusicOn = false,
-                    IsSoundEffectsOn = false
+                    IsMusicOn = true,
+                    IsSoundEffectsOn = true
                 };
 
                 db.Insert(option);
@@ -342,7 +342,7 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var defaultOverallOption = new Model.OverallStatistics
+                var defaultOverallOption = new OverallStatistics
                 {
                     TotalCorrectAnswers = 0,
                     TotalQuestionsAttempted = 0,
@@ -360,7 +360,7 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var defaultEndOfGameStats = new Model.EndOfGameStatistics
+                var defaultEndOfGameStats = new EndOfGameStatistics
                 {
                     TotalAnsweredCorrectly = 0,
                     TotalAnsweredIncorrectly = 0,
