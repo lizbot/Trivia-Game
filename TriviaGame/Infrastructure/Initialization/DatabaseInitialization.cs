@@ -26,57 +26,124 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                //db.BeginTransaction();
-                //DeleteFromDb();
 
-                //db.DropTable<Questions>();
-                //db.DropTable<Answer>();
-                //db.DropTable<GeneralOptions>();
-                //db.DropTable<CustomOptions>();
-                //db.DropTable<EndOfGameStatistics>();
-                //db.DropTable<OverallStatistics>();
-                //db.DropTable<GameSaved>();
-                //db.DropTable<Category>();
-
-                //db.CreateTable<Questions>();
-                //db.CreateTable<Answer>();
-                //db.CreateTable<CustomOptions>();
-                //db.CreateTable<GeneralOptions>();
-                //db.CreateTable<EndOfGameStatistics>();
-                //db.CreateTable<OverallStatistics>();
-                //db.CreateTable<GameSaved>();
-                //db.CreateTable<Category>();
-
-
-                //db.Commit();
-
-
-                    db.CreateTable<Questions>();
-                    db.CreateTable<Answer>();
-                    db.CreateTable<CustomOptions>();
-                    db.CreateTable<GeneralOptions>();
-                    db.CreateTable<EndOfGameStatistics>();
-                    db.CreateTable<OverallStatistics>();
-                    db.CreateTable<GameSaved>();
-                    db.CreateTable<Category>();
+                db.CreateTable<Questions>();
+                db.CreateTable<Answer>();
+                db.CreateTable<CustomOptions>();
+                db.CreateTable<GeneralOptions>();
+                db.CreateTable<EndOfGameStatistics>();
+                db.CreateTable<OverallStatistics>();
+                db.CreateTable<GameSaved>();
+                db.CreateTable<Category>();
             }
-
+            
             // Generate base scripts for initializing values in the database.
-           var checkTheTables = CheckIfTheseTablesHaveData();
+            var checkGenOpts = CheckToSeeIfGeneralOptionsExist();
+            var checkCustOpts = CheckToSeeIfCustomOptionsExist();
+            var checkOverallStats = CheckToSeeIfOverallStatsExist();
+            var checkEogStats = CheckToSeeIfEndOfGameStatisticsExist();
+            var checkCategories = CheckToSeeIfCategoriesExist();
+            var checkToSeeQuestionAndAnswers = CheckToSeeIfQuestionsAndAnswersExist();
 
-           if (!checkTheTables)
-           {
-               GenerateGeneralOptions();
-               GenerateCustomOptions();
-               DefaultOverallStatistics();
-               DefaultEndOfGameStatistics();
-               GenerateQuestionsAndAnswers();
-               GenerateCategories();
-           }
+
+            if (!checkGenOpts)
+            {
+                GenerateGeneralOptions();
+            }
+            if (!checkCustOpts)
+            {
+                GenerateCustomOptions();
+            }
+            if (!checkOverallStats)
+            {
+                DefaultOverallStatistics();
+            }
+            if (!checkEogStats)
+            {
+                DefaultEndOfGameStatistics();
+            }
+            if (!checkCategories)
+            {
+                GenerateCategories();
+            }
+            if (!checkToSeeQuestionAndAnswers)
+            {
+                GenerateQuestionsAndAnswers();
+            }
+        }
+
+        private static Boolean CheckToSeeIfQuestionsAndAnswersExist()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+
+                db.BeginTransaction();
+
+                //This checks whether there is as resultFromOverallStats in the database
+                var resultFromCategory = (from id in db.Table<Questions>() select id).Count();
+
+                return resultFromCategory > 0;
+            }
+        }
+
+        private static Boolean CheckToSeeIfCategoriesExist()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+
+                db.BeginTransaction();
+
+                //This checks whether there is as resultFromOverallStats in the database
+                var resultFromCategory = (from id in db.Table<Category>() select id).Count();
+
+                return resultFromCategory > 0;
+            }
+        }
+
+        private static Boolean CheckToSeeIfEndOfGameStatisticsExist()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+
+                db.BeginTransaction();
+
+                //This checks whether there is as resultFromOverallStats in the database
+                var resultFromEndOfGameStatistics = (from id in db.Table<EndOfGameStatistics>() select id).Count();
+
+                return resultFromEndOfGameStatistics > 0;
+            }
+        }
+
+        private static Boolean CheckToSeeIfOverallStatsExist()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+
+                db.BeginTransaction();
+
+                //This checks whether there is as resultFromOverallStats in the database
+                var resultFromOverallStats = (from id in db.Table<OverallStatistics>() select id).Count();
+
+                return resultFromOverallStats > 0;
+            }
 
         }
 
-        private static Boolean CheckIfTheseTablesHaveData()
+        private static Boolean CheckToSeeIfCustomOptionsExist()
+        {
+            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
+            {
+
+                db.BeginTransaction();
+
+                //This checks whether there is as options in the database
+                var resultFromGeneralOptions = (from id in db.Table<GeneralOptions>() select id).Count();
+
+                return resultFromGeneralOptions > 0;
+            }
+        }
+
+        private static Boolean CheckToSeeIfGeneralOptionsExist()
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
@@ -84,10 +151,9 @@ namespace Infrastructure.Initialization
                 db.BeginTransaction();
 
                 //This checks whether there is as options in the database
-                 var resultFromGeneralOptions =  (from generalQuestionId in db.Table<GeneralOptions>()select generalQuestionId).Count();
+                 var resultFromCustomOptions =  (from id in db.Table<CustomOptions>()select id).Count();
 
-                return resultFromGeneralOptions >= 1;
-
+                 return resultFromCustomOptions > 0;
             }
 
         }
@@ -260,10 +326,10 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var option = new Model.GeneralOptions
+                var option = new GeneralOptions
                 {
-                    IsMusicOn = false,
-                    IsSoundEffectsOn = false
+                    IsMusicOn = true,
+                    IsSoundEffectsOn = true
                 };
 
                 db.Insert(option);
@@ -277,7 +343,7 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var defaultOverallOption = new Model.OverallStatistics
+                var defaultOverallOption = new OverallStatistics
                 {
                     TotalCorrectAnswers = 0,
                     TotalQuestionsAttempted = 0,
@@ -295,7 +361,7 @@ namespace Infrastructure.Initialization
             {
                 db.BeginTransaction();
 
-                var defaultEndOfGameStats = new Model.EndOfGameStatistics
+                var defaultEndOfGameStats = new EndOfGameStatistics
                 {
                     TotalAnsweredCorrectly = 0,
                     TotalAnsweredIncorrectly = 0,

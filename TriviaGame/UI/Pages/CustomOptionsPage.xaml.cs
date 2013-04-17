@@ -47,7 +47,6 @@ namespace UI.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            
 
             base.OnNavigatedTo(e);
         }
@@ -84,6 +83,7 @@ namespace UI.Pages
 
         private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
+
             if(AnswerNumSlider != null)
                 _CusOps.NumberOfAnswersDisplayed = AnswerNumSlider != null ? (Int32)AnswerNumSlider.Value : 4;
         }

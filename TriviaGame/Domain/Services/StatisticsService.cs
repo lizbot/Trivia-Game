@@ -25,12 +25,12 @@ namespace Domain.Services
             return Math.Truncate(overallStatistics);
         }
 
-        public Int32 GetTotalAnsweredCorrectly()
+        public Int32 GetOverallAnsweredCorrectly()
         {
             return _StatisticsRepository.GetOverallCorrectAnswers();
         }
 
-        public Int32 GetTotalQuestionsAnswered()
+        public Int32 GetOverallQuestionsAnswered()
         {
             return _StatisticsRepository.GetOverallQuestionsAttempted();
         }
@@ -55,6 +55,21 @@ namespace Domain.Services
             var longestStreak = _StatisticsRepository.GetOverallLongestStreak();
 
             return longestStreak;
+        }
+
+        public Int32 GetCurrentGameCorrectAnswers()
+        {
+            return _StatisticsRepository.GetCurrentGameCorrectAnswers();
+        }
+
+        public Int32 GetCurrentGameQuestionsAttempted()
+        {
+            return _StatisticsRepository.GetCurrentGameQuestionsAttempted();
+        }
+
+        public Int32 GetCurrentGameLongestStreak()
+        {
+            return _StatisticsRepository.GetCurrentGameLongestStreak();
         }
 
     }
