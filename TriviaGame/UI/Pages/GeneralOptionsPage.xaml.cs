@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace UI.Pages
@@ -17,12 +18,20 @@ namespace UI.Pages
     {
         private readonly IOptionsService _OptionsService;
         private GeneralOptions _GenOps;
+        MediaElement rootMediaElement;
 
         public GeneralOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
 
             InitializeComponent();
+            this.Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            DependencyObject rootGrid = VisualTreeHelper.GetChild(Window.Current.Content, 0);
+            rootMediaElement = (MediaElement)VisualTreeHelper.GetChild(rootGrid, 0);
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -74,10 +83,18 @@ namespace UI.Pages
 
         private void MusicToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
         {
-            //if (MusicToggleSwitch.IsOn)
-            //    GenOps.IsMusicOn = true;
-            //else
-            //    GenOps.IsMusicOn = false;
+            if (MusicToggleSwitch.IsOn)
+            {
+                //    GenOps.IsMusicOn = true;
+                rootMediaElement.IsMuted = false;
+            }
+
+            else
+            {
+                //    GenOps.IsMusicOn = false;
+                rootMediaElement.IsMuted = true;
+            }
+            
         }
 
         private void SoundEffectsToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)

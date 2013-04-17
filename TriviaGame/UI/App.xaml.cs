@@ -57,15 +57,16 @@ namespace UI
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
 
-            var rootFrame = Window.Current.Content as Frame;
+            //var rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
+            Frame rootFrame = Window.Current.Content as Frame;
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
                 rootFrame = new Frame();
-
+                rootFrame.Style = Resources["RootFrameStyle"] as Style;
                 if (args.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application
@@ -85,7 +86,6 @@ namespace UI
                     throw new Exception("Failed to create initial page");
                 }
             }
-            // Ensure the current window is active
             Window.Current.Activate();
         }
 

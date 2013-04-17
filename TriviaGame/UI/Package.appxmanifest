@@ -15,13 +15,20 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="TriviaUI.App">
-      <VisualElements DisplayName="Diversity Trivia" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Trivia Game" ForegroundText="light" BackgroundColor="#000000">
+      <VisualElements DisplayName="Diversity Trivia" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="Trivia Game" ForegroundText="light" BackgroundColor="#cccccc">
         <DefaultTile ShowName="allLogos" ShortName="Diversity Trivia" />
-        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="black" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#cccccc" />
         <InitialRotationPreference>
           <Rotation Preference="landscape" />
         </InitialRotationPreference>
       </VisualElements>
+      <Extensions>
+        <Extension Category="windows.backgroundTasks" EntryPoint="TriviaGame.App">
+          <BackgroundTasks>
+            <Task Type="audio" />
+          </BackgroundTasks>
+        </Extension>
+      </Extensions>
     </Application>
   </Applications>
   <Capabilities>
