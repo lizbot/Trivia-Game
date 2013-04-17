@@ -154,11 +154,14 @@ namespace Infrastructure.Initialization
                         case "People":
                             categoryId = 3;
                             break;
-                        case "Geopraphy":
+                        case "Geography":
                             categoryId = 4;
                             break;
-                        default:
+                        case "Entertainment":
                             categoryId = 5;
+                            break;
+                        default:
+                            categoryId = 6;
                             break;
                     }
                     
