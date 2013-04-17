@@ -10,9 +10,6 @@ using Windows.UI.Xaml.Navigation;
 using UI.Common;
 using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
-using System.IO;
-using Windows.Storage;
-
 
 
 namespace UI.Pages 
