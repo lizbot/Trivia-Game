@@ -163,6 +163,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Sound\applause.wav" />
+    <Content Include="Sound\background_music.wav" />
     <Content Include="Sound\wrong.wav" />
     <Content Include="QA_TextFiles\Geography.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
