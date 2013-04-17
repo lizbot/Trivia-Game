@@ -72,11 +72,13 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock FontSize="50" VerticalAlignment="Center" Margin="10,40,30,40">
-                    Timer On
+                    Timer
                 </TextBlock>
-                <CheckBox Name="TimeCheckBox" Margin="10,40,30,40" Checked="TimerOn" Unchecked="TimerOff"/>
+                <ToggleSwitch Name="TimerToggleSwitch" 
+                              Margin="70,40,30,40" 
+                              FontSize="40" 
+                              Toggled="TimerToggleSwitch_Toggled_1"/>
             </StackPanel>
-            <ProgressRing IsActive="True"/>
         </StackPanel>
         
         

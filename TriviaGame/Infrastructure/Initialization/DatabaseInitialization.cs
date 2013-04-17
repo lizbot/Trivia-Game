@@ -26,8 +26,6 @@ namespace Infrastructure.Initialization
         {
             using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
             {
-                    DeleteFromDb();
-
                     db.CreateTable<Questions>();
                     db.CreateTable<Answer>();
                     db.CreateTable<CustomOptions>();
@@ -36,7 +34,6 @@ namespace Infrastructure.Initialization
                     db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
-                    
             }
 
             // Generate base scripts for initializing values in the database.
@@ -62,7 +59,7 @@ namespace Infrastructure.Initialization
                 
                 db.BeginTransaction();
 
-                //This checks whether there is a questions in the database
+                //This checks whether there is as options in the database
                  var resultFromGeneralOptions =  (from generalQuestionId in db.Table<GeneralOptions>()select generalQuestionId).Count();
 
                 if (resultFromGeneralOptions >= 1)
@@ -71,23 +68,6 @@ namespace Infrastructure.Initialization
 
             }
 
-        }
-
-        private static void DeleteFromDb()
-        {
-
-            using (var db = new SQLiteConnection(PersistenceConfiguration.Database))
-            {
-                db.BeginTransaction();
-
-                //db.DropTable<Questions>();
-                //db.DropTable<Answer>();
-                db.DropTable<Category>();
-                //db.DropTable<GeneralOptions>();
-                //db.DropTable<CustomOptions>();
-
-                db.Commit();
-            }
         }
 
         /**

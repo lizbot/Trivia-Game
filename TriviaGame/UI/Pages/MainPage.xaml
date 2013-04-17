@@ -18,12 +18,46 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+        
+    
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
+
+            <Button Content=" Start&#x0a;Game"
+                    Grid.Column="1"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    FontSize="80"
+                    Margin="50,65,50,105"
+                    Click="StartGameClick"
+                    ToolTipService.ToolTip="Opens the Game Selection Page"
+                    Background="#7cd3be"/>
+
+            <Button Content="Options" 
+                    Grid.Column="2"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    FontSize="80" 
+                    Margin="40,65,60,105"
+                    Click="OptionsClick"
+                    ToolTipService.ToolTip="Opens the Options Page"
+                    Background="#bcd37b"/>
+
+            <Button Content="Statistics"
+                    Grid.Column="0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    FontSize="80" 
+                    Margin="60,65,40,105"
+                    Click="StatisticsClick"
+                    ToolTipService.ToolTip="Opens the Statistics Page"
+                    Background="#d37b91"/>
+        </Grid>
 
         <TextBlock Text="Diversity Trivia"
                    FontStyle="Italic"
@@ -44,29 +78,7 @@
              -->
 
 
-            <Button Content="Start Game"
-                    HorizontalAlignment="Stretch"
-                    FontSize="80"
-                    Margin="60,25,60,25"
-                    Click="StartGameClick"
-                    ToolTipService.ToolTip="Opens the Game Selection Page"
-                    Background="#7cd3be"/>
-
-            <Button Content="Options" 
-                    HorizontalAlignment="Stretch" 
-                    FontSize="80" 
-                    Margin="60,25,60,25"
-                    Click="OptionsClick"
-                    ToolTipService.ToolTip="Opens the Options Page"
-                    Background="#bcd37b"/>
-
-            <Button Content="Statistics" 
-                    HorizontalAlignment="Stretch" 
-                    FontSize="80" 
-                    Margin="60,25,60,25"
-                    Click="StatisticsClick"
-                    ToolTipService.ToolTip="Opens the Statistics Page"
-                    Background="#d37b91"/> 
+            
         </StackPanel>
     </Grid>
 </Page>

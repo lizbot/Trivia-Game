@@ -35,55 +35,68 @@
             </Grid.ColumnDefinitions>
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
+            
+            <ProgressRing Name="ProgressRing"
+                          Grid.Column="1" 
+                          IsActive="False"
+                          FlowDirection="RightToLeft" 
+                          HorizontalAlignment="Right" 
+                          Margin="10,10,60,10"/>
         </Grid>
 
-        <TextBlock Text="Choose a Game"
+        
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            
+
+            <TextBlock Text="Choose a Game"
+                       FontStyle="Italic"
+                       Grid.Row="0"
                        FontSize="90" 
                        Margin="0,0,0,0"
-                       HorizontalAlignment="Center"
-                       Grid.Row="1"/>
-
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="58*"/>
-                <RowDefinition Height="99*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="55*"/>
-                <ColumnDefinition Width="59*"/>
-                <ColumnDefinition Width="Auto" MinWidth="454"/>
-            </Grid.ColumnDefinitions>
-
-            <Button Content="Quickplay"
+                       HorizontalAlignment="Center"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Button Content="Quickplay"
                     Grid.Column="0"
+                    Grid.Row="1"
                     FontSize="70"
-                    HorizontalAlignment="Right"
+                    HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="QuickplayClick"
                     Background="#937dd3"
-                    Margin="0,130"
-                    ToolTipService.ToolTip="Start a game with questions from all categories" Width="349" Grid.RowSpan="2"/>
+                    Margin="100, 50, 0, 130"
+                    ToolTipService.ToolTip="Start a game with questions from all categories"/>
 
-            <Button Content="   Select &#x0a;Category"
+                <Button Content="   Select &#x0a;Category"
                     Grid.Column="1"
                     FontSize="70"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="NewGameClick"
                     Background="#bcd37b"
-                    Margin="40,130,0,130"
-                    ToolTipService.ToolTip="Go to the Category Selection Page" Width="386" Grid.RowSpan="2"/>
+                    Margin="50, 50, 50, 130"
+                    ToolTipService.ToolTip="Go to the Category Selection Page"/>
 
-            <Button Content="  Resume&#x0a;Last Game"
+                <Button Content="  Resume&#x0a;Last Game"
                     Name="ResumeButton"
                     Grid.Column="2"
                     FontSize="70"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Stretch"
                     VerticalAlignment="Stretch"
                     Click="ResumeGameClick"
                     Background="#d3be7b"
-                    Margin="0,130"
-                    ToolTipService.ToolTip="Resume the Last Played Game" Width="365" Grid.RowSpan="2"/>
+                    Margin="0, 50, 100, 130"
+                    ToolTipService.ToolTip="Resume the Last Played Game"/>
+            </Grid>  
         </Grid>
 
         <VisualStateManager.VisualStateGroups>

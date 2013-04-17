@@ -121,6 +121,7 @@ namespace UI.Pages
             base.OnNavigatedTo(e);
             ResetColors();
             timer.Start();
+            
         }
 
         private void UpdateQuestion()
@@ -244,11 +245,13 @@ namespace UI.Pages
             string file_name; 
             MediaElement _mySound = new MediaElement();
             Windows.Storage.StorageFolder _Folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Infrastructure\Sound");
-            
+
             if (result == "correct")
                 file_name = "right.wav";
-            else
+            else if (result == "incorrect")
                 file_name = "wrong.wav";
+            else
+                file_name = "applause.wav";
 
             Windows.Storage.StorageFile _File = await _Folder.GetFileAsync(file_name);
 
@@ -446,6 +449,7 @@ namespace UI.Pages
                                 correctStreakNum,
                                 elapsedTime);
 
+            playsound("complete");
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
                 Frame.Opacity = 0.3;
         }
