@@ -36,7 +36,7 @@ namespace Infrastructure.Initialization
                     db.CreateTable<OverallStatistics>();
                     db.CreateTable<GameSaved>();
                     db.CreateTable<Category>();
-                    GenerateQuestionsAndAnswers();
+                    
             }
 
             // Generate base scripts for initializing values in the database.
@@ -46,6 +46,7 @@ namespace Infrastructure.Initialization
 
            if (!checkTheTables)
            {
+                GenerateQuestionsAndAnswers();
                 GenerateGeneralOptions();
                 GenerateCustomOptions();
                 DefaultOverallStatistics();
