@@ -15,6 +15,8 @@ namespace Domain.Persistence
         
         Int32 GetCurrentGameLongestStreak();
 
+        Int32 GetOverallLongestStreak();
+
         void AnalyzeEndOfGameData();
     }
 }

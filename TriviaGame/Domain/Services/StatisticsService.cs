@@ -15,14 +15,14 @@ namespace Domain.Services
         }
 
         //The easiest way to get and process user statistics is to use integers 
-        public Double GetOverallStatistics()
+        public Double GetPercentageOfOverallStatistics()
         {
-            var totalAnsweredCorrectly = _StatisticsRepository.GetOverallCorrectAnswers();
-            var totalQuestionsAnswered = _StatisticsRepository.GetOverallQuestionsAttempted();
+            Double totalAnsweredCorrectly = _StatisticsRepository.GetOverallCorrectAnswers();
+            Double totalQuestionsAnswered = _StatisticsRepository.GetOverallQuestionsAttempted();
 
             var overallStatistics = (totalAnsweredCorrectly / totalQuestionsAnswered) * 100;
 
-            return overallStatistics;
+            return Math.Truncate(overallStatistics);
         }
 
         public Int32 GetTotalAnsweredCorrectly()
@@ -52,7 +52,7 @@ namespace Domain.Services
 
         public Int32 GetLongestStreak()
         {
-            var longestStreak = _StatisticsRepository.GetCurrentGameLongestStreak();
+            var longestStreak = _StatisticsRepository.GetOverallLongestStreak();
 
             return longestStreak;
         }

@@ -3,44 +3,36 @@ using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class CustomOptionsPage : UI.Common.LayoutAwarePage
+    public sealed partial class CustomOptionsPage
     {
         private readonly IOptionsService _OptionsService;
 
-        private CustomOptions CusOps;
+        private readonly CustomOptions _CusOps;
 
         public CustomOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
-            
-            this.InitializeComponent();
+
+            _CusOps = _OptionsService.GetCustomOptions();
+
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //CusOps = _OptionsService.GetCustomOptions();
-
-            //QuestionNumSlider.Value = CusOps.NumberOfQuestionsDesired;
-            //AnswerNumSlider.Value = CusOps.NumberOfAnswersDisplayed;
+            //QuestionNumSlider.Value = _CusOps.NumberOfQuestionsDesired;
+            //AnswerNumSlider.Value = _CusOps.NumberOfAnswersDisplayed;
 
             //if (CusOps.IsTimerOn)
                 //TimerToggleSwitch.IsOn = true;
@@ -52,7 +44,7 @@ namespace UI.Pages
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //_OptionsService.UpdateCustomOptions(CusOps);
+            //_OptionsService.UpdateCustomOptions(_CusOps);
 
             base.OnNavigatedFrom(e);
         }
@@ -80,15 +72,14 @@ namespace UI.Pages
         {
         }
 
-
         private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            //CusOps.NumberOfAnswersDisplayed = (int)AnswerNumSlider.Value;
+            //_CusOps.NumberOfAnswersDisplayed = AnswerNumSlider != null ? (Int32)AnswerNumSlider.Value : 20;
         }
 
         private void QuestionNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            //CusOps.NumberOfQuestionsDesired = (int)QuestionNumSlider.Value;
+            //_CusOps.NumberOfQuestionsDesired = QuestionNumSlider != null ? (Int32)QuestionNumSlider.Value : 20;
         }
 
         private void TimerToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)

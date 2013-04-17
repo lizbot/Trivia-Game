@@ -36,13 +36,14 @@
         
         <StackPanel Name="OverallStackPanel" Grid.Row="1" Orientation="Vertical">
             <StackPanel Name="MusicStackPanel" Orientation="Horizontal" Margin="10,60,10,10">
-                <TextBlock FontSize="60" VerticalAlignment="Center" Margin="50,0,0,0">
+                <TextBlock FontSize="60" VerticalAlignment="Center">
                     Music
                 </TextBlock>
                 <ToggleSwitch Name="MusicToggleSwitch" FontSize="50" Margin="40,40,40,40" Toggled="MusicToggleSwitch_Toggled_1"/>
             </StackPanel>
             <StackPanel Name="SoundEffectsStackPanel" Orientation="Horizontal" Margin="10,10,10,10">
-                <TextBlock FontSize="60" VerticalAlignment="Center" Margin="50,0,0,0">
+                <TextBlock FontSize="60" VerticalAlignment="Center">
+
                     Sound Effects
                 </TextBlock>
                 <ToggleSwitch Name="SoundEffectsToggleSwitch" FontSize="50" Margin="40,40,40,40" Toggled="SoundEffectsToggleSwitch_Toggled_1"/>
@@ -51,16 +52,6 @@
                 How to Play
             </Button>
         </StackPanel>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         <VisualStateManager.VisualStateGroups>
 
             <!-- Visual states reflect the application's view state -->

@@ -3,37 +3,31 @@ using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
 using UI.Common;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
-namespace UI
+namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class StatisticsPage : UI.Common.LayoutAwarePage
+    public sealed partial class StatisticsPage
     {
         private readonly IStatisticsService _StatisticsService;
 
         public StatisticsPage()
         {
-            //_StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
-            this.InitializeComponent();
+            _StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
 
-
+            InitializeComponent();
         }
 
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //var numCorrect = _StatisticsService.GetTotalAnsweredCorrectly(); 
+            //var numCorrect = _StatisticsService.GetTotalAnsweredCorrectly();
             //var numTotal = _StatisticsService.GetTotalQuestionsAnswered();
             //var longestStreak = _StatisticsService.GetLongestStreak();
 
@@ -42,15 +36,11 @@ namespace UI
             //LongestStreakTextBlock.Text = "Longest Correct Streak: " + longestStreak;
 
             //if (numCorrect != 0)
-            //    OverallStatisticsTextBlock.Text = "Overall Statistics: " + (numTotal / numCorrect * 100) + "%";
-            //else if(numCorrect == numTotal)
-            //    OverallStatisticsTextBlock.Text = "100% :D";
-            //else
-            //    OverallStatisticsTextBlock.Text = "0% :(";
+            //    OverallStatisticsTextBlock.Text = "Overall Statistics: " + _StatisticsService.GetPercentageOfOverallStatistics()+ "%";
 
             base.OnNavigatedTo(e);
 
-            CallStoryboard();
+            //CallStoryboard();
         }
 
         public void CallStoryboard()

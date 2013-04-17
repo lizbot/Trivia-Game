@@ -3,40 +3,31 @@ using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
 
 namespace UI.Pages
 {
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class GeneralOptionsPage : UI.Common.LayoutAwarePage
+    public sealed partial class GeneralOptionsPage
     {
         private readonly IOptionsService _OptionsService;
-        private GeneralOptions GenOps;
+        private GeneralOptions _GenOps;
 
         public GeneralOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
 
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //GenOps = _OptionsService.GetGeneralOptions();
+            _GenOps = _OptionsService.GetGeneralOptions();
 
             //if (GenOps.IsMusicOn)
                 //MusicToggleSwitch.IsOn = true;
@@ -47,12 +38,13 @@ namespace UI.Pages
                 //SoundEffectsToggleSwitch.IsOn = true;
             //else
                 //SoundEffectsToggleSwitch.IsOn = false;
+
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //_OptionsService.UpdateGeneralOptions(GenOps);
+            //_OptionsService.UpdateGeneralOptions(_GenOps);
 
             base.OnNavigatedFrom(e);
         }
@@ -98,7 +90,7 @@ namespace UI.Pages
 
         private void HowToPlayButton_Click_1(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
 }

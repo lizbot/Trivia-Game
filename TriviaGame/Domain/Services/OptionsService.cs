@@ -40,5 +40,15 @@ namespace Domain.Services
             _OptionsRepository.UpdateGeneralOptions(generalOption);
         }
 
+        /// <summary>
+        /// This is for when we decide to have that restore to default settings button.
+        /// </summary>
+        /// <returns></returns>
+        public CustomOptions RestoreToDefaultOptions()
+        {
+            _OptionsRepository.DeleteUsersCustomOptions();
+            return _OptionsRepository.GetCustomOptions();
+        }
+
     }
 }

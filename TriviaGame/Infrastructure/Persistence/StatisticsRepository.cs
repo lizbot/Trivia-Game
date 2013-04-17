@@ -16,10 +16,10 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var totalCorrect = (from TotalCorrectAnswers in db.Table<Model.OverallStatistics>()
-                                    select TotalCorrectAnswers).Where(overall => overall.StatisticsId == 1).Count();
+                var totalCorrect = (from totalCorrectAnswers in db.Table<OverallStatistics>()
+                                    select totalCorrectAnswers).Where(overall => overall.StatisticsId == 1).First();
 
-                return totalCorrect;
+                return totalCorrect.TotalCorrectAnswers;
             }
         }
 
@@ -30,10 +30,10 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var totalQuestionsAsked = (from TotalQuestionsAttempted in db.Table<Model.OverallStatistics>()
-                                           select TotalQuestionsAttempted).Where(overall => overall.StatisticsId == 1).Count();
+                var totalQuestionsAsked = (from totalQuestionsAttempted in db.Table<OverallStatistics>()
+                                           select totalQuestionsAttempted).Where(overall => overall.StatisticsId == 1).First();
 
-                return totalQuestionsAsked;
+                return totalQuestionsAsked.TotalQuestionsAttempted;
             }
         }
 
@@ -44,10 +44,9 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var LongestSteak = (from LongestOverallStreak in db.Table<Model.OverallStatistics>()
-                                    select LongestOverallStreak).Where(overall => overall.StatisticsId == 1).Count();
-
-                return LongestSteak;
+                var longestSteak = (from longestOverallStreak in db.Table<OverallStatistics>()
+                                    select longestOverallStreak).Where(overall => overall.StatisticsId == 1).First();
+                return longestSteak.LongestOverallStreak;
             }
         }
 
@@ -58,10 +57,10 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var answeredquestionRight = (from TotalAnsweredCorrectly in db.Table<Model.EndOfGameStatistics>()
-                                     select TotalAnsweredCorrectly).Where(totalright => totalright.StatisticsId == 1).Count();
+                var answeredquestionRight = (from totalAnsweredCorrectly in db.Table<EndOfGameStatistics>()
+                                             select totalAnsweredCorrectly).Where(totalright => totalright.StatisticsId == 1).First();
 
-                return answeredquestionRight;
+                return answeredquestionRight.TotalAnsweredCorrectly;
             }
 
         }
@@ -73,13 +72,13 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var answeredRight = (from TotalAnsweredCorrectly in db.Table<Model.EndOfGameStatistics>()
-                                     select TotalAnsweredCorrectly).Where(totalright => totalright.StatisticsId == 1).Count();
+                var answeredRight = (from totalAnsweredCorrectly in db.Table<EndOfGameStatistics>()
+                                     select totalAnsweredCorrectly).Where(totalright => totalright.StatisticsId == 1).First();
 
-                var answeredwrong = (from TotalAnsweredIncorrectly in db.Table<Model.EndOfGameStatistics>()
-                                     select TotalAnsweredIncorrectly).Where(totalwrong => totalwrong.StatisticsId == 1).Count();
+                var answeredwrong = (from totalAnsweredIncorrectly in db.Table<EndOfGameStatistics>()
+                                     select totalAnsweredIncorrectly).Where(totalwrong => totalwrong.StatisticsId == 1).First();
 
-                var total = answeredRight + answeredwrong;
+                var total = answeredRight.TotalAnsweredCorrectly + answeredwrong.TotalAnsweredIncorrectly;
 
                 return total;
  
@@ -93,10 +92,10 @@ namespace Infrastructure.Persistence
             {
                 db.BeginTransaction();
 
-                var currentGamelongestStreak = (from LongestStreak in db.Table<Model.EndOfGameStatistics>()
-                                                select LongestStreak).Where(currentgame => currentgame.StatisticsId == 1).Count();
+                var currentGamelongestStreak = (from longestStreak in db.Table<EndOfGameStatistics>()
+                                                select longestStreak).Where(currentgame => currentgame.StatisticsId == 1).First();
 
-                return currentGamelongestStreak;
+                return currentGamelongestStreak.LongestStreak;
                 
             }
         }
