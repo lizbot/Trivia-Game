@@ -28,6 +28,21 @@
 
     <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
 
+
+    <Style x:Key="RootFrameStyle" TargetType="Frame">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Frame">
+                    <Grid>
+                        <MediaElement x:Name="MediaPlayer" IsLooping="True" Source="/Infrastructure/Sound/DigitalStream.wav"
+                                     AudioCategory="BackgroundCapableMedia" AutoPlay="True" />
+                        <!-- if you need other musics to play,embed them here !-->
+                        <ContentPresenter />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!-- RichTextBlock styles -->
 
     <Style x:Key="BasicRichTextStyle" TargetType="RichTextBlock">
