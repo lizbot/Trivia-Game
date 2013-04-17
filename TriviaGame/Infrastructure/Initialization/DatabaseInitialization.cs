@@ -127,11 +127,14 @@ namespace Infrastructure.Initialization
                         case "People":
                             categoryId = 3;
                             break;
-                        case "Geopraphy":
+                        case "Geography":
                             categoryId = 4;
                             break;
-                        default:
+                        case "Entertainment":
                             categoryId = 5;
+                            break;
+                        default:
+                            categoryId = 6;
                             break;
                     }
                     
@@ -200,8 +203,9 @@ namespace Infrastructure.Initialization
                 var c3 = new Category { Name = "People" };
                 var c4 = new Category { Name = "Geography" };
                 var c5 = new Category { Name = "Entertainment" };
+                var c6 = new Category { Name = "Custom" };
 
-                var categories = new List<Category> { c1, c2, c3, c4, c5 };
+                var categories = new List<Category> { c1, c2, c3, c4, c5, c6 };
 
                 db.BeginTransaction();
                 db.InsertAll(categories);
