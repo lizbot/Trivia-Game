@@ -10,6 +10,7 @@ namespace Domain.Services
     public class CategoryService : ICategoryService
     {
         private readonly ICategoryRepository _CategoryRepository;
+
         private readonly IQuestionRepository _QuestionRepository;
 
         public CategoryService(
@@ -32,6 +33,13 @@ namespace Domain.Services
             var questions = _QuestionRepository.GetQuestions(numberOfQuestions, categoryId);
 
             return questions;
+        }
+
+        public Boolean DoCustomQuestionsExist()
+        {
+            var exists = _CategoryRepository.DoCustomQuestionsExist();
+
+            return exists;
         }
     }
 }

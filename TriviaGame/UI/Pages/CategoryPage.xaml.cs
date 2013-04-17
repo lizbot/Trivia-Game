@@ -44,8 +44,9 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
       
-            var categories = _CategoryService.GetCategories();         
+            var categories = _CategoryService.GetCategories();
 
+            var doWeHaveCustomQuestions = _CategoryService.DoCustomQuestionsExist();
             var selector = 0;
 
             Category cat;
