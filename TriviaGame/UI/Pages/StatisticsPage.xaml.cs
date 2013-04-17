@@ -27,16 +27,16 @@ namespace UI.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //var numCorrect = _StatisticsService.GetTotalAnsweredCorrectly();
-            //var numTotal = _StatisticsService.GetTotalQuestionsAnswered();
-            //var longestStreak = _StatisticsService.GetLongestStreak();
+            var numCorrect = _StatisticsService.GetOverallAnsweredCorrectly();
+            var numTotal = _StatisticsService.GetOverallQuestionsAnswered();
+            var longestStreak = _StatisticsService.GetLongestStreak();
 
-            //AnswersCorrectTextBlock.Text = "Total Answers Correct: " + numCorrect;
-            //AnswersIncorrectTextBlock.Text = "Total Answers Incorrect: " + (numTotal - numCorrect);
-            //LongestStreakTextBlock.Text = "Longest Correct Streak: " + longestStreak;
+            AnswersCorrectTextBlock.Text = "Total Answers Correct: " + numCorrect;
+            AnswersIncorrectTextBlock.Text = "Total Answers Incorrect: " + (numTotal - numCorrect);
+            LongestStreakTextBlock.Text = "Longest Correct Streak: " + longestStreak;
 
-            //if (numCorrect != 0)
-            //    OverallStatisticsTextBlock.Text = "Overall Statistics: " + _StatisticsService.GetPercentageOfOverallStatistics()+ "%";
+            if (numCorrect != 0)
+                OverallStatisticsTextBlock.Text = "Overall Statistics: " + _StatisticsService.GetPercentageOfOverallStatistics() + "%";
 
             base.OnNavigatedTo(e);
 

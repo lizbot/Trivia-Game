@@ -10,10 +10,16 @@ namespace Application.Domain
 
         Int32 GetLongestStreak();
 
-        Int32 GetTotalAnsweredCorrectly();
+        Int32 GetOverallAnsweredCorrectly();
 
-        Int32 GetTotalQuestionsAnswered();
+        Int32 GetOverallQuestionsAnswered();
 
+        Int32 GetCurrentGameCorrectAnswers();
+
+        Int32 GetCurrentGameQuestionsAttempted();
+
+        Int32 GetCurrentGameLongestStreak();
+        
         void AnalyzeEndOfGameData();
     }
 }

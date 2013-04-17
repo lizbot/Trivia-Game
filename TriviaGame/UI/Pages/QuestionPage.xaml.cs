@@ -140,7 +140,7 @@ namespace UI.Pages
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
-            QuestionNumTextBlock.Text = "Question " + (_CurrentQuestionIndex+1) + " of " + _Questions.Count();
+            QuestionNumTextBlock.Text = "Question " + (_CurrentQuestionIndex + 1) + " of " +_QuestionThreshold;
 
             var randomIndex = _Random.Next(0, 4);
             _QuestionAnsweredId = question.QuestionId;
@@ -406,8 +406,9 @@ namespace UI.Pages
             string questionsWrongNum = "questions";
             string correctStreakNum = "questions";
 
-            _NumCorrect = _StatisticsService.GetTotalAnsweredCorrectly();
-            _BestCorrectStreak = _StatisticsService.GetLongestStreak();
+            _NumCorrect = _StatisticsService.GetCurrentGameCorrectAnswers();
+            _BestCorrectStreak = _StatisticsService.GetCurrentGameLongestStreak();
+            _NumIncorrect = _StatisticsService.GetCurrentGameQuestionsAttempted() - _NumCorrect;
 
             if (_NumCorrect == 1)
                 questionsRightNum = "question";

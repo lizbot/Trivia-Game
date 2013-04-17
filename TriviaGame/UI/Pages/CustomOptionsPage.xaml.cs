@@ -37,20 +37,20 @@ namespace UI.Pages
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            //QuestionNumSlider.Value = _CusOps.NumberOfQuestionsDesired;
-            //AnswerNumSlider.Value = _CusOps.NumberOfAnswersDisplayed;
+            QuestionNumSlider.Value = _CusOps.NumberOfQuestionsDesired;
+            AnswerNumSlider.Value = _CusOps.NumberOfAnswersDisplayed;
 
-            //if (CusOps.IsTimerOn)
-                //TimerToggleSwitch.IsOn = true;
-            //else
-                //TimerToggleSwitch.IsOn = false;
+            if (_CusOps.IsTimerOn)
+                TimerToggleSwitch.IsOn = true;
+            else
+                TimerToggleSwitch.IsOn = false;
 
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //_OptionsService.UpdateCustomOptions(_CusOps);
+            _OptionsService.UpdateCustomOptions(_CusOps);
 
             base.OnNavigatedFrom(e);
         }
@@ -80,20 +80,20 @@ namespace UI.Pages
 
         private void AnswerNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            //_CusOps.NumberOfAnswersDisplayed = AnswerNumSlider != null ? (Int32)AnswerNumSlider.Value : 20;
+            _CusOps.NumberOfAnswersDisplayed = AnswerNumSlider != null ? (Int32)AnswerNumSlider.Value : 20;
         }
 
         private void QuestionNumSlider_ValueChanged_1(object sender, RangeBaseValueChangedEventArgs e)
         {
-            //_CusOps.NumberOfQuestionsDesired = QuestionNumSlider != null ? (Int32)QuestionNumSlider.Value : 20;
+            _CusOps.NumberOfQuestionsDesired = QuestionNumSlider != null ? (Int32)QuestionNumSlider.Value : 20;
         }
 
         private void TimerToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
         {
-            //if (TimerToggleSwitch.IsOn)
-            //    CusOps.IsTimerOn = true;
-            //else
-            //    CusOps.IsTimerOn = false;
+            if (TimerToggleSwitch.IsOn)
+                _CusOps.IsTimerOn = true;
+            else
+                _CusOps.IsTimerOn = false;
         }
     }
 }
