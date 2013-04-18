@@ -116,6 +116,9 @@
     <Compile Include="Pages\CustomOptionsPage.xaml.cs">
       <DependentUpon>CustomOptionsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\CustomQuestionCreationPage.xaml.cs">
+      <DependentUpon>CustomQuestionCreationPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\GameSelectionPage.xaml.cs">
       <DependentUpon>GameSelectionPage.xaml</DependentUpon>
     </Compile>
@@ -169,6 +172,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\CustomOptionsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\CustomQuestionCreationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

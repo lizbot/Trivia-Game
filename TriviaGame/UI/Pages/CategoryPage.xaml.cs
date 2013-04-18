@@ -49,10 +49,16 @@ namespace UI.Pages
             var doWeHaveCustomQuestions = _CategoryService.DoCustomQuestionsExist();
             var selector = 0;
 
+            int numCategories;
+            if (doWeHaveCustomQuestions)
+                numCategories = 6;
+            else
+                numCategories = 5;
+
             Category cat;
 
 
-            for (var i = 0; i < 5; i++)
+            for (var i = 0; i < numCategories; i++)
             {
                 cat = categories.ElementAt(i);
                 var b = new Button

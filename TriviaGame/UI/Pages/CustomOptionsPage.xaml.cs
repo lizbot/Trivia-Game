@@ -101,5 +101,10 @@ namespace UI.Pages
             else
                 _CusOps.IsTimerOn = false;
         }
+
+        private void CreateCustomQuestionButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(CustomQuestionCreationPage));
+        }
     }
 }

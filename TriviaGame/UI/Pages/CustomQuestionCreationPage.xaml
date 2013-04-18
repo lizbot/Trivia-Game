@@ -1,6 +1,6 @@
 ﻿<common:LayoutAwarePage
     x:Name="pageRoot"
-    x:Class="UI.Pages.CustomOptionsPage"
+    x:Class="UI.Pages.CustomQuestionCreationPage"
     DataContext="{Binding DefaultViewModel, RelativeSource={RelativeSource Self}}"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -10,7 +10,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    
 
     <!--
         This grid acts as a root panel for the page that defines two rows:
@@ -32,64 +31,64 @@
             <Button x:Name="backButton" Click="GoBack" IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}" Style="{StaticResource BackButtonStyle}"/>
             <TextBlock x:Name="pageTitle" Grid.Column="1" Text="{StaticResource AppName}" Style="{StaticResource PageHeaderTextStyle}"/>
         </Grid>
+        
+        <StackPanel Grid.Row="1" Name="MainStackPanel" Orientation="Vertical">
+            <TextBlock Name="QuestionTextBlock" 
+                       FontSize="40" 
+                       HorizontalAlignment="Center"
+                       Text="Please enter the desired question, correct answer, &#x0a;and three incorrect answers below"/>
+            <TextBox Name="QuestionEntryTextBox" Width="1000" Height="200" Margin="20" TextWrapping="Wrap" FontSize="25"/>
+            
+            <StackPanel Name="CorrectAnswerStackPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                    Correct:
+                </TextBlock>
+                <TextBox Name="CorrectAnswerTextBox" Margin="20,20,100,20" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </StackPanel>
+            
+            <StackPanel Name="IncorrectAnswerStackPanel" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                    1
+                </TextBlock>
+                <TextBox Name="Answer1TextBox" Margin="20,20,100,20" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="20,20,20,20">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,40,30,40">
-                    Number of Questions Displayed
+                <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                    2
                 </TextBlock>
-                <TextBlock FontSize="50" 
-                           VerticalAlignment="Center" 
-                           Text="{Binding ElementName=QuestionNumSlider, Path=Value}" 
-                           Margin="0,40,30,40"/>
-                <Slider Name="QuestionNumSlider" 
-                        Orientation="Horizontal" 
-                        Minimum="5" 
-                        Maximum="25"
-                        Value="15"
-                        Width="300" 
-                        Margin="10,40,30,40"
-                        SnapsTo="StepValues"
-                        ValueChanged="QuestionNumSlider_ValueChanged_1"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="50" VerticalAlignment="Center" Margin="10,40,30,40">
-                    Number of Answers Displayed
+                <TextBox Name="Answer2TextBox" Margin="20" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                <TextBlock FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20">
+                    3
                 </TextBlock>
-                <TextBlock FontSize="50" 
-                           VerticalAlignment="Center"
-                           Text="{Binding ElementName=AnswerNumSlider, Path=Value}" 
-                           Margin="0,40,30,40"/>
-                <Slider Name="AnswerNumSlider" 
-                        Orientation="Horizontal" 
-                        Minimum="2" 
-                        Maximum="4" 
-                        Width="300" 
-                        Margin="10,40,30,40"
-                        SnapsTo="StepValues" 
-                        Value="4"
-                        ValueChanged="AnswerNumSlider_ValueChanged_1"/>
+                <TextBox Name="Answer3TextBox" Margin="20,20,20,20" Width="300" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                
             </StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock FontSize="50" VerticalAlignment="Center" Margin="10,40,30,40">
-                    Timer
-                </TextBlock>
-                <ToggleSwitch Name="TimerToggleSwitch" 
-                              Margin="70,40,30,40" 
-                              FontSize="40" 
-                              Toggled="TimerToggleSwitch_Toggled_1"/>
-            </StackPanel>
-            <Button Name="CreateCustomQuestionButton" FontStyle="Italic" FontSize="50" HorizontalAlignment="Center" Click="CreateCustomQuestionButton_Click_1">
-                Create a Custom Question! 
+            
+            <Button Name="FinishedButton" 
+                    Margin="20" 
+                    FontSize="40" 
+                    FontStyle="Italic" 
+                    Click="FinishedButton_Click_1"
+                    HorizontalAlignment="Center">
+                Submit Question
             </Button>
         </StackPanel>
         
         
+        
+        
+        
+        
+        
+        
+
         <VisualStateManager.VisualStateGroups>
+
             <!-- Visual states reflect the application's view state -->
             <VisualStateGroup x:Name="ApplicationViewStates">
                 <VisualState x:Name="FullScreenLandscape"/>
                 <VisualState x:Name="Filled"/>
+
                 <!-- The entire page respects the narrower 100-pixel margin convention for portrait -->
                 <VisualState x:Name="FullScreenPortrait">
                     <Storyboard>
@@ -98,6 +97,7 @@
                         </ObjectAnimationUsingKeyFrames>
                     </Storyboard>
                 </VisualState>
+
                 <!-- The back button and title have different styles when snapped -->
                 <VisualState x:Name="Snapped">
                     <Storyboard>

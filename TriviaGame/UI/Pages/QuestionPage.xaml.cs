@@ -46,6 +46,7 @@ namespace UI.Pages
         private readonly IOptionsService _OptionsService;
 
         GeneralOptions _GenOps;
+        CustomOptions _CusOps;
 
         public Int32 QuestionThreshold { get; set; }
         Stopwatch timer = new Stopwatch();
@@ -85,6 +86,7 @@ namespace UI.Pages
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _GenOps = _OptionsService.GetGeneralOptions();
+            _CusOps = _OptionsService.GetCustomOptions();
 
             ResetColors();
             var gameExists = _GameService.IsGameInProgress();
@@ -431,7 +433,7 @@ namespace UI.Pages
             
             if(!happy)
                 AnswerTextBlock.Text =
-                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n{6}",
 
                                 _NumCorrect,
                                 questionsRightNum,
@@ -440,9 +442,9 @@ namespace UI.Pages
                                 _BestCorrectStreak,
                                 correctStreakNum,
                                 Sad);
-            else if(!sad)
+            else if (!sad)
                 AnswerTextBlock.Text =
-                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n{6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -451,16 +453,33 @@ namespace UI.Pages
                                 correctStreakNum,
                                 Happy);
             else
-                AnswerTextBlock.Text =
-                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n\n",
+            {
+                if (_CusOps.IsTimerOn)
+                {
+                    AnswerTextBlock.Text =
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n  Your time was: {6}:{7}",
 
                                 _NumCorrect,
                                 questionsRightNum,
-                                _NumIncorrect, 
+                                _NumIncorrect,
                                 questionsWrongNum,
                                 _BestCorrectStreak,
                                 correctStreakNum,
-                                elapsedTime);
+                                timer.Elapsed.Minutes,
+                                timer.Elapsed.Seconds);
+                }
+                else
+                    AnswerTextBlock.Text =
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n",
+
+                                _NumCorrect,
+                                questionsRightNum,
+                                _NumIncorrect,
+                                questionsWrongNum,
+                                _BestCorrectStreak,
+                                correctStreakNum);
+            }
+                
 
             playsound("complete");
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }
