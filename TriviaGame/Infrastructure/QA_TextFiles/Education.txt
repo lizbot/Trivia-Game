@@ -68,10 +68,13 @@ What is a tool fitted with a cutting tool attachment or driving tool attachment,
 Drill    Sciences    Genomics    Web server
 
 What is the process of selecting and preparing written, visual, audible, and film media used to convey information through the processes of correction, condensation, organization, and other modifications performed with an intention of producing a correct, consistent, accurate, and complete work?
-Editing    Contact managers    Animation    Animation
+Editing    Contact managers    Animation    Computer graphics
 
 What is a category of software tools for designing electronic systems such as printed circuit boards and integrated circuits?
 Electronic Design Automation    Accounting software    Spatial Visualization Ability    Interpreter 
 
 What is a term encompassing several different types of voting, embracing both electronic means of casting a vote and electronic means of counting votes?
 Electronic voting    Data mining closely related to database    Cheque    Video games
+
+What is the body part that forms the supporting structure of an organism?
+Skeleton     Rallying    Unicycle hockey    Knife throwing
