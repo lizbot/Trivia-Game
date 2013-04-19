@@ -17,12 +17,29 @@ namespace UI.Pages
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        MediaElement music = new MediaElement();
+        bool isMusicPlaying;
+        MediaElement rootMediaElement; 
 
         public MainPage()
         {
+            //isMusicPlaying = false;
+            
+
             this.InitializeComponent();
+            this.Loaded += OnLoaded;
         }
- 
+
+        public async void PlayMusic()
+        {
+            Windows.Storage.StorageFolder _Folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Infrastructure\Sound");
+
+            Windows.Storage.StorageFile _File = await _Folder.GetFileAsync("DigitalStream.wav");
+
+            var stream = await _File.OpenReadAsync();
+            music.SetSource(stream, _File.ContentType);
+            isMusicPlaying = true;
+        }
         
         /// <summary>
         /// Invoked when this page is about to be displayed in a Frame.
@@ -31,7 +48,16 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
+            
         }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            DependencyObject rootGrid = VisualTreeHelper.GetChild(Window.Current.Content, 0);
+            rootMediaElement = (MediaElement)VisualTreeHelper.GetChild(rootGrid, 0);
+        }
+
 
         private void StartGameClick(object sender, RoutedEventArgs e)
         {

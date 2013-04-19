@@ -1,0 +1,62 @@
+
+How to Play
+_________________
+Introduction
+
+Welcome to The Trivia Game! This is a fun and interactive game developed to test your knowledge on a variety of categories on general information. This user manual is intended to help you through all of the mishaps you might encounter and give you a detailed view on how the Trivial Application works.
+
+________________
+Getting Started
+
+When you start the Trivia Game, you will be presented with a start up screen that will allow you to select from three options. This options include Start Game, Options, and Statistics. 
+
+________________
+Start Game
+
+When you click Start Game, you will be presented with two Options; the Quickplay, and Select a Category option.
+
+By selecting Quickplay, you will be able to jump straight into the action and start answering questions immediately. These questions will be selected from all of the categories that we have available with our default settings. For more information on the default settings, see the Default Options section of the manual.
+
+When clicking on Select a Category, you will be able to choose what type of question you will like to be asked. The following section describes the types of categories you will be able to choose from. Lastly, you will have the option to go back to the previous screen by selecting the arrow on the top-left hand side.
+
+________________
+Categories
+
+When clicking on Select a Category, as stated before, you will have the option of choosing from a variety of subjects to test your knowledge on. This categories include, Sports, Education, People, Geography, and Entertainment. 
+
+________________
+Questions
+
+After selecting either QuickPlay or your preference in Select a Category, you will be able to start the game. Each question will be displayed with the number of the question, out of the total number of questions, to help you keep track of what question you are on, and the type of game that you are playing, whether is Quickplay or one of the specific Categories. Lastly, you will be able to choose from four possible answers.
+
+After you select you answer, the correct answer will be displayed for a few seconds before going onto the next question.
+
+_________________
+End of Game
+
+When you have completed the game, you will be able to see the results and how knowledgeable you are. A pop-up screen will appear and the number of correct and incorrect answers will be displayed. The longest streak of questions answered correctly will be shown as well.
+
+_________________
+Resume
+
+If you were unable to complete your session and exited the game, the application will store the contents of your game and an optional Resume Last Game button will appear. By clicking Resume Last Game, you will be sent to the last unanswered question of your previous session.
+
+________________
+Options
+
+The trivia game has a variety of ways for you to utilize and customize your game. When clicking on the Options button, you will be able to choose from two different types of Options, the Custom Options, and General Game Options.
+
+________________
+Custom Options
+
+In Custom Options you are able to set a Timer On which will set an allowed time to answer the question. You will also have the option to change the Number of Questions per Game from a minimum of five to a maximum limit of 25. Lastly, you can change the Number of Answers Displayed will allow you to choose between having a minimum of two and a maximum of four answers displayed.
+
+________________
+General Options
+
+In the General Options you will have the ability to set Music and Sound Effect options. The Music option gives you something relaxing to listen to while playing the game. The Sound Effect option will add different effects depending on whether you answer a question correctly or incorrectly.
+
+_____________
+Statistics
+
+Statistics allow you to see all of your statistics that we are keeping track off. The statistics include Total Number of Answers Correct, Total Questions Attempted, Longest Correct Streak, and the Percentage Correct. All of these statistics are overall, lifetime, statistics.

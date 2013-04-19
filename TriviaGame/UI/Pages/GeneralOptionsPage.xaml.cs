@@ -2,10 +2,12 @@
 using Application.Model;
 using Microsoft.Practices.ServiceLocation;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using UI.Common;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace UI.Pages
@@ -17,34 +19,42 @@ namespace UI.Pages
     {
         private readonly IOptionsService _OptionsService;
         private GeneralOptions _GenOps;
+        MediaElement rootMediaElement;
 
         public GeneralOptionsPage()
         {
             _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
 
             InitializeComponent();
+            this.Loaded += OnLoaded;
+        }
+
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            DependencyObject rootGrid = VisualTreeHelper.GetChild(Window.Current.Content, 0);
+            rootMediaElement = (MediaElement)VisualTreeHelper.GetChild(rootGrid, 0);
+
+            if (_GenOps.IsMusicOn)
+                MusicToggleSwitch.IsOn = true;
+            else
+                MusicToggleSwitch.IsOn = false;
+
+            if (_GenOps.IsSoundEffectsOn)
+                SoundEffectsToggleSwitch.IsOn = true;
+            else
+                SoundEffectsToggleSwitch.IsOn = false;
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             _GenOps = _OptionsService.GetGeneralOptions();
 
-            //if (GenOps.IsMusicOn)
-                //MusicToggleSwitch.IsOn = true;
-            //else
-                //MusicToggleSwitch.IsOn = false;
-
-            //if (GenOps.IsSoundEffectsOn)
-                //SoundEffectsToggleSwitch.IsOn = true;
-            //else
-                //SoundEffectsToggleSwitch.IsOn = false;
-
             base.OnNavigatedTo(e);
         }
 
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
-            //_OptionsService.UpdateGeneralOptions(_GenOps);
+            _OptionsService.UpdateGeneralOptions(_GenOps);
 
             base.OnNavigatedFrom(e);
         }
@@ -74,23 +84,36 @@ namespace UI.Pages
 
         private void MusicToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
         {
-            //if (MusicToggleSwitch.IsOn)
-            //    GenOps.IsMusicOn = true;
-            //else
-            //    GenOps.IsMusicOn = false;
+            if (MusicToggleSwitch.IsOn)
+            {
+                _GenOps.IsMusicOn = true;
+                rootMediaElement.IsMuted = false;
+            }
+
+            else
+            {
+                _GenOps.IsMusicOn = false;
+                rootMediaElement.IsMuted = true;
+            }
+            
         }
 
         private void SoundEffectsToggleSwitch_Toggled_1(object sender, RoutedEventArgs e)
         {
-            //if (SoundEffectsToggleSwitch.IsOn)
-            //    GenOps.IsSoundEffectsOn = true;
-            //else
-            //    GenOps.IsSoundEffectsOn = false;
+            if (SoundEffectsToggleSwitch.IsOn)
+                _GenOps.IsSoundEffectsOn = true;
+            else
+                _GenOps.IsSoundEffectsOn = false;
         }
 
         private void HowToPlayButton_Click_1(object sender, RoutedEventArgs e)
         {
-            
+            UserManualPopup.IsOpen = true;
+        }
+
+        private void ClosePopupButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            UserManualPopup.IsOpen = false;
         }
     }
 }

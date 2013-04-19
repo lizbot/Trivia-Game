@@ -43,6 +43,10 @@ namespace UI.Pages
 
         List<Question> _Questions = new List<Question>();
         private readonly IStatisticsService _StatisticsService;
+        private readonly IOptionsService _OptionsService;
+
+        GeneralOptions _GenOps;
+        CustomOptions _CusOps;
 
         public Int32 QuestionThreshold { get; set; }
         Stopwatch timer = new Stopwatch();
@@ -64,6 +68,7 @@ namespace UI.Pages
             _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
             _GameService = ServiceLocator.Current.GetInstance<IGameService>();
             _StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
+            _OptionsService = ServiceLocator.Current.GetInstance<IOptionsService>();
 
             _CurrentQuestionIndex = 0;
             _NumQuestionsAnswered = 0;
@@ -80,6 +85,9 @@ namespace UI.Pages
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            _GenOps = _OptionsService.GetGeneralOptions();
+            _CusOps = _OptionsService.GetCustomOptions();
+
             ResetColors();
             var gameExists = _GameService.IsGameInProgress();
             var gameInProgress = new GameSaved();
@@ -134,7 +142,7 @@ namespace UI.Pages
         private void DisplayQuestion(Question question)
         {
             QuestionText.Text = question.QuestionName;
-            QuestionNumTextBlock.Text = "Question " + (_CurrentQuestionIndex+1) + " of " + _Questions.Count();
+            QuestionNumTextBlock.Text = "Question " + (_CurrentQuestionIndex + 1) + " of " +_QuestionThreshold;
 
             var randomIndex = _Random.Next(0, 4);
             _QuestionAnsweredId = question.QuestionId;
@@ -226,10 +234,10 @@ namespace UI.Pages
             {
                 dispatcherTimer.Stop();
                 timer.Stop();
+                _StatisticsService.AnalyzeEndOfGameData();
                 ShowResultsPopup();
                 DisableButtons();
 
-                _StatisticsService.AnalyzeEndOfGameData();
                 _GameService.DeleteGameInProgressIfExists();
             }
             else
@@ -246,19 +254,22 @@ namespace UI.Pages
             MediaElement _mySound = new MediaElement();
             Windows.Storage.StorageFolder _Folder = await Windows.ApplicationModel.Package.Current.InstalledLocation.GetFolderAsync(@"Infrastructure\Sound");
 
-            if (result == "correct")
-                file_name = "right.wav";
-            else if (result == "incorrect")
-                file_name = "wrong.wav";
-            else
-                file_name = "applause.wav";
+            if (_GenOps.IsSoundEffectsOn)
+            {
+                if (result == "correct")
+                    file_name = "right.wav";
+                else if (result == "incorrect")
+                    file_name = "wrong.wav";
+                else
+                    file_name = "applause.wav";
 
-            Windows.Storage.StorageFile _File = await _Folder.GetFileAsync(file_name);
+                Windows.Storage.StorageFile _File = await _Folder.GetFileAsync(file_name);
 
-            var stream = await _File.OpenReadAsync();
-            _mySound.SetSource(stream, _File.ContentType);
+                var stream = await _File.OpenReadAsync();
+                _mySound.SetSource(stream, _File.ContentType);
 
-            _mySound.Play();
+                _mySound.Play();
+            }
         }
 
         private void IsAnswerCorrect(Int32 buttonIndex)
@@ -397,6 +408,10 @@ namespace UI.Pages
             string questionsWrongNum = "questions";
             string correctStreakNum = "questions";
 
+            _NumCorrect = _StatisticsService.GetCurrentGameCorrectAnswers();
+            _BestCorrectStreak = _StatisticsService.GetCurrentGameLongestStreak();
+            _NumIncorrect = _StatisticsService.GetCurrentGameQuestionsAttempted() - _NumCorrect;
+
             if (_NumCorrect == 1)
                 questionsRightNum = "question";
             else if (_NumIncorrect == 1)
@@ -418,7 +433,7 @@ namespace UI.Pages
             
             if(!happy)
                 AnswerTextBlock.Text =
-                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n{6}",
 
                                 _NumCorrect,
                                 questionsRightNum,
@@ -427,9 +442,9 @@ namespace UI.Pages
                                 _BestCorrectStreak,
                                 correctStreakNum,
                                 Sad);
-            else if(!sad)
+            else if (!sad)
                 AnswerTextBlock.Text =
-                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n\n{6}",
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.  \n\n{6}",
                                 _NumCorrect,
                                 questionsRightNum,
                                 _NumIncorrect,
@@ -438,16 +453,33 @@ namespace UI.Pages
                                 correctStreakNum,
                                 Happy);
             else
-                AnswerTextBlock.Text =
-                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n\n",
+            {
+                if (_CusOps.IsTimerOn)
+                {
+                    AnswerTextBlock.Text =
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n  Your time was: {6}:{7}",
 
                                 _NumCorrect,
                                 questionsRightNum,
-                                _NumIncorrect, 
+                                _NumIncorrect,
                                 questionsWrongNum,
                                 _BestCorrectStreak,
                                 correctStreakNum,
-                                elapsedTime);
+                                timer.Elapsed.Minutes,
+                                timer.Elapsed.Seconds);
+                }
+                else
+                    AnswerTextBlock.Text =
+                    String.Format("\n  You got {0} {1} right and {2} {3} wrong!\n\n  Your best streak was {4} {5} answered correctly in a row.\t\n\n",
+
+                                _NumCorrect,
+                                questionsRightNum,
+                                _NumIncorrect,
+                                questionsWrongNum,
+                                _BestCorrectStreak,
+                                correctStreakNum);
+            }
+                
 
             playsound("complete");
             if (!ResultsPopup.IsOpen) { ResultsPopup.IsOpen = true; }

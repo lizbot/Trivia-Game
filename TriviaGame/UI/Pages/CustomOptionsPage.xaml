@@ -79,6 +79,9 @@
                               FontSize="40" 
                               Toggled="TimerToggleSwitch_Toggled_1"/>
             </StackPanel>
+            <Button Name="CreateCustomQuestionButton" FontStyle="Italic" FontSize="50" HorizontalAlignment="Center" Click="CreateCustomQuestionButton_Click_1">
+                Create a Custom Question! 
+            </Button>
         </StackPanel>
         
         

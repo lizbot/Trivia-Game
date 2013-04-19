@@ -56,8 +56,5 @@ namespace Domain.Services
         {
             return _QuestionRepository.GetQuestion(questionId);
         }
-
-        //Gets the questions as a parameter and gets them back to the repository
-        //Statistics service to know about the user. Percent correct (calculate this somewhere else)
     }
 }

@@ -2,8 +2,16 @@
 using Microsoft.Practices.ServiceLocation;
 using System;
 using System.Collections.Generic;
-using UI.Common;
+using System.IO;
+using System.Linq;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Controls.Primitives;
+using Windows.UI.Xaml.Data;
+using Windows.UI.Xaml.Input;
+using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Basic Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234237
@@ -13,41 +21,15 @@ namespace UI.Pages
     /// <summary>
     /// A basic page that provides characteristics common to most applications.
     /// </summary>
-    public sealed partial class StatisticsPage
+    public sealed partial class CustomQuestionCreationPage : UI.Common.LayoutAwarePage
     {
-        private readonly IStatisticsService _StatisticsService;
+        private readonly IQuestionService _QuestionService;
 
-        public StatisticsPage()
+        public CustomQuestionCreationPage()
         {
-            _StatisticsService = ServiceLocator.Current.GetInstance<IStatisticsService>();
+            _QuestionService = ServiceLocator.Current.GetInstance<IQuestionService>();
 
-            InitializeComponent();
-        }
-
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            var numCorrect = _StatisticsService.GetOverallAnsweredCorrectly();
-            var numTotal = _StatisticsService.GetOverallQuestionsAnswered();
-            var longestStreak = _StatisticsService.GetLongestStreak();
-
-            AnswersCorrectTextBlock.Text = "Total Answers Correct: " + numCorrect;
-            AnswersIncorrectTextBlock.Text = "Total Answers Incorrect: " + (numTotal - numCorrect);
-            LongestStreakTextBlock.Text = "Longest Correct Streak: " + longestStreak;
-
-            if (numCorrect != 0)
-                OverallStatisticsTextBlock.Text = "Overall Statistics: " + _StatisticsService.GetPercentageOfOverallStatistics() + "%";
-            else
-                OverallStatisticsTextBlock.Text = "Go play the game!";
-
-            base.OnNavigatedTo(e);
-
-            //CallStoryboard();
-        }
-
-        public void CallStoryboard()
-        {
-            StatisticsFadeInStoryboard.Begin();
+            this.InitializeComponent();
         }
 
         /// <summary>
@@ -72,5 +54,33 @@ namespace UI.Pages
         protected override void SaveState(Dictionary<String, Object> pageState)
         {
         }
+
+        
+
+        private void FinishedButton_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (CorrectAnswerTextBox.Text.Length == 0 ||
+                Answer1TextBox.Text.Length == 0 ||
+                Answer2TextBox.Text.Length == 0 ||
+                Answer3TextBox.Text.Length == 0)
+            {
+
+            }
+            else
+            {
+                List<String> wrongAnswers = new List<String>();
+
+                wrongAnswers.Add(Answer1TextBox.Text);
+                wrongAnswers.Add(Answer2TextBox.Text);
+                wrongAnswers.Add(Answer3TextBox.Text);
+
+                _QuestionService.StoreCustomQuestionsAndAnswers(QuestionEntryTextBox.Text, CorrectAnswerTextBox.Text, wrongAnswers);
+                Frame.GoBack();
+            }
+        }
+
+        
+
+        
     }
 }
